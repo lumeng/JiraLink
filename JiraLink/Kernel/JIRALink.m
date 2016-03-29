@@ -12,7 +12,7 @@
 (* :Keywords: JIRA, external link, JiraLink, API, REST *)
 (* :Discussion: *)
 
-$debugQ = True;
+$debugQ = False;
 
 If[
     $VersionNumber < 10,
