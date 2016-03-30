@@ -56,7 +56,7 @@ GenerateEncryptedLoginInfoFile[password_] := Export[
     With[
         {
             encryptPassword = password,
-            host = InputString["JIRA site host name (e.g. \"http://jira.wolfram.com:8080\"): "],
+            host = InputString["JIRA site host name (e.g. \"http://jira.example.com:8080\"): "],
             username = InputString["LDAP username: "],
             password = InputString["LDAP password: "]
         },
