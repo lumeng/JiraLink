@@ -1,0 +1,146 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[      4156,        145]
+NotebookOptionsPosition[      3192,        104]
+NotebookOutlinePosition[      3570,        121]
+CellTagsIndexPosition[      3527,        118]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["JIRALink", "Title"],
+
+Cell[CellGroupData[{
+
+Cell["Initialization", "Subsection"],
+
+Cell[BoxData["Quit"], "Input"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"PrependTo", "[", 
+   RowBox[{"$Path", ",", 
+    RowBox[{"ParentDirectory", "[", 
+     RowBox[{"NotebookDirectory", "[", "]"}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "JiraLink`"}]}], "Input",
+ InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Create JIRA issues", "Subsection"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateIssue", "[", 
+  RowBox[{
+  "\"\<PROJECTXXX\>\"", ",", "\"\<SummaryXXX\>\"", ",", "\"\<Bug\>\"", ",", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<description\>\"", "\[Rule]", " ", "\"\<XXX\>\""}], ",", 
+     RowBox[{"\"\<priority\>\"", "\[Rule]", " ", 
+      RowBox[{"<|", 
+       RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<Major\>\""}], "|>"}]}], 
+     ",", 
+     RowBox[{"\"\<assignee\>\"", "\[Rule]", " ", 
+      RowBox[{"<|", 
+       RowBox[{"\"\<name\>\"", "\[Rule]", " ", 
+        RowBox[{"OptionValue", "[", 
+         RowBox[{"JiraExecute", ",", "\"\<Username\>\""}], "]"}]}], "|>"}]}], 
+     ",", 
+     RowBox[{"\"\<components\>\"", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"<|", 
+         RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<componentXXX\>\""}], 
+         "|>"}], ",", 
+        RowBox[{"<|", 
+         RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<componentYYY\>\""}], 
+         "|>"}]}], "}"}]}], ",", 
+     RowBox[{"\"\<labels\>\"", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{"\"\<label1XXX\>\"", ",", "\"\<label2XXX\>\""}], "}"}]}]}], 
+    "|>"}], ",", 
+   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "]"}]], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Create sub-task issues", "Subsection"],
+
+Cell["Get the key of the issue created above:", "Text"],
+
+Cell[BoxData[
+ RowBox[{"\"\<key\>\"", "/.", 
+  RowBox[{"ImportString", "[", 
+   RowBox[{"%", ",", "\"\<JSON\>\""}], "]"}]}]], "Input"],
+
+Cell["Create a sub-taks under the above issue:", "Text"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateSubtaskIssue", "[", 
+  RowBox[{"%", ",", "\"\<SummaryXXX\>\"", ",", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<description\>\"", "\[Rule]", " ", "\"\<XXX\>\""}], ",", 
+     RowBox[{"\"\<priority\>\"", "\[Rule]", " ", 
+      RowBox[{"<|", 
+       RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<Major\>\""}], "|>"}]}], 
+     ",", 
+     RowBox[{"\"\<assignee\>\"", "\[Rule]", " ", 
+      RowBox[{"<|", 
+       RowBox[{"\"\<name\>\"", "\[Rule]", " ", 
+        RowBox[{"OptionValue", "[", 
+         RowBox[{"JiraExecute", ",", "\"\<Username\>\""}], "]"}]}], 
+       "|>"}]}]}], "|>"}], ",", 
+   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "]"}]], "Input"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1440, 851},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+FrontEndVersion->"10.4 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 25, \
+2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[422, 15, 25, 0, 92, "Title"],
+Cell[CellGroupData[{
+Cell[472, 19, 36, 0, 44, "Subsection"],
+Cell[511, 21, 30, 0, 28, "Input"],
+Cell[544, 23, 280, 8, 46, "Input",
+ InitializationCell->True]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[861, 36, 40, 0, 44, "Subsection"],
+Cell[904, 38, 1224, 30, 63, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2165, 73, 44, 0, 44, "Subsection"],
+Cell[2212, 75, 55, 0, 30, "Text"],
+Cell[2270, 77, 134, 3, 28, "Input"],
+Cell[2407, 82, 56, 0, 30, "Text"],
+Cell[2466, 84, 698, 16, 46, "Input"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
