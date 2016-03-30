@@ -22,7 +22,7 @@ If[
 
 BeginPackage["JIRALink`"]
 
-JiraExecute::usage = "JiraExecute[queryType, properties] executes a query \
+JiraExecute::usage = "JiraExecute[resourceName, properties] executes a query \
 conforming to the JIRA REST API (https://docs.atlassian.com/jira/REST/latest/).";
 
 JiraCreateIssue::usage = "JiraCreateIssue[project, summary, issueType, \
@@ -104,7 +104,7 @@ JiraExecute::err = "Jira command `1` failed with message: `2`";
 
 JiraExecute::badprop = "Properties `1` could not be converted to JSON. Abort.";
 
-JiraExecute[queryType_String, properties_Association: <||>, OptionsPattern[]] := Module[
+JiraExecute[resourceName_String, properties_Association: <||>, OptionsPattern[]] := Module[
     {host, username, password, loginInfo, method, jsonData, result},
     host = OptionValue["Host"];
     username  = OptionValue["Username"];
@@ -124,7 +124,7 @@ JiraExecute[queryType_String, properties_Association: <||>, OptionsPattern[]] :=
     ];
 
     result = Import["!curl "
-        <> URLBuild[{host, "jira", "rest", "api", "2", queryType}] <> " "
+        <> URLBuild[{host, "jira", "rest", "api", "2", resourceName}] <> " "
         <> loginInfo <> " "
         <> "-X " <> method <> " "
         <> "-H \"Content-Type: application/json\" -d '" <> jsonData <> "'",
@@ -132,7 +132,7 @@ JiraExecute[queryType_String, properties_Association: <||>, OptionsPattern[]] :=
     ];
 
     If[TrueQ[$debugQ], Print[xImport["!curl "
-        <> URLBuild[{host, "jira", "rest", "api", "2", queryType}] <> " "
+        <> URLBuild[{host, "jira", "rest", "api", "2", resourceName}] <> " "
         <> loginInfo <> " "
         <> "-X " <> method <> " "
         <> "-H \"Content-Type: application/json\" -d '" <> jsonData <> "'",
