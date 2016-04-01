@@ -63,7 +63,10 @@ $JIRAIssueKeyRegex = RegularExpression["[A-Z]+-[0-9]+"];
 
 RemoveCharactersNotSupported[str_String] := StringReplace[
     str,
-    RegularExpression["[^\\x0-\\xFFFF]"] -> "<XXX/>"
+    RegularExpression["[^\\x0-\\xFFFF]"] -> "<ToCharacterCode-result>"
+        <> ToString[ToCharacterCode["$1"], InputForm]
+        <> "</ToCharacterCode-result>"
+
 ]
 
 (* ::Section:: *)
