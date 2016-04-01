@@ -12,18 +12,13 @@
 (* :Keywords: JIRA, external link, JiraLink, API, REST *)
 (* :Discussion: *)
 
-$debugQ = False;
+BeginPackage["JiraLink`"]
 
-If[
-    $VersionNumber < 10,
-    Print["This package is designed for Mathematica version 10 and later."];
-    Abort[]
-];
-
-BeginPackage["JIRALink`"]
-
-JiraExecute::usage = "JiraExecute[resourceName, properties] executes a query \
+JiraExecute::usage = "JiraExecute[resourceName, headerData] executes a query \
 conforming to the JIRA REST API (https://docs.atlassian.com/jira/REST/latest/).";
+
+JiraIssueData::usage = "JiraIssueData[issueKey, field] returns the properties \
+the specified issue.";
 
 JiraCreateIssue::usage = "JiraCreateIssue[project, summary, issueType, \
 moreProperties] creates a new issue in the specified project with the \
