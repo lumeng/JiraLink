@@ -234,6 +234,34 @@ JiraExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]]
         {Import::fmterr}
     ]
 ];
+
+
+(* ::Section:: *)
+(*******************************************************************************
+## JiraIssueData
+
+### References:
+* https://docs.atlassian.com/jira/REST/latest/#api/2/issue-getIssue
+
+*)
+
+ClearAll[JiraIssueData];
+
+Options[JiraIssueData] = Options[JiraExecute];
+
+JiraIssueData[issueKey_String, field_String: All, opts:OptionsPattern[]] := Module[
+    {result, jsonData, resourceName},
+
+    resourceName = URLBuild[{"issue", issueKey}];
+
+    jsonData = JiraExecute[resourceName, "Method" -> "GET",
+        Sequence@@FilterRules[Flatten[{opts}], Options[JiraExecute]]];
+
+    (*result = If[StringQ[result], ImportString[jsonData, "JSON"]];*)
+
+    result = jsonData;
+
+    result
 ];
 
 
