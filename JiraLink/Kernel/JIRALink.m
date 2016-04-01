@@ -56,6 +56,16 @@ If[
 
 $JIRAIssueKeyRegex = RegularExpression["[A-Z]+-[0-9]+"];
 
+(* ::Section:: *)
+(*******************************************************************************
+## Helper functions
+*)
+
+RemoveCharactersNotSupported[str_String] := StringReplace[
+    str,
+    RegularExpression["[^\\x0-\\xFFFF]"] -> "<XXX/>"
+]
+
 
 (* ::Section:: *)
 (*******************************************************************************
