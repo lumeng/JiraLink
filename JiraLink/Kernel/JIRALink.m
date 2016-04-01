@@ -66,6 +66,19 @@ RemoveCharactersNotSupported[str_String] := StringReplace[
     RegularExpression["[^\\x0-\\xFFFF]"] -> "<XXX/>"
 ]
 
+(* ::Section:: *)
+(*******************************************************************************
+## JiraIssueOpen
+*)
+
+JiraIssueOpen[issueIdOrKey_String] := If[
+    StringMatchQ[issueIdOrKey, $JIRAIssueKeyRegex],
+    With[
+        {url = URLBuild[{OptionValue["Host"], "jira", "browse", key}]},
+        SystemOpen[url]
+    ]
+];
+
 
 (* ::Section:: *)
 (*******************************************************************************
