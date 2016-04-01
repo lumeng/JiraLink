@@ -61,14 +61,6 @@ $JIRAIssueKeyRegex = RegularExpression["[A-Z]+-[0-9]+"];
 ## Helper functions
 *)
 
-RemoveCharactersNotSupported[str_String] := StringReplace[
-    str,
-    RegularExpression["[^\\x0-\\xFFFF]"] -> "<ToCharacterCode-result>"
-        <> ToString[ToCharacterCode["$1"], InputForm]
-        <> "</ToCharacterCode-result>"
-
-]
-
 (* ::Section:: *)
 (*******************************************************************************
 ## JiraIssueOpen
@@ -165,13 +157,9 @@ JiraExecute::err = "Jira command `1` failed with message: `2`";
 JiraExecute::badprop = "Properties `1` could not be converted to JSON. Abort.";
 
 JiraExecute::badjsonexpr = "JSON string `1` cannot be converted to a Wolfram \
-Language expression using ImportString[in, \"JSON\"].";
-
-JiraExecute::badjsonexpr2 = "JSON string `1` cannot be converted to a Wolfram \
-Language expression using \
-ImportString[RemoveCharactersNotSupported[in], \"JSON\"] where \
-RemoveCharactersNotSupported removes characters above code point 0xFFFF from
-the input.";
+Language expression using ImportString[in, \"JSON\"]. Use String expression
+instead of the more structured list of rules, numbers, and strings, etc. to \
+represent the JSON object.";
 
 JiraExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]] := Module[
     {host, apiUrl, username, password, loginInfo, method, contentType, jsonData, result, header},
@@ -189,7 +177,11 @@ JiraExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]]
         ""
     ];
 
-    contentType = "application/json; charset=utf8";
+    (** TODO If may be redundant to specify the charset=utf-8, c.f.
+    * http://stackoverflow.com/questions/9254891/what-does-content-type-application-json-charset-utf-8-really-mean
+    * http://stackoverflow.com/questions/3995559/json-character-encoding
+    **)
+    contentType = "application/json; charset=utf-8";
 
     jsonData = Check[
         ExportString[headerData, "JSON"],
@@ -226,16 +218,12 @@ JiraExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]]
     ];
 
     Check[
-        ImportString[result, "JSON"],
+        ImportString[ToString[result, CharacterEncoding->"UTF-8"], "JSON"],
         Message[JiraExecute::badjsonexpr, result];
-        Check[
-            ImportString[RemoveCharactersNotSupported[result], "JSON"],
-            Message[JiraExecute::badjsonexpr2, result];
-            result,
-            {Import::fmterr}
-        ],
+        result,
         {Import::fmterr}
     ]
+
 ];
 
 
