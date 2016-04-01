@@ -126,6 +126,20 @@ $JiraLogin = Decrypt[
 (* ::Section:: *)
 (*******************************************************************************
 ## JiraExecute
+
+## Developer note
+
+* Use `URLFetch`
+
+    URLFetch[
+        "http://jira.example.com:8080/jira/rest/api/2/issue/MYPROJECT-123",
+        "Headers"->  {
+            "u"-> "USER:PASSWORD",
+            "Content-Type"-> "application/json; charset=utf8"
+        },
+        Method-> "GET"
+    ]
+
 *)
 
 ClearAll[JiraExecute];
@@ -137,7 +151,8 @@ Options[JiraExecute] = {
     "Host" -> "http://jira.example.com:8080",
     "Username" -> None,
     "Password" -> None,
-    "Method" -> "GET"
+    "Method" -> "GET",
+    "HTTPRequestImplementation" -> {Automatic, Import, URLFetch}[[2]]
 };
 
 SetOptions[JiraExecute, Normal[$JiraLogin]];
@@ -146,42 +161,79 @@ JiraExecute::err = "Jira command `1` failed with message: `2`";
 
 JiraExecute::badprop = "Properties `1` could not be converted to JSON. Abort.";
 
-JiraExecute[resourceName_String, properties_Association: <||>, OptionsPattern[]] := Module[
-    {host, username, password, loginInfo, method, jsonData, result},
+JiraExecute::badjsonexpr = "JSON string `1` cannot be converted to a Wolfram \
+Language expression using ImportString[in, \"JSON\"].";
+
+JiraExecute::badjsonexpr2 = "JSON string `1` cannot be converted to a Wolfram \
+Language expression using \
+ImportString[RemoveCharactersNotSupported[in], \"JSON\"] where \
+RemoveCharactersNotSupported removes characters above code point 0xFFFF from
+the input.";
+
+JiraExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]] := Module[
+    {host, apiUrl, username, password, loginInfo, method, contentType, jsonData, result, header},
     host = OptionValue["Host"];
     username  = OptionValue["Username"];
     password = OptionValue["Password"];
     method = OptionValue["Method"];
 
-    jsonData = Check[
-        ExportString[properties, "JSON"],
-        Message[JiraExecute::badprop, properties];
-        Abort[]
-    ];
+    apiUrl = URLBuild[{host, "jira", "rest", "api", "2", resourceName}];
+
 
     loginInfo = If[
         StringQ[username],
-        "-u " <> username <> ":" <> If[StringQ[password], password, ""],
+        username <> ":" <> If[StringQ[password], password, ""],
         ""
     ];
 
-    result = Import["!curl "
-        <> URLBuild[{host, "jira", "rest", "api", "2", resourceName}] <> " "
-        <> loginInfo <> " "
-        <> "-X " <> method <> " "
-        <> "-H \"Content-Type: application/json\" -d '" <> jsonData <> "'",
-        "Text"
+    contentType = "application/json; charset=utf8";
+
+    jsonData = Check[
+        ExportString[headerData, "JSON"],
+        Message[JiraExecute::badprop, headerData];
+        Abort[]
     ];
 
-    If[TrueQ[$debugQ], Print[xImport["!curl "
-        <> URLBuild[{host, "jira", "rest", "api", "2", resourceName}] <> " "
-        <> loginInfo <> " "
-        <> "-X " <> method <> " "
-        <> "-H \"Content-Type: application/json\" -d '" <> jsonData <> "'",
-        "Text"
-    ]]];
+    result = Switch[
+        OptionValue["HTTPRequestImplementation"],
 
-    If[!StringQ[result], $Failed, result]
+        Import,
+
+        Import["!curl "
+            <> apiUrl <> " "
+            <> If[loginInfo =!= "", "-u " <> loginInfo <> " ", ""]
+            <> "-H "
+            <> "\"" <> "Content-Type: " <> "application/json;" <> "\"" <> " "
+            <> "-d " <> "'" <> jsonData <> "'" <> " "
+            <> "-X " <> method,
+            "Text"
+        ],
+
+        _,
+
+        URLFetch[
+            apiUrl,
+            "Headers"->  {
+                "u"-> loginInfo,
+                "Content-Type"-> contentType,
+                "d" -> jsonData
+            },
+            Method-> method
+        ]
+    ];
+
+    Check[
+        ImportString[result, "JSON"],
+        Message[JiraExecute::badjsonexpr, result];
+        Check[
+            ImportString[RemoveCharactersNotSupported[result], "JSON"],
+            Message[JiraExecute::badjsonexpr2, result];
+            result,
+            {Import::fmterr}
+        ],
+        {Import::fmterr}
+    ]
+];
 ];
 
 
