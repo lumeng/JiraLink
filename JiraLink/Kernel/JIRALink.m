@@ -40,6 +40,22 @@ Begin["`Private`"]
 $debugQ = False;
 
 
+(* ::Section:: *)
+(*******************************************************************************
+## Constants
+*)
+
+JiraLink::badversion = "This package is designed for Mathematica version 10 and
+later. This kernel session has version number `1`";
+
+If[
+    $VersionNumber < 10,
+    Message[JiraLink::badversion, $VersionNumber];
+    Abort[]
+];
+
+$JIRAIssueKeyRegex = RegularExpression["[A-Z]+-[0-9]+"];
+
 
 (* ::Section:: *)
 (*******************************************************************************
