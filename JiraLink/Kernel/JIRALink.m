@@ -297,7 +297,7 @@ Options[JiraCreateIssue] = FilterRules[
 
 JiraCreateIssue[project_String, summary_String, issueType_String: "Task",
     moreProperties_Association: <||>, opts:OptionsPattern[]] := Module[
-    {key, result, url, properties, jsonData, openQ},
+    {key, result, url, properties, headerData, jsonData, openQ},
     openQ = OptionValue["OpenQ"];
 
     properties = <|
@@ -307,16 +307,15 @@ JiraCreateIssue[project_String, summary_String, issueType_String: "Task",
         "priority" -> <|"name" -> "Major"|>
     |>;
 
-    properties = <|"fields" -> Join[properties, moreProperties]|>;
+    headerData = <|"fields" -> Join[properties, moreProperties]|>;
 
-    result = JiraExecute["issue", properties, "Method" -> "POST",
-        Sequence@@FilterRules[opts, Options[JiraExecute]]];
+    result = JiraExecute["issue", headerData, "Method" -> "POST",
+        Sequence@@FilterRules[Flatten[{opts}], Options[JiraExecute]]];
 
     If[
         TrueQ[openQ],
-        key = "key" /. ImportString[result, "JSON"];
-        url = URLBuild[{OptionValue["Host"], "jira", "browse", key}];
-        SystemOpen[url];
+        key = If[MatchQ[result, {__Rule}], "key" /. result];
+        JiraIssueOpen[key]
     ];
 
     result
@@ -369,19 +368,17 @@ JiraCreateSubtaskIssue[parentIssueKey_String, summary_String,
     properties = <|"fields" -> Join[properties, moreProperties]|>;
 
     result = JiraExecute["issue", properties, "Method" -> "POST",
-        Sequence@@FilterRules[opts, Options[JiraExecute]]];
-
-    If[TrueQ[$debugQ], Print["API call result JSON:"]; Print[result]];
+        Sequence@@FilterRules[Flatten[{opts}], Options[JiraExecute]]];
 
     If[
         TrueQ[openQ],
-        key = "key" /. ImportString[result, "JSON"];
-        url = URLBuild[{OptionValue["Host"], "jira", "browse", key}];
-        SystemOpen[url];
+        key = If[MatchQ[result, {__Rule}], "key" /. result];
+        JiraIssueOpen[key]
     ];
 
     result
 ];
+
 
 End[] (* `Private` *)
 
