@@ -14,6 +14,9 @@
 
 BeginPackage["JiraLink`"]
 
+JiraIssueOpen::usage = "JiraIssueOpen[issueKey] opens the JIRA issue using \
+SystemOpen.";
+
 JiraExecute::usage = "JiraExecute[resourceName, headerData] executes a query \
 conforming to the JIRA REST API (https://docs.atlassian.com/jira/REST/latest/).";
 
@@ -60,19 +63,6 @@ $JIRAIssueKeyRegex = RegularExpression["[A-Z]+-[0-9]+"];
 (*******************************************************************************
 ## Helper functions
 *)
-
-(* ::Section:: *)
-(*******************************************************************************
-## JiraIssueOpen
-*)
-
-JiraIssueOpen[issueIdOrKey_String] := If[
-    StringMatchQ[issueIdOrKey, $JIRAIssueKeyRegex],
-    With[
-        {url = URLBuild[{OptionValue["Host"], "jira", "browse", key}]},
-        SystemOpen[url]
-    ]
-];
 
 
 (* ::Section:: *)
@@ -224,6 +214,29 @@ JiraExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]]
         {Import::fmterr}
     ]
 
+];
+
+
+(* ::Section:: *)
+(*******************************************************************************
+## JiraIssueOpen
+*)
+ClearAll[JiraIssueOpen];
+
+JiraIssueOpen::invalidkey = "Invalid Jira issue key: `1`";
+
+Options[JiraIssueOpen] := {
+    "Host" -> OptionValue[JiraExecute, "Host"]
+};
+
+JiraIssueOpen[issueKey_String, OptionsPattern[]] := If[
+    StringMatchQ[issueKey, $JIRAIssueKeyRegex],
+    With[
+        {url = URLBuild[{OptionValue["Host"], "jira", "browse", issueKey}]},
+        Echo[url, "DEBUG"];
+        SystemOpen[url]
+    ],
+    Message[JiraIssueOpen::invalidkey, issueKey]
 ];
 
 
