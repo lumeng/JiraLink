@@ -95,15 +95,13 @@ If[
     !FileExistsQ[$EncryptedLoginInfoFile],
     GenerateEncryptedLoginInfoFile[
         InputString[
-            "Create " <> $EncryptedLoginInfoFile <> ". Password for encrypting/decrypting " <>
-            $EncryptedLoginInfoFile <>
-            " (ideally different from your LDAP password): "
+            "Input a password to encrypt " <> $EncryptedLoginInfoFile <> ": "
         ]
     ]
 ];
 
 $JiraLogin = Decrypt[
-    InputString["Decrypt " <> $EncryptedLoginInfoFile <> ". Password for encrypting/decrypting "<>$EncryptedLoginInfoFile<>" (possibly different from your LDAP password): "],
+    InputString["Decrypt " <> $EncryptedLoginInfoFile <> ". Input the password you used for encrypting "<>$EncryptedLoginInfoFile<>": "],
     Get[$EncryptedLoginInfoFile]
 ];
 
