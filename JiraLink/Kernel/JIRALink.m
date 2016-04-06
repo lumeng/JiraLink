@@ -372,8 +372,7 @@ JiraIssueData[issueKey_String, field_String: All, opts:OptionsPattern[]] := Modu
 
     resourceName = URLBuild[{"issue", issueKey}];
 
-    jsonData = JiraExecute[resourceName, "Method" -> "GET",
-        Sequence@@FilterRules[Flatten[{opts}], Options[JiraExecute]]];
+    jsonData = JiraApiExecute[resourceName, "Method" -> "GET", opts];
 
     jsonData
 ];
