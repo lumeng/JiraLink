@@ -33,6 +33,8 @@ summary, moreProperties] creates a new issue in the specified project with the \
 specified summary (title). Specify additional properties (moreProperties) \
 as an Association expression.";
 
+JiraJqlSearch::usage = "JiraJqlSearch[jqlQuery] performs a JQL query";
+
 Begin["`Private`"];
 
 (* ::Section:: *)
@@ -505,6 +507,86 @@ JiraCreateSubtaskIssue[parentIssueKey_String, summary_String,
 
 
 End[] (* `Private` *)
+(* ::Section:: *)
+(*******************************************************************************
+## JiraJqlSearch
+
+* Example command call:
+
+    JiraJqlSearch
+
+*)
+
+ClearAll[JiraJqlSearch];
+
+Options[JiraJqlSearch] := FilterRules[
+    Options[JiraApiExecute],
+    {"JiraWebsiteURL", "JiraWebsiteUsername", "JiraWebsitePassword"}
+] ~Join~ {
+    "MaxResults" -> 10,
+    "StartAt" -> 1
+};
+
+JiraJqlSearch[jqlQuery_String, opts:OptionsPattern[]] := Module[
+    {
+        result, host, resourceName = "search", apiUrl, urlParams,
+        username, password,
+        loginInfo, contentType, method
+    },
+    host = OptionValue["JiraWebsiteURL"];
+    username = OptionValue["JiraWebsiteUsername"];
+    password = OptionValue["JiraWebsitePassword"];
+
+    loginInfo = If[
+        StringQ[username],
+        username <> ":" <> If[StringQ[password], password, ""],
+        ""
+    ];
+
+    apiUrl = URLBuild[{host, "jira", "rest", "api", "2", resourceName}];
+
+    urlParams = {
+        "jql" -> jqlQuery,
+        "maxResults" -> ToString@OptionValue["MaxResults"],
+        "startAt" -> ToString@OptionValue["StartAt"]
+    };
+
+    result = URLFetch[
+        apiUrl,
+        "Headers"->  {
+            "u"-> loginInfo,
+            "Content-Type"-> $JiraApiHttpContentType
+        },
+        "Parameters" -> urlParams,
+        Method-> "GET"
+    ];
+
+    jsonStringToExpression[result]
+
+];
+
+
+JiraJqlSearch[jqlQuery_, "Issues", opts:OptionsPattern[]] := Module[
+    {result},
+    result = JiraJqlSearch[jqlQuery, opts];
+    If[!MatchQ[result, {__Rule}], Return[$Failed]];
+    result = Composition[
+        Map[
+            ("key"/.#) -> {
+                "summary" -> ("summary" /. ("fields" /. #))
+            } &,
+            #
+        ] &,
+        If[
+            MatchQ[#, {___, _["issues", _], ___}],
+            "issues" /. #,
+            Return[$Failed]
+        ] &
+    ][result];
+    result
+]
+
+
 End[]; (* `Private` *)
 
 EndPackage[];
