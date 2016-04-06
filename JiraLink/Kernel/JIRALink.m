@@ -92,17 +92,8 @@ $JiraApiHttpContentType = $JiraApiHttpContentType1;
 ## Helper functions
 *)
 
-(* ::Section:: *)
-(*******************************************************************************
-## JiraIssueOpen
 *)
 
-JiraIssueOpen[issueIdOrKey_String] := If[
-    StringMatchQ[issueIdOrKey, $JIRAIssueKeyRegex],
-    With[
-        {url = URLBuild[{OptionValue["Host"], "jira", "browse", key}]},
-        SystemOpen[url]
-    ]
 (* ::Subsection:: *)
 (*------------------------------------------------------------------------------
 ### jsonStringToExpression
@@ -293,7 +284,25 @@ JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern
 ];
 
 
+(* ::Section:: *)
+(*******************************************************************************
+## JiraIssueOpen
+*)
+ClearAll[JiraIssueOpen];
 
+JiraIssueOpen::invalidkey = "Invalid Jira issue key: `1`";
+
+Options[JiraIssueOpen] := {
+    "Host" -> OptionValue[JiraApiExecute, "Host"]
+};
+
+JiraIssueOpen[issueKey_String, OptionsPattern[]] := If[
+    StringMatchQ[issueKey, $JiraIssueKeyRegex],
+    With[
+        {url = URLBuild[{OptionValue["Host"], "jira", "browse", issueKey}]},
+        SystemOpen[url]
+    ],
+    Message[JiraIssueOpen::invalidkey, issueKey]
 ];
 
 
