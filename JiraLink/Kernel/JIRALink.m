@@ -58,6 +58,13 @@ If[
 ];
 
 $JIRAIssueKeyRegex = RegularExpression["[A-Z]+-[0-9]+"];
+(** TODO If may be redundant to specify the charset=UTF-8, c.f.
+* http://stackoverflow.com/questions/9254891/what-does-content-type-application-json-charset-utf-8-really-mean
+* http://stackoverflow.com/questions/3995559/json-character-encoding
+**)
+$JiraApiHttpContentType1 = "application/json";
+$JiraApiHttpContentType2 = "application/json; charset=UTF-8"; (*< this one seems unnecessary *)
+$JiraApiHttpContentType = $JiraApiHttpContentType1;
 
 (* ::Section:: *)
 (*******************************************************************************
