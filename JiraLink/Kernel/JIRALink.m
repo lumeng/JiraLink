@@ -220,7 +220,7 @@ $JiraLogin = Decrypt[
         <|
             "description"-> "description XXX",
             "priority"-> <|"name"-> "Major"|>,
-            "assignee"-> <|"name"-> OptionValue[JiraApiExecute,"Username"]|>,
+            "assignee"-> <|"name"-> OptionValue[JiraApiExecute,"JiraWebsiteUsername"]|>,
             "components"-> {
                 <|"name"-> "component XXX1"|>,
                 <|"name"-> "component XXX2"|>
@@ -247,9 +247,9 @@ $JiraLogin = Decrypt[
 ClearAll[JiraApiExecute];
 
 Options[JiraApiExecute] = {
-    "Host" -> "http://jira.example.com:8080",
-    "Username" -> None,
-    "Password" -> None,
+    "JiraWebsiteURL" -> "http://jira.example.com:8080",
+    "JiraWebsiteUsername" -> None,
+    "JiraWebsitePassword" -> None,
     "Method" -> "GET",
     "HTTPRequestImplementation" -> {Automatic, Import, URLFetch}[[1]]
 };
@@ -267,9 +267,9 @@ represent the JSON object.";
 
 JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]] := Module[
     {host, apiUrl, username, password, loginInfo, method, contentType, jsonData, result, header, authorization},
-    host = OptionValue["Host"];
-    username  = OptionValue["Username"];
-    password = OptionValue["Password"];
+    host = OptionValue["JiraWebsiteURL"];
+    username  = OptionValue["JiraWebsiteUsername"];
+    password = OptionValue["JiraWebsitePassword"];
     method = OptionValue["Method"];
 
     apiUrl = URLBuild[{host, "jira", "rest", "api", "2", resourceName}];
@@ -335,13 +335,13 @@ ClearAll[JiraIssueOpen];
 JiraIssueOpen::invalidkey = "Invalid Jira issue key: `1`";
 
 Options[JiraIssueOpen] := {
-    "Host" -> OptionValue[JiraApiExecute, "Host"]
+    "JiraWebsiteURL" -> OptionValue[JiraApiExecute, "JiraWebsiteURL"]
 };
 
 JiraIssueOpen[issueKey_String, OptionsPattern[]] := If[
     StringMatchQ[issueKey, $JiraIssueKeyRegex],
     With[
-        {url = URLBuild[{OptionValue["Host"], "jira", "browse", issueKey}]},
+        {url = URLBuild[{OptionValue["JiraWebsiteURL"], "jira", "browse", issueKey}]},
         SystemOpen[url]
     ],
     Message[JiraIssueOpen::invalidkey, issueKey]
@@ -359,7 +359,10 @@ JiraIssueOpen[issueKey_String, OptionsPattern[]] := If[
 
 ClearAll[JiraIssueData];
 
-Options[JiraIssueData] = Options[JiraExecute];
+Options[JiraIssueData] := FilterRules[
+    Options[JiraApiExecute],
+    {"JiraWebsiteURL", "JiraWebsiteUsername", "JiraWebsitePassword"}
+];
 
 JiraIssueData[issueKey_String, field_String: All, opts:OptionsPattern[]] := Module[
     {result, jsonData, resourceName},
@@ -401,8 +404,8 @@ JiraIssueData[issueKey_String, field_String: All, opts:OptionsPattern[]] := Modu
 ClearAll[JiraCreateIssue];
 
 Options[JiraCreateIssue] = FilterRules[
-    Options[JiraExecute],
-    {"Host", "Username", "Password"}
+    Options[JiraApiExecute],
+    {"JiraWebsiteURL", "JiraWebsiteUsername", "JiraWebsitePassword"}
 ] ~Join~ {
     "OpenQ" -> Automatic
 };
