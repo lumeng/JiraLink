@@ -94,7 +94,18 @@ $JiraApiHttpContentType = $JiraApiHttpContentType1;
 ## Helper functions
 *)
 
+
+(* ::Subsection:: *)
+(*------------------------------------------------------------------------------
+### filterOptions
+
+* Filters out options of symbol f1 that are compatible with symbol f2.
 *)
+
+filterOptions[f1 -> f2] := FilterRules[
+    Options[f1],
+    Options[f2]
+];
 
 (* ::Subsection:: *)
 (*------------------------------------------------------------------------------
