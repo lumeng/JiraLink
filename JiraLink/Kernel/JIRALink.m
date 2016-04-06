@@ -153,12 +153,12 @@ $EncryptedLoginInfoFile = "EncryptedLoginInfoFile" /. Get[$ConfiguartionFile];
 ClearAll[GenerateEncryptedLoginInfoFile];
 
 GenerateEncryptedLoginInfoFile[encryptPassword_] := Module[
-    {jiraHost, jiraUsername, jiraPassword},
+    {host, username, password},
 
-    {jiraHost, jiraUsername, jiraPassword} = DialogInput[
+    {host, username, password} = DialogInput[
         {
-            jiraHost = "https://jira.example.com:8080",
-            jiraUsername = "",
+            jiraHost = "http://jira.example.com:8080",
+            jiraUsername = $UserName,
             jiraPassword = ""
         },
         Grid[
@@ -174,9 +174,11 @@ GenerateEncryptedLoginInfoFile[encryptPassword_] := Module[
                 },
                 {
                     Item[#, Alignment -> Center]& @
-                        Row @
-                        {CancelButton[], DefaultButton["Save", DialogReturn[#]]}& @
-                        {jiraHost, jiraUsername, jiraPassword},
+                        Row[{CancelButton[], #}]& @
+                        DefaultButton[
+                            "Save",
+                            DialogReturn[{jiraHost, jiraUsername, jiraPassword}]
+                        ],
 
                     SpanFromLeft
                 }
@@ -185,11 +187,16 @@ GenerateEncryptedLoginInfoFile[encryptPassword_] := Module[
         ]
     ];
 
-    {jiraHost, jiraUsername, jiraPassword}//debugPrint;
-
     Export[
         $EncryptedLoginInfoFile,
-        Encrypt[encryptPassword, <|"JiraWebsiteURL" -> jiraHost, "JiraWebsiteUsername" -> jiraUsername, "JiraWebsitePassword" -> jiraPassword|>]
+        Encrypt[
+            encryptPassword,
+            <|
+                "JiraWebsiteURL" -> host,
+                "JiraWebsiteUsername" -> username,
+                "JiraWebsitePassword" -> password
+            |>
+        ]
     ]
 ];
 
