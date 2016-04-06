@@ -215,20 +215,6 @@ $JiraLogin = Decrypt[
 
 ### Usage examples:
 
-    JiraCreateIssue[
-        "MYPROJECT", "description XXX", "Task",
-        <|
-            "description"-> "description XXX",
-            "priority"-> <|"name"-> "Major"|>,
-            "assignee"-> <|"name"-> OptionValue[JiraApiExecute,"JiraWebsiteUsername"]|>,
-            "components"-> {
-                <|"name"-> "component XXX1"|>,
-                <|"name"-> "component XXX2"|>
-            }
-        |>,
-        "OpenQ"-> True
-    ]
-
 ### Developer note
 
 * Use `URLFetch`
