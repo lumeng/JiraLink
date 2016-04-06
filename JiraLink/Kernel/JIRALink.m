@@ -28,6 +28,8 @@ moreProperties] creates a new issue in the specified project with the \
 specified summary (title). Specify additional properties (moreProperties) \
 as an Association expression.";
 
+JiraDeleteIssue::usage = "JiraDeleteIssue[issueKey] deletes an issue.";
+
 JiraCreateSubtaskIssue::usage = "JiraCreateSubtaskIssue[parentIssueKey, \
 summary, moreProperties] creates a new issue in the specified project with the \
 specified summary (title). Specify additional properties (moreProperties) \
@@ -506,7 +508,54 @@ JiraCreateSubtaskIssue[parentIssueKey_String, summary_String,
 ];
 
 
-End[] (* `Private` *)
+(* ::Section:: *)
+(*******************************************************************************
+## JiraDeleteIssue
+
+* Example command:
+
+    JiraDeleteIssue
+
+*)
+
+ClearAll[JiraDeleteIssue];
+
+Options[JiraDeleteIssue] = FilterRules[
+    Options[JiraApiExecute],
+    {"JiraWebsiteURL", "JiraWebsiteUsername", "JiraWebsitePassword"}
+] ~Join~ {
+    "DeleteSubtasks" -> "false"
+};
+
+
+JiraDeleteIssue::badoptvalue = "Bad option value `1` for option `2`.";
+
+JiraDeleteIssue[issueKey_String, field_String: All, opts:OptionsPattern[]] := Module[
+    {result, jsonData, resourceName, deleteSubtasks},
+
+    deleteSubtasks = Switch[
+        OptionValue["DeleteSubtasks"],
+        "true", "true",
+        "false", "false",
+        _,
+        Message[JiraDeleteIssue::badoptvalue, OptionValue["DeleteSubtasks"], "DeleteSubtasks"];
+        "false"
+    ];
+
+    resourceName = URLBuild[{"issue", issueKey}];
+
+    jsonData = JiraApiExecute[
+        resourceName,
+        "Method" -> "DELETE",
+        "Parameters" -> {
+            "deleteSubtasks" -> OptionValue["DeleteSubtasks"]
+        },
+        opts
+    ];
+
+    jsonStringToExpression[jsonData]
+];
+
 (* ::Section:: *)
 (*******************************************************************************
 ## JiraJqlSearch
