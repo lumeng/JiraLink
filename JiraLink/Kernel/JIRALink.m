@@ -471,15 +471,18 @@ JiraCreateIssue[project_String, summary_String, issueType_String: "Task",
 
 * Example command call:
 
-    JiraCreateSubtaskIssue["MYPROJECT","MYPROJECT-1234","XXX",<|"description"-> "XXX","assignee"-> <|"name"-> OptionValue[JiraCreateSubtaskIssue,"Username"]|>|>,"OpenQ"-> True]
+    JiraCreateIssue[
+        "MYPROJECT", "XXX", {"Subtask", "MYPROJECT-1234"},
+        <|
+            "description"-> "XXX",
+            "assignee"-> <|"name"-> OptionValue[JiraCreateIssue, "JiraWebsiteUsername"]|>
+        |>,
+        "OpenQ"-> True
+    ]
 
 *)
 
-ClearAll[JiraCreateSubtaskIssue];
-
-Options[JiraCreateSubtaskIssue] := Options[JiraCreateIssue];
-
-JiraCreateSubtaskIssue[parentIssueKey_String, summary_String,
+JiraCreateIssue[parentIssueKey_String, summary_String, {"Subtask", parentIssueKey},
     moreProperties_Association: <||>, opts:OptionsPattern[]] := Module[
     {key, result, url, properties, jsonData, projectKey},
 
