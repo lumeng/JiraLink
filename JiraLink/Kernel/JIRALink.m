@@ -148,15 +148,44 @@ $EncryptedLoginInfoFile = "EncryptedLoginInfoFile" /. Get[$ConfiguartionFile];
 
 ClearAll[GenerateEncryptedLoginInfoFile];
 
-GenerateEncryptedLoginInfoFile[encryptPassword_] := Export[
-    $EncryptedLoginInfoFile,
-    Module[
+GenerateEncryptedLoginInfoFile[encryptPassword_] := Module[
+    {jiraHost, jiraUsername, jiraPassword},
+
+    {jiraHost, jiraUsername, jiraPassword} = DialogInput[
         {
-            jiraHost = InputString["JIRA site host name (e.g. \"http://jira.example.com:8080\"): "],
-            jiraUsername = InputString["JIRA site username: "],
-            jiraPassword = InputString["Jira site password: ", FieldMasked -> True]
+            jiraHost = "https://jira.example.com:8080",
+            jiraUsername = "",
+            jiraPassword = ""
         },
-        Encrypt[encryptPassword, <|"Host" -> jiraHost, "Username" -> jiraUsername, "Password" -> jiraPassword|>]
+        Grid[
+            {
+                {
+                    "JIRA website URL: ",
+                    InputField[Dynamic[jiraHost], String]
+                },
+                {"JIRA website username: ", InputField[Dynamic[jiraUsername], String]},
+                {
+                    "JIRA website password: ",
+                    InputField[Dynamic[jiraPassword], String, FieldMasked -> True]
+                },
+                {
+                    Item[#, Alignment -> Center]& @
+                        Row @
+                        {CancelButton[], DefaultButton["Save", DialogReturn[#]]}& @
+                        {jiraHost, jiraUsername, jiraPassword},
+
+                    SpanFromLeft
+                }
+            },
+            Alignment -> {Right, Automatic}
+        ]
+    ];
+
+    {jiraHost, jiraUsername, jiraPassword}//debugPrint;
+
+    Export[
+        $EncryptedLoginInfoFile,
+        Encrypt[encryptPassword, <|"JiraWebsiteURL" -> jiraHost, "JiraWebsiteUsername" -> jiraUsername, "JiraWebsitePassword" -> jiraPassword|>]
     ]
 ];
 
