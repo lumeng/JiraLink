@@ -12,9 +12,11 @@
 (* :Keywords: JIRA, external link, JiraLink, API, REST *)
 (* :Discussion: *)
 
-BeginPackage["JiraLink`"]
+BeginPackage["JiraLink`"];
 
-JiraExecute::usage = "JiraExecute[resourceName, headerData] executes a query \
+JiraIssueOpen::usage = "JiraIssueOpen[issueKey] opens the JIRA issue using \
+SystemOpen.";
+
 conforming to the JIRA REST API (https://docs.atlassian.com/jira/REST/latest/).";
 
 JiraIssueData::usage = "JiraIssueData[issueKey, field] returns the properties \
@@ -30,7 +32,7 @@ summary, moreProperties] creates a new issue in the specified project with the \
 specified summary (title). Specify additional properties (moreProperties) \
 as an Association expression.";
 
-Begin["`Private`"]
+Begin["`Private`"];
 
 (* ::Section:: *)
 (*******************************************************************************
@@ -372,5 +374,6 @@ JiraCreateSubtaskIssue[parentIssueKey_String, summary_String,
 
 
 End[] (* `Private` *)
+End[]; (* `Private` *)
 
-EndPackage[]
+EndPackage[];
