@@ -383,7 +383,17 @@ JiraIssueData[issueKey_String, field_String: All, opts:OptionsPattern[]] := Modu
 
 * Example command:
 
-    JiraCreateIssue["MYPROJECTXXX", "issue summary XXX", "Bug", <|"assignee"-> <|"name"-> OptionValue[JiraExecute,"Username"]|>, "components"-> {<|"name"-> "componentXXX"|>,<|"name"-> "componentYYY"|>},"labels"-> {"labelXXX", "labelYYY"}|>,"OpenQ"-> True]
+    JiraCreateIssue[
+        "MYPROJECTXXX",
+        "issue summary XXX",
+        "Bug",
+        <|
+            "assignee" -> <|"name"-> OptionValue[JiraApiExecute,"JiraWebsiteUsername"]|>,
+             "components"-> {<|"name"-> "componentXXX"|>, <|"name"-> "componentYYY"|>},
+             "labels"-> {"labelXXX", "labelYYY"}
+        |>,
+        "OpenQ" -> True
+    ]
 
 *)
 
