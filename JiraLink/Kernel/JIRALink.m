@@ -42,6 +42,17 @@ Begin["`Private`"];
 
 $debugQ = False;
 
+
+JiraLink::badversion = "This package is designed for Mathematica version 10 and
+later. This kernel session has version number `1`";
+
+If[
+    $VersionNumber < 10,
+    Message[JiraLink::badversion, $VersionNumber];
+    Abort[]
+];
+
+
 ClearAll[debugPrint];
 
 Attributes[debugPrint] = {HoldAllComplete};
@@ -61,22 +72,13 @@ debugPrint[expr_] := If[
     expr
 ];
 
+
 (* ::Section:: *)
 (*******************************************************************************
 ## Constants
 *)
 
-JiraLink::badversion = "This package is designed for Mathematica version 10 and
-later. This kernel session has version number `1`";
-
-If[
-    $VersionNumber < 10,
-    Message[JiraLink::badversion, $VersionNumber];
-    Abort[]
-];
-
 $JiraIssueKeyRegex = RegularExpression["[A-Z]+-[0-9]+"];
-
 
 
 (** TODO If may be redundant to specify the charset=UTF-8, c.f.
