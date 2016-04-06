@@ -42,6 +42,24 @@ Begin["`Private`"];
 
 $debugQ = False;
 
+ClearAll[debugPrint];
+
+Attributes[debugPrint] = {HoldAllComplete};
+
+debugPrint[expr_] := If[
+    TrueQ[$debugQ||Global`$debugQ],
+    Echo[
+        expr,
+        "DEBUG:\n" <> ToString[
+            Replace[
+                HoldComplete[expr],
+                Verbatim[HoldComplete][h_[args___]] :> Hold[h][args]
+            ],
+            InputForm
+        ] <> ":\n"
+    ],
+    expr
+];
 
 (* ::Section:: *)
 (*******************************************************************************
