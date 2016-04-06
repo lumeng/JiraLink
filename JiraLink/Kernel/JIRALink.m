@@ -17,6 +17,7 @@ BeginPackage["JiraLink`"];
 JiraIssueOpen::usage = "JiraIssueOpen[issueKey] opens the JIRA issue using \
 SystemOpen.";
 
+JiraApiExecute::usage = "JiraApiExecute[resourceName, headerData] executes a query \
 conforming to the JIRA REST API (https://docs.atlassian.com/jira/REST/latest/).";
 
 JiraIssueData::usage = "JiraIssueData[issueKey, field] returns the properties \
@@ -74,6 +75,33 @@ JiraIssueOpen[issueIdOrKey_String] := If[
         {url = URLBuild[{OptionValue["Host"], "jira", "browse", key}]},
         SystemOpen[url]
     ]
+(* ::Subsection:: *)
+(*------------------------------------------------------------------------------
+### jsonStringToExpression
+
+* The result is a list of rules where the right hand side can be expressions of
+types Real, Integer, String, and List which in turn can iteratively contain the
+aforementioned types of expressions.
+*)
+
+ClearAll[jsonStringToExpression];
+
+jsonStringToExpression::badjsonexpr = "The JSON object represented as a Mathematica
+String expression cannot be converted to a structured Mathematica expression,
+namely a nested list of rules, where the right hand sides contains numbers,
+strings, lists, XXX.";
+
+jsonStringToExpression[jsonStr_String] := Check[
+    (** An alternative way to "fix" the string so it can be fed to
+    `ImportString[..., "JSON"]` is:
+
+        FromCharacterCode @ (ToCharacterCode[#, "UTF-8"] &) @ jsonStr
+
+    **)
+    ImportString[ToString[jsonStr, CharacterEncoding -> "UTF-8"], "JSON"],
+    Message[JiraApiExecute::badjsonexpr, jsonStr];
+    jsonStr,
+    {Import::fmterr}
 ];
 
 
@@ -122,9 +150,25 @@ $JiraLogin = Decrypt[
 
 (* ::Section:: *)
 (*******************************************************************************
-## JiraExecute
+## JiraApiExecute
 
-## Developer note
+### Usage examples:
+
+    JiraCreateIssue[
+        "MYPROJECT", "description XXX", "Task",
+        <|
+            "description"-> "description XXX",
+            "priority"-> <|"name"-> "Major"|>,
+            "assignee"-> <|"name"-> OptionValue[JiraApiExecute,"Username"]|>,
+            "components"-> {
+                <|"name"-> "component XXX1"|>,
+                <|"name"-> "component XXX2"|>
+            }
+        |>,
+        "OpenQ"-> True
+    ]
+
+### Developer note
 
 * Use `URLFetch`
 
@@ -132,39 +176,36 @@ $JiraLogin = Decrypt[
         "http://jira.example.com:8080/jira/rest/api/2/issue/MYPROJECT-123",
         "Headers"->  {
             "u"-> "USER:PASSWORD",
-            "Content-Type"-> "application/json; charset=utf8"
+            "Content-Type"-> "application/json; charset=UTF-8"
         },
         Method-> "GET"
     ]
 
 *)
 
-ClearAll[JiraExecute];
+ClearAll[JiraApiExecute];
 
-JiraExecute::usage = "Executes a command using the Jira REST API \
-(https://docs.atlassian.com/jira/REST/latest/).";
-
-Options[JiraExecute] = {
+Options[JiraApiExecute] = {
     "Host" -> "http://jira.example.com:8080",
     "Username" -> None,
     "Password" -> None,
     "Method" -> "GET",
-    "HTTPRequestImplementation" -> {Automatic, Import, URLFetch}[[2]]
+    "HTTPRequestImplementation" -> {Automatic, Import, URLFetch}[[1]]
 };
 
-SetOptions[JiraExecute, Normal[$JiraLogin]];
+SetOptions[JiraApiExecute, Normal[$JiraLogin]];
 
-JiraExecute::err = "Jira command `1` failed with message: `2`";
+JiraApiExecute::err = "Jira command `1` failed with message: `2`";
 
-JiraExecute::badprop = "Properties `1` could not be converted to JSON. Abort.";
+JiraApiExecute::badprop = "Properties `1` could not be converted to JSON. Abort.";
 
-JiraExecute::badjsonexpr = "JSON string `1` cannot be converted to a Wolfram \
+JiraApiExecute::badjsonexpr = "JSON string `1` cannot be converted to a Wolfram \
 Language expression using ImportString[in, \"JSON\"]. Use String expression
 instead of the more structured list of rules, numbers, and strings, etc. to \
 represent the JSON object.";
 
-JiraExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]] := Module[
-    {host, apiUrl, username, password, loginInfo, method, contentType, jsonData, result, header},
+JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]] := Module[
+    {host, apiUrl, username, password, loginInfo, method, contentType, jsonData, result, header, authorization},
     host = OptionValue["Host"];
     username  = OptionValue["Username"];
     password = OptionValue["Password"];
@@ -179,15 +220,14 @@ JiraExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]]
         ""
     ];
 
-    (** TODO If may be redundant to specify the charset=utf-8, c.f.
-    * http://stackoverflow.com/questions/9254891/what-does-content-type-application-json-charset-utf-8-really-mean
-    * http://stackoverflow.com/questions/3995559/json-character-encoding
-    **)
-    contentType = "application/json; charset=utf-8";
+    authorization = "Basic " <>
+        Developer`EncodeBase64[username <> ":" <> password];
+
+    contentType = $JiraApiHttpContentType;
 
     jsonData = Check[
         ExportString[headerData, "JSON"],
-        Message[JiraExecute::badprop, headerData];
+        Message[JiraApiExecute::badprop, headerData];
         Abort[]
     ];
 
@@ -200,31 +240,31 @@ JiraExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]]
             <> apiUrl <> " "
             <> If[loginInfo =!= "", "-u " <> loginInfo <> " ", ""]
             <> "-H "
-            <> "\"" <> "Content-Type: " <> "application/json;" <> "\"" <> " "
+            <> "\"" <> "Content-Type: " <> contentType <> "\"" <> " "
             <> "-d " <> "'" <> jsonData <> "'" <> " "
             <> "-X " <> method,
             "Text"
-        ],
+        ]//debugPrint,
 
         _,
 
         URLFetch[
             apiUrl,
             "Headers"->  {
-                "u"-> loginInfo,
-                "Content-Type"-> contentType,
-                "d" -> jsonData
+                (*"u"-> loginInfo,*)
+                "Authorization" -> authorization,
+                "Content-Type"-> contentType
             },
+            "Body" -> jsonData,
             Method-> method
-        ]
+        ]//debugPrint
     ];
 
-    Check[
-        ImportString[ToString[result, CharacterEncoding->"UTF-8"], "JSON"],
-        Message[JiraExecute::badjsonexpr, result];
-        result,
-        {Import::fmterr}
-    ]
+    jsonStringToExpression[result]
+
+];
+
+
 
 ];
 
