@@ -439,8 +439,9 @@ JiraCreateIssue[project_String, summary_String, issueType_String: "Task",
 
     headerData = <|"fields" -> Join[properties, moreProperties]|>;
 
-    result = JiraExecute["issue", headerData, "Method" -> "POST",
-        Sequence@@FilterRules[Flatten[{opts}], Options[JiraExecute]]];
+    result = JiraApiExecute["issue", headerData, "Method" -> "POST",
+        Sequence@@FilterRules[Flatten[{opts}], Options[JiraApiExecute]]]
+        //debugPrint;
 
     If[
         TrueQ[openQ],
@@ -497,8 +498,8 @@ JiraCreateSubtaskIssue[parentIssueKey_String, summary_String,
 
     properties = <|"fields" -> Join[properties, moreProperties]|>;
 
-    result = JiraExecute["issue", properties, "Method" -> "POST",
-        Sequence@@FilterRules[Flatten[{opts}], Options[JiraExecute]]];
+    result = JiraApiExecute["issue", properties, "Method" -> "POST",
+        Sequence@@FilterRules[Flatten[{opts}], Options[JiraApiExecute]]];
 
     If[
         TrueQ[openQ],
