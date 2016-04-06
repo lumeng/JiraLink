@@ -375,11 +375,7 @@ JiraIssueData[issueKey_String, field_String: All, opts:OptionsPattern[]] := Modu
     jsonData = JiraExecute[resourceName, "Method" -> "GET",
         Sequence@@FilterRules[Flatten[{opts}], Options[JiraExecute]]];
 
-    (*result = If[StringQ[result], ImportString[jsonData, "JSON"]];*)
-
-    result = jsonData;
-
-    result
+    jsonData
 ];
 
 
