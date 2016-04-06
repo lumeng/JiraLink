@@ -228,6 +228,19 @@ $JiraLogin = Decrypt[
         Method-> "GET"
     ]
 
+
+    With[
+        {auth = "Basic " <> Developer`EncodeBase64[StringTemplate["`JiraWebisteUsername`:`JiraWebistePassword`"][Association[Options[JiraApiExecute]]]]}
+        URLFetch[
+            "http://jira.example.com:8080/jira/rest/api/2/issue/MYPROJECT-123",
+            "Headers"->  {
+                "Authorization" -> auth,
+                "Content-Type" -> "application/json"
+            },
+            Method-> "GET"
+        ]
+    ]
+
 *)
 
 ClearAll[JiraApiExecute];
