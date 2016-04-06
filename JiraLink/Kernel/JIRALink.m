@@ -477,7 +477,7 @@ JiraCreateIssue[project_String, summary_String, issueType_String: "Task",
 
 ClearAll[JiraCreateSubtaskIssue];
 
-Options[JiraCreateSubtaskIssue] = Options[JiraCreateIssue];
+Options[JiraCreateSubtaskIssue] := Options[JiraCreateIssue];
 
 JiraCreateSubtaskIssue[parentIssueKey_String, summary_String,
     moreProperties_Association: <||>, opts:OptionsPattern[]] := Module[
