@@ -148,18 +148,15 @@ $EncryptedLoginInfoFile = "EncryptedLoginInfoFile" /. Get[$ConfiguartionFile];
 
 ClearAll[GenerateEncryptedLoginInfoFile];
 
-Attributes[GenerateEncryptedLoginInfoFile] = {HoldAll};
-
-GenerateEncryptedLoginInfoFile[password_] := Export[
+GenerateEncryptedLoginInfoFile[encryptPassword_] := Export[
     $EncryptedLoginInfoFile,
-    With[
+    Module[
         {
-            encryptPassword = password,
-            host = InputString["JIRA site host name (e.g. \"http://jira.example.com:8080\"): "],
-            username = InputString["LDAP username: "],
-            password = InputString["LDAP password: "]
+            jiraHost = InputString["JIRA site host name (e.g. \"http://jira.example.com:8080\"): "],
+            jiraUsername = InputString["JIRA site username: "],
+            jiraPassword = InputString["Jira site password: ", FieldMasked -> True]
         },
-        Encrypt[encryptPassword, <|"Host" -> host, "Username" -> username, "Password" -> password|>]
+        Encrypt[encryptPassword, <|"Host" -> jiraHost, "Username" -> jiraUsername, "Password" -> jiraPassword|>]
     ]
 ];
 
@@ -167,15 +164,18 @@ If[
     !FileExistsQ[$EncryptedLoginInfoFile],
     GenerateEncryptedLoginInfoFile[
         InputString[
-            "Create " <> $EncryptedLoginInfoFile <> ". Password for encrypting/decrypting " <>
-            $EncryptedLoginInfoFile <>
-            " (ideally different from your LDAP password): "
+            "Enter a password for encrypting/decrypting " <>
+            $EncryptedLoginInfoFile <> ": ",
+            FieldMasked -> True
         ]
     ]
 ];
 
 $JiraLogin = Decrypt[
-    InputString["Decrypt " <> $EncryptedLoginInfoFile <> ". Password for encrypting/decrypting "<>$EncryptedLoginInfoFile<>" (possibly different from your LDAP password): "],
+    InputString[
+        "Enter the password for decrypting " <> $EncryptedLoginInfoFile,
+        FieldMasked -> True
+    ],
     Get[$EncryptedLoginInfoFile]
 ];
 
