@@ -37,6 +37,10 @@ as an Association expression.";
 
 JiraJqlSearch::usage = "JiraJqlSearch[jqlQuery] performs a JQL query";
 
+JiraFindIssues::usage = "JiraFindIssues[jqlQuery], JiraFindIssues[jqlQuery,
+\"CoreProperties\"], JiraFindIssues[jqlQuery, \"property\"] performs a
+JQL query to find issues and their properties.";
+
 Begin["`Private`"];
 
 (* ::Section:: *)
@@ -620,16 +624,32 @@ JiraJqlSearch[jqlQuery_String, opts:OptionsPattern[]] := Module[
 
 ];
 
+(* ::Section:: *)
+(*******************************************************************************
+## JiraFindIssues
 
-JiraJqlSearch[jqlQuery_, "Issues", opts:OptionsPattern[]] := Module[
+*)
+ClearAll[JiraFindIssues];
+
+JiraFindIssues::badres = "This JQL query did not find any issues: `1`";
+
+Options[JiraFindIssues] := Options[JiraJqlSearch];
+
+JiraFindIssues[jqlQuery_, opts:OptionsPattern[]] :=
+    JiraFindIssues[jqlQuery, "CoreProperties", opts][[All,1]];
+
+JiraFindIssues[jqlQuery_, "Properties", opts:OptionsPattern[]] := Module[
     {result},
     result = JiraJqlSearch[jqlQuery, opts];
     If[!MatchQ[result, {__Rule}], Return[$Failed]];
+    If[
+        !MatchQ[result, {___, _["issues", _], ___}],
+        Message[JiraFindIssues::badres, result];
+        Return[$Failed]
+    ];
     result = Composition[
         Map[
-            ("key"/.#) -> {
-                "summary" -> ("summary" /. ("fields" /. #))
-            } &,
+            (("key"/.#) -> ("fields" /. #)) &,
             #
         ] &,
         If[
@@ -639,8 +659,60 @@ JiraJqlSearch[jqlQuery_, "Issues", opts:OptionsPattern[]] := Module[
         ] &
     ][result];
     result
-]
+];
 
+JiraFindIssues[jqlQuery_, "CoreProperties", opts:OptionsPattern[]] := Module[
+    {result},
+
+    result = JiraFindIssues[jqlQuery, "Properties", opts];
+
+    result = Map[
+        #[[1]] -> DeleteCases[
+            #[[2]],
+        _[_?(StringMatchQ[ToString[#], RegularExpression["customfield_[0-9]+"]]&), _]
+        ] &,
+        result
+    ];
+
+    result
+];
+
+
+JiraFindIssues[jqlQuery_, prop_String, opts:OptionsPattern[]] := Module[
+    {result},
+
+    result = JiraFindIssues[jqlQuery, "Properties", opts];
+
+    result = Map[
+        #[[1]] -> Cases[
+            #[[2]],
+            _[Verbatim[prop], _]
+        ] &,
+        result
+    ];
+
+    result
+];
+
+(**
+Notice this assumes that any one property will not match
+pattern {__}
+**)
+JiraFindIssues[jqlQuery_, props: {__}, opts:OptionsPattern[]] := Module[
+    {result},
+
+    result = JiraFindIssues[jqlQuery, "Properties", opts];
+
+    result = Map[
+        #[[1]] -> Cases[
+            #[[2]],
+            _[Alternatives@@(Verbatim/@props), _]
+        ] &,
+        result
+    ];
+
+    result
+];
 
 End[]; (* `Private` *)
 
