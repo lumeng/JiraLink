@@ -269,7 +269,8 @@ Options[JiraApiExecute] = {
     "JiraWebsiteUsername" -> None,
     "JiraWebsitePassword" -> None,
     "Method" -> "GET",
-    "HTTPRequestImplementation" -> {Automatic, Import, URLFetch}[[1]]
+    "HTTPRequestImplementation" -> {Automatic, Import, URLFetch}[[1]],
+    "Parameters" -> {}
 };
 
 SetOptions[JiraApiExecute, Normal[$JiraLogin]];
@@ -284,7 +285,7 @@ instead of the more structured list of rules, numbers, and strings, etc. to \
 represent the JSON object.";
 
 JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]] := Module[
-    {host, apiUrl, username, password, loginInfo, method, contentType, jsonData, result, header, authorization},
+    {host, apiUrl, params, username, password, loginInfo, method, contentType, jsonData, result, header, authorization},
     host = OptionValue["JiraWebsiteURL"];
     username  = OptionValue["JiraWebsiteUsername"];
     password = OptionValue["JiraWebsitePassword"];
@@ -310,13 +311,15 @@ JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern
         Abort[]
     ];
 
+    params = URLQueryEncode[OptionValue["Parameters"]];
+
     result = Switch[
         OptionValue["HTTPRequestImplementation"],
 
         Import,
 
         Import["!curl "
-            <> apiUrl <> " "
+            <> apiUrl <> If[params==="", "", "?"<>params] <> " "
             <> If[loginInfo =!= "", "-u " <> loginInfo <> " ", ""]
             <> "-H "
             <> "\"" <> "Content-Type: " <> contentType <> "\"" <> " "
@@ -335,7 +338,8 @@ JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern
                 "Content-Type"-> contentType
             },
             "Body" -> jsonData,
-            Method-> method
+            Method-> method,
+            "Parameters" -> OptionValue["Parameters"]
         ]//debugPrint
     ];
 
