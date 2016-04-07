@@ -131,6 +131,8 @@ String expression cannot be converted to a structured Mathematica expression,
 namely a nested list of rules, where the right hand sides contains numbers,
 strings, lists, XXX.";
 
+jsonStringToExpression[""] = Null;
+
 jsonStringToExpression[jsonStr_String] := Check[
     (** An alternative way to "fix" the string so it can be fed to
     `ImportString[..., "JSON"]` is:
