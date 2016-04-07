@@ -110,10 +110,12 @@ $JiraApiHttpContentType = $JiraApiHttpContentType1;
 * Filters out options of symbol f1 that are compatible with symbol f2.
 *)
 
-filterOptions[f1 -> f2] := FilterRules[
+filterOptions[f1, f2] := FilterRules[
     Options[f1],
     Options[f2]
 ];
+
+filterOptions[opts:OptionsPattern[], f2_] := Sequence@@FilterRules[Flatten[{opts}], Options[f2]];
 
 (* ::Subsection:: *)
 (*------------------------------------------------------------------------------
