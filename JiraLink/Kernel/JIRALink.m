@@ -400,32 +400,6 @@ JiraIssueData[issueKey_String, field_String: All, opts:OptionsPattern[]] := Modu
 (* ::Section:: *)
 (*******************************************************************************
 ## JiraCreateIssue
-
-* An example of the JSON data used to create a ticket:
-
-    {
-        "fields": {
-           "project":{"key": "TEST"},
-           "summary": "This is the summary of the new issue",
-           "description": "This is the description.",
-           "issuetype": {"name": "Task"}
-       }
-    }
-
-* Example command:
-
-    JiraCreateIssue[
-        "MYPROJECTXXX",
-        "issue summary XXX",
-        "Bug",
-        <|
-            "assignee" -> <|"name"-> OptionValue[JiraApiExecute,"JiraWebsiteUsername"]|>,
-             "components"-> {<|"name"-> "componentXXX"|>, <|"name"-> "componentYYY"|>},
-             "labels"-> {"labelXXX", "labelYYY"}
-        |>,
-        "OpenQ" -> True
-    ]
-
 *)
 
 ClearAll[JiraCreateIssue];
@@ -437,37 +411,10 @@ Options[JiraCreateIssue] = FilterRules[
     "OpenQ" -> Automatic
 };
 
-JiraCreateIssue[project_String, summary_String, issueType_String: "Task",
-    moreProperties_Association: <||>, opts:OptionsPattern[]] := Module[
-    {key, result, url, properties, headerData, jsonData, openQ},
-    openQ = OptionValue["OpenQ"];
 
-    properties = <|
-        "project" -> <|"key" -> project|>,
-        "summary" -> summary,
-        "issuetype" -> <|"name" -> issueType|>,
-        "priority" -> <|"name" -> "Major"|>
-    |>;
-
-    headerData = <|"fields" -> Join[properties, moreProperties]|>;
-
-    result = JiraApiExecute["issue", headerData, "Method" -> "POST",
-        Sequence@@FilterRules[Flatten[{opts}], Options[JiraApiExecute]]]
-        //debugPrint;
-
-    If[
-        TrueQ[openQ],
-        key = If[MatchQ[result, {__Rule}], "key" /. result];
-        JiraIssueOpen[key]
-    ];
-
-    result
-];
-
-
-(* ::Section:: *)
+(* ::Subsection:: *)
 (*******************************************************************************
-## JiraCreateSubtaskIssue
+## JiraCreateIssue[parentIssueKey, summary, "Subtask", ...]
 
 * An example of the JSON data used to create a ticket:
 
@@ -494,7 +441,7 @@ JiraCreateIssue[project_String, summary_String, issueType_String: "Task",
 
 *)
 
-JiraCreateIssue[parentIssueKey_String, summary_String, {"Subtask", parentIssueKey},
+JiraCreateIssue[parentIssueKey_String, summary_String, "Subtask",
     moreProperties_Association: <||>, opts:OptionsPattern[]] := Module[
     {key, result, url, properties, jsonData, projectKey},
 
@@ -515,6 +462,65 @@ JiraCreateIssue[parentIssueKey_String, summary_String, {"Subtask", parentIssueKe
 
     result = JiraApiExecute["issue", properties, "Method" -> "POST",
         Sequence@@FilterRules[Flatten[{opts}], Options[JiraApiExecute]]];
+
+    If[
+        TrueQ[openQ],
+        key = If[MatchQ[result, {__Rule}], "key" /. result];
+        JiraIssueOpen[key]
+    ];
+
+    result
+];
+
+
+(* ::Subsection:: *)
+(*******************************************************************************
+## JiraCreateIssue[project, summary, issueType, moreProperties]
+
+    * An example of the JSON data used to create a ticket:
+
+    {
+        "fields": {
+            "project":{"key": "TEST"},
+            "summary": "This is the summary of the new issue",
+            "description": "This is the description.",
+            "issuetype": {"name": "Task"}
+        }
+    }
+
+        * Example command:
+
+    JiraCreateIssue[
+        "MYPROJECTXXX",
+        "issue summary XXX",
+        "Bug",
+        <|
+            "assignee" -> <|"name"-> OptionValue[JiraApiExecute,"JiraWebsiteUsername"]|>,
+            "components"-> {<|"name"-> "componentXXX"|>, <|"name"-> "componentYYY"|>},
+            "labels"-> {"labelXXX", "labelYYY"}
+        |>,
+        "OpenQ" -> True
+    ]
+
+*)
+
+JiraCreateIssue[project_String, summary_String, issueType_String: "Task",
+    moreProperties_Association: <||>, opts:OptionsPattern[]] := Module[
+    {key, result, url, properties, headerData, jsonData, openQ},
+    openQ = OptionValue["OpenQ"];
+
+    properties = <|
+        "project" -> <|"key" -> project|>,
+        "summary" -> summary,
+        "issuetype" -> <|"name" -> issueType|>,
+        "priority" -> <|"name" -> "Major"|>
+    |>;
+
+    headerData = <|"fields" -> Join[properties, moreProperties]|>;
+
+    result = JiraApiExecute["issue", headerData, "Method" -> "POST",
+        Sequence@@FilterRules[Flatten[{opts}], Options[JiraApiExecute]]]
+        //debugPrint;
 
     If[
         TrueQ[openQ],
