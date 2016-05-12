@@ -555,7 +555,7 @@ Options[JiraDeleteIssue] = FilterRules[
 JiraDeleteIssue::badoptvalue = "Bad option value `1` for option `2`.";
 
 JiraDeleteIssue[issueKey_String, field_String: All, opts:OptionsPattern[]] := Module[
-    {result, jsonData, resourceName, deleteSubtasks},
+    {result, jsonData, resourceName, deleteSubtasks, params},
 
     deleteSubtasks = Switch[
         OptionValue["DeleteSubtasks"],
@@ -566,18 +566,26 @@ JiraDeleteIssue[issueKey_String, field_String: All, opts:OptionsPattern[]] := Mo
         "false"
     ];
 
+    params = {"deleteSubtasks" -> OptionValue["DeleteSubtasks"]};
+
     resourceName = URLBuild[{"issue", issueKey}];
 
-    jsonData = JiraApiExecute[
-        resourceName,
-        "Method" -> "DELETE",
-        "Parameters" -> {
-            "deleteSubtasks" -> OptionValue["DeleteSubtasks"]
-        },
-        opts
-    ];
+    (*jsonData = JiraApiExecute[*)
+        (*resourceName,*)
+        (*"Method" -> "DELETE",*)
+        (*"Parameters" -> params,*)
+        (*filterOptions[opts, JiraApiExecute]*)
+    (*]//debugPrint;*)
 
-    jsonStringToExpression[jsonData]
+    jsonData = JiraApiExecute[
+        resourceName <> "?" <> URLQueryEncode[params],
+        "Method" -> "DELETE",
+        filterOptions[opts, JiraApiExecute]
+    ]//debugPrint;
+
+    If[jsonData === Null, Print["Deleted " <> issueKey]];
+
+    jsonData
 ];
 
 (* ::Section:: *)
