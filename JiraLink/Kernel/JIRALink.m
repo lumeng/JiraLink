@@ -86,7 +86,7 @@ debugPrint[expr_] := If[
 ## Constants
 *)
 
-$JiraIssueKeyRegex = RegularExpression["[A-Z]+-[0-9]+"];
+$JiraIssueKeyRegex = RegularExpression["[A-Z]+-\\d+"];
 
 
 (** TODO If may be redundant to specify the charset=UTF-8, c.f.
