@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[    320907,       8139]
-NotebookOptionsPosition[    308639,       7736]
-NotebookOutlinePosition[    309044,       7754]
-CellTagsIndexPosition[    309001,       7751]
+NotebookDataLength[    448378,      11055]
+NotebookOptionsPosition[    435545,      10636]
+NotebookOutlinePosition[    435923,      10653]
+CellTagsIndexPosition[    435880,      10650]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -22,19 +22,18 @@ Cell["Initialization", "Subsection"],
 Cell[BoxData["Quit"], "Input"],
 
 Cell[BoxData[
- RowBox[{"With", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"dir", "=", 
-     RowBox[{"FileNameJoin", "[", 
-      RowBox[{"{", 
-       RowBox[{"\"\<path\>\"", ",", "\"\<to\>\"", ",", "\"\<JiraLink\>\""}], 
-       "}"}], "]"}]}], "}"}], ",", 
-   RowBox[{"If", "[", 
-    RowBox[{
-     RowBox[{"DirectoryQ", "[", "dir", "]"}], ",", 
-     RowBox[{"PrependTo", "[", 
-      RowBox[{"$Path", ",", "dir"}], "]"}]}], "]"}]}], "]"}]], "Input"],
+ RowBox[{
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"dir", "=", 
+      RowBox[{"DirectoryName", "[", 
+       RowBox[{"NotebookDirectory", "[", "]"}], "]"}]}], "}"}], ",", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"DirectoryQ", "[", "dir", "]"}], ",", 
+      RowBox[{"PrependTo", "[", 
+       RowBox[{"$Path", ",", "dir"}], "]"}]}], "]"}]}], "]"}], ";"}]], "Input"],
 
 Cell[BoxData[
  RowBox[{"<<", "JiraLink`"}]], "Input"]
@@ -255,110 +254,143 @@ Cell[CellGroupData[{
 
 Cell["Creat top-level issues", "Subsubsection"],
 
+Cell["\<\
+SetOptions[JiraApiExecute, \"HTTPRequestImplementation\" -> {Automatic, \
+URLFetch, Import}[[1]]];
+JiraCreateIssue[
+ \"WALOCURATE\",
+ \"SummaryXXX\",
+ \"Bug\",
+ <|
+  \"description\" -> \"XXX\",
+  \"priority\" -> <|\"name\" -> \"Major\"|>,
+  \"assignee\" -> <|\"name\" -> OptionValue[JiraApiExecute, \
+\"JiraWebsiteUsername\"]|>,
+  \"components\" -> {<|\"name\" -> \"zh\"|>, <|\"name\" -> \"ja\"|>},
+  \"labels\" -> {\"mengJiraLinkTest\"}
+  |>,
+ \"OpenQ\" -> True
+ ]\
+\>", "Program"],
+
 Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{"SetOptions", "[", 
-   RowBox[{"JiraApiExecute", ",", 
-    RowBox[{"\"\<HTTPRequestImplementation\>\"", "->", " ", 
+   RowBox[{"JiraApiExecute", ",", " ", 
+    RowBox[{"\"\<HTTPRequestImplementation\>\"", " ", "->", " ", 
      RowBox[{
       RowBox[{"{", 
-       RowBox[{"Automatic", ",", "URLFetch", ",", "Import"}], "}"}], "[", 
-      RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"JiraCreateIssue", "[", "\[IndentingNewLine]", 
+       RowBox[{"Automatic", ",", " ", "URLFetch", ",", " ", "Import"}], "}"}],
+       "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}], ";"}], "\n", 
+ RowBox[{
   RowBox[{
-  "\"\<WALOCURATE\>\"", ",", "\[IndentingNewLine]", "\"\<SummaryXXX\>\"", ",",
-    "\[IndentingNewLine]", "\"\<Bug\>\"", ",", "\[IndentingNewLine]", 
-   RowBox[{"<|", "\[IndentingNewLine]", 
+   RowBox[{"JiraCreateIssue", "[", "\n", " ", 
     RowBox[{
-     RowBox[{"\"\<description\>\"", "\[Rule]", " ", "\"\<XXX\>\""}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"\"\<priority\>\"", "\[Rule]", " ", 
-      RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<Major\>\""}], "|>"}]}], 
-     ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<assignee\>\"", "\[Rule]", " ", 
-      RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", " ", 
-        RowBox[{"OptionValue", "[", 
-         RowBox[{"JiraApiExecute", ",", "\"\<JiraWebsiteUsername\>\""}], 
-         "]"}]}], "|>"}]}], ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<components\>\"", "\[Rule]", " ", 
-      RowBox[{"{", 
-       RowBox[{
+    "\"\<WALOCURATE\>\"", ",", "\n", " ", "\"\<VariableRangesDomain\>\"", ",",
+      "\n", " ", "\"\<Linguistics Curation\>\"", ",", "\n", " ", 
+     RowBox[{"<|", "\n", "  ", 
+      RowBox[{
+       RowBox[{"\"\<description\>\"", " ", "->", " ", 
+        RowBox[{
+        "\"\<* Localize WordsPhrases in \
+{{DomainGrammar[\\\"VariableRangesDomain\\\"]]}} to \>\"", "<>", 
+         RowBox[{"#", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "<>", "\"\< (\>\"", "<>", 
+         RowBox[{"#", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "<>", 
+         "\"\<).\n\n* Regular/English Alpha's source file: \n\
+https://stash.wolfram.com/projects/WA/repos/alphasource/browse/CalculateParse/\
+Content/VariableRanges.m\n\n* The localized WordsPhrases \
+{{LocalizeWrapper[DomainGrammar[\\\"VariableRangesDomain\\\"]]}} should be \
+committed to source file:\n** \
+https://stash.wolfram.com/projects/WA/repos/alphalocalization-\>\"", "<>", 
+         RowBox[{"#", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "<>", 
+         "\"\</browse/ShadowFilesParser/CalculateParse/Content/WordsPhrases/\
+VariableRanges.m\n\>\""}]}], ",", "\n", "  ", 
+       RowBox[{"\"\<priority\>\"", " ", "->", " ", 
         RowBox[{"<|", 
-         RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<zh\>\""}], "|>"}], ",", 
-        
+         RowBox[{"\"\<name\>\"", " ", "->", " ", "\"\<Blocker\>\""}], 
+         "|>"}]}], ",", "\n", "  ", 
+       RowBox[{"\"\<assignee\>\"", " ", "->", " ", 
         RowBox[{"<|", 
-         RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<ja\>\""}], "|>"}]}], 
-       "}"}]}], ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<labels\>\"", "\[Rule]", " ", 
-      RowBox[{"{", "\"\<mengJiraLinkTest\>\"", "}"}]}]}], 
-    "\[IndentingNewLine]", "|>"}], ",", "\[IndentingNewLine]", 
-   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "\[IndentingNewLine]",
-   "]"}]}], "Input"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{
-  TagBox["\<\"DEBUG:\\nHold[URLFetch][\\\"http://jira.wolfram.com:8080/jira/\
-rest/api/2/issue\\\", \\\"Headers\\\" -> {\\\"Authorization\\\" -> \\\"Basic \
-bWVuZzpTemx4ejgxNTMtd20=\\\", \\\"Content-Type\\\" -> \
-\\\"application/json\\\"}, \\\"Body\\\" -> \\\"{\\\\n    \\\\\\\"fields\\\\\\\
-\": {\\\\n        \\\\\\\"project\\\\\\\": {\\\\n            \
-\\\\\\\"key\\\\\\\": \\\\\\\"WALOCURATE\\\\\\\"\\\\n        },\\\\n        \\\
-\\\\\"summary\\\\\\\": \\\\\\\"SummaryXXX\\\\\\\",\\\\n        \
-\\\\\\\"issuetype\\\\\\\": {\\\\n            \\\\\\\"name\\\\\\\": \
-\\\\\\\"Bug\\\\\\\"\\\\n        },\\\\n        \\\\\\\"priority\\\\\\\": \
-{\\\\n            \\\\\\\"name\\\\\\\": \\\\\\\"Major\\\\\\\"\\\\n        \
-},\\\\n        \\\\\\\"description\\\\\\\": \\\\\\\"XXX\\\\\\\",\\\\n        \
-\\\\\\\"assignee\\\\\\\": {\\\\n            \\\\\\\"name\\\\\\\": \
-\\\\\\\"meng\\\\\\\"\\\\n        },\\\\n        \\\\\\\"components\\\\\\\": [\
-\\\\n            {\\\\n                \\\\\\\"name\\\\\\\": \\\\\\\"zh\\\\\\\
-\"\\\\n            },\\\\n            {\\\\n                \
-\\\\\\\"name\\\\\\\": \\\\\\\"ja\\\\\\\"\\\\n            }\\\\n        \
-],\\\\n        \\\\\\\"labels\\\\\\\": [\\\\n            \
-\\\\\\\"mengJiraLinkTest\\\\\\\"\\\\n        ]\\\\n    }\\\\n}\\\", Method -> \
-\\\"POST\\\", \\\"Parameters\\\" -> {}]:\\n\"\>",
-   "EchoLabel"], 
-  " ", "\<\"{\\\"id\\\":\\\"663322\\\",\\\"key\\\":\\\"WALOCURATE-14007\\\",\\\
-\"self\\\":\\\"https://jira.wolfram.com/jira/rest/api/2/issue/663322\\\"}\"\>\
-"}]], "Echo"],
-
-Cell[BoxData[
- RowBox[{
-  TagBox["\<\"DEBUG:\\nHold[JiraApiExecute][\\\"issue\\\", <|\\\"fields\\\" \
--> <|\\\"project\\\" -> <|\\\"key\\\" -> \\\"WALOCURATE\\\"|>, \
-\\\"summary\\\" -> \\\"SummaryXXX\\\", \\\"issuetype\\\" -> <|\\\"name\\\" -> \
-\\\"Bug\\\"|>, \\\"priority\\\" -> <|\\\"name\\\" -> \\\"Major\\\"|>, \
-\\\"description\\\" -> \\\"XXX\\\", \\\"assignee\\\" -> <|\\\"name\\\" -> \
-\\\"meng\\\"|>, \\\"components\\\" -> {<|\\\"name\\\" -> \\\"zh\\\"|>, \
-<|\\\"name\\\" -> \\\"ja\\\"|>}, \\\"labels\\\" -> \
-{\\\"mengJiraLinkTest\\\"}|>|>, \\\"Method\\\" -> \\\"POST\\\"]:\\n\"\>",
-   "EchoLabel"], " ", 
+         RowBox[{"\"\<name\>\"", " ", "->", " ", 
+          RowBox[{"OptionValue", "[", 
+           RowBox[{
+           "JiraApiExecute", ",", " ", "\"\<JiraWebsiteUsername\>\""}], 
+           "]"}]}], "|>"}]}], ",", "\n", "  ", 
+       RowBox[{"\"\<components\>\"", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"<|", 
+           RowBox[{"\"\<name\>\"", " ", "->", " ", "\"\<WordsPhrases\>\""}], 
+           "|>"}], ",", " ", 
+          RowBox[{"<|", 
+           RowBox[{"\"\<name\>\"", " ", "->", " ", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}]}], "|>"}]}], "}"}]}], ",", "\n", 
+       "  ", 
+       RowBox[{"\"\<labels\>\"", " ", "->", " ", 
+        RowBox[{"{", "}"}]}]}], "\n", "  ", "|>"}], ",", "\n", " ", 
+     RowBox[{"\"\<OpenQ\>\"", " ", "->", " ", "True"}]}], "\n", " ", "]"}], 
+   "&"}], "/@", 
   RowBox[{"{", 
    RowBox[{
-    RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-14007\"\>"}], ",", 
-    RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"663322\"\>"}], ",", 
-    RowBox[{"\<\"self\"\>", 
-     "\[Rule]", \
-"\<\"https://jira.wolfram.com/jira/rest/api/2/issue/663322\"\>"}]}], 
-   "}"}]}]], "Echo"]
-}, Open  ]],
+    RowBox[{"{", 
+     RowBox[{"\"\<ja\>\"", ",", "\"\<Japanese\>\""}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<es\>\"", ",", "\"\<Spanish\>\""}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<fr\>\"", ",", "\"\<French\>\""}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<ko\>\"", ",", "\"\<Korean\>\""}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<ru\>\"", ",", "\"\<Russian\>\""}], "}"}]}], 
+   "}"}]}]}], "Input"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
-   RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-14007\"\>"}], ",", 
-   RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"663322\"\>"}], ",", 
-   RowBox[{"\<\"self\"\>", 
-    "\[Rule]", \
-"\<\"https://jira.wolfram.com/jira/rest/api/2/issue/663322\"\>"}]}], 
-  "}"}]], "Output"]
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-16925\"\>"}], ",", 
+     RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"756324\"\>"}], ",", 
+     RowBox[{"\<\"self\"\>", 
+      "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/756324\"\
+\>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-16926\"\>"}], ",", 
+     RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"756325\"\>"}], ",", 
+     RowBox[{"\<\"self\"\>", 
+      "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/756325\"\
+\>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-16927\"\>"}], ",", 
+     RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"756326\"\>"}], ",", 
+     RowBox[{"\<\"self\"\>", 
+      "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/756326\"\
+\>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-16928\"\>"}], ",", 
+     RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"756327\"\>"}], ",", 
+     RowBox[{"\<\"self\"\>", 
+      "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/756327\"\
+\>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-16929\"\>"}], ",", 
+     RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"756328\"\>"}], ",", 
+     RowBox[{"\<\"self\"\>", 
+      "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/756328\"\
+\>"}]}], "}"}]}], "}"}]], "Output"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -430,7 +462,7 @@ Cell[BoxData[
   "}"}]], "Output"]
 }, Open  ]]
 }, Closed]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -7730,6 +7762,2874 @@ Cell[BoxData[
 \>"}]}], "}"}]}], "}"}]], "Output"]
 }, Open  ]]
 }, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Create JIRA issues for formulas", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$mengWolframWorkspaceDirectory"], "Input"],
+
+Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"$calculateFormulasDir", "=", 
+  RowBox[{"FileNameJoin", "[", 
+   RowBox[{"{", 
+    RowBox[{
+    "$mengWolframWorkspaceDirectory", ",", "\"\<Wolfram\>\"", ",", 
+     "\"\<AlphaDev\>\"", ",", "\"\<AlphaSource\>\"", ",", 
+     "\"\<CalculateFormulas\>\""}], "}"}], "]"}]}]], "Input"],
+
+Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/Wolfram/AlphaDev/\
+AlphaSource/CalculateFormulas\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$formulaSourceFiles", "=", 
+   RowBox[{"FileNames", "[", 
+    RowBox[{"\"\<*.m\>\"", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{
+         "$calculateFormulasDir", ",", "\"\<ExtraCalculators\>\"", ",", 
+          "\"\<Mathematics\>\""}], "}"}], "]"}], ",", 
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{"$calculateFormulasDir", ",", "\"\<Mathematics\>\""}], "}"}],
+         "]"}]}], "}"}], ",", "Infinity"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"$formulaSourceFiles", "//", "Length"}], "\[IndentingNewLine]", 
+ RowBox[{"$formulaSourceFiles", "//", "RandomChoice"}]}], "Input"],
+
+Cell[BoxData["96"], "Output"],
+
+Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/Wolfram/AlphaDev/\
+AlphaSource/CalculateFormulas/ExtraCalculators/Mathematics/Logic/\
+LogicConvertCalculator.m\"\>"], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetOptions", "[", 
+   RowBox[{"JiraApiExecute", ",", " ", 
+    RowBox[{"\"\<HTTPRequestImplementation\>\"", " ", "->", " ", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", " ", "URLFetch", ",", " ", "Import"}], "}"}],
+       "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Table", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"JiraCreateIssue", "[", "\[IndentingNewLine]", 
+      RowBox[{
+      "\"\<WALOCURATE\>\"", ",", "\[IndentingNewLine]", "relativeFilePath", 
+       ",", "\[IndentingNewLine]", "\"\<Linguistics Curation\>\"", ",", "\n", 
+       " ", 
+       RowBox[{"<|", "\n", "  ", 
+        RowBox[{
+         RowBox[{"\"\<description\>\"", " ", "->", " ", 
+          RowBox[{
+          "\"\<\nh2. Goal\n\nLocalize regular/English Alpha's source file: \n\
+\nhttps://stash.wolfram.com/projects/WA/repos/alphasource/browse/\
+CalculateFormulas/\>\"", "<>", "relativeFilePath", "<>", 
+           "\"\<\n\nwith its corresponding localization shadow files: \n  \n  \
+ * data shadow file: \
+https://stash.wolfram.com/projects/WA/repos/alphalocalization-\>\"", "<>", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "<>", 
+           "\"\</browse/ShadowFiles/CalculateFormulas/\>\"", "<>", 
+           "relativeFilePath", "<>", 
+           "\"\<\n  * parser shadow file: \
+https://stash.wolfram.com/projects/WA/repos/alphalocalization-\>\"", "<>", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "<>", 
+           "\"\</browse/ShadowFilesParser/CalculateFormulas/\>\"", "<>", 
+           "relativeFilePath", "<>", 
+           "\"\<\n\n(See WALOCALIZATION-380: Formulas loclaization workflow.)\
+\n\>\""}]}], ",", "\n", "  ", 
+         RowBox[{"\"\<priority\>\"", " ", "->", " ", 
+          RowBox[{"<|", 
+           RowBox[{"\"\<name\>\"", " ", "->", " ", "\"\<Major\>\""}], 
+           "|>"}]}], ",", "\n", "  ", 
+         RowBox[{"\"\<assignee\>\"", " ", "->", " ", 
+          RowBox[{"<|", 
+           RowBox[{
+           "\"\<name\>\"", " ", "->", " ", "\"\<walocalizationgroup\>\""}], 
+           "|>"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{"\"\<reporter\>\"", " ", "->", " ", 
+          RowBox[{"<|", 
+           RowBox[{
+           "\"\<name\>\"", " ", "->", " ", "\"\<walocalizationgroup\>\""}], 
+           "|>"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"\"\<qacontact\>\"", "\[Rule]", "  ", 
+            RowBox[{"<|", 
+             RowBox[{"\"\<name\>\"", " ", "->", " ", "\"\<lixias\>\""}], 
+             "|>"}]}], ",", "\[IndentingNewLine]", 
+           RowBox[{"\"\<cc\>\"", "\[Rule]", "  ", 
+            RowBox[{"<|", 
+             RowBox[{"\"\<name\>\"", " ", "->", " ", "\"\<ailingz\>\""}], 
+             "|>"}]}], ","}], "*)"}], "\n", "  ", 
+         RowBox[{"\"\<components\>\"", " ", "->", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"<|", 
+             RowBox[{"\"\<name\>\"", " ", "->", " ", "\"\<Formulas\>\""}], 
+             "|>"}], ",", " ", 
+            RowBox[{"<|", 
+             RowBox[{"\"\<name\>\"", " ", "->", " ", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", "1", "]"}], "]"}]}], "|>"}]}], "}"}]}], ",", "\n",
+          "  ", 
+         RowBox[{"\"\<labels\>\"", " ", "->", " ", 
+          RowBox[{"{", "}"}]}]}], "\n", "  ", "|>"}], ",", "\n", " ", 
+       RowBox[{"\"\<OpenQ\>\"", " ", "->", " ", "False"}]}], "\n", " ", "]"}],
+      ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"relativeFilePath", ",", 
+       RowBox[{"Evaluate", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"StringReplace", "[", 
+           RowBox[{"#", ",", 
+            RowBox[{
+             RowBox[{"$calculateFormulasDir", "<>", "\"\</\>\""}], "\[Rule]", 
+             " ", "\"\<\>\""}]}], "]"}], "&"}], "/@", 
+         RowBox[{"$formulaSourceFiles", "[", 
+          RowBox[{"[", ";;", "]"}], "]"}]}], "]"}]}], "}"}]}], 
+    "\[IndentingNewLine]", "]"}], "&"}], "/@", 
+  RowBox[{"{", 
+   RowBox[{"(*", 
+    RowBox[{"{", 
+     RowBox[{"\"\<ja\>\"", ",", "\"\<Japanese\>\""}], "}"}], "*)"}], 
+   RowBox[{"(*", ",", "*)"}], 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\"\<es\>\"", ",", "\"\<Spanish\>\""}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<fr\>\"", ",", "\"\<French\>\""}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<ko\>\"", ",", "\"\<Korean\>\""}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<ru\>\"", ",", "\"\<Russian\>\""}], "}"}]}], 
+   "}"}]}]}], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17053\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764544\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764544\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17054\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764545\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764545\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17055\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764546\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764546\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17056\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764547\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764547\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17057\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764548\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764548\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17058\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764549\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764549\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17059\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764550\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764550\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17060\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764551\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764551\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17061\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764552\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764552\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17062\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764553\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764553\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17063\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764554\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764554\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17064\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764555\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764555\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17065\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764556\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764556\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17066\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764557\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764557\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17067\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764558\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764558\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17068\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764559\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764559\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17069\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764560\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764560\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17070\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764561\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764561\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17071\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764562\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764562\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17072\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764563\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764563\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17073\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764564\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764564\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17074\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764565\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764565\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17075\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764566\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764566\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17076\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764567\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764567\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17077\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764568\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764568\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17078\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764569\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764569\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17079\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764570\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764570\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17080\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764571\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764571\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17081\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764572\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764572\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17082\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764573\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764573\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17083\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764574\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764574\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17084\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764575\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764575\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17085\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764576\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764576\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17086\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764577\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764577\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17087\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764578\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764578\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17088\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764579\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764579\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17089\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764580\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764580\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17090\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764581\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764581\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17091\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764582\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764582\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17092\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764583\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764583\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17093\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764584\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764584\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17094\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764585\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764585\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17095\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764586\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764586\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17096\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764587\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764587\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17097\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764588\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764588\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17098\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764589\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764589\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17099\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764590\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764590\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17100\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764591\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764591\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17101\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764592\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764592\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17102\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764593\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764593\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17103\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764594\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764594\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17104\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764596\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764596\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17105\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764597\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764597\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17106\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764598\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764598\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17107\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764599\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764599\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17108\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764600\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764600\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17109\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764601\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764601\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17110\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764602\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764602\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17111\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764603\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764603\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17112\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764604\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764604\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17113\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764605\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764605\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17114\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764606\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764606\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17115\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764607\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764607\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17116\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764608\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764608\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17117\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764609\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764609\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17118\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764610\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764610\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17119\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764611\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764611\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17120\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764612\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764612\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17121\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764613\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764613\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17122\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764614\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764614\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17123\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764615\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764615\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17124\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764616\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764616\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17125\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764617\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764617\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17126\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764618\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764618\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17127\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764619\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764619\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17128\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764620\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764620\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17129\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764621\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764621\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17130\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764622\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764622\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17131\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764623\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764623\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17132\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764624\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764624\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17133\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764625\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764625\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17134\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764626\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764626\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17135\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764627\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764627\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17136\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764628\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764628\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17137\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764629\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764629\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17138\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764630\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764630\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17139\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764631\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764631\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17140\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764632\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764632\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17141\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764633\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764633\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17142\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764634\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764634\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17143\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764635\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764635\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17144\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764636\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764636\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17145\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764637\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764637\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17146\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764638\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764638\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17147\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764639\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764639\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17148\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764640\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764640\
+\"\>"}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17149\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764641\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764641\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17150\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764642\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764642\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17151\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764643\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764643\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17152\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764644\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764644\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17153\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764645\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764645\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17154\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764646\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764646\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17155\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764647\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764647\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17156\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764648\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764648\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17157\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764649\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764649\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17158\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764650\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764650\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17159\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764651\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764651\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17160\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764652\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764652\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17161\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764654\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764654\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17162\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764655\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764655\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17163\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764656\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764656\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17164\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764657\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764657\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17165\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764658\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764658\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17166\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764659\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764659\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17167\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764660\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764660\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17168\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764661\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764661\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17169\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764662\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764662\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17170\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764663\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764663\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17171\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764664\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764664\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17172\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764665\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764665\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17173\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764666\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764666\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17174\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764667\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764667\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17175\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764668\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764668\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17176\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764669\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764669\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17177\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764670\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764670\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17178\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764671\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764671\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17179\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764672\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764672\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17180\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764673\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764673\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17181\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764674\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764674\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17182\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764675\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764675\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17183\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764676\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764676\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17184\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764677\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764677\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17185\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764678\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764678\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17186\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764679\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764679\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17187\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764680\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764680\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17188\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764682\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764682\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17189\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764683\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764683\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17190\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764684\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764684\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17191\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764685\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764685\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17192\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764686\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764686\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17193\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764687\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764687\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17194\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764688\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764688\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17195\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764689\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764689\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17196\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764690\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764690\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17197\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764691\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764691\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17198\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764692\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764692\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17199\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764693\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764693\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17200\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764694\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764694\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17201\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764695\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764695\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17202\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764696\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764696\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17203\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764697\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764697\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17204\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764698\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764698\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17205\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764699\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764699\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17206\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764700\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764700\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17207\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764701\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764701\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17208\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764702\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764702\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17209\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764704\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764704\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17210\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764705\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764705\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17211\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764706\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764706\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17212\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764707\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764707\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17213\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764708\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764708\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17214\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764709\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764709\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17215\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764710\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764710\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17216\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764711\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764711\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17217\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764712\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764712\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17218\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764713\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764713\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17219\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764714\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764714\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17220\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764715\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764715\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17221\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764716\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764716\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17222\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764717\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764717\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17223\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764718\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764718\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17224\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764719\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764719\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17225\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764720\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764720\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17226\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764721\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764721\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17227\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764723\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764723\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17228\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764724\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764724\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17229\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764725\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764725\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17230\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764726\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764726\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17231\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764727\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764727\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17232\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764728\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764728\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17233\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764729\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764729\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17234\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764730\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764730\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17235\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764731\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764731\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17236\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764732\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764732\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17237\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764733\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764733\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17238\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764734\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764734\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17239\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764735\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764735\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17240\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764736\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764736\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17241\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764737\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764737\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17242\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764738\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764738\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17243\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764739\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764739\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17244\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764740\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764740\
+\"\>"}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17245\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764741\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764741\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17246\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764742\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764742\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17247\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764744\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764744\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17248\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764745\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764745\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17249\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764746\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764746\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17250\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764747\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764747\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17251\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764748\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764748\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17252\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764749\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764749\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17253\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764750\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764750\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17254\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764751\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764751\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17255\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764752\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764752\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17256\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764753\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764753\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17257\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764754\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764754\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17258\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764755\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764755\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17259\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764756\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764756\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17260\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764757\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764757\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17261\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764758\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764758\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17262\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764759\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764759\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17263\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764760\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764760\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17264\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764761\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764761\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17265\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764762\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764762\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17266\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764763\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764763\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17267\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764765\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764765\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17268\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764766\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764766\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17269\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764767\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764767\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17270\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764768\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764768\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17271\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764769\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764769\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17272\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764770\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764770\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17273\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764771\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764771\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17274\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764772\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764772\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17275\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764773\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764773\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17276\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764774\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764774\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17277\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764775\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764775\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17278\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764776\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764776\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17279\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764777\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764777\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17280\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764778\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764778\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17281\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764779\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764779\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17282\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764780\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764780\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17283\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764781\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764781\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17284\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764782\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764782\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17285\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764783\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764783\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17286\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764784\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764784\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17287\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764785\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764785\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17288\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764786\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764786\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17289\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764787\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764787\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17290\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764788\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764788\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17291\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764789\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764789\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17292\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764790\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764790\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17293\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764791\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764791\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17294\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764792\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764792\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17295\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764793\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764793\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17296\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764794\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764794\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17297\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764795\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764795\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17298\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764796\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764796\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17299\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764797\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764797\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17300\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764798\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764798\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17301\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764799\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764799\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17302\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764800\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764800\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17303\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764801\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764801\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17304\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764802\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764802\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17305\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764803\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764803\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17306\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764804\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764804\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17307\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764805\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764805\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17308\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764806\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764806\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17309\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764807\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764807\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17310\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764808\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764808\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17311\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764809\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764809\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17312\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764810\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764810\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17313\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764811\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764811\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17314\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764812\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764812\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17315\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764813\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764813\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17316\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764814\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764814\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17317\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764815\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764815\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17318\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764816\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764816\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17319\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764817\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764817\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17320\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764818\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764818\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17321\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764819\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764819\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17322\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764820\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764820\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17323\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764821\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764821\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17324\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764822\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764822\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17325\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764823\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764823\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17326\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764824\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764824\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17327\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764825\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764825\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17328\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764826\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764826\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17329\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764827\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764827\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17330\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764829\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764829\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17331\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764830\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764830\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17332\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764831\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764831\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17333\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764832\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764832\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17334\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764833\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764833\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17335\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764834\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764834\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17336\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764835\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764835\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17337\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764836\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764836\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17338\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764837\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764837\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17339\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764838\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764838\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17340\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764839\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764839\
+\"\>"}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17341\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764840\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764840\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17342\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764841\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764841\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17343\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764842\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764842\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17344\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764843\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764843\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17345\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764844\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764844\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17346\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764845\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764845\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17347\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764846\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764846\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17348\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764847\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764847\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17349\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764848\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764848\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17350\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764849\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764849\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17351\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764850\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764850\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17352\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764851\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764851\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17353\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764852\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764852\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17354\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764853\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764853\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17355\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764855\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764855\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17356\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764856\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764856\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17357\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764857\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764857\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17358\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764858\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764858\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17359\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764859\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764859\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17360\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764860\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764860\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17361\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764861\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764861\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17362\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764862\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764862\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17363\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764863\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764863\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17364\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764864\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764864\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17365\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764865\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764865\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17366\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764866\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764866\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17367\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764867\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764867\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17368\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764868\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764868\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17369\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764869\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764869\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17370\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764870\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764870\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17371\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764871\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764871\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17372\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764872\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764872\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17373\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764873\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764873\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17374\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764874\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764874\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17375\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764875\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764875\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17376\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764877\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764877\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17377\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764878\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764878\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17378\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764879\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764879\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17379\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764880\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764880\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17380\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764881\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764881\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17381\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764882\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764882\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17382\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764883\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764883\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17383\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764884\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764884\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17384\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764885\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764885\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17385\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764886\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764886\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17386\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764887\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764887\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17387\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764888\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764888\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17388\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764889\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764889\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17389\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764890\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764890\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17390\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764891\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764891\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17391\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764892\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764892\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17392\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764894\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764894\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17393\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764895\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764895\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17394\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764896\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764896\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17395\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764897\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764897\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17396\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764898\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764898\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17397\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764899\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764899\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17398\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764900\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764900\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17399\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764901\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764901\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17400\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764902\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764902\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17401\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764903\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764903\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17402\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764904\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764904\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17403\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764905\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764905\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17404\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764906\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764906\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17405\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764907\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764907\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17406\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764908\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764908\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17407\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764909\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764909\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17408\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764910\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764910\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17409\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764911\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764911\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17410\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764913\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764913\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17411\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764914\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764914\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17412\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764915\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764915\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17413\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764916\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764916\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17414\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764917\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764917\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17415\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764918\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764918\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17416\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764919\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764919\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17417\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764920\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764920\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17418\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764921\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764921\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17419\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764922\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764922\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17420\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764923\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764923\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17421\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764924\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764924\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17422\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764925\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764925\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17423\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764926\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764926\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17424\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764927\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764927\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17425\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764928\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764928\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17426\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764929\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764929\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17427\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764930\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764930\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17428\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764932\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764932\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17429\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764933\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764933\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17430\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764934\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764934\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17431\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764935\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764935\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17432\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764936\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764936\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17433\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764937\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764937\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17434\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764938\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764938\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17435\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764939\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764939\
+\"\>"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-17436\"\>"}], ",", 
+       RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764940\"\>"}], ",", 
+       RowBox[{"\<\"self\"\>", 
+        "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764940\
+\"\>"}]}], "}"}]}], "}"}]}], "}"}]], "Output"]
+}, Open  ]]
 }, Closed]]
 }, Open  ]]
 }, Open  ]]
@@ -7737,9 +10637,8 @@ Cell[BoxData[
 WindowSize->{1440, 851},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 ShowSelection->True,
-Magnification:>1.25 Inherited,
-FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 28, \
-2016)",
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 10, \
+2015)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -7754,382 +10653,399 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 33, 0, 114, "Title"],
+Cell[422, 15, 33, 0, 92, "Title"],
 Cell[CellGroupData[{
-Cell[480, 19, 36, 0, 54, "Subsection"],
-Cell[519, 21, 30, 0, 39, "Input"],
-Cell[552, 23, 450, 13, 39, "Input"],
-Cell[1005, 38, 53, 1, 39, "Input"]
+Cell[480, 19, 36, 0, 44, "Subsection"],
+Cell[519, 21, 30, 0, 28, "Input"],
+Cell[552, 23, 414, 12, 28, "Input"],
+Cell[969, 37, 53, 1, 28, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1095, 44, 38, 0, 80, "Section"],
+Cell[1059, 43, 38, 0, 64, "Section"],
 Cell[CellGroupData[{
-Cell[1158, 48, 35, 0, 54, "Subsection"],
-Cell[1196, 50, 89, 1, 110, "Input"]
+Cell[1122, 47, 35, 0, 44, "Subsection"],
+Cell[1160, 49, 89, 1, 213, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[1322, 56, 68, 0, 43, "Subsection"],
+Cell[1286, 55, 68, 0, 36, "Subsection"],
 Cell[CellGroupData[{
-Cell[1415, 60, 39, 0, 102, "Subsubsection"],
+Cell[1379, 59, 39, 0, 197, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[1479, 64, 386, 10, 156, "Input"],
-Cell[1868, 76, 8281, 158, 891, "Output"]
+Cell[1443, 63, 386, 10, 303, "Input"],
+Cell[1832, 75, 8281, 158, 1738, "Output"]
 }, Open  ]],
-Cell[10164, 237, 16, 0, 82, "Text"]
+Cell[10128, 236, 16, 0, 158, "Text"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[10217, 242, 44, 0, 97, "Subsubsection"],
-Cell[10264, 244, 64, 1, 110, "Input"]
+Cell[10181, 241, 44, 0, 188, "Subsubsection"],
+Cell[10228, 243, 64, 1, 213, "Input"]
 }, Closed]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[10377, 251, 57, 0, 43, "Subsection"],
+Cell[10341, 250, 57, 0, 36, "Subsection"],
 Cell[CellGroupData[{
-Cell[10459, 255, 47, 0, 43, "Subsubsection"],
+Cell[10423, 254, 47, 0, 35, "Subsubsection"],
+Cell[10473, 256, 492, 17, 228, "Program"],
 Cell[CellGroupData[{
-Cell[10531, 259, 1798, 40, 378, "Input"],
-Cell[CellGroupData[{
-Cell[12354, 303, 1562, 24, 174, "Echo"],
-Cell[13919, 329, 920, 18, 102, "Echo"]
-}, Open  ]],
-Cell[14854, 350, 309, 8, 39, "Output"]
+Cell[10990, 277, 3160, 74, 386, "Input"],
+Cell[14153, 353, 1553, 37, 96, "Output"]
 }, Open  ]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[15212, 364, 47, 0, 34, "Subsubsection"],
-Cell[15262, 366, 55, 0, 307, "Text"],
-Cell[CellGroupData[{
-Cell[15342, 370, 96, 2, 415, "Input"],
-Cell[15441, 374, 51, 0, 401, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15529, 379, 747, 17, 597, "Input"],
-Cell[16279, 398, 1330, 21, 1035, "Echo"],
-Cell[17612, 421, 309, 8, 401, "Output"]
+Cell[15755, 396, 47, 0, 34, "Subsubsection"],
+Cell[15805, 398, 55, 0, 597, "Text"],
+Cell[CellGroupData[{
+Cell[15885, 402, 96, 2, 808, "Input"],
+Cell[15984, 406, 51, 0, 782, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16072, 411, 747, 17, 1165, "Input"],
+Cell[16822, 430, 1330, 21, 2020, "Echo"],
+Cell[18155, 453, 309, 8, 782, "Output"]
 }, Open  ]]
 }, Closed]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[17982, 436, 37, 0, 43, "Subsection"],
-Cell[18022, 438, 76, 2, 415, "Input"],
-Cell[18101, 442, 186, 5, 415, "Input"],
-Cell[18290, 449, 170, 4, 415, "Input"],
-Cell[CellGroupData[{
-Cell[18485, 457, 169, 4, 415, "Input"],
-Cell[18657, 463, 497, 10, 262, "Message"],
-Cell[19157, 475, 497, 10, 262, "Message"],
-Cell[19657, 487, 497, 10, 262, "Message"],
-Cell[20157, 499, 512, 10, 262, "Message"],
-Cell[CellGroupData[{
-Cell[20694, 513, 650, 11, 868, "Echo"],
-Cell[21347, 526, 629, 14, 713, "Echo"]
 }, Open  ]],
-Cell[21991, 543, 361, 9, 566, "Output"]
+Cell[CellGroupData[{
+Cell[18525, 468, 37, 0, 43, "Subsection"],
+Cell[18565, 470, 76, 2, 808, "Input"],
+Cell[18644, 474, 186, 5, 808, "Input"],
+Cell[18833, 481, 170, 4, 808, "Input"],
+Cell[CellGroupData[{
+Cell[19028, 489, 169, 4, 808, "Input"],
+Cell[19200, 495, 497, 10, 510, "Message"],
+Cell[19700, 507, 497, 10, 510, "Message"],
+Cell[20200, 519, 497, 10, 510, "Message"],
+Cell[20700, 531, 512, 10, 510, "Message"],
+Cell[CellGroupData[{
+Cell[21237, 545, 650, 11, 1695, "Echo"],
+Cell[21890, 558, 629, 14, 1391, "Echo"]
 }, Open  ]],
-Cell[22367, 555, 896, 24, 902, "Input"]
+Cell[22534, 575, 361, 9, 1103, "Output"]
+}, Open  ]],
+Cell[22910, 587, 896, 24, 1760, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[23300, 584, 35, 0, 43, "Subsection"],
-Cell[23338, 586, 181, 4, 518, "Input"],
-Cell[23522, 592, 391, 11, 931, "Input"]
+Cell[23843, 616, 35, 0, 34, "Subsection"],
+Cell[23881, 618, 181, 4, 1010, "Input"],
+Cell[24065, 624, 391, 11, 1816, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[23950, 608, 36, 0, 43, "Subsection"],
-Cell[23989, 610, 234, 6, 110, "Input"],
+Cell[24493, 640, 36, 0, 34, "Subsection"],
+Cell[24532, 642, 234, 6, 213, "Input"],
 Cell[CellGroupData[{
-Cell[24248, 620, 38, 0, 102, "Subsubsection"],
+Cell[24791, 652, 38, 0, 197, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[24311, 624, 163, 4, 156, "Input"],
-Cell[24477, 630, 402, 7, 150, "Output"],
-Cell[24882, 639, 29, 0, 106, "Output"]
+Cell[24854, 656, 163, 4, 303, "Input"],
+Cell[25020, 662, 402, 7, 291, "Output"],
+Cell[25425, 671, 29, 0, 206, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[24960, 645, 57, 0, 97, "Subsubsection"],
+Cell[25503, 677, 57, 0, 188, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[25042, 649, 201, 5, 110, "Input"],
-Cell[25246, 656, 122, 3, 106, "Output"]
+Cell[25585, 681, 201, 5, 213, "Input"],
+Cell[25789, 688, 122, 3, 206, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[25417, 665, 57, 0, 97, "Subsubsection"],
+Cell[25960, 697, 57, 0, 188, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[25499, 669, 172, 3, 110, "Input"],
-Cell[25674, 674, 32941, 719, 13797, "Output"]
+Cell[26042, 701, 172, 3, 213, "Input"],
+Cell[26217, 706, 32941, 719, 26946, "Output"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[58652, 1398, 176, 3, 97, "Input"],
-Cell[58831, 1403, 25567, 602, 10870, "Output"]
+Cell[59195, 1430, 176, 3, 188, "Input"],
+Cell[59374, 1435, 25567, 602, 21228, "Output"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[84435, 2010, 172, 3, 97, "Input"],
-Cell[84610, 2015, 7175, 175, 813, "Output"]
+Cell[84978, 2042, 172, 3, 188, "Input"],
+Cell[85153, 2047, 7175, 175, 1587, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[91822, 2195, 270, 7, 110, "Input"],
-Cell[92095, 2204, 5313, 132, 731, "Output"]
+Cell[92365, 2227, 270, 7, 213, "Input"],
+Cell[92638, 2236, 5313, 132, 1426, "Output"]
 }, Open  ]]
 }, Closed]]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[97481, 2344, 25, 0, 80, "Section"],
+Cell[98024, 2376, 25, 0, 64, "Section"],
 Cell[CellGroupData[{
-Cell[97531, 2348, 51, 0, 54, "Subsection"],
-Cell[97585, 2350, 176, 5, 213, "Input"],
+Cell[98074, 2380, 51, 0, 43, "Subsection"],
+Cell[98128, 2382, 176, 5, 415, "Input"],
 Cell[CellGroupData[{
-Cell[97786, 2359, 133, 3, 213, "Input"],
-Cell[97922, 2364, 551, 10, 135, "Message"],
-Cell[98476, 2376, 198, 5, 206, "Output"]
+Cell[98329, 2391, 133, 3, 415, "Input"],
+Cell[98465, 2396, 551, 10, 262, "Message"],
+Cell[99019, 2408, 198, 5, 401, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[98723, 2387, 49, 0, 43, "Subsection"],
-Cell[98775, 2389, 360, 9, 213, "Input"],
-Cell[99138, 2400, 2143, 43, 2440, "Program"]
+Cell[99266, 2419, 49, 0, 34, "Subsection"],
+Cell[99318, 2421, 360, 9, 415, "Input"],
+Cell[99681, 2432, 2143, 43, 4765, "Program"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[101318, 2448, 106, 2, 43, "Subsection"],
-Cell[101427, 2452, 632, 16, 931, "Input"],
-Cell[102062, 2470, 211, 3, 550, "Input"],
-Cell[102276, 2475, 94, 2, 518, "Input"],
+Cell[101861, 2480, 106, 2, 34, "Subsection"],
+Cell[101970, 2484, 632, 16, 1816, "Input"],
+Cell[102605, 2502, 211, 3, 1072, "Input"],
+Cell[102819, 2507, 94, 2, 1010, "Input"],
 Cell[CellGroupData[{
-Cell[102395, 2481, 95, 1, 478, "Subsubsection"],
-Cell[102493, 2484, 44, 0, 518, "Input"],
-Cell[102540, 2486, 50, 0, 518, "Input"],
-Cell[102593, 2488, 656, 15, 931, "Input"],
-Cell[103252, 2505, 44, 0, 518, "Input"],
-Cell[103299, 2507, 50, 0, 518, "Input"],
-Cell[103352, 2509, 382, 9, 737, "Input"]
+Cell[102938, 2513, 95, 1, 932, "Subsubsection"],
+Cell[103036, 2516, 44, 0, 1010, "Input"],
+Cell[103083, 2518, 50, 0, 1010, "Input"],
+Cell[103136, 2520, 656, 15, 1816, "Input"],
+Cell[103795, 2537, 44, 0, 1010, "Input"],
+Cell[103842, 2539, 50, 0, 1010, "Input"],
+Cell[103895, 2541, 382, 9, 1438, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[103771, 2523, 45, 0, 457, "Subsubsection"],
-Cell[103819, 2525, 787, 21, 1126, "Input"],
-Cell[104609, 2548, 337, 8, 737, "Input"],
-Cell[104949, 2558, 154, 3, 478, "Input"],
-Cell[105106, 2563, 78, 1, 478, "Input"]
+Cell[104314, 2555, 45, 0, 891, "Subsubsection"],
+Cell[104362, 2557, 787, 21, 2197, "Input"],
+Cell[105152, 2580, 337, 8, 1438, "Input"],
+Cell[105492, 2590, 154, 3, 932, "Input"],
+Cell[105649, 2595, 78, 1, 932, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[105221, 2569, 38, 0, 457, "Subsubsection"],
-Cell[105262, 2571, 345, 9, 737, "Input"],
-Cell[105610, 2582, 106, 2, 518, "Input"],
-Cell[105719, 2586, 255, 7, 808, "Input"],
-Cell[105977, 2595, 102, 2, 478, "Input"]
+Cell[105764, 2601, 38, 0, 891, "Subsubsection"],
+Cell[105805, 2603, 345, 9, 1438, "Input"],
+Cell[106153, 2614, 106, 2, 1010, "Input"],
+Cell[106262, 2618, 255, 7, 1577, "Input"],
+Cell[106520, 2627, 102, 2, 932, "Input"]
 }, Closed]]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[106140, 2604, 31, 0, 80, "Section"],
+Cell[106683, 2636, 31, 0, 64, "Section"],
 Cell[CellGroupData[{
-Cell[106196, 2608, 48, 0, 54, "Subsection"],
+Cell[106739, 2640, 48, 0, 43, "Subsection"],
 Cell[CellGroupData[{
-Cell[106269, 2612, 446, 13, 415, "Input"],
-Cell[106718, 2627, 401, 11, 401, "Output"]
+Cell[106812, 2644, 446, 13, 808, "Input"],
+Cell[107261, 2659, 401, 11, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[107156, 2643, 445, 13, 415, "Input"],
-Cell[107604, 2658, 400, 11, 401, "Output"]
+Cell[107699, 2675, 445, 13, 808, "Input"],
+Cell[108147, 2690, 400, 11, 782, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[108053, 2675, 66, 0, 43, "Subsection"],
+Cell[108596, 2707, 66, 0, 34, "Subsection"],
 Cell[CellGroupData[{
-Cell[108144, 2679, 55, 0, 66, "Subsubsection"],
-Cell[108202, 2681, 84, 2, 71, "Input"],
+Cell[108687, 2711, 55, 0, 127, "Subsubsection"],
+Cell[108745, 2713, 84, 2, 137, "Input"],
 Cell[CellGroupData[{
-Cell[108311, 2687, 324, 8, 71, "Input"],
-Cell[108638, 2697, 155, 1, 68, "Output"]
+Cell[108854, 2719, 324, 8, 137, "Input"],
+Cell[109181, 2729, 155, 1, 132, "Output"]
 }, Open  ]],
-Cell[108808, 2701, 191, 5, 71, "Input"],
+Cell[109351, 2733, 191, 5, 137, "Input"],
 Cell[CellGroupData[{
-Cell[109024, 2710, 409, 10, 126, "Input"],
-Cell[109436, 2722, 30, 0, 68, "Output"],
-Cell[109469, 2724, 184, 2, 68, "Output"],
-Cell[109656, 2728, 226, 4, 96, "Output"]
+Cell[109567, 2742, 409, 10, 245, "Input"],
+Cell[109979, 2754, 30, 0, 132, "Output"],
+Cell[110012, 2756, 184, 2, 132, "Output"],
+Cell[110199, 2760, 226, 4, 187, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[109931, 2738, 110, 1, 63, "Subsubsection"],
-Cell[110044, 2741, 84, 2, 88, "Input"],
+Cell[110474, 2770, 110, 1, 121, "Subsubsection"],
+Cell[110587, 2773, 84, 2, 171, "Input"],
 Cell[CellGroupData[{
-Cell[110153, 2747, 1436, 38, 358, "Input"],
-Cell[111592, 2787, 104, 1, 50, "Print"],
-Cell[111699, 2790, 27094, 668, 2510, "Output"],
-Cell[138796, 3460, 30, 0, 85, "Output"]
+Cell[110696, 2779, 1436, 38, 697, "Input"],
+Cell[112135, 2819, 104, 1, 96, "Print"],
+Cell[112242, 2822, 27094, 668, 4901, "Output"],
+Cell[139339, 3492, 30, 0, 165, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[138863, 3465, 4989, 111, 1002, "Input"],
-Cell[143855, 3578, 3053, 72, 481, "Output"]
+Cell[139406, 3497, 4989, 111, 1956, "Input"],
+Cell[144398, 3610, 3053, 72, 938, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[146957, 3656, 94, 2, 63, "Subsubsection"],
-Cell[147054, 3660, 84, 2, 71, "Input"],
+Cell[147500, 3688, 94, 2, 121, "Subsubsection"],
+Cell[147597, 3692, 84, 2, 137, "Input"],
 Cell[CellGroupData[{
-Cell[147163, 3666, 67, 1, 71, "Input"],
-Cell[147233, 3669, 209, 2, 96, "Output"]
+Cell[147706, 3698, 67, 1, 137, "Input"],
+Cell[147776, 3701, 209, 2, 187, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[147479, 3676, 4187, 89, 958, "Input"],
-Cell[151669, 3767, 337, 9, 85, "Output"]
+Cell[148022, 3708, 4187, 89, 1870, "Input"],
+Cell[152212, 3799, 337, 9, 165, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[152055, 3782, 98, 2, 63, "Subsubsection"],
+Cell[152598, 3814, 98, 2, 121, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[152178, 3788, 767, 18, 596, "Input"],
-Cell[152948, 3808, 37, 0, 401, "Output"]
+Cell[152721, 3820, 767, 18, 1163, "Input"],
+Cell[153491, 3840, 37, 0, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[153022, 3813, 71, 1, 415, "Input"],
-Cell[153096, 3816, 30, 0, 401, "Output"]
+Cell[153565, 3845, 71, 1, 808, "Input"],
+Cell[153639, 3848, 30, 0, 782, "Output"]
 }, Open  ]],
-Cell[153141, 3819, 382, 10, 590, "Input"],
-Cell[153526, 3831, 137, 3, 415, "Input"],
+Cell[153684, 3851, 382, 10, 1151, "Input"],
+Cell[154069, 3863, 137, 3, 808, "Input"],
 Cell[CellGroupData[{
-Cell[153688, 3838, 766, 21, 590, "Input"],
-Cell[154457, 3861, 862, 22, 566, "Output"],
-Cell[155322, 3885, 28, 0, 401, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[155387, 3890, 340, 10, 415, "Input"],
-Cell[155730, 3902, 73, 1, 401, "Output"]
+Cell[154231, 3870, 766, 21, 1151, "Input"],
+Cell[155000, 3893, 862, 22, 1103, "Output"],
+Cell[155865, 3917, 28, 0, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[155840, 3908, 506, 14, 590, "Input"],
-Cell[156349, 3924, 6624, 165, 2463, "Output"],
-Cell[162976, 4091, 29, 0, 401, "Output"]
+Cell[155930, 3922, 340, 10, 808, "Input"],
+Cell[156273, 3934, 73, 1, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[163042, 4096, 6259, 132, 6675, "Input"],
-Cell[169304, 4230, 9053, 212, 5002, "Output"]
+Cell[156383, 3940, 506, 14, 1151, "Input"],
+Cell[156892, 3956, 6624, 165, 4808, "Output"],
+Cell[163519, 4123, 29, 0, 782, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[163585, 4128, 6259, 132, 13035, "Input"],
+Cell[169847, 4262, 9053, 212, 9768, "Output"]
 }, Open  ]]
 }, Closed]],
-Cell[178384, 4446, 101, 2, 63, "Subsubsection"]
+Cell[178927, 4478, 101, 2, 121, "Subsubsection"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[178522, 4453, 70, 0, 43, "Subsection"],
+Cell[179065, 4485, 70, 0, 34, "Subsection"],
 Cell[CellGroupData[{
-Cell[178617, 4457, 41, 0, 197, "Subsubsection"],
-Cell[178661, 4459, 845, 22, 1053, "Input"],
+Cell[179160, 4489, 41, 0, 383, "Subsubsection"],
+Cell[179204, 4491, 845, 22, 2056, "Input"],
 Cell[CellGroupData[{
-Cell[179531, 4485, 573, 12, 901, "Input"],
-Cell[180107, 4499, 137, 1, 401, "Output"],
-Cell[180247, 4502, 31, 0, 401, "Output"]
+Cell[180074, 4517, 573, 12, 1758, "Input"],
+Cell[180650, 4531, 137, 1, 782, "Output"],
+Cell[180790, 4534, 31, 0, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[180315, 4507, 190, 5, 415, "Input"],
-Cell[180508, 4514, 58424, 1467, 19720, "Output"]
-}, Open  ]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[238981, 5987, 67, 0, 188, "Subsubsection"],
-Cell[239051, 5989, 111, 3, 415, "Input"],
-Cell[CellGroupData[{
-Cell[239187, 5996, 180, 4, 415, "Input"],
-Cell[239370, 6002, 7403, 112, 4522, "Output"]
-}, Open  ]],
-Cell[246788, 6117, 297, 9, 415, "Input"],
-Cell[247088, 6128, 279, 6, 415, "Input"],
-Cell[247370, 6136, 896, 25, 1377, "Input"],
-Cell[248269, 6163, 463, 15, 415, "Input"],
-Cell[248735, 6180, 461, 14, 415, "Input"]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[249233, 6199, 98, 2, 188, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[249356, 6205, 790, 22, 745, "Input"],
-Cell[250149, 6229, 108, 1, 233, "Print"],
-Cell[250260, 6232, 30, 0, 401, "Output"]
-}, Open  ]],
-Cell[250305, 6235, 378, 11, 415, "Input"],
-Cell[250686, 6248, 382, 12, 415, "Input"],
-Cell[CellGroupData[{
-Cell[251093, 6264, 597, 16, 745, "Input"],
-Cell[251693, 6282, 29, 0, 401, "Output"],
-Cell[251725, 6284, 586, 16, 531, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[252348, 6305, 4989, 111, 4775, "Input"],
-Cell[257340, 6418, 3053, 72, 1831, "Output"]
+Cell[180858, 4539, 190, 5, 808, "Input"],
+Cell[181051, 4546, 58424, 1467, 38515, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[260442, 6496, 98, 2, 188, "Subsubsection"],
+Cell[239524, 6019, 67, 0, 366, "Subsubsection"],
+Cell[239594, 6021, 111, 3, 808, "Input"],
 Cell[CellGroupData[{
-Cell[260565, 6502, 767, 18, 596, "Input"],
-Cell[261335, 6522, 37, 0, 401, "Output"]
+Cell[239730, 6028, 180, 4, 808, "Input"],
+Cell[239913, 6034, 7403, 112, 8831, "Output"]
 }, Open  ]],
-Cell[CellGroupData[{
-Cell[261409, 6527, 71, 1, 415, "Input"],
-Cell[261483, 6530, 30, 0, 401, "Output"]
-}, Open  ]],
-Cell[261528, 6533, 382, 10, 590, "Input"],
-Cell[261913, 6545, 137, 3, 415, "Input"],
-Cell[CellGroupData[{
-Cell[262075, 6552, 766, 21, 590, "Input"],
-Cell[262844, 6575, 862, 22, 566, "Output"],
-Cell[263709, 6599, 28, 0, 401, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[263774, 6604, 340, 10, 415, "Input"],
-Cell[264117, 6616, 73, 1, 401, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[264227, 6622, 506, 14, 590, "Input"],
-Cell[264736, 6638, 6624, 165, 2463, "Output"],
-Cell[271363, 6805, 29, 0, 401, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[271429, 6810, 6259, 132, 6675, "Input"],
-Cell[277691, 6944, 9053, 212, 5002, "Output"]
-}, Open  ]]
-}, Closed]],
-Cell[286771, 7160, 101, 2, 188, "Subsubsection"]
+Cell[247331, 6149, 297, 9, 808, "Input"],
+Cell[247631, 6160, 279, 6, 808, "Input"],
+Cell[247913, 6168, 896, 25, 2688, "Input"],
+Cell[248812, 6195, 463, 15, 808, "Input"],
+Cell[249278, 6212, 461, 14, 808, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[286909, 7167, 65, 0, 43, "Subsection"],
-Cell[286977, 7169, 439, 11, 303, "Input"],
-Cell[287419, 7182, 234, 6, 213, "Input"],
-Cell[287656, 7190, 375, 9, 382, "Input"],
+Cell[249776, 6231, 98, 2, 366, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[288056, 7203, 2488, 66, 1987, "Input"],
-Cell[290547, 7271, 515, 9, 210, "Message"],
-Cell[291065, 7282, 515, 9, 210, "Message"],
-Cell[291583, 7293, 515, 9, 210, "Message"],
-Cell[292101, 7304, 518, 10, 210, "Message"]
+Cell[249899, 6237, 790, 22, 1453, "Input"],
+Cell[250692, 6261, 108, 1, 453, "Print"],
+Cell[250803, 6264, 30, 0, 782, "Output"]
+}, Open  ]],
+Cell[250848, 6267, 378, 11, 808, "Input"],
+Cell[251229, 6280, 382, 12, 808, "Input"],
+Cell[CellGroupData[{
+Cell[251636, 6296, 597, 16, 1453, "Input"],
+Cell[252236, 6314, 29, 0, 782, "Output"],
+Cell[252268, 6316, 586, 16, 1035, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[292656, 7319, 248, 5, 472, "Input"],
-Cell[292907, 7326, 161, 2, 321, "Output"]
+Cell[252891, 6337, 4989, 111, 9325, "Input"],
+Cell[257883, 6450, 3053, 72, 3575, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[293117, 7334, 61, 0, 43, "Subsection"],
+Cell[260985, 6528, 98, 2, 366, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[293203, 7338, 110, 1, 53, "Subsubsection"],
-Cell[293316, 7341, 84, 2, 48, "Input"],
-Cell[CellGroupData[{
-Cell[293425, 7347, 1397, 37, 342, "Input"],
-Cell[294825, 7386, 132, 1, 36, "Print"],
-Cell[294960, 7389, 3286, 82, 342, "Output"],
-Cell[298249, 7473, 29, 0, 55, "Output"]
+Cell[261108, 6534, 767, 18, 1163, "Input"],
+Cell[261878, 6554, 37, 0, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[298315, 7478, 103, 2, 57, "Input"],
+Cell[261952, 6559, 71, 1, 808, "Input"],
+Cell[262026, 6562, 30, 0, 782, "Output"]
+}, Open  ]],
+Cell[262071, 6565, 382, 10, 1151, "Input"],
+Cell[262456, 6577, 137, 3, 808, "Input"],
 Cell[CellGroupData[{
-Cell[298443, 7484, 58, 0, 32, "Print"],
-Cell[298504, 7486, 746, 20, 35, "Print"]
+Cell[262618, 6584, 766, 21, 1151, "Input"],
+Cell[263387, 6607, 862, 22, 1103, "Output"],
+Cell[264252, 6631, 28, 0, 782, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[264317, 6636, 340, 10, 808, "Input"],
+Cell[264660, 6648, 73, 1, 782, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[264770, 6654, 506, 14, 1151, "Input"],
+Cell[265279, 6670, 6624, 165, 4808, "Output"],
+Cell[271906, 6837, 29, 0, 782, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[271972, 6842, 6259, 132, 13035, "Input"],
+Cell[278234, 6976, 9053, 212, 9768, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[287314, 7192, 101, 2, 366, "Subsubsection"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[287452, 7199, 65, 0, 34, "Subsection"],
+Cell[287520, 7201, 439, 11, 590, "Input"],
+Cell[287962, 7214, 234, 6, 415, "Input"],
+Cell[288199, 7222, 375, 9, 745, "Input"],
+Cell[CellGroupData[{
+Cell[288599, 7235, 2488, 66, 3878, "Input"],
+Cell[291090, 7303, 515, 9, 408, "Message"],
+Cell[291608, 7314, 515, 9, 408, "Message"],
+Cell[292126, 7325, 515, 9, 408, "Message"],
+Cell[292644, 7336, 518, 10, 408, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[293199, 7351, 248, 5, 921, "Input"],
+Cell[293450, 7358, 161, 2, 626, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[293660, 7366, 61, 0, 34, "Subsection"],
+Cell[CellGroupData[{
+Cell[293746, 7370, 110, 1, 102, "Subsubsection"],
+Cell[293859, 7373, 84, 2, 93, "Input"],
+Cell[CellGroupData[{
+Cell[293968, 7379, 1397, 37, 666, "Input"],
+Cell[295368, 7418, 132, 1, 70, "Print"],
+Cell[295503, 7421, 3286, 82, 666, "Output"],
+Cell[298792, 7505, 29, 0, 106, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[298858, 7510, 103, 2, 110, "Input"],
+Cell[CellGroupData[{
+Cell[298986, 7516, 58, 0, 62, "Print"],
+Cell[299047, 7518, 746, 20, 66, "Print"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[299299, 7512, 453, 13, 101, "Input"],
-Cell[299755, 7527, 738, 12, 98, "Output"]
+Cell[299842, 7544, 453, 13, 196, "Input"],
+Cell[300298, 7559, 738, 12, 190, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[300530, 7544, 4989, 111, 642, "Input"],
-Cell[305522, 7657, 3053, 72, 247, "Output"]
+Cell[301073, 7576, 4989, 111, 1252, "Input"],
+Cell[306065, 7689, 3053, 72, 481, "Output"]
 }, Open  ]]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[309179, 7768, 53, 0, 34, "Subsection"],
+Cell[CellGroupData[{
+Cell[309257, 7772, 56, 0, 29, "Input"],
+Cell[309316, 7774, 69, 0, 29, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[309422, 7779, 304, 7, 29, "Input"],
+Cell[309729, 7788, 117, 1, 29, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[309883, 7794, 731, 18, 96, "Input"],
+Cell[310617, 7814, 29, 0, 28, "Output"],
+Cell[310649, 7816, 179, 2, 46, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[310865, 7823, 4608, 107, 600, "Input"],
+Cell[315476, 7932, 120017, 2698, 6510, "Output"]
 }, Open  ]]
 }, Closed]]
 }, Open  ]]
