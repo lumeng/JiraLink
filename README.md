@@ -1,6 +1,6 @@
 ## Example usage
 
-* Basic demos in [JiraLink.nb](https://github.com/lumeng/JiraLink/blob/master/JiraLink/Documentation/English/Guides/JiraLink.nb).
+* Basic demos in [JiraLink_Wolfram.nb](https://stash.wolfram.com/users/meng/repos/jiralink/browse/Notebook/JiraLink_Wolfram.nb).
 
 ## References
 
