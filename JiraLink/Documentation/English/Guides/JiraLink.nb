@@ -3,38 +3,60 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      4156,        145]
-NotebookOptionsPosition[      3192,        104]
-NotebookOutlinePosition[      3570,        121]
-CellTagsIndexPosition[      3527,        118]
+NotebookDataLength[     10941,        303]
+NotebookOptionsPosition[      9528,        248]
+NotebookOutlinePosition[      9929,        265]
+CellTagsIndexPosition[      9886,        262]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["JIRALink", "Title"],
+Cell["JIRALink", "Title",ExpressionUUID->"ce4ede5f-27a4-4002-b08f-e9b149c3e645"],
 
 Cell[CellGroupData[{
 
-Cell["Initialization", "Subsection"],
+Cell["Initialization", "Subsection",ExpressionUUID->"1f809ab1-dee1-4fe3-86ba-12b3cc72beea"],
 
-Cell[BoxData["Quit"], "Input"],
+Cell[BoxData["Quit"], "Input",ExpressionUUID->"28090362-57bb-4af1-be54-172e71d63d69"],
 
-Cell[BoxData[{
+Cell[BoxData[
  RowBox[{
   RowBox[{"PrependTo", "[", 
    RowBox[{"$Path", ",", 
-    RowBox[{"ParentDirectory", "[", 
-     RowBox[{"NotebookDirectory", "[", "]"}], "]"}]}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{"<<", "JiraLink`"}]}], "Input",
- InitializationCell->True]
-}, Open  ]],
+    RowBox[{"FileNameDrop", "[", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+      RowBox[{"-", "4"}]}], "]"}]}], "]"}], ";"}]], "Input",
+ InitializationCell->
+  True,ExpressionUUID->"9be1c0e5-e691-4594-98c6-d02b811a275a"],
+
+Cell[BoxData[
+ RowBox[{"<<", "JiraLink`"}]], "Input",ExpressionUUID->"818b4781-a4eb-4d14-85d1-9c2506d8bbf0"]
+}, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Create JIRA issues", "Subsection"],
+Cell["JiraIssueData: find properties of a JIRA issue", "Subsection",ExpressionUUID->"394ebbf3-9b7c-45f3-8198-62fa442ef313"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueData", "[", 
+  RowBox[{"\"\<MYPROJECT-123\>\"", ",", 
+   RowBox[{
+   "\"\<HTTPRequestImplementation\>\"", "\[Rule]", " ", "URLFetch"}]}], 
+  "]"}]], "Input",ExpressionUUID->"cd1f5074-77c3-4ad2-8a53-516ed81fb4ab"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueData", "[", 
+  RowBox[{"\"\<MYPROJECT-123\>\"", ",", 
+   RowBox[{"\"\<HTTPRequestImplementation\>\"", "\[Rule]", " ", "Import"}]}], 
+  "]"}]], "Input",ExpressionUUID->"8384d6b2-89c1-4260-b6a8-78df53f5b17e"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["JiraCreateIssue: create JIRA issues", "Subsection",ExpressionUUID->"86addfc5-3876-4693-b6bf-20eb523b7c0e"],
 
 Cell[BoxData[
  RowBox[{"JiraCreateIssue", "[", 
@@ -42,7 +64,11 @@ Cell[BoxData[
   "\"\<PROJECTXXX\>\"", ",", "\"\<SummaryXXX\>\"", ",", "\"\<Bug\>\"", ",", 
    RowBox[{"<|", 
     RowBox[{
-     RowBox[{"\"\<description\>\"", "\[Rule]", " ", "\"\<XXX\>\""}], ",", 
+     RowBox[{
+     "\"\<description\>\"", "\[Rule]", " ", 
+      "\"\<Translate \
+https://cvs.wolfram.com/viewvc/AlphaExtras/Localization/Languages/ja/\
+RawCurationNotebooks/Other/PopularQueries/\>\""}], ",", 
      RowBox[{"\"\<priority\>\"", "\[Rule]", " ", 
       RowBox[{"<|", 
        RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<Major\>\""}], "|>"}]}], 
@@ -66,24 +92,77 @@ Cell[BoxData[
       RowBox[{"{", 
        RowBox[{"\"\<label1XXX\>\"", ",", "\"\<label2XXX\>\""}], "}"}]}]}], 
     "|>"}], ",", 
-   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "]"}]], "Input"]
-}, Open  ]],
+   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "]"}]], "Input",Expres\
+sionUUID->"03ac3a71-f512-409a-9f5d-747eb8c3a129"],
 
 Cell[CellGroupData[{
 
-Cell["Create sub-task issues", "Subsection"],
+Cell[BoxData[
+ RowBox[{"JiraCreateIssue", "[", "\[IndentingNewLine]", 
+  RowBox[{
+  "\"\<WALOCURATE\>\"", ",", "\[IndentingNewLine]", "\"\<PopularQueries\>\"", 
+   ",", "\[IndentingNewLine]", "\"\<Task\>\"", ",", "\[IndentingNewLine]", 
+   RowBox[{"<|", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+     "\"\<description\>\"", "\[Rule]", " ", 
+      "\"\<Translate \
+https://cvs.wolfram.com/viewvc/AlphaExtras/Localization/Languages/ja/\
+RawCurationNotebooks/Other/PopularQueries/\n\n* Add translated query into the \
+cell \\\"translated query\\\"\n\n\>\""}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<priority\>\"", "\[Rule]", " ", 
+      RowBox[{"<|", 
+       RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<Blocker\>\""}], "|>"}]}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<assignee\>\"", "\[Rule]", " ", 
+      RowBox[{"<|", 
+       RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<xings\>\""}], "|>"}]}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<components\>\"", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"<|", 
+         RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<ja\>\""}], "|>"}], ",", 
+        
+        RowBox[{"<|", 
+         RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<PopularQueries\>\""}], 
+         "|>"}]}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<labels\>\"", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{"(*", 
+        RowBox[{"\"\<label1XXX\>\"", ",", "\"\<label2XXX\>\""}], "*)"}], 
+       "}"}]}]}], "\[IndentingNewLine]", "|>"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "\[IndentingNewLine]",
+   "]"}]], "Input",ExpressionUUID->"f60eb311-fc87-4884-9a9e-5102c0791b92"],
 
-Cell["Get the key of the issue created above:", "Text"],
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-16890\"\>"}], ",", 
+   RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"750851\"\>"}], ",", 
+   RowBox[{"\<\"self\"\>", 
+    "\[Rule]", \
+"\<\"https://jira.wolfram.com/jira/rest/api/2/issue/750851\"\>"}]}], 
+  "}"}]], "Output",ExpressionUUID->"a92ce661-b0b5-4893-88f0-29f8db6c1a4d"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["JiraCreateSubtaskIssue: create sub-task issues", "Subsection",ExpressionUUID->"f3bb3564-139d-4ec4-af0c-2758565d41ca"],
+
+Cell["Get the key of the issue created above:", "Text",ExpressionUUID->"15053b13-c084-4e0d-8f39-621ab47f716e"],
 
 Cell[BoxData[
  RowBox[{"\"\<key\>\"", "/.", 
   RowBox[{"ImportString", "[", 
-   RowBox[{"%", ",", "\"\<JSON\>\""}], "]"}]}]], "Input"],
+   RowBox[{"%", ",", "\"\<JSON\>\""}], "]"}]}]], "Input",ExpressionUUID->\
+"07692d05-46d9-439a-93e6-0fef84111492"],
 
-Cell["Create a sub-taks under the above issue:", "Text"],
+Cell["Create a sub-taks under the above issue:", "Text",ExpressionUUID->"82cd654d-d564-4fb4-8911-d2bfe079ca62"],
 
 Cell[BoxData[
- RowBox[{"JiraCreateSubtaskIssue", "[", 
+ RowBox[{"JiraCreateIssue", "[", 
   RowBox[{"%", ",", "\"\<SummaryXXX\>\"", ",", 
    RowBox[{"<|", 
     RowBox[{
@@ -98,15 +177,80 @@ Cell[BoxData[
         RowBox[{"OptionValue", "[", 
          RowBox[{"JiraExecute", ",", "\"\<Username\>\""}], "]"}]}], 
        "|>"}]}]}], "|>"}], ",", 
-   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "]"}]], "Input"]
+   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "]"}]], "Input",Expres\
+sionUUID->"4d65cf02-8346-4893-89b8-74fc3513720f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Table", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"JiraCreateIssue", "[", "\[IndentingNewLine]", 
+    RowBox[{"\"\<WALOCURATE-16890\>\"", ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<PopularQueries\>\"", "<>", 
+      RowBox[{"IntegerString", "[", 
+       RowBox[{"index", ",", "10", ",", "2"}], "]"}], "<>", "\"\<.nb\>\""}], 
+     ",", "\[IndentingNewLine]", "\"\<Subtask\>\"", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"<|", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"\"\<description\>\"", "\[Rule]", " ", 
+        RowBox[{
+        "\"\<https://cvs.wolfram.com/viewvc/AlphaExtras/Localization/\
+Languages/ja/RawCurationNotebooks/Other/PopularQueries/PopularQueries\>\"", "<>", 
+         RowBox[{"IntegerString", "[", 
+          RowBox[{"index", ",", "10", ",", "2"}], "]"}], "<>", 
+         "\"\<.nb?view=log\>\""}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"\"\<priority\>\"", "\[Rule]", " ", 
+        RowBox[{"<|", 
+         RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<Blocker\>\""}], 
+         "|>"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"\"\<assignee\>\"", "\[Rule]", " ", 
+        RowBox[{"<|", 
+         RowBox[{
+         "\"\<name\>\"", "\[Rule]", " ", "\"\<localizationgroup\>\""}], 
+         "|>"}]}]}], "\[IndentingNewLine]", "|>"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], 
+    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"index", ",", "3", ",", "20"}], "}"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",ExpressionUUID->"4328559d-a532-418d-b406-7fbd2b8613bf"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-16893\"\>"}], ",", 
+     RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"750866\"\>"}], ",", 
+     RowBox[{"\<\"self\"\>", 
+      "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/750866\"\
+\>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-16894\"\>"}], ",", 
+     RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"750867\"\>"}], ",", 
+     RowBox[{"\<\"self\"\>", 
+      "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/750867\"\
+\>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"WALOCURATE-16895\"\>"}], ",", 
+     RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"750868\"\>"}], ",", 
+     RowBox[{"\<\"self\"\>", 
+      "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/750868\"\
+\>"}]}], "}"}]}], "}"}]], "Output",ExpressionUUID->"03c155d7-73bf-417c-a829-\
+4f3293d9b45d"]
 }, Open  ]]
+}, Closed]]
 }, Open  ]]
 },
 WindowSize->{1440, 851},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 ShowSelection->True,
-FrontEndVersion->"10.4 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 25, \
-2016)",
+Magnification:>1.25 Inherited,
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (May 19, 2013)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -121,24 +265,38 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 25, 0, 92, "Title"],
+Cell[422, 15, 80, 0, 114, "Title"],
 Cell[CellGroupData[{
-Cell[472, 19, 36, 0, 44, "Subsection"],
-Cell[511, 21, 30, 0, 28, "Input"],
-Cell[544, 23, 280, 8, 46, "Input",
- InitializationCell->True]
-}, Open  ]],
+Cell[527, 19, 91, 0, 54, "Subsection"],
+Cell[621, 21, 85, 0, 35, "Input"],
+Cell[709, 23, 325, 9, 36, "Input",
+ InitializationCell->True],
+Cell[1037, 34, 108, 1, 35, "Input"]
+}, Closed]],
 Cell[CellGroupData[{
-Cell[861, 36, 40, 0, 44, "Subsection"],
-Cell[904, 38, 1224, 30, 63, "Input"]
-}, Open  ]],
+Cell[1182, 40, 123, 0, 43, "Subsection"],
+Cell[1308, 42, 245, 5, 35, "Input"],
+Cell[1556, 49, 239, 4, 35, "Input"]
+}, Closed]],
 Cell[CellGroupData[{
-Cell[2165, 73, 44, 0, 44, "Subsection"],
-Cell[2212, 75, 55, 0, 30, "Text"],
-Cell[2270, 77, 134, 3, 28, "Input"],
-Cell[2407, 82, 56, 0, 30, "Text"],
-Cell[2466, 84, 698, 16, 46, "Input"]
+Cell[1832, 58, 112, 0, 43, "Subsection"],
+Cell[1947, 60, 1416, 35, 165, "Input"],
+Cell[CellGroupData[{
+Cell[3388, 99, 1713, 36, 398, "Input"],
+Cell[5104, 137, 364, 8, 36, "Output"]
 }, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[5517, 151, 123, 0, 43, "Subsection"],
+Cell[5643, 153, 110, 0, 37, "Text"],
+Cell[5756, 155, 191, 4, 36, "Input"],
+Cell[5950, 161, 111, 0, 37, "Text"],
+Cell[6064, 163, 748, 17, 59, "Input"],
+Cell[CellGroupData[{
+Cell[6837, 184, 1638, 33, 355, "Input"],
+Cell[8478, 219, 1010, 24, 78, "Output"]
+}, Open  ]]
+}, Closed]]
 }, Open  ]]
 }
 ]
