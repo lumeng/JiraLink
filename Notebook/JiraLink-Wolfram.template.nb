@@ -3,23 +3,23 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[    448378,      11055]
-NotebookOptionsPosition[    435545,      10636]
-NotebookOutlinePosition[    435923,      10653]
-CellTagsIndexPosition[    435880,      10650]
+NotebookDataLength[    460610,      11149]
+NotebookOptionsPosition[    447787,      10735]
+NotebookOutlinePosition[    448157,      10751]
+CellTagsIndexPosition[    448114,      10748]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["JiraLink Wolfram", "Title"],
+Cell["JiraLink Wolfram", "Title",ExpressionUUID->"fbb00a4b-f5ee-4891-b003-97df1ad2bef8"],
 
 Cell[CellGroupData[{
 
-Cell["Initialization", "Subsection"],
+Cell["Initialization", "Subsection",ExpressionUUID->"727cb2de-c3b1-48ca-ba91-d3085d8f1fff"],
 
-Cell[BoxData["Quit"], "Input"],
+Cell[BoxData["Quit"], "Input",ExpressionUUID->"7c7e7fab-3636-40d1-ad23-45adb2abfce0"],
 
 Cell[BoxData[
  RowBox[{
@@ -33,31 +33,33 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"DirectoryQ", "[", "dir", "]"}], ",", 
       RowBox[{"PrependTo", "[", 
-       RowBox[{"$Path", ",", "dir"}], "]"}]}], "]"}]}], "]"}], ";"}]], "Input"],
+       RowBox[{"$Path", ",", "dir"}], "]"}]}], "]"}]}], "]"}], ";"}]], "Input",\
+ExpressionUUID->"5045cb84-2084-4bfd-84d1-95a59d554a0d"],
 
 Cell[BoxData[
- RowBox[{"<<", "JiraLink`"}]], "Input"]
+ RowBox[{"<<", "JiraLink`"}]], "Input",ExpressionUUID->"a918b207-a3f0-481a-bad7-85d6d2f57350"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["JiraLink` functions", "Section"],
+Cell["JiraLink` functions", "Section",ExpressionUUID->"617c4b3b-27e6-4d73-b2a1-28fa0601fe22"],
 
 Cell[CellGroupData[{
 
-Cell["JiraIssueOpen", "Subsection"],
+Cell["JiraIssueOpen", "Subsection",ExpressionUUID->"95a142aa-e422-4225-b1b1-4290e11fd499"],
 
 Cell[BoxData[
- RowBox[{"JiraIssueOpen", "[", "\"\<WALOCURATE-13153\>\"", "]"}]], "Input"]
+ RowBox[{"JiraIssueOpen", "[", "\"\<WALOCURATE-13153\>\"", "]"}]], "Input",Exp\
+ressionUUID->"e4d2a378-1842-423a-ae52-d0c410eaefba"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["JiraIssueData: find properties of a JIRA issue", "Subsection"],
+Cell["JiraIssueData: find properties of a JIRA issue", "Subsection",ExpressionUUID->"fc0c35ed-2f72-4f04-9366-cbfdc69bfab4"],
 
 Cell[CellGroupData[{
 
-Cell["All properties", "Subsubsection"],
+Cell["All properties", "Subsubsection",ExpressionUUID->"919a1f8d-0d59-4db0-a634-ccbc05c3edfe"],
 
 Cell[CellGroupData[{
 
@@ -71,7 +73,8 @@ Cell[BoxData[{
   RowBox[{"JiraIssueData", "[", "\"\<WALOCURATE-12616\>\"", "]"}], "//", 
   RowBox[{
    RowBox[{"Shallow", "[", 
-    RowBox[{"#", ",", "6"}], "]"}], "&"}]}]}], "Input"],
+    RowBox[{"#", ",", "6"}], "]"}], "&"}]}]}], "Input",ExpressionUUID->\
+"a970a741-c13e-44c2-be24-2080cfc609a2"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -231,28 +234,28 @@ Functions_1.nb\"\>"}], ",",
    RowBox[{"\<\"self\"\>", 
     "\[Rule]", \
 "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/657938\"\>"}]}], 
-  "}"}]], "Output"]
+  "}"}]], "Output",ExpressionUUID->"3a89a0b2-d6f5-49f8-bae9-d38c912807f3"]
 }, Open  ]],
 
-Cell["", "Text"]
+Cell["", "Text",ExpressionUUID->"f6eb98da-1c24-4159-9550-b0c3e93d1486"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Specific properties", "Subsubsection"],
+Cell["Specific properties", "Subsubsection",ExpressionUUID->"e06e9755-c583-4edd-81b5-c933b437c466"],
 
 Cell[BoxData[
- RowBox[{"(*", " ", "TODO", " ", "*)"}]], "Input"]
+ RowBox[{"(*", " ", "TODO", " ", "*)"}]], "Input",ExpressionUUID->"00983f73-d6ec-460b-915e-863587cb6dd1"]
 }, Closed]]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["JiraCreateIssue: create JIRA issues", "Subsection"],
+Cell["JiraCreateIssue: create JIRA issues", "Subsection",ExpressionUUID->"86a86063-1ef3-4073-b3ce-c8e925d8b597"],
 
 Cell[CellGroupData[{
 
-Cell["Creat top-level issues", "Subsubsection"],
+Cell["Creat top-level issues", "Subsubsection",ExpressionUUID->"dd6f9f7f-5fcf-4b00-8c39-ba23deb54cb6"],
 
 Cell["\<\
 SetOptions[JiraApiExecute, \"HTTPRequestImplementation\" -> {Automatic, \
@@ -271,7 +274,7 @@ JiraCreateIssue[
   |>,
  \"OpenQ\" -> True
  ]\
-\>", "Program"],
+\>", "Program",ExpressionUUID->"9b060d2b-dacc-4908-ad48-8e1a7eed07b5"],
 
 Cell[CellGroupData[{
 
@@ -349,7 +352,7 @@ VariableRanges.m\n\>\""}]}], ",", "\n", "  ",
      RowBox[{"\"\<ko\>\"", ",", "\"\<Korean\>\""}], "}"}], ",", 
     RowBox[{"{", 
      RowBox[{"\"\<ru\>\"", ",", "\"\<Russian\>\""}], "}"}]}], 
-   "}"}]}]}], "Input"],
+   "}"}]}]}], "Input",ExpressionUUID->"c9f2fdb7-bfdd-4b44-90c9-110a8f60506b"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -388,26 +391,26 @@ Cell[BoxData[
      RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"756328\"\>"}], ",", 
      RowBox[{"\<\"self\"\>", 
       "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/756328\"\
-\>"}]}], "}"}]}], "}"}]], "Output"]
+\>"}]}], "}"}]}], "}"}]], "Output",ExpressionUUID->"dc610344-6e0a-4377-96c4-\
+e284ab253a11"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["Create sub-task issues", "Subsubsection"],
+Cell["Create sub-task issues", "Subsubsection",ExpressionUUID->"7f2b955d-4e66-4d71-bf8c-2dbc79891280"],
 
-Cell["Get the key of the issue created above:", "Text"],
+Cell["Get the key of the issue created above:", "Text",ExpressionUUID->"2e3f21c8-e5f8-4008-a3e9-8db1f3b7bb1f"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"parentIssueKey", "=", 
-  RowBox[{"\"\<key\>\"", "/.", "%"}]}]], "Input"],
+  RowBox[{"\"\<key\>\"", "/.", "%"}]}]], "Input",ExpressionUUID->"578b2dc9-\
+ddca-47bf-8852-3c9fa1624226"],
 
-Cell[BoxData["\<\"WALOCURATE-14007\"\>"], "Output"]
+Cell[BoxData["\<\"WALOCURATE-14007\"\>"], "Output",ExpressionUUID->"23f6d772-ec0d-47e2-891e-2288b2e8fdfa"]
 }, Open  ]],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"JiraCreateIssue", "[", 
@@ -426,7 +429,8 @@ Cell[BoxData[
         RowBox[{"OptionValue", "[", 
          RowBox[{"JiraApiExecute", ",", "\"\<JiraWebsiteUsername\>\""}], 
          "]"}]}], "|>"}]}]}], "|>"}], ",", 
-   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "]"}]], "Input"],
+   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "]"}]], "Input",Expres\
+sionUUID->"b49542e1-7418-498c-af05-bb4cfbf7719c"],
 
 Cell[BoxData[
  RowBox[{
@@ -449,7 +453,7 @@ bWVuZzpTemx4ejgxNTMtd20=\\\", \\\"Content-Type\\\" -> \
    "EchoLabel"], 
   " ", "\<\"{\\\"id\\\":\\\"663323\\\",\\\"key\\\":\\\"WALOCURATE-14008\\\",\\\
 \"self\\\":\\\"https://jira.wolfram.com/jira/rest/api/2/issue/663323\\\"}\"\>\
-"}]], "Echo"],
+"}]], "Echo",ExpressionUUID->"d94d1751-77a9-47b6-9e21-0476b19229b0"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -459,31 +463,30 @@ Cell[BoxData[
    RowBox[{"\<\"self\"\>", 
     "\[Rule]", \
 "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/663323\"\>"}]}], 
-  "}"}]], "Output"]
-}, Open  ]]
+  "}"}]], "Output",ExpressionUUID->"54cf1ba0-d042-40c1-9663-43ed84b5eba4"]
 }, Closed]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["JiraDeleteIssue", "Subsection"],
+Cell["JiraDeleteIssue", "Subsection",ExpressionUUID->"3a77848d-bea3-411d-89eb-7f4b879ab88c"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"$debugQ", "=", "True"}], ";"}]], "Input"],
+  RowBox[{"$debugQ", "=", "True"}], ";"}]], "Input",ExpressionUUID->"84a20002-dbee-43b2-a61c-57f6075c347e"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"SetOptions", "[", 
    RowBox[{"JiraDeleteIssue", ",", 
     RowBox[{"\"\<DeleteSubtasks\>\"", "\[Rule]", "\"\<false\>\""}]}], "]"}], 
-  ";"}]], "Input"],
+  ";"}]], "Input",ExpressionUUID->"31f37c1e-df43-4c92-b89c-03a770c96259"],
 
 Cell[BoxData[
  RowBox[{"JiraDeleteIssue", "[", 
   RowBox[{"parentIssueKey", ",", 
    RowBox[{"\"\<DeleteSubtasks\>\"", "\[Rule]", "\"\<false\>\""}]}], 
-  "]"}]], "Input"],
+  "]"}]], "Input",ExpressionUUID->"c9cc1e81-8d6a-4794-ae10-48c354591826"],
 
 Cell[CellGroupData[{
 
@@ -491,7 +494,7 @@ Cell[BoxData[
  RowBox[{"JiraDeleteIssue", "[", 
   RowBox[{"parentIssueKey", ",", 
    RowBox[{"\"\<DeleteSubtasks\>\"", "\[Rule]", "\"\<true\>\""}]}], 
-  "]"}]], "Input"],
+  "]"}]], "Input",ExpressionUUID->"5e1df8ce-6c60-4077-8dc5-8362248ff914"],
 
 Cell[BoxData[
  RowBox[{
@@ -503,7 +506,8 @@ Cell[BoxData[
 \[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
 ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
 ButtonData:>\\\"paclet:ref/OptionValue\\\", ButtonNote -> \
-\\\"OptionValue::nodef\\\"]\\)\"\>"}]], "Message", "MSG"],
+\\\"OptionValue::nodef\\\"]\\)\"\>"}]], "Message", \
+"MSG",ExpressionUUID->"81284faf-5277-4488-a92f-1b10d85a91e3"],
 
 Cell[BoxData[
  RowBox[{
@@ -515,7 +519,8 @@ Cell[BoxData[
 \[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
 ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
 ButtonData:>\\\"paclet:ref/OptionValue\\\", ButtonNote -> \
-\\\"OptionValue::nodef\\\"]\\)\"\>"}]], "Message", "MSG"],
+\\\"OptionValue::nodef\\\"]\\)\"\>"}]], "Message", \
+"MSG",ExpressionUUID->"c23258d9-4d71-47c6-941b-1c4ce674b7dd"],
 
 Cell[BoxData[
  RowBox[{
@@ -527,7 +532,8 @@ Cell[BoxData[
 \[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
 ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
 ButtonData:>\\\"paclet:ref/OptionValue\\\", ButtonNote -> \
-\\\"OptionValue::nodef\\\"]\\)\"\>"}]], "Message", "MSG"],
+\\\"OptionValue::nodef\\\"]\\)\"\>"}]], "Message", \
+"MSG",ExpressionUUID->"25813fbd-fa50-4e85-a86e-1bde30d84173"],
 
 Cell[BoxData[
  RowBox[{
@@ -539,9 +545,9 @@ Cell[BoxData[
 this calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
 ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
 ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
-\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG"],
-
-Cell[CellGroupData[{
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", \
+"MSG",ExpressionUUID->"374f323e-076f-4e0a-92ab-98d38dc6fdc4"]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{
@@ -554,7 +560,8 @@ rest/api/2/issue/WALOCURATE-14007\\\", \\\"Headers\\\" -> \
    "EchoLabel"], 
   " ", "\<\"{\\\"errorMessages\\\":[\\\"The issue 'WALOCURATE-14007' has \
 subtasks.  You must specify the 'deleteSubtasks' parameter to delete this \
-issue and all its subtasks.\\\"],\\\"errors\\\":{}}\"\>"}]], "Echo"],
+issue and all its subtasks.\\\"],\\\"errors\\\":{}}\"\>"}]], "Echo",Expression\
+UUID->"b44c8056-58ee-4bba-b294-7999f89d8813"],
 
 Cell[BoxData[
  RowBox[{
@@ -570,8 +577,8 @@ Cell[BoxData[
 the 'deleteSubtasks' parameter to delete this issue and all its \
 subtasks.\"\>", "}"}]}], ",", 
     RowBox[{"\<\"errors\"\>", "\[Rule]", 
-     RowBox[{"{", "}"}]}]}], "}"}]}]], "Echo"]
-}, Open  ]],
+     RowBox[{"{", "}"}]}]}], "}"}]}]], "Echo",ExpressionUUID->"0e5539e3-8eb5-\
+43f8-9e70-8a8274d9158a"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -582,8 +589,8 @@ Cell[BoxData[
 the 'deleteSubtasks' parameter to delete this issue and all its \
 subtasks.\"\>", "}"}]}], ",", 
    RowBox[{"\<\"errors\"\>", "\[Rule]", 
-    RowBox[{"{", "}"}]}]}], "}"}]], "Output"]
-}, Open  ]],
+    RowBox[{"{", "}"}]}]}], "}"}]], "Output",ExpressionUUID->"15f7df1d-1850-\
+4604-b781-768cab76887c"],
 
 Cell[BoxData[
  RowBox[{
@@ -609,18 +616,20 @@ deleteSubtasks=true\>\"", ",",
     RowBox[{"\"\<Parameters\>\"", "\[Rule]", 
      RowBox[{"{", 
       RowBox[{"\"\<deleteSubtasks\>\"", "\[Rule]", "\"\<true\>\""}], "}"}]}], 
-    "*)"}], "]"}]}]], "Input"]
+    "*)"}], "]"}]}]], "Input",ExpressionUUID->"f7465103-1e05-4263-8069-\
+d892ee1db8ea"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["JiraJqlSearch", "Subsection"],
+Cell["JiraJqlSearch", "Subsection",ExpressionUUID->"af51e881-c756-4fbc-8e67-7a86d4daadc6"],
 
 Cell[BoxData[
  RowBox[{"Complement", "[", 
   RowBox[{
    RowBox[{"Options", "[", "JiraJqlSearch", "]"}], ",", 
-   RowBox[{"Options", "[", "JiraApiExecute", "]"}]}], "]"}]], "Input"],
+   RowBox[{"Options", "[", "JiraApiExecute", "]"}]}], "]"}]], "Input",Expressi\
+onUUID->"5a07e204-36ad-4983-a335-a4ab698091e6"],
 
 Cell[BoxData[{
  RowBox[{
@@ -633,12 +642,13 @@ Cell[BoxData[{
  RowBox[{"res", "//", 
   RowBox[{
    RowBox[{"Shallow", "[", 
-    RowBox[{"#", ",", "4"}], "]"}], "&"}]}]}], "Input"]
+    RowBox[{"#", ",", "4"}], "]"}], "&"}]}]}], "Input",ExpressionUUID->\
+"02764ece-b4ab-42c2-b4c3-37958d077fcb"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["JiraFindIssues", "Subsection"],
+Cell["JiraFindIssues", "Subsection",ExpressionUUID->"3d783a07-16ed-4fbc-8a70-20499229026d"],
 
 Cell[BoxData[
  RowBox[{
@@ -646,11 +656,12 @@ Cell[BoxData[
   "$JQLQuery", "=", 
    "\"\<project = WALOCURATE AND component in (ja) AND \\\"Ready to Begin\\\" \
 != No AND component = Scanners AND status = Closed ORDER BY summary \
-ASC\>\""}], ";"}]], "Input"],
+ASC\>\""}], ";"}]], "Input",ExpressionUUID->"a773a54e-fb73-42d8-82f8-\
+e2b3d50111b9"],
 
 Cell[CellGroupData[{
 
-Cell["Search issues", "Subsubsection"],
+Cell["Search issues", "Subsubsection",ExpressionUUID->"25616518-31eb-4659-9225-1584190aafe9"],
 
 Cell[CellGroupData[{
 
@@ -658,7 +669,8 @@ Cell[BoxData[{
  RowBox[{"res", "=", 
   RowBox[{
   "JiraFindIssues", "[", "$JQLQuery", "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"res", "//", "Length"}]}], "Input"],
+ RowBox[{"res", "//", "Length"}]}], "Input",ExpressionUUID->"13d5929c-4088-\
+4e8e-bf07-22680db4fbae"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -667,15 +679,15 @@ Cell[BoxData[
    ",", "\<\"WALOCURATE-10507\"\>", ",", "\<\"WALOCURATE-10508\"\>", 
    ",", "\<\"WALOCURATE-10509\"\>", ",", "\<\"WALOCURATE-10512\"\>", 
    ",", "\<\"WALOCURATE-10513\"\>", ",", "\<\"WALOCURATE-10515\"\>"}], 
-  "}"}]], "Output"],
+  "}"}]], "Output",ExpressionUUID->"2afa0643-cc1f-4f77-a569-891937f264e5"],
 
-Cell[BoxData["10"], "Output"]
+Cell[BoxData["10"], "Output",ExpressionUUID->"a6708627-2449-4f71-a291-c81aacea611b"]
 }, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Limit the number of issues found", "Subsubsection"],
+Cell["Limit the number of issues found", "Subsubsection",ExpressionUUID->"7b877371-9325-4437-a08b-c5bec3dd2a19"],
 
 Cell[CellGroupData[{
 
@@ -684,25 +696,27 @@ Cell[BoxData[
   RowBox[{"data", "[", "1", "]"}], "=", 
   RowBox[{"JiraFindIssues", "[", 
    RowBox[{"$JQLQuery", ",", 
-    RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]}]], "Input"],
+    RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]}]], "Input",Expres\
+sionUUID->"5d1849e8-59ab-4dd8-a2cd-601f78ee2be2"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"\<\"WALOCURATE-13702\"\>", ",", "\<\"WALOCURATE-13701\"\>"}], 
-  "}"}]], "Output"]
+  "}"}]], "Output",ExpressionUUID->"a3a399e8-567a-41c5-9e3d-ffb0806d39cb"]
 }, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["List properties for found issues", "Subsubsection"],
+Cell["List properties for found issues", "Subsubsection",ExpressionUUID->"426f727f-3533-4239-b0e8-a34eccfc5018"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"JiraFindIssues", "[", 
   RowBox[{"$JQLQuery", ",", "\"\<Properties\>\"", ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input"],
+   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",Expressio\
+nUUID->"df37ab63-6963-4843-8b8e-169f1334476c"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -1423,7 +1437,7 @@ avatarId=11479\"\>"}]}], "}"}]}], ",",
       RowBox[{"\<\"aggregatetimeestimate\"\>", "\[Rule]", "Null"}], ",", 
       RowBox[{"\<\"customfield_12562\"\>", "\[Rule]", "Null"}], ",", 
       RowBox[{"\<\"customfield_12561\"\>", "\[Rule]", "Null"}]}], "}"}]}]}], 
-  "}"}]], "Output"]
+  "}"}]], "Output",ExpressionUUID->"6ce13fb8-74df-491b-95ef-4765651c3f53"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -1431,7 +1445,8 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"JiraFindIssues", "[", 
   RowBox[{"$JQLQuery", ",", "\"\<CoreProperties\>\"", ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input"],
+   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",Expressio\
+nUUID->"6060f13f-eb9c-4845-ba9a-720f58a1367a"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -2035,7 +2050,8 @@ avatarId=11479\"\>"}]}], "}"}]}], ",",
          RowBox[{"\<\"timeZone\"\>", "\[Rule]", "\<\"US/Central\"\>"}], ",", 
          RowBox[{"\<\"active\"\>", "\[Rule]", "True"}]}], "}"}]}], ",", 
       RowBox[{"\<\"aggregatetimeestimate\"\>", "\[Rule]", "Null"}]}], 
-     "}"}]}]}], "}"}]], "Output"]
+     "}"}]}]}], "}"}]], "Output",ExpressionUUID->"a4278cc1-f77c-434b-aad3-\
+bbaa4e3b8434"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -2043,7 +2059,8 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"JiraFindIssues", "[", 
   RowBox[{"$JQLQuery", ",", "\"\<summary\>\"", ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "1000"}]}], "]"}]], "Input"],
+   RowBox[{"\"\<MaxResults\>\"", "->", " ", "1000"}]}], "]"}]], "Input",Expres\
+sionUUID->"2f38a466-710f-4299-ad39-5e3e271efd68"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -2220,7 +2237,7 @@ Cell[BoxData[
     RowBox[{"{", 
      RowBox[{"\<\"summary\"\>", 
       "\[Rule]", "\<\"RiemannSurfaceScanner.m\"\>"}], "}"}]}]}], 
-  "}"}]], "Output"]
+  "}"}]], "Output",ExpressionUUID->"579b6ecc-16dc-4819-a53d-d99ac08c4954"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2232,7 +2249,8 @@ Cell[BoxData[
     RowBox[{
     "\"\<summary\>\"", ",", "\"\<assignee\>\"", ",", "\"\<components\>\""}], 
     "}"}], ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input"],
+   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",Expressio\
+nUUID->"20049ec1-e2a3-4817-a15a-7d6340bbc6b4"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -2366,33 +2384,34 @@ avatarId=11479\"\>"}]}], "}"}]}], ",",
          RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"meng\"\>"}], ",", 
          RowBox[{"\<\"timeZone\"\>", "\[Rule]", "\<\"US/Central\"\>"}], ",", 
          RowBox[{"\<\"active\"\>", "\[Rule]", "True"}]}], "}"}]}]}], 
-     "}"}]}]}], "}"}]], "Output"]
+     "}"}]}]}], "}"}]], "Output",ExpressionUUID->"8ad87f51-a18f-41e4-8639-\
+139fb1cb5692"]
 }, Open  ]]
 }, Closed]]
 }, Closed]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Topics", "Section"],
+Cell["Topics", "Section",ExpressionUUID->"3a0b1570-eeee-4eae-ba0b-40f69a368c16"],
 
 Cell[CellGroupData[{
 
-Cell["Regex matching JIRA issue key", "Subsection"],
+Cell["Regex matching JIRA issue key", "Subsection",ExpressionUUID->"d781d4c3-c2f1-4280-9417-25460a9fa5c2"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"$mengJiraIssueKeyRegex", "=", 
    RowBox[{
    "RegularExpression", "[", "\"\<((?<!([A-Z])-?)[A-Z]+-\\\\d+)\>\"", "]"}]}],
-   ";"}]], "Input"],
+   ";"}]], "Input",ExpressionUUID->"dfa0ad9b-93ab-4635-9ee5-527ca3ec5650"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"StringMatchQ", "[", 
   RowBox[{"\"\<MYPROJECT-1234\>\"", ",", "$mengJiraIssueKeyRegex"}], 
-  "]"}]], "Input"],
+  "]"}]], "Input",ExpressionUUID->"df91dabd-5edf-4f2a-8b13-f5c1d9f77270"],
 
 Cell[BoxData[
  RowBox[{
@@ -2404,20 +2423,21 @@ Cell[BoxData[
 \\\"]\\\"}]\\)\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
 ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
 ButtonData:>\\\"paclet:ref/RegularExpression\\\", ButtonNote -> \
-\\\"RegularExpression::msg25\\\"]\\)\"\>"}]], "Message", "MSG"],
+\\\"RegularExpression::msg25\\\"]\\)\"\>"}]], "Message", \
+"MSG",ExpressionUUID->"d5633470-b60a-42d0-8d98-4b0f50d6d7e5"],
 
 Cell[BoxData[
  RowBox[{"StringMatchQ", "[", 
   RowBox[{"\<\"MYPROJECT-1234\"\>", ",", 
    RowBox[{
    "RegularExpression", "[", "\<\"((?<!([A-Z])-?)[A-Z]+-\\\\d+)\"\>", "]"}]}],
-   "]"}]], "Output"]
+   "]"}]], "Output",ExpressionUUID->"9cac66a2-59ce-4861-91af-daea0682557d"]
 }, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Create authorization header", "Subsection"],
+Cell["Create authorization header", "Subsection",ExpressionUUID->"f35b9561-a333-455a-b907-f7f3fb7d5870"],
 
 Cell[BoxData[
  RowBox[{"$authorizationHeader", "=", 
@@ -2428,7 +2448,8 @@ Cell[BoxData[
      "[", 
      RowBox[{"Association", "[", 
       RowBox[{"Options", "[", "JiraApiExecute", "]"}], "]"}], "]"}], 
-    "]"}]}]}]], "Input"],
+    "]"}]}]}]], "Input",ExpressionUUID->"e3160817-2a2f-4ad6-9328-\
+f36f36c81d1f"],
 
 Cell["\<\
 bash$ curl http://jira.wolfram.com:8080/jira/rest/api/2/issue -H \
@@ -2473,14 +2494,14 @@ bash$ curl http://jira.wolfram.com:8080/jira/rest/api/2/issue -H \
 \[CloseCurlyDoubleQuote],\[CloseCurlyDoubleQuote]self\[CloseCurlyDoubleQuote]:\
 \[CloseCurlyDoubleQuote]https://jira.wolfram.com/jira/rest/api/2/issue/662369\
 \[CloseCurlyDoubleQuote]}%\
-\>", "Program"]
+\>", "Program",ExpressionUUID->"e751b814-c55e-41a2-b0a0-0e348aa7ce43"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\<\
 Trick in converting JSON response to structured Wolfram Language expressions\
-\>", "Subsection"],
+\>", "Subsection",ExpressionUUID->"dde86cb3-862d-4828-ae8a-1bd47656cc57"],
 
 Cell[BoxData[{
  RowBox[{"ClearAll", "[", "RemoveCharactersNotSupported", 
@@ -2498,25 +2519,28 @@ Cell[BoxData[{
         RowBox[{"c", "=", "\"\<$1\>\""}], "}"}], ",", 
        RowBox[{
        "\"\<<ToCharacterCode-result>\>\"", "<>", "c", "<>", 
-        "\"\<</ToCharacterCode-result>\>\""}]}], "]"}]}]}], "]"}]}]}], "Input"],
+        "\"\<</ToCharacterCode-result>\>\""}]}], "]"}]}]}], "]"}]}]}], "Input",\
+ExpressionUUID->"b75f85fc-ecb7-44da-8d2c-cfd349180c21"],
 
 Cell[BoxData[
  RowBox[{"RemoveCharactersNotSupported", "[", 
   "\"\<Initial translation is done.\:3000\:30d7\:30eb\:30fc\:30d5\:3092\:304a\
-\:9858\:3044\:3044\:305f\:3057\:307e\:3059\:ff0e\>\"", "]"}]], "Input"],
+\:9858\:3044\:3044\:305f\:3057\:307e\:3059\:ff0e\>\"", "]"}]], "Input",Express\
+ionUUID->"512b9220-bff1-4038-b2d5-f3acb8c9e341"],
 
 Cell[BoxData[
  RowBox[{"Clear", "[", 
-  RowBox[{"jsonData", ",", "jsonStr"}], "]"}]], "Input"],
+  RowBox[{"jsonData", ",", "jsonStr"}], "]"}]], "Input",ExpressionUUID->\
+"4f59148f-57d0-43f9-acc6-8f93ed04afb3"],
 
 Cell[CellGroupData[{
 
 Cell["Import as \[OpenCurlyDoubleQuote]curl -d ...\[CloseCurlyDoubleQuote]", \
-"Subsubsection"],
+"Subsubsection",ExpressionUUID->"c97f0e2a-e6b3-4212-a0f6-7f21eaf524e4"],
 
-Cell[BoxData["$CharacterEncoding"], "Input"],
+Cell[BoxData["$CharacterEncoding"], "Input",ExpressionUUID->"8bb85c04-2ccd-4513-8acb-da1826a0609a"],
 
-Cell[BoxData["$SystemCharacterEncoding"], "Input"],
+Cell[BoxData["$SystemCharacterEncoding"], "Input",ExpressionUUID->"a4f8f29c-cba6-4274-bd21-defc775c41aa"],
 
 Cell[BoxData[
  RowBox[{
@@ -2533,11 +2557,12 @@ Cell[BoxData[
        "\"\<Content-Type\>\"", "\[Rule]", 
         "\"\<application/json;\ncharset=utf-8\>\""}], ",", 
        RowBox[{"\"\<d\>\"", "\[Rule]", "\"\<{}\>\""}]}], "}"}]}], ",", 
-    RowBox[{"Method", "\[Rule]", "\"\<GET\>\""}]}], "]"}]}]], "Input"],
+    RowBox[{"Method", "\[Rule]", "\"\<GET\>\""}]}], "]"}]}]], "Input",Expressi\
+onUUID->"4cdd34f2-d89e-41e1-b1d9-b697aebdfba7"],
 
-Cell[BoxData["$CharacterEncoding"], "Input"],
+Cell[BoxData["$CharacterEncoding"], "Input",ExpressionUUID->"9b8842b1-430e-4c44-b01a-ca8451fe8e51"],
 
-Cell[BoxData["$SystemCharacterEncoding"], "Input"],
+Cell[BoxData["$SystemCharacterEncoding"], "Input",ExpressionUUID->"a4b9e408-62c5-44ac-8728-0706331d14ec"],
 
 Cell[BoxData[{
  RowBox[{
@@ -2548,12 +2573,13 @@ Cell[BoxData[{
      RowBox[{"FromCharacterCode", "[", 
       RowBox[{"jsonStr", "[", "\"\<charcodes\>\"", "]"}], "]"}], ",", 
      "\"\<JSON\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"jsonData", "[", "\"\<charcodes\>\"", "]"}]}], "Input"]
+ RowBox[{"jsonData", "[", "\"\<charcodes\>\"", "]"}]}], "Input",ExpressionUUID\
+->"d5ec0eb6-e77b-4adb-bf72-545239291dbe"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Add UTF-8 conversion", "Subsubsection"],
+Cell["Add UTF-8 conversion", "Subsubsection",ExpressionUUID->"7828a11a-470a-4604-98ba-808e726d411b"],
 
 Cell[BoxData[
  RowBox[{
@@ -2576,7 +2602,8 @@ Cell[BoxData[
      RowBox[{"ToString", "[", 
       RowBox[{"#", ",", 
        RowBox[{"CharacterEncoding", "\[Rule]", "\"\<UTF-8\>\""}]}], "]"}], 
-     "&"}]}]}], ";"}]], "Input"],
+     "&"}]}]}], ";"}]], "Input",ExpressionUUID->"1ff2dfab-49e0-4fdd-af7c-\
+2aeb69ad9a53"],
 
 Cell[BoxData[{
  RowBox[{
@@ -2586,20 +2613,22 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"jsonStr", "[", "\"\<conversion\>\"", "]"}], ",", 
      "\"\<JSON\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"jsonData", "[", "\"\<conversion\>\"", "]"}]}], "Input"],
+ RowBox[{"jsonData", "[", "\"\<conversion\>\"", "]"}]}], "Input",ExpressionUUI\
+D->"e7c8fe47-6716-423c-81fc-27bd84139d04"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"jsonData", "[", "\"\<conversion\>\"", "]"}], "===", 
-  RowBox[{"jsonData", "[", "\"\<charcodes\>\"", "]"}]}]], "Input"],
+  RowBox[{"jsonData", "[", "\"\<charcodes\>\"", "]"}]}]], "Input",ExpressionUU\
+ID->"075a8fa2-2f5d-408f-bf76-eeffab0159f3"],
 
 Cell[BoxData[
- RowBox[{"jsonData", "[", "\"\<conversion\>\"", "]"}]], "Input"]
+ RowBox[{"jsonData", "[", "\"\<conversion\>\"", "]"}]], "Input",ExpressionUUID->"7c374fb0-bdc2-4fa5-a4d5-f03afcae7eea"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["StringReplace", "Subsubsection"],
+Cell["StringReplace", "Subsubsection",ExpressionUUID->"05492995-f833-4839-8156-7ef38a0ea37d"],
 
 Cell[BoxData[{
  RowBox[{
@@ -2610,11 +2639,13 @@ Cell[BoxData[{
       RowBox[{"RegularExpression", "[", "\"\<[^\\\\x0-\\\\xFFFF]\>\"", "]"}], 
       "\[Rule]", "\"\<<unchar/>\>\""}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
- RowBox[{"jsonStr", "===", "jsonStr3"}]}], "Input"],
+ RowBox[{"jsonStr", "===", "jsonStr3"}]}], "Input",ExpressionUUID->"3a4a58e4-\
+a18b-457b-9dec-ef2b67279764"],
 
 Cell[BoxData[
  RowBox[{"ImportString", "[", 
-  RowBox[{"jsonStr3", ",", "\"\<JSON\>\""}], "]"}]], "Input"],
+  RowBox[{"jsonStr3", ",", "\"\<JSON\>\""}], "]"}]], "Input",ExpressionUUID->\
+"5657e554-7d19-478a-b1e0-5760c0b934a6"],
 
 Cell[BoxData[{
  RowBox[{
@@ -2623,22 +2654,24 @@ Cell[BoxData[{
     RowBox[{"res", ",", 
      RowBox[{"CharacterEncoding", "\[Rule]", "\"\<UTF-8\>\""}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
- RowBox[{"res", "===", "res3"}]}], "Input"],
+ RowBox[{"res", "===", "res3"}]}], "Input",ExpressionUUID->"ac4175c0-2c15-\
+4616-9d73-351f6cac30d0"],
 
 Cell[BoxData[
  RowBox[{"ImportString", "[", 
-  RowBox[{"res3", ",", "\"\<JSON\>\""}], "]"}]], "Input"]
+  RowBox[{"res3", ",", "\"\<JSON\>\""}], "]"}]], "Input",ExpressionUUID->\
+"0e8ab958-41a6-4db5-8454-6efe3c543ec6"]
 }, Closed]]
 }, Closed]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["Applications", "Section"],
+Cell["Applications", "Section",ExpressionUUID->"aa8a2561-b3ca-475b-9aab-31c06840bd20"],
 
 Cell[CellGroupData[{
 
-Cell["Wolfram JIRA custom fields", "Subsection"],
+Cell["Wolfram JIRA custom fields", "Subsection",ExpressionUUID->"ef66e955-5709-4bbd-9da1-5e9825d16f6f"],
 
 Cell[CellGroupData[{
 
@@ -2655,7 +2688,8 @@ Cell[BoxData[
        RowBox[{"#", "[", 
         RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", 
       RowBox[{"RegularExpression", "[", "\"\<.*Yes.*\>\"", "]"}]}], "]"}], 
-    "&"}]}], "]"}]], "Input"],
+    "&"}]}], "]"}]], "Input",ExpressionUUID->"2ac0dfc5-7d86-43cc-8965-\
+70a21bb273a7"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -2668,7 +2702,7 @@ Cell[BoxData[
      ",", 
      RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"10070\"\>"}], ",", 
      RowBox[{"\<\"value\"\>", "\[Rule]", "\<\"Yes\"\>"}]}], "}"}]}], 
-  "}"}]], "Output"]
+  "}"}]], "Output",ExpressionUUID->"a9549a31-a7b2-4830-8d64-11a9f36dc9b1"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2686,7 +2720,8 @@ Cell[BoxData[
        RowBox[{"#", "[", 
         RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", 
       RowBox[{"RegularExpression", "[", "\"\<.*No.*\>\"", "]"}]}], "]"}], 
-    "&"}]}], "]"}]], "Input"],
+    "&"}]}], "]"}]], "Input",ExpressionUUID->"c8fa746f-006f-4287-b060-\
+6cf063eef312"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -2699,21 +2734,22 @@ Cell[BoxData[
      ",", 
      RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"10071\"\>"}], ",", 
      RowBox[{"\<\"value\"\>", "\[Rule]", "\<\"No\"\>"}]}], "}"}]}], 
-  "}"}]], "Output"]
+  "}"}]], "Output",ExpressionUUID->"a54ae62d-f45a-4386-9c1f-9c714a32fd17"]
 }, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Create JIRA issues for Scanners localization", "Subsection"],
+Cell["Create JIRA issues for Scanners localization", "Subsection",ExpressionUUID->"dd28f37a-8e3a-4c3a-8e12-1e8f12b0f7a1"],
 
 Cell[CellGroupData[{
 
-Cell["Find scanner files to localize", "Subsubsection"],
+Cell["Find scanner files to localize", "Subsubsection",ExpressionUUID->"cae1811a-6fa8-4b69-96bb-e8367f8da689"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"$language", "=", "\"\<ko\>\""}], ";"}]], "Input"],
+  RowBox[{"$language", "=", "\"\<ko\>\""}], ";"}]], "Input",ExpressionUUID->\
+"fc5692c7-dab9-41a6-b3db-6746d5a83cc8"],
 
 Cell[CellGroupData[{
 
@@ -2725,10 +2761,11 @@ Cell[BoxData[
     "$mengWolframAlphaExtrasTopDirectory", ",", "\"\<Localization\>\"", ",", 
      "\"\<Languages\>\"", ",", "$language", ",", 
      "\"\<RawCurationNotebooks\>\"", ",", "\"\<CalculateScan\>\""}], "}"}], 
-   "]"}]}]], "Input"],
+   "]"}]}]], "Input",ExpressionUUID->"afad977a-320a-48a1-9565-189a3b9d6ea3"],
 
 Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/Wolfram/CVS/AlphaExtras/\
-Localization/Languages/ko/RawCurationNotebooks/CalculateScan\"\>"], "Output"]
+Localization/Languages/ko/RawCurationNotebooks/CalculateScan\"\>"], "Output",E\
+xpressionUUID->"0f6fa1a4-fa5d-4327-b31a-d9e2c4718242"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -2736,7 +2773,8 @@ Cell[BoxData[
   RowBox[{"nbFiles", "=", 
    RowBox[{"FileNames", "[", 
     RowBox[{"\"\<*.nb\>\"", ",", 
-     RowBox[{"{", "dir", "}"}], ",", "Infinity"}], "]"}]}], ";"}]], "Input"],
+     RowBox[{"{", "dir", "}"}], ",", "Infinity"}], "]"}]}], ";"}]], "Input",Ex\
+pressionUUID->"31f1df2b-5246-453d-af63-efebd8a1706a"],
 
 Cell[CellGroupData[{
 
@@ -2750,30 +2788,35 @@ Cell[BoxData[{
      RowBox[{"!", 
       RowBox[{"StringFreeQ", "[", 
        RowBox[{"#", ",", "\"\<CalculateClassifyODETranslations\>\""}], 
-       "]"}]}], "&"}]}], "]"}]}]}], "Input"],
+       "]"}]}], "&"}]}], "]"}]}]}], "Input",ExpressionUUID->"8100be61-82fd-\
+4330-9e25-98e2a536d4ff"],
 
-Cell[BoxData["156"], "Output"],
+Cell[BoxData["156"], "Output",ExpressionUUID->"638b5a84-557e-461a-9f64-ecaaec4e81fd"],
 
 Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/Wolfram/CVS/AlphaExtras/\
 Localization/Languages/ko/RawCurationNotebooks/CalculateScan/\
-DiceScannerTranslations.nb\"\>"], "Output"],
+DiceScannerTranslations.nb\"\>"], "Output",ExpressionUUID->"1eeccd94-8ab2-\
+4a2a-8cc4-2c13e625d262"],
 
 Cell[BoxData[
  RowBox[{"{", \
 "\<\"/Users/meng/WorkSpace-meng2maclap/Wolfram/CVS/AlphaExtras/Localization/\
 Languages/ko/RawCurationNotebooks/CalculateScan/Packages/\
-CalculateClassifyODETranslations.nb\"\>", "}"}]], "Output"]
+CalculateClassifyODETranslations.nb\"\>", "}"}]], "Output",ExpressionUUID->\
+"ba461680-faaf-4e0d-9c4a-ab849c5ffe3a"]
 }, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["Find JIRA issues for Scanners localization in \[OpenCurlyQuote]ja\
-\[CloseCurlyQuote]", "Subsubsection"],
+\[CloseCurlyQuote]", "Subsubsection",ExpressionUUID->"fd3eb6e4-934a-4517-a1f3-\
+adac0011bb1f"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"$language", "=", "\"\<ko\>\""}], ";"}]], "Input"],
+  RowBox[{"$language", "=", "\"\<ko\>\""}], ";"}]], "Input",ExpressionUUID->\
+"b699f01b-bfa2-4238-80c8-1e6e1a69762b"],
 
 Cell[CellGroupData[{
 
@@ -2815,10 +2858,12 @@ Cell[BoxData[
     RowBox[{"{", 
      RowBox[{"$language", ",", "\"\<Scanners\>\"", ",", "\"\<summary\>\""}], 
      "}"}], "]"}], "\[IndentingNewLine]", 
-   RowBox[{"%", "//", "Length"}]}]}]], "Input"],
+   RowBox[{"%", "//", "Length"}]}]}]], "Input",ExpressionUUID->"28a57139-93bf-\
+46cb-92ac-430ed4b512c6"],
 
 Cell[BoxData["\<\"project=WALOCURATE and component in (ko) and component in \
-(Scanners)\"\>"], "Print"],
+(Scanners)\"\>"], "Print",ExpressionUUID->"6d85d965-dafd-4d6d-a639-\
+ad15cca18752"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -3488,9 +3533,9 @@ Cell[BoxData[
     RowBox[{"{", 
      RowBox[{"\<\"summary\"\>", 
       "\[Rule]", "\<\"ApplicationsOfIntegrationScanner.m\"\>"}], "}"}]}]}], 
-  "}"}]], "Output"],
+  "}"}]], "Output",ExpressionUUID->"0e590646-9487-40b7-89b2-e4b07144d612"],
 
-Cell[BoxData["154"], "Output"]
+Cell[BoxData["154"], "Output",ExpressionUUID->"c2c1d9f4-05a4-40e3-b88e-97a518d1a382"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3606,7 +3651,7 @@ Languages/\>\"", "<>", "lang", "<>",
      RowBox[{"domainData", "[", "\"\<toAddTicket\>\"", "]"}], "[", 
      RowBox[{"[", 
       RowBox[{";;", "10"}], "]"}], "]"}]}]}], "\[IndentingNewLine]", 
-  "]"}]], "Input"],
+  "]"}]], "Input",ExpressionUUID->"f5e7b6fc-4827-4db6-9e6e-db3c45a09739"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -3680,7 +3725,8 @@ Cell[BoxData[
      RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"663499\"\>"}], ",", 
      RowBox[{"\<\"self\"\>", 
       "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/663499\"\
-\>"}]}], "}"}]}], "}"}]], "Output"]
+\>"}]}], "}"}]}], "}"}]], "Output",ExpressionUUID->"5e96d66f-903a-4458-9567-\
+9db4754613bb"]
 }, Open  ]]
 }, Closed]],
 
@@ -3688,20 +3734,22 @@ Cell[CellGroupData[{
 
 Cell["\<\
 Create JIRA issues for Scanners localization in all languages\
-\>", "Subsubsection"],
+\>", "Subsubsection",ExpressionUUID->"e28c8a9b-ca25-4c12-8b61-7152bd1f197c"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"$language", "=", "\"\<ko\>\""}], ";"}]], "Input"],
+  RowBox[{"$language", "=", "\"\<ko\>\""}], ";"}]], "Input",ExpressionUUID->\
+"34916683-e2bb-41ce-bcee-a228c2076a66"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"nbFiles", "//", "RandomChoice"}]], "Input"],
+ RowBox[{"nbFiles", "//", "RandomChoice"}]], "Input",ExpressionUUID->"3461c821-c95b-4298-a600-8a34b8f619bc"],
 
 Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/Wolfram/CVS/AlphaExtras/\
 Localization/Languages/ko/RawCurationNotebooks/CalculateScan/\
-NonperiodicSubstitutionTilingScannerTranslations.nb\"\>"], "Output"]
+NonperiodicSubstitutionTilingScannerTranslations.nb\"\>"], "Output",Expression\
+UUID->"5318a014-9791-46a0-9f36-5e3355d457fe"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3795,7 +3843,7 @@ Localization/Languages/ko/RawCurationNotebooks/CalculateScan/\>\"", "->",
         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], "&"}], "/@", 
     RowBox[{"nbFiles1", "[", 
      RowBox[{"[", ";;", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
-  "]"}]], "Input"],
+  "]"}]], "Input",ExpressionUUID->"278e8d27-3acd-4ea9-8841-26208253821f"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -3806,7 +3854,7 @@ Cell[BoxData[
     RowBox[{"\<\"self\"\>", 
      "\[Rule]", \
 "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/677917\"\>"}]}], "}"}], 
-  "}"}]], "Output"]
+  "}"}]], "Output",ExpressionUUID->"a66975e4-d781-41d2-8a43-882a90bea533"]
 }, Open  ]]
 }, Closed]],
 
@@ -3814,7 +3862,7 @@ Cell[CellGroupData[{
 
 Cell["\<\
 Create JIRA issues for GrammarRules localization in all languages\
-\>", "Subsubsection"],
+\>", "Subsubsection",ExpressionUUID->"15964487-b175-4e96-b08d-6ec0ad9e599c"],
 
 Cell[CellGroupData[{
 
@@ -3836,17 +3884,17 @@ Cell[BoxData[{
      RowBox[{"\"\<ko\>\"", "->", " ", "\"\<Korean\>\""}], ",", 
      RowBox[{"\"\<zh\>\"", "->", " ", "\"\<Chinese\>\""}], ",", 
      RowBox[{"\"\<ru\>\"", "->", " ", "\"\<Russian\>\""}]}], "|>"}]}], 
-  ";"}]}], "Input"],
+  ";"}]}], "Input",ExpressionUUID->"b081b66e-df5b-4078-84f7-ca0a9f058ecc"],
 
-Cell[BoxData["\<\"zh\"\>"], "Output"]
+Cell[BoxData["\<\"zh\"\>"], "Output",ExpressionUUID->"18072aef-4d09-4f46-8582-64accc886620"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"$ParserDomainData", "//", "Length"}]], "Input"],
+ RowBox[{"$ParserDomainData", "//", "Length"}]], "Input",ExpressionUUID->"637109eb-46bf-42d1-9b89-a4b6dbd91a28"],
 
-Cell[BoxData["247"], "Output"]
+Cell[BoxData["247"], "Output",ExpressionUUID->"b3854729-bde8-4641-9418-a4b8085dee73"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -3859,12 +3907,13 @@ Cell[BoxData[
 component in (\>\"", "<>", "$language", "<>", "\"\<)\>\""}], ",", 
      "\"\<summary\>\"", ",", 
      RowBox[{"\"\<MaxResults\>\"", "->", " ", "1000"}]}], "]"}]}], 
-  ";"}]], "Input"],
+  ";"}]], "Input",ExpressionUUID->"459d84e3-201d-4cbb-9a80-4f9183638737"],
 
 Cell[BoxData[
  RowBox[{"domainsTicketed", "[", 
   RowBox[{"[", 
-   RowBox[{"All", ",", "2", ",", "1", ",", "2"}], "]"}], "]"}]], "Input"],
+   RowBox[{"All", ",", "2", ",", "1", ",", "2"}], "]"}], "]"}]], "Input",Expre\
+ssionUUID->"9d1eebe1-a42a-45e9-8a1c-e4aa9456a74d"],
 
 Cell[CellGroupData[{
 
@@ -3889,7 +3938,8 @@ Cell[BoxData[{
          RowBox[{"[", 
           RowBox[{"2", ",", "1", ",", "2"}], "]"}], "]"}], ",", 
         "\"\<*Domain\>\""}], "]"}]}], "&"}]}], "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"domainsToRemove", "//", "Length"}]}], "Input"],
+ RowBox[{"domainsToRemove", "//", "Length"}]}], "Input",ExpressionUUID->\
+"b307ce78-b0b4-43ff-bf85-c3b046d4023a"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -3913,9 +3963,10 @@ Cell[BoxData[
    RowBox[{"\<\"WALOCURATE-1465\"\>", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{"\<\"summary\"\>", "\[Rule]", "\<\"AtmosphericLayerDomain\"\>"}],
-      "}"}]}]}], "}"}]], "Output"],
+      "}"}]}]}], "}"}]], "Output",ExpressionUUID->"ad459732-8e52-454e-a698-\
+2c4176277587"],
 
-Cell[BoxData["5"], "Output"]
+Cell[BoxData["5"], "Output",ExpressionUUID->"22593a50-0a86-4c18-afb2-90217a68a69b"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3930,10 +3981,11 @@ Cell[BoxData[
     RowBox[{"StringMatchQ", "[", 
      RowBox[{"#", ",", 
       RowBox[{"RegularExpression", "[", "\"\<.*DataQuery.*\>\"", "]"}]}], 
-     "]"}], "&"}]}], "]"}]], "Input"],
+     "]"}], "&"}]}], "]"}]], "Input",ExpressionUUID->"37f5612c-8d64-455e-aec4-\
+ef1cb78f1534"],
 
 Cell[BoxData[
- RowBox[{"{", "\<\"DataQuery2Domain\"\>", "}"}]], "Output"]
+ RowBox[{"{", "\<\"DataQuery2Domain\"\>", "}"}]], "Output",ExpressionUUID->"272b2b3a-0b63-4f89-b890-5a1da80f05b9"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3952,7 +4004,8 @@ Cell[BoxData[{
         RowBox[{"#", "[", 
          RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], "&"}]}], 
    "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"domainsToDo", "//", "Length"}]}], "Input"],
+ RowBox[{"domainsToDo", "//", "Length"}]}], "Input",ExpressionUUID->"d8e34496-\
+0453-4428-9db9-4387cb148d6c"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -4119,9 +4172,9 @@ Cell[BoxData[
    RowBox[{"\<\"WeightLossDomain\"\>", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{"\<\"HasWordsPhrasesQ\"\>", "\[Rule]", "True"}], "}"}]}]}], 
-  "}"}]], "Output"],
+  "}"}]], "Output",ExpressionUUID->"cf81868f-1597-4bea-8fbe-ed8b2973df18"],
 
-Cell[BoxData["30"], "Output"]
+Cell[BoxData["30"], "Output",ExpressionUUID->"28ac14da-9784-465f-a2fe-b4c213cf63ce"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4258,7 +4311,8 @@ https://cvs.wolfram.com/viewvc/Alpha/Localization/Languages/\>\"", "<>",
           "\[IndentingNewLine]", "|>"}], ",", "\[IndentingNewLine]", 
          RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "openQ"}]}], 
         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], "&"}], "/@",
-     "domains"}]}], "\[IndentingNewLine]", "]"}]], "Input"],
+     "domains"}]}], "\[IndentingNewLine]", "]"}]], "Input",ExpressionUUID->\
+"6f99b346-71ac-471d-97a8-5d6a3076b8a3"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -4472,22 +4526,23 @@ Cell[BoxData[
      RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"664790\"\>"}], ",", 
      RowBox[{"\<\"self\"\>", 
       "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/664790\"\
-\>"}]}], "}"}]}], "}"}]], "Output"]
+\>"}]}], "}"}]}], "}"}]], "Output",ExpressionUUID->"229f6d33-de3c-41b0-833e-\
+6e59eb763266"]
 }, Open  ]]
 }, Closed]],
 
 Cell["\<\
 Create/Verify JIRA issues for Scanners localization in all languages\
-\>", "Subsubsection"]
+\>", "Subsubsection",ExpressionUUID->"57b6b2f6-c08d-4e65-8a42-a89074a133fc"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Create JIRA issues for WordsPhrases localization", "Subsection"],
+Cell["Create JIRA issues for WordsPhrases localization", "Subsection",ExpressionUUID->"d334adc3-1b6f-4146-9c52-bf0ae3c42612"],
 
 Cell[CellGroupData[{
 
-Cell["ParserDomainData", "Subsubsection"],
+Cell["ParserDomainData", "Subsubsection",ExpressionUUID->"734c5a72-31d4-4430-b39a-bfd8d46f9183"],
 
 Cell[BoxData[{
  RowBox[{
@@ -4511,7 +4566,8 @@ Cell[BoxData[{
       RowBox[{"PrependTo", "[", 
        RowBox[{"$Path", ",", "dir"}], "]"}]}], "]"}]}], "\[IndentingNewLine]",
     "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"<<", "DataTableUtilities`"}]}], "Input"],
+ RowBox[{"<<", "DataTableUtilities`"}]}], "Input",ExpressionUUID->"9a1bb6cc-\
+5978-4ad1-af9c-22332c42aede"],
 
 Cell[CellGroupData[{
 
@@ -4527,12 +4583,14 @@ Cell[BoxData[{
      ",", "\"\<Data\>\"", ",", "\"\<ParserDomainData.m\>\""}], "}"}], 
    "]"}]}], "\[IndentingNewLine]", 
  RowBox[{"FileExistsQ", "[", "%", "]"}], "\[IndentingNewLine]", 
- RowBox[{"SystemOpen", "[", "%%", "]"}]}], "Input"],
+ RowBox[{"SystemOpen", "[", "%%", "]"}]}], "Input",ExpressionUUID->"2153e2d6-\
+84b1-479c-8e9b-102f49d9ecbe"],
 
 Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/Wolfram/Stash/users/meng/\
-AlphaLocalization/Data/ParserDomainData.m\"\>"], "Output"],
+AlphaLocalization/Data/ParserDomainData.m\"\>"], "Output",ExpressionUUID->\
+"78e3a670-6a0d-4da7-921f-c8a4842c46b1"],
 
-Cell[BoxData["True"], "Output"]
+Cell[BoxData["True"], "Output",ExpressionUUID->"ac7a1336-8002-4175-887d-c9df99601dae"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4542,7 +4600,8 @@ Cell[BoxData[
   RowBox[{
    RowBox[{"FetchDataTableContent", "[", "$ParserDomainDataFile", "]"}], "[", 
    
-   RowBox[{"[", "2", "]"}], "]"}]}]], "Input"],
+   RowBox[{"[", "2", "]"}], "]"}]}]], "Input",ExpressionUUID->"89366cba-d67f-\
+4b70-8900-4d3184cefac0"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -6011,18 +6070,18 @@ Cell[BoxData[
    RowBox[{"\<\"WeightLossDomain\"\>", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{"\<\"HasWordsPhrasesQ\"\>", "\[Rule]", "True"}], "}"}]}]}], 
-  "}"}]], "Output"]
+  "}"}]], "Output",ExpressionUUID->"cfa39e73-bfd3-4a28-9b5f-91b5f655815a"]
 }, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Find parser domains that have WordsPhrases", "Subsubsection"],
+Cell["Find parser domains that have WordsPhrases", "Subsubsection",ExpressionUUID->"4c8c4730-6fc1-49b6-8fb2-9578b5cd0f9b"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"file", "=", "\"\<~/temp/WordsPhrases_domains.txt\>\""}], 
-  ";"}]], "Input"],
+  ";"}]], "Input",ExpressionUUID->"1c69eba5-299f-4221-aa6e-f3ca15d13d43"],
 
 Cell[CellGroupData[{
 
@@ -6030,7 +6089,8 @@ Cell[BoxData[
  RowBox[{"domainsWithWordsPhrases", "=", 
   RowBox[{"ToExpression", "/@", 
    RowBox[{"Import", "[", 
-    RowBox[{"file", ",", "\"\<Lines\>\""}], "]"}]}]}]], "Input"],
+    RowBox[{"file", ",", "\"\<Lines\>\""}], "]"}]}]}]], "Input",ExpressionUUID\
+->"71720042-7f4e-4904-8951-689c18934dba"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -6144,7 +6204,8 @@ Cell[BoxData[
    ",", "\<\"VariableSubstitutionDomain\"\>", ",", "\<\"VectorsDomain\"\>", 
    ",", "\<\"VisionDomain\"\>", ",", "\<\"WeatherDomain\"\>", 
    ",", "\<\"WeightLossDomain\"\>", ",", "\<\"WordPuzzleDomain\"\>", 
-   ",", "\<\"WordsPagesDomain\"\>"}], "}"}]], "Output"]
+   ",", "\<\"WordsPagesDomain\"\>"}], "}"}]], "Output",ExpressionUUID->\
+"db275b30-16b2-45cd-afea-40d9648b3907"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -6156,7 +6217,8 @@ Cell[BoxData[
       RowBox[{"#", "->", " ", 
        RowBox[{"{", 
         RowBox[{"\"\<HasWordsPhrasesQ\>\"", "\[Rule]", "True"}], "}"}]}], 
-      ")"}], "&"}], "/@", "domainsWithWordsPhrases"}]}], ";"}]], "Input"],
+      ")"}], "&"}], "/@", "domainsWithWordsPhrases"}]}], ";"}]], "Input",Expre\
+ssionUUID->"d8aff240-32f6-4ad3-b97f-d11deeb26c5f"],
 
 Cell[BoxData[
  RowBox[{"DataTableModify", "[", 
@@ -6164,7 +6226,8 @@ Cell[BoxData[
    RowBox[{"DirectoryName", "[", "$ParserDomainDataFile", "]"}], ",", 
    RowBox[{
     RowBox[{"DataTableUpdate", "[", 
-     RowBox[{"changeset", ",", "#"}], "]"}], "&"}]}], "]"}]], "Input"],
+     RowBox[{"changeset", ",", "#"}], "]"}], "&"}]}], "]"}]], "Input",Expressi\
+onUUID->"63bd73fc-6a33-42fb-b7ee-eca271698257"],
 
 Cell[BoxData[{
  RowBox[{
@@ -6191,7 +6254,8 @@ Cell[BoxData[{
              RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "&"}]}], "]"}], "&"}]}],
       "\[IndentingNewLine]", "]"}], "[", "$ParserDomainData", "]"}]}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"%", "//", "Length"}]}], "Input"],
+ RowBox[{"%", "//", "Length"}]}], "Input",ExpressionUUID->"a96bd525-5028-423d-\
+8956-9a3c9b5a3b37"],
 
 Cell[BoxData[
  RowBox[{"Complement", "[", 
@@ -6208,7 +6272,7 @@ Cell[BoxData[
       "}"}], "]"}], "[", 
     RowBox[{"[", 
      RowBox[{"All", ",", "2", ",", "1", ",", "2"}], "]"}], "]"}]}], 
-  "]"}]], "Input"],
+  "]"}]], "Input",ExpressionUUID->"bdaa25c4-eb3b-4238-bd20-d09ef17a555e"],
 
 Cell[BoxData[
  RowBox[{"Complement", "[", 
@@ -6224,14 +6288,15 @@ Cell[BoxData[
    RowBox[{"data", "[", 
     RowBox[{"{", 
      RowBox[{"\"\<issues\>\"", ",", "\"\<hasWordsPhrases\>\""}], "}"}], 
-    "]"}]}], "]"}]], "Input"]
+    "]"}]}], "]"}]], "Input",ExpressionUUID->"53c5eb4c-2f7e-4b5e-8773-\
+9fcd8180d92f"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["\<\
 Create JIRA issues for WordsPhrases localization in all languages\
-\>", "Subsubsection"],
+\>", "Subsubsection",ExpressionUUID->"8d7e729f-2544-475a-a77c-6a430a96bb38"],
 
 Cell[CellGroupData[{
 
@@ -6257,12 +6322,14 @@ Cell[BoxData[{
        RowBox[{"jql", ",", "\"\<summary\>\"", ",", 
         RowBox[{"\"\<MaxResults\>\"", "->", " ", "1000"}]}], "]"}]}]}], 
     "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"%", "//", "Length"}]}], "Input"],
+ RowBox[{"%", "//", "Length"}]}], "Input",ExpressionUUID->"eb61bd69-d40c-4476-\
+acc1-472052601180"],
 
 Cell[BoxData["\<\"project=WALOCURATE and component in (zh) and component in \
-(WordsPhrases)\"\>"], "Print"],
+(WordsPhrases)\"\>"], "Print",ExpressionUUID->"7c8a954d-c22e-438e-bd56-\
+736b198ed643"],
 
-Cell[BoxData["281"], "Output"]
+Cell[BoxData["281"], "Output",ExpressionUUID->"655c5a59-2fc3-41ca-bc96-db45cc8e3b07"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -6276,7 +6343,7 @@ Cell[BoxData[
        RowBox[{"\"\<HasWordsPhrasesQ\>\"", "/.", 
         RowBox[{"#", "[", 
          RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "&"}]}], "]"}]}], 
-  ";"}]], "Input"],
+  ";"}]], "Input",ExpressionUUID->"09b2949d-2701-4945-8eb8-30b71fbfad51"],
 
 Cell[BoxData[
  RowBox[{
@@ -6290,7 +6357,7 @@ Cell[BoxData[
       "}"}], "]"}], "[", 
     RowBox[{"[", 
      RowBox[{"All", ",", "2", ",", "1", ",", "2"}], "]"}], "]"}]}], 
-  ";"}]], "Input"],
+  ";"}]], "Input",ExpressionUUID->"05a13b4f-0185-4a07-a176-1c80ced73d4e"],
 
 Cell[CellGroupData[{
 
@@ -6310,9 +6377,10 @@ Cell[BoxData[{
           RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], "&"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"%", "//", "Length"}], "\[IndentingNewLine]", 
- RowBox[{"%%", "//", "Short"}]}], "Input"],
+ RowBox[{"%%", "//", "Short"}]}], "Input",ExpressionUUID->"b79a4ad5-b40b-41c7-\
+a1dd-72d55dac99f0"],
 
-Cell[BoxData["21"], "Output"],
+Cell[BoxData["21"], "Output",ExpressionUUID->"2a0af5eb-fe0d-4177-bc91-fb82b8655d48"],
 
 Cell[BoxData[
  TagBox[
@@ -6330,7 +6398,7 @@ Cell[BoxData[
       RowBox[{"\<\"HasWordsPhrasesQ\"\>", "\[Rule]", 
        RowBox[{"\[LeftSkeleton]", "4", "\[RightSkeleton]"}]}], "}"}]}]}], 
    "}"}],
-  Short]], "Output"]
+  Short]], "Output",ExpressionUUID->"43fbec5c-cbe2-4e47-87e0-63eb35fbc80a"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6446,7 +6514,7 @@ Languages/\>\"", "<>", "lang", "<>",
      RowBox[{"domainData", "[", "\"\<toAddTicket\>\"", "]"}], "[", 
      RowBox[{"[", 
       RowBox[{";;", "10"}], "]"}], "]"}]}]}], "\[IndentingNewLine]", 
-  "]"}]], "Input"],
+  "]"}]], "Input",ExpressionUUID->"e5706518-f4d5-46a5-8770-8e553b3a7f3f"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -6520,7 +6588,8 @@ Cell[BoxData[
      RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"663499\"\>"}], ",", 
      RowBox[{"\<\"self\"\>", 
       "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/663499\"\
-\>"}]}], "}"}]}], "}"}]], "Output"]
+\>"}]}], "}"}]}], "}"}]], "Output",ExpressionUUID->"c75521f8-0585-4b38-b2ff-\
+01f117ee4567"]
 }, Open  ]]
 }, Closed]],
 
@@ -6528,7 +6597,7 @@ Cell[CellGroupData[{
 
 Cell["\<\
 Create JIRA issues for GrammarRules localization in all languages\
-\>", "Subsubsection"],
+\>", "Subsubsection",ExpressionUUID->"6b34e5d0-06e3-4fe3-9891-5dbd6f343f77"],
 
 Cell[CellGroupData[{
 
@@ -6550,17 +6619,17 @@ Cell[BoxData[{
      RowBox[{"\"\<ko\>\"", "->", " ", "\"\<Korean\>\""}], ",", 
      RowBox[{"\"\<zh\>\"", "->", " ", "\"\<Chinese\>\""}], ",", 
      RowBox[{"\"\<ru\>\"", "->", " ", "\"\<Russian\>\""}]}], "|>"}]}], 
-  ";"}]}], "Input"],
+  ";"}]}], "Input",ExpressionUUID->"5eeceaa3-909f-489a-b655-0f473f5a44f9"],
 
-Cell[BoxData["\<\"zh\"\>"], "Output"]
+Cell[BoxData["\<\"zh\"\>"], "Output",ExpressionUUID->"92dde633-337e-4f95-9cf6-20407cc6b518"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"$ParserDomainData", "//", "Length"}]], "Input"],
+ RowBox[{"$ParserDomainData", "//", "Length"}]], "Input",ExpressionUUID->"d141957b-e2dc-492e-8a85-1eb520fbf117"],
 
-Cell[BoxData["247"], "Output"]
+Cell[BoxData["247"], "Output",ExpressionUUID->"803fb8e2-4e1d-4c8e-8fb8-ce5d8152f900"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -6573,12 +6642,13 @@ Cell[BoxData[
 component in (\>\"", "<>", "$language", "<>", "\"\<)\>\""}], ",", 
      "\"\<summary\>\"", ",", 
      RowBox[{"\"\<MaxResults\>\"", "->", " ", "1000"}]}], "]"}]}], 
-  ";"}]], "Input"],
+  ";"}]], "Input",ExpressionUUID->"09f2e355-b56e-4ca7-bab4-5b0a5ed8c3b3"],
 
 Cell[BoxData[
  RowBox[{"domainsTicketed", "[", 
   RowBox[{"[", 
-   RowBox[{"All", ",", "2", ",", "1", ",", "2"}], "]"}], "]"}]], "Input"],
+   RowBox[{"All", ",", "2", ",", "1", ",", "2"}], "]"}], "]"}]], "Input",Expre\
+ssionUUID->"f4bcd302-b489-4e9e-b2f8-c1c4174a3e62"],
 
 Cell[CellGroupData[{
 
@@ -6603,7 +6673,8 @@ Cell[BoxData[{
          RowBox[{"[", 
           RowBox[{"2", ",", "1", ",", "2"}], "]"}], "]"}], ",", 
         "\"\<*Domain\>\""}], "]"}]}], "&"}]}], "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"domainsToRemove", "//", "Length"}]}], "Input"],
+ RowBox[{"domainsToRemove", "//", "Length"}]}], "Input",ExpressionUUID->\
+"9b92723b-6972-4b8f-91f4-719734136393"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -6627,9 +6698,10 @@ Cell[BoxData[
    RowBox[{"\<\"WALOCURATE-1465\"\>", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{"\<\"summary\"\>", "\[Rule]", "\<\"AtmosphericLayerDomain\"\>"}],
-      "}"}]}]}], "}"}]], "Output"],
+      "}"}]}]}], "}"}]], "Output",ExpressionUUID->"f25d64ef-2918-4e30-bd27-\
+303ddc27efe4"],
 
-Cell[BoxData["5"], "Output"]
+Cell[BoxData["5"], "Output",ExpressionUUID->"18ba6daa-3de0-4bce-b1c0-dc9e0c3efa1a"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6644,10 +6716,11 @@ Cell[BoxData[
     RowBox[{"StringMatchQ", "[", 
      RowBox[{"#", ",", 
       RowBox[{"RegularExpression", "[", "\"\<.*DataQuery.*\>\"", "]"}]}], 
-     "]"}], "&"}]}], "]"}]], "Input"],
+     "]"}], "&"}]}], "]"}]], "Input",ExpressionUUID->"eab6c095-328a-4a65-8d74-\
+1bff1e737267"],
 
 Cell[BoxData[
- RowBox[{"{", "\<\"DataQuery2Domain\"\>", "}"}]], "Output"]
+ RowBox[{"{", "\<\"DataQuery2Domain\"\>", "}"}]], "Output",ExpressionUUID->"34d36107-fcb5-423b-b4da-e88d3bec7a2c"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6666,7 +6739,8 @@ Cell[BoxData[{
         RowBox[{"#", "[", 
          RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], "&"}]}], 
    "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"domainsToDo", "//", "Length"}]}], "Input"],
+ RowBox[{"domainsToDo", "//", "Length"}]}], "Input",ExpressionUUID->"08bb2715-\
+fbd7-4166-b922-10121ec4bb03"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -6833,9 +6907,9 @@ Cell[BoxData[
    RowBox[{"\<\"WeightLossDomain\"\>", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{"\<\"HasWordsPhrasesQ\"\>", "\[Rule]", "True"}], "}"}]}]}], 
-  "}"}]], "Output"],
+  "}"}]], "Output",ExpressionUUID->"2d432518-18f5-4369-bee3-f9fb704eadf1"],
 
-Cell[BoxData["30"], "Output"]
+Cell[BoxData["30"], "Output",ExpressionUUID->"8ad20bf2-41d2-4073-a305-12d8d6ea1fdb"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6972,7 +7046,8 @@ https://cvs.wolfram.com/viewvc/Alpha/Localization/Languages/\>\"", "<>",
           "\[IndentingNewLine]", "|>"}], ",", "\[IndentingNewLine]", 
          RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "openQ"}]}], 
         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], "&"}], "/@",
-     "domains"}]}], "\[IndentingNewLine]", "]"}]], "Input"],
+     "domains"}]}], "\[IndentingNewLine]", "]"}]], "Input",ExpressionUUID->\
+"f428203c-8e2c-4736-927e-c829693929ce"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -7186,18 +7261,19 @@ Cell[BoxData[
      RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"664790\"\>"}], ",", 
      RowBox[{"\<\"self\"\>", 
       "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/664790\"\
-\>"}]}], "}"}]}], "}"}]], "Output"]
+\>"}]}], "}"}]}], "}"}]], "Output",ExpressionUUID->"62c03b07-7c06-449f-9145-\
+a2d78fab4ce1"]
 }, Open  ]]
 }, Closed]],
 
 Cell["\<\
 Create/Verify JIRA issues for Scanners localization in all languages\
-\>", "Subsubsection"]
+\>", "Subsubsection",ExpressionUUID->"d62d7d3b-14b7-4d69-921a-f8da9e251a42"]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Find example queries for localized scanners", "Subsection"],
+Cell["Find example queries for localized scanners", "Subsection",ExpressionUUID->"c021a727-eb98-44f5-9c8b-774a6b077a0e"],
 
 Cell[BoxData[{
  RowBox[{
@@ -7210,7 +7286,8 @@ Cell[BoxData[{
        "\"\<CVS\>\"", ",", "\"\<DataPaclets\>\"", ",", "\"\<Internal\>\"", 
        ",", "\"\<DataPacletTools\>\""}], "}"}], "]"}]}], "]"}], 
   ";"}], "\[IndentingNewLine]", 
- RowBox[{"<<", "DataPacletTools`"}]}], "Input"],
+ RowBox[{"<<", "DataPacletTools`"}]}], "Input",ExpressionUUID->"1580792e-de82-\
+4bc0-8fdc-0fec608e4441"],
 
 Cell[BoxData[
  RowBox[{
@@ -7218,7 +7295,8 @@ Cell[BoxData[
   "$JQLQuery", "=", 
    "\"\<project = WALOCURATE AND component in (ja) AND \\\"Ready to Begin\\\" \
 != No AND component = Scanners AND status = Closed ORDER BY summary \
-ASC\>\""}], ";"}]], "Input"],
+ASC\>\""}], ";"}]], "Input",ExpressionUUID->"bef12af7-5bc9-425e-b4a3-\
+47a30dd85759"],
 
 Cell[BoxData[
  RowBox[{
@@ -7229,7 +7307,8 @@ Cell[BoxData[
      RowBox[{"JiraFindIssues", "[", 
       RowBox[{"#", ",", "\"\<summary\>\"", ",", 
        RowBox[{"\"\<MaxResults\>\"", "->", " ", "1000"}]}], "]"}], "&"}], 
-    "\[IndentingNewLine]", "]"}], "[", "$JQLQuery", "]"}]}]], "Input"],
+    "\[IndentingNewLine]", "]"}], "[", "$JQLQuery", "]"}]}]], "Input",Expressi\
+onUUID->"76dcc304-a5c5-4362-ae37-43f16143dd43"],
 
 Cell[CellGroupData[{
 
@@ -7299,7 +7378,8 @@ Cell[BoxData[
        RowBox[{"[", 
         RowBox[{"All", ",", "2", ",", "1", ",", "2"}], "]"}], "]"}], "&"}]}], 
     "\[IndentingNewLine]", "]"}], "[", 
-   RowBox[{"data", "[", "0", "]"}], "]"}]}]], "Input"],
+   RowBox[{"data", "[", "0", "]"}], "]"}]}]], "Input",ExpressionUUID->\
+"312302fc-258b-47c4-aa05-8bef43109ec9"],
 
 Cell[BoxData[
  RowBox[{
@@ -7310,7 +7390,8 @@ Cell[BoxData[
 UTF-8 character encoding. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
 ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
 ButtonData:>\\\"paclet:ref/$CharacterEncoding\\\", ButtonNote -> \
-\\\"$CharacterEncoding::utf8\\\"]\\)\"\>"}]], "Message", "MSG"],
+\\\"$CharacterEncoding::utf8\\\"]\\)\"\>"}]], "Message", \
+"MSG",ExpressionUUID->"0496cff7-446b-498d-a0b1-ec63011e6773"],
 
 Cell[BoxData[
  RowBox[{
@@ -7321,7 +7402,8 @@ Cell[BoxData[
 UTF-8 character encoding. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
 ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
 ButtonData:>\\\"paclet:ref/$CharacterEncoding\\\", ButtonNote -> \
-\\\"$CharacterEncoding::utf8\\\"]\\)\"\>"}]], "Message", "MSG"],
+\\\"$CharacterEncoding::utf8\\\"]\\)\"\>"}]], "Message", \
+"MSG",ExpressionUUID->"9642591c-9efc-4e69-ad45-81b2ec17f45b"],
 
 Cell[BoxData[
  RowBox[{
@@ -7332,7 +7414,8 @@ Cell[BoxData[
 UTF-8 character encoding. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
 ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
 ButtonData:>\\\"paclet:ref/$CharacterEncoding\\\", ButtonNote -> \
-\\\"$CharacterEncoding::utf8\\\"]\\)\"\>"}]], "Message", "MSG"],
+\\\"$CharacterEncoding::utf8\\\"]\\)\"\>"}]], "Message", \
+"MSG",ExpressionUUID->"bbb959d8-d6ee-4768-ba11-96d8ff437a6c"],
 
 Cell[BoxData[
  RowBox[{
@@ -7344,7 +7427,8 @@ Cell[BoxData[
 this calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
 ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
 ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
-\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG"]
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", \
+"MSG",ExpressionUUID->"ece94fe0-2e0e-437a-9510-5776dc2554fe"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7354,26 +7438,29 @@ Cell[BoxData[
   RowBox[{
   "\"\</Users/meng/WorkSpace-meng2maclap/Wolfram/Stash/users/meng/\
 AlphaLocalization/Data/example_queries_for_localized_scanners.m\>\"", ",", 
-   RowBox[{"data", "[", "1", "]"}]}], "]"}]], "Input"],
+   RowBox[{"data", "[", "1", "]"}]}], "]"}]], "Input",ExpressionUUID->\
+"779bf1d2-fa6d-4e27-b8a2-0af70f1dcfa4"],
 
 Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/Wolfram/Stash/users/meng/\
 AlphaLocalization/Data/example_queries_for_localized_scanners.m\"\>"], \
-"Output"]
+"Output",ExpressionUUID->"c7c8fe79-1abd-4845-a509-7ea787335c64"]
 }, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Process JIRA issues for es WordsPhrases", "Subsection"],
+Cell["Process JIRA issues for es WordsPhrases", "Subsection",ExpressionUUID->"2a74069b-ed21-40c5-a4eb-a6ab324c3319"],
 
 Cell[CellGroupData[{
 
 Cell["Find JIRA issues for Scanners localization in \[OpenCurlyQuote]ja\
-\[CloseCurlyQuote]", "Subsubsection"],
+\[CloseCurlyQuote]", "Subsubsection",ExpressionUUID->"b782dfbd-d58d-4054-9e49-\
+22f85f1b898f"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"$language", "=", "\"\<es\>\""}], ";"}]], "Input"],
+  RowBox[{"$language", "=", "\"\<es\>\""}], ";"}]], "Input",ExpressionUUID->\
+"06d0cd2e-f6d4-442d-b81a-cb0f53a00fd7"],
 
 Cell[CellGroupData[{
 
@@ -7414,10 +7501,12 @@ Cell[BoxData[{
   RowBox[{"{", 
    RowBox[{"$language", ",", "\"\<WordsPhrases\>\"", ",", "\"\<summary\>\""}],
     "}"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"%", "//", "Length"}]}], "Input"],
+ RowBox[{"%", "//", "Length"}]}], "Input",ExpressionUUID->"20cf7387-eac0-4b82-\
+ae2c-23caca549051"],
 
 Cell[BoxData["\<\"project=WALOCURATE and component in (es) and component in \
-(WordsPhrases) and status='Translated'\"\>"], "Print"],
+(WordsPhrases) and status='Translated'\"\>"], "Print",ExpressionUUID->\
+"358e11c4-d7fa-4b16-9f2f-648d9a9577db"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -7501,20 +7590,22 @@ Cell[BoxData[
    RowBox[{"\<\"WALOCURATE-13467\"\>", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{"\<\"summary\"\>", "\[Rule]", "\<\"BooleanDomain\"\>"}], 
-     "}"}]}]}], "}"}]], "Output"],
+     "}"}]}]}], "}"}]], "Output",ExpressionUUID->"1c17d733-619f-4531-bc4b-\
+bd24f9891d4f"],
 
-Cell[BoxData["20"], "Output"]
+Cell[BoxData["20"], "Output",ExpressionUUID->"f7a9a46f-d47e-4cdf-91ad-68924915ddf8"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"mengDataTableCreate", "[", 
-  RowBox[{"Out", "[", "22", "]"}], "]"}]], "Input"],
+  RowBox[{"Out", "[", "22", "]"}], "]"}]], "Input",ExpressionUUID->"d637dbb0-\
+1393-465e-b328-cd22ff349b7e"],
 
 Cell[CellGroupData[{
 
-Cell[BoxData["\<\"datatable file created: \"\>"], "Print"],
+Cell[BoxData["\<\"datatable file created: \"\>"], "Print",ExpressionUUID->"96b732dc-5cc1-4c43-bec4-2c865f269828"],
 
 Cell[BoxData[
  TagBox[
@@ -7536,7 +7627,8 @@ XXXDataTable201605121815.m.txt\"\>", "HyperlinkActive"]}, Dynamic[
     "/Users/meng/WorkSpace-meng2maclap/Temp/XXXDataTable201605121815.m.txt"],
   Annotation[#, 
    "/Users/meng/WorkSpace-meng2maclap/Temp/XXXDataTable201605121815.m.txt", 
-   "Hyperlink"]& ]], "Print"]
+   "Hyperlink"]& ]], "Print",ExpressionUUID->"d6bb4947-127f-4847-a854-\
+a6ea5ea4746c"]
 }, Open  ]]
 }, Open  ]],
 
@@ -7555,7 +7647,8 @@ Cell[BoxData[
     RowBox[{"{", 
      RowBox[{
      "$language", ",", "\"\<WordsPhrases\>\"", ",", "\"\<summary\>\""}], 
-     "}"}], "]"}], "]"}]}]], "Input"],
+     "}"}], "]"}], "]"}]}]], "Input",ExpressionUUID->"fc0a2dba-56c8-4089-a2db-\
+f5444a177f7a"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -7569,7 +7662,7 @@ Cell[BoxData[
    ",", "\<\"ExpansionsDomain\"\>", ",", "\<\"DomainAndRangeDomain\"\>", 
    ",", "\<\"DerivativesDomain\"\>", ",", "\<\"ContinuedFractionDomain\"\>", 
    ",", "\<\"ComplexAnalysisDomain\"\>", ",", "\<\"BooleanDomain\"\>"}], 
-  "}"}]], "Output"]
+  "}"}]], "Output",ExpressionUUID->"0a500909-1da2-45bf-822a-671d8d5d7d72"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7685,7 +7778,7 @@ Languages/\>\"", "<>", "lang", "<>",
      RowBox[{"domainData", "[", "\"\<toAddTicket\>\"", "]"}], "[", 
      RowBox[{"[", 
       RowBox[{";;", "10"}], "]"}], "]"}]}]}], "\[IndentingNewLine]", 
-  "]"}]], "Input"],
+  "]"}]], "Input",ExpressionUUID->"597512ba-4054-42ac-9001-38d2464875a3"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -7759,20 +7852,21 @@ Cell[BoxData[
      RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"663499\"\>"}], ",", 
      RowBox[{"\<\"self\"\>", 
       "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/663499\"\
-\>"}]}], "}"}]}], "}"}]], "Output"]
+\>"}]}], "}"}]}], "}"}]], "Output",ExpressionUUID->"da463836-33be-4663-b036-\
+3d86c16c27b0"]
 }, Open  ]]
 }, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
 
-Cell["Create JIRA issues for formulas", "Subsection"],
+Cell["Create JIRA issues for formulas", "Subsection",ExpressionUUID->"3258cf99-f1b0-49bb-94d1-497f84e820fe"],
 
 Cell[CellGroupData[{
 
-Cell[BoxData["$mengWolframWorkspaceDirectory"], "Input"],
+Cell[BoxData["$mengWolframWorkspaceDirectory"], "Input",ExpressionUUID->"e8e345bb-46c6-4501-8781-753e5ca184a1"],
 
-Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/\"\>"], "Output"]
+Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/\"\>"], "Output",ExpressionUUID->"7de5b9b1-d9cb-4330-bfd3-67e7b2cefa9b"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7784,10 +7878,12 @@ Cell[BoxData[
     RowBox[{
     "$mengWolframWorkspaceDirectory", ",", "\"\<Wolfram\>\"", ",", 
      "\"\<AlphaDev\>\"", ",", "\"\<AlphaSource\>\"", ",", 
-     "\"\<CalculateFormulas\>\""}], "}"}], "]"}]}]], "Input"],
+     "\"\<CalculateFormulas\>\""}], "}"}], "]"}]}]], "Input",ExpressionUUID->\
+"536e3215-d87c-4034-837e-0cfc4794a86d"],
 
 Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/Wolfram/AlphaDev/\
-AlphaSource/CalculateFormulas\"\>"], "Output"]
+AlphaSource/CalculateFormulas\"\>"], "Output",ExpressionUUID->"039f11ce-5541-\
+457e-a31c-8d06f226f678"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7810,13 +7906,15 @@ Cell[BoxData[{
          "]"}]}], "}"}], ",", "Infinity"}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"$formulaSourceFiles", "//", "Length"}], "\[IndentingNewLine]", 
- RowBox[{"$formulaSourceFiles", "//", "RandomChoice"}]}], "Input"],
+ RowBox[{"$formulaSourceFiles", "//", "RandomChoice"}]}], "Input",ExpressionUU\
+ID->"15673541-dc6a-4cf0-9bd6-a59a74aab740"],
 
-Cell[BoxData["96"], "Output"],
+Cell[BoxData["96"], "Output",ExpressionUUID->"00733e23-7584-4f30-a6b5-f39e3a2b379d"],
 
 Cell[BoxData["\<\"/Users/meng/WorkSpace-meng2maclap/Wolfram/AlphaDev/\
 AlphaSource/CalculateFormulas/ExtraCalculators/Mathematics/Logic/\
-LogicConvertCalculator.m\"\>"], "Output"]
+LogicConvertCalculator.m\"\>"], "Output",ExpressionUUID->"edebc2a6-d657-43fd-\
+9956-7037bcdc703d"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7928,7 +8026,7 @@ https://stash.wolfram.com/projects/WA/repos/alphalocalization-\>\"", "<>",
      RowBox[{"\"\<ko\>\"", ",", "\"\<Korean\>\""}], "}"}], ",", 
     RowBox[{"{", 
      RowBox[{"\"\<ru\>\"", ",", "\"\<Russian\>\""}], "}"}]}], 
-   "}"}]}]}], "Input"],
+   "}"}]}]}], "Input",ExpressionUUID->"b9af78a2-5e48-4e3a-8723-dc6c8ed558b1"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -10628,17 +10726,17 @@ Cell[BoxData[
        RowBox[{"\<\"id\"\>", "\[Rule]", "\<\"764940\"\>"}], ",", 
        RowBox[{"\<\"self\"\>", 
         "\[Rule]", "\<\"https://jira.wolfram.com/jira/rest/api/2/issue/764940\
-\"\>"}]}], "}"}]}], "}"}]}], "}"}]], "Output"]
+\"\>"}]}], "}"}]}], "}"}]}], "}"}]], "Output",ExpressionUUID->"9292aab2-b7bf-\
+4933-8b81-051ca0599cdf"]
 }, Open  ]]
 }, Closed]]
-}, Open  ]]
+}, Closed]]
 }, Open  ]]
 },
 WindowSize->{1440, 851},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 ShowSelection->True,
-FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 10, \
-2015)",
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (May 19, 2013)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -10653,402 +10751,398 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 33, 0, 92, "Title"],
+Cell[422, 15, 88, 0, 92, "Title"],
 Cell[CellGroupData[{
-Cell[480, 19, 36, 0, 44, "Subsection"],
-Cell[519, 21, 30, 0, 28, "Input"],
-Cell[552, 23, 414, 12, 28, "Input"],
-Cell[969, 37, 53, 1, 28, "Input"]
+Cell[535, 19, 91, 0, 44, "Subsection"],
+Cell[629, 21, 85, 0, 28, "Input"],
+Cell[717, 23, 471, 13, 28, "Input"],
+Cell[1191, 38, 108, 1, 28, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1059, 43, 38, 0, 64, "Section"],
+Cell[1336, 44, 93, 0, 80, "Section"],
 Cell[CellGroupData[{
-Cell[1122, 47, 35, 0, 44, "Subsection"],
-Cell[1160, 49, 89, 1, 213, "Input"]
+Cell[1454, 48, 90, 0, 44, "Subsection"],
+Cell[1547, 50, 146, 2, 213, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[1286, 55, 68, 0, 36, "Subsection"],
+Cell[1730, 57, 123, 0, 36, "Subsection"],
 Cell[CellGroupData[{
-Cell[1379, 59, 39, 0, 197, "Subsubsection"],
+Cell[1878, 61, 94, 0, 197, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[1443, 63, 386, 10, 303, "Input"],
-Cell[1832, 75, 8281, 158, 1738, "Output"]
+Cell[1997, 65, 443, 11, 303, "Input"],
+Cell[2443, 78, 8336, 158, 1738, "Output"]
 }, Open  ]],
-Cell[10128, 236, 16, 0, 158, "Text"]
+Cell[10794, 239, 71, 0, 158, "Text"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[10181, 241, 44, 0, 188, "Subsubsection"],
-Cell[10228, 243, 64, 1, 213, "Input"]
+Cell[10902, 244, 99, 0, 188, "Subsubsection"],
+Cell[11004, 246, 119, 1, 213, "Input"]
 }, Closed]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[10341, 250, 57, 0, 36, "Subsection"],
+Cell[11172, 253, 112, 0, 36, "Subsection"],
 Cell[CellGroupData[{
-Cell[10423, 254, 47, 0, 35, "Subsubsection"],
-Cell[10473, 256, 492, 17, 228, "Program"],
+Cell[11309, 257, 102, 0, 35, "Subsubsection"],
+Cell[11414, 259, 547, 17, 271, "Program"],
 Cell[CellGroupData[{
-Cell[10990, 277, 3160, 74, 386, "Input"],
-Cell[14153, 353, 1553, 37, 96, "Output"]
+Cell[11986, 280, 3215, 74, 519, "Input"],
+Cell[15204, 356, 1610, 38, 96, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15755, 396, 47, 0, 34, "Subsubsection"],
-Cell[15805, 398, 55, 0, 597, "Text"],
+Cell[16863, 400, 102, 0, 34, "Subsubsection"],
+Cell[16968, 402, 110, 0, 597, "Text"],
 Cell[CellGroupData[{
-Cell[15885, 402, 96, 2, 808, "Input"],
-Cell[15984, 406, 51, 0, 782, "Output"]
+Cell[17103, 406, 153, 3, 808, "Input"],
+Cell[17259, 411, 106, 0, 782, "Output"]
 }, Open  ]],
-Cell[CellGroupData[{
-Cell[16072, 411, 747, 17, 1165, "Input"],
-Cell[16822, 430, 1330, 21, 2020, "Echo"],
-Cell[18155, 453, 309, 8, 782, "Output"]
-}, Open  ]]
+Cell[17380, 414, 804, 18, 1165, "Input"],
+Cell[18187, 434, 1385, 21, 2020, "Echo"],
+Cell[19575, 457, 364, 8, 782, "Output"]
 }, Closed]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[18525, 468, 37, 0, 43, "Subsection"],
-Cell[18565, 470, 76, 2, 808, "Input"],
-Cell[18644, 474, 186, 5, 808, "Input"],
-Cell[18833, 481, 170, 4, 808, "Input"],
-Cell[CellGroupData[{
-Cell[19028, 489, 169, 4, 808, "Input"],
-Cell[19200, 495, 497, 10, 510, "Message"],
-Cell[19700, 507, 497, 10, 510, "Message"],
-Cell[20200, 519, 497, 10, 510, "Message"],
-Cell[20700, 531, 512, 10, 510, "Message"],
-Cell[CellGroupData[{
-Cell[21237, 545, 650, 11, 1695, "Echo"],
-Cell[21890, 558, 629, 14, 1391, "Echo"]
-}, Open  ]],
-Cell[22534, 575, 361, 9, 1103, "Output"]
-}, Open  ]],
-Cell[22910, 587, 896, 24, 1760, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[23843, 616, 35, 0, 34, "Subsection"],
-Cell[23881, 618, 181, 4, 1010, "Input"],
-Cell[24065, 624, 391, 11, 1816, "Input"]
+Cell[19988, 471, 92, 0, 36, "Subsection"],
+Cell[20083, 473, 131, 2, 808, "Input"],
+Cell[20217, 477, 241, 5, 808, "Input"],
+Cell[20461, 484, 225, 4, 808, "Input"],
+Cell[CellGroupData[{
+Cell[20711, 492, 224, 4, 808, "Input"],
+Cell[20938, 498, 554, 11, 510, "Message"],
+Cell[21495, 511, 554, 11, 510, "Message"],
+Cell[22052, 524, 554, 11, 510, "Message"],
+Cell[22609, 537, 569, 11, 510, "Message"]
+}, Open  ]],
+Cell[23193, 551, 707, 12, 1695, "Echo"],
+Cell[23903, 565, 686, 15, 1391, "Echo"],
+Cell[24592, 582, 418, 10, 1103, "Output"],
+Cell[25013, 594, 953, 25, 1760, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[24493, 640, 36, 0, 34, "Subsection"],
-Cell[24532, 642, 234, 6, 213, "Input"],
+Cell[26003, 624, 90, 0, 36, "Subsection"],
+Cell[26096, 626, 238, 5, 1010, "Input"],
+Cell[26337, 633, 448, 12, 1816, "Input"]
+}, Closed]],
 Cell[CellGroupData[{
-Cell[24791, 652, 38, 0, 197, "Subsubsection"],
+Cell[26822, 650, 91, 0, 36, "Subsection"],
+Cell[26916, 652, 291, 7, 213, "Input"],
 Cell[CellGroupData[{
-Cell[24854, 656, 163, 4, 303, "Input"],
-Cell[25020, 662, 402, 7, 291, "Output"],
-Cell[25425, 671, 29, 0, 206, "Output"]
+Cell[27232, 663, 93, 0, 197, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[27350, 667, 220, 5, 303, "Input"],
+Cell[27573, 674, 457, 7, 291, "Output"],
+Cell[28033, 683, 84, 0, 206, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[25503, 677, 57, 0, 188, "Subsubsection"],
+Cell[28166, 689, 112, 0, 188, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[25585, 681, 201, 5, 213, "Input"],
-Cell[25789, 688, 122, 3, 206, "Output"]
+Cell[28303, 693, 258, 6, 213, "Input"],
+Cell[28564, 701, 177, 3, 206, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[25960, 697, 57, 0, 188, "Subsubsection"],
+Cell[28790, 710, 112, 0, 188, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[26042, 701, 172, 3, 213, "Input"],
-Cell[26217, 706, 32941, 719, 26946, "Output"]
+Cell[28927, 714, 229, 4, 213, "Input"],
+Cell[29159, 720, 32996, 719, 26946, "Output"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[59195, 1430, 176, 3, 188, "Input"],
-Cell[59374, 1435, 25567, 602, 21228, "Output"]
+Cell[62192, 1444, 233, 4, 188, "Input"],
+Cell[62428, 1450, 25624, 603, 21228, "Output"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[84978, 2042, 172, 3, 188, "Input"],
-Cell[85153, 2047, 7175, 175, 1587, "Output"]
+Cell[88089, 2058, 229, 4, 188, "Input"],
+Cell[88321, 2064, 7230, 175, 1587, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[92365, 2227, 270, 7, 213, "Input"],
-Cell[92638, 2236, 5313, 132, 1426, "Output"]
+Cell[95588, 2244, 327, 8, 213, "Input"],
+Cell[95918, 2254, 5370, 133, 1426, "Output"]
 }, Open  ]]
 }, Closed]]
 }, Closed]]
-}, Open  ]],
+}, Closed]],
 Cell[CellGroupData[{
-Cell[98024, 2376, 25, 0, 64, "Section"],
+Cell[101361, 2395, 80, 0, 50, "Section"],
 Cell[CellGroupData[{
-Cell[98074, 2380, 51, 0, 43, "Subsection"],
-Cell[98128, 2382, 176, 5, 415, "Input"],
+Cell[101466, 2399, 106, 0, 44, "Subsection"],
+Cell[101575, 2401, 231, 5, 415, "Input"],
 Cell[CellGroupData[{
-Cell[98329, 2391, 133, 3, 415, "Input"],
-Cell[98465, 2396, 551, 10, 262, "Message"],
-Cell[99019, 2408, 198, 5, 401, "Output"]
+Cell[101831, 2410, 188, 3, 415, "Input"],
+Cell[102022, 2415, 608, 11, 262, "Message"],
+Cell[102633, 2428, 253, 5, 401, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[99266, 2419, 49, 0, 34, "Subsection"],
-Cell[99318, 2421, 360, 9, 415, "Input"],
-Cell[99681, 2432, 2143, 43, 4765, "Program"]
+Cell[102935, 2439, 104, 0, 36, "Subsection"],
+Cell[103042, 2441, 417, 10, 415, "Input"],
+Cell[103462, 2453, 2198, 43, 4765, "Program"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[101861, 2480, 106, 2, 34, "Subsection"],
-Cell[101970, 2484, 632, 16, 1816, "Input"],
-Cell[102605, 2502, 211, 3, 1072, "Input"],
-Cell[102819, 2507, 94, 2, 1010, "Input"],
+Cell[105697, 2501, 161, 2, 36, "Subsection"],
+Cell[105861, 2505, 689, 17, 1816, "Input"],
+Cell[106553, 2524, 268, 4, 1072, "Input"],
+Cell[106824, 2530, 151, 3, 1010, "Input"],
 Cell[CellGroupData[{
-Cell[102938, 2513, 95, 1, 932, "Subsubsection"],
-Cell[103036, 2516, 44, 0, 1010, "Input"],
-Cell[103083, 2518, 50, 0, 1010, "Input"],
-Cell[103136, 2520, 656, 15, 1816, "Input"],
-Cell[103795, 2537, 44, 0, 1010, "Input"],
-Cell[103842, 2539, 50, 0, 1010, "Input"],
-Cell[103895, 2541, 382, 9, 1438, "Input"]
+Cell[107000, 2537, 150, 1, 932, "Subsubsection"],
+Cell[107153, 2540, 99, 0, 1010, "Input"],
+Cell[107255, 2542, 105, 0, 1010, "Input"],
+Cell[107363, 2544, 713, 16, 1816, "Input"],
+Cell[108079, 2562, 99, 0, 1010, "Input"],
+Cell[108181, 2564, 105, 0, 1010, "Input"],
+Cell[108289, 2566, 439, 10, 1438, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[104314, 2555, 45, 0, 891, "Subsubsection"],
-Cell[104362, 2557, 787, 21, 2197, "Input"],
-Cell[105152, 2580, 337, 8, 1438, "Input"],
-Cell[105492, 2590, 154, 3, 932, "Input"],
-Cell[105649, 2595, 78, 1, 932, "Input"]
+Cell[108765, 2581, 100, 0, 891, "Subsubsection"],
+Cell[108868, 2583, 844, 22, 2197, "Input"],
+Cell[109715, 2607, 394, 9, 1438, "Input"],
+Cell[110112, 2618, 211, 4, 932, "Input"],
+Cell[110326, 2624, 133, 1, 932, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[105764, 2601, 38, 0, 891, "Subsubsection"],
-Cell[105805, 2603, 345, 9, 1438, "Input"],
-Cell[106153, 2614, 106, 2, 1010, "Input"],
-Cell[106262, 2618, 255, 7, 1577, "Input"],
-Cell[106520, 2627, 102, 2, 932, "Input"]
+Cell[110496, 2630, 93, 0, 891, "Subsubsection"],
+Cell[110592, 2632, 402, 10, 1438, "Input"],
+Cell[110997, 2644, 163, 3, 1010, "Input"],
+Cell[111163, 2649, 312, 8, 1577, "Input"],
+Cell[111478, 2659, 159, 3, 932, "Input"]
 }, Closed]]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[106683, 2636, 31, 0, 64, "Section"],
+Cell[111698, 2669, 86, 0, 80, "Section"],
 Cell[CellGroupData[{
-Cell[106739, 2640, 48, 0, 43, "Subsection"],
+Cell[111809, 2673, 103, 0, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[106812, 2644, 446, 13, 808, "Input"],
-Cell[107261, 2659, 401, 11, 782, "Output"]
+Cell[111937, 2677, 503, 14, 808, "Input"],
+Cell[112443, 2693, 456, 11, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[107699, 2675, 445, 13, 808, "Input"],
-Cell[108147, 2690, 400, 11, 782, "Output"]
+Cell[112936, 2709, 502, 14, 808, "Input"],
+Cell[113441, 2725, 455, 11, 782, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[108596, 2707, 66, 0, 34, "Subsection"],
+Cell[113945, 2742, 121, 0, 36, "Subsection"],
 Cell[CellGroupData[{
-Cell[108687, 2711, 55, 0, 127, "Subsubsection"],
-Cell[108745, 2713, 84, 2, 137, "Input"],
+Cell[114091, 2746, 110, 0, 127, "Subsubsection"],
+Cell[114204, 2748, 141, 3, 137, "Input"],
 Cell[CellGroupData[{
-Cell[108854, 2719, 324, 8, 137, "Input"],
-Cell[109181, 2729, 155, 1, 132, "Output"]
+Cell[114370, 2755, 379, 8, 137, "Input"],
+Cell[114752, 2765, 212, 2, 132, "Output"]
 }, Open  ]],
-Cell[109351, 2733, 191, 5, 137, "Input"],
+Cell[114979, 2770, 248, 6, 137, "Input"],
 Cell[CellGroupData[{
-Cell[109567, 2742, 409, 10, 245, "Input"],
-Cell[109979, 2754, 30, 0, 132, "Output"],
-Cell[110012, 2756, 184, 2, 132, "Output"],
-Cell[110199, 2760, 226, 4, 187, "Output"]
+Cell[115252, 2780, 466, 11, 245, "Input"],
+Cell[115721, 2793, 85, 0, 132, "Output"],
+Cell[115809, 2795, 241, 3, 132, "Output"],
+Cell[116053, 2800, 283, 5, 187, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[110474, 2770, 110, 1, 121, "Subsubsection"],
-Cell[110587, 2773, 84, 2, 171, "Input"],
+Cell[116385, 2811, 167, 2, 121, "Subsubsection"],
+Cell[116555, 2815, 141, 3, 171, "Input"],
 Cell[CellGroupData[{
-Cell[110696, 2779, 1436, 38, 697, "Input"],
-Cell[112135, 2819, 104, 1, 96, "Print"],
-Cell[112242, 2822, 27094, 668, 4901, "Output"],
-Cell[139339, 3492, 30, 0, 165, "Output"]
+Cell[116721, 2822, 1493, 39, 697, "Input"],
+Cell[118217, 2863, 161, 2, 96, "Print"],
+Cell[118381, 2867, 27149, 668, 4901, "Output"],
+Cell[145533, 3537, 85, 0, 165, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[139406, 3497, 4989, 111, 1956, "Input"],
-Cell[144398, 3610, 3053, 72, 938, "Output"]
+Cell[145655, 3542, 5044, 111, 1956, "Input"],
+Cell[150702, 3655, 3110, 73, 938, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[147500, 3688, 94, 2, 121, "Subsubsection"],
-Cell[147597, 3692, 84, 2, 137, "Input"],
+Cell[153861, 3734, 149, 2, 121, "Subsubsection"],
+Cell[154013, 3738, 141, 3, 137, "Input"],
 Cell[CellGroupData[{
-Cell[147706, 3698, 67, 1, 137, "Input"],
-Cell[147776, 3701, 209, 2, 187, "Output"]
+Cell[154179, 3745, 122, 1, 137, "Input"],
+Cell[154304, 3748, 266, 3, 187, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[148022, 3708, 4187, 89, 1870, "Input"],
-Cell[152212, 3799, 337, 9, 165, "Output"]
+Cell[154607, 3756, 4242, 89, 1870, "Input"],
+Cell[158852, 3847, 392, 9, 165, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[152598, 3814, 98, 2, 121, "Subsubsection"],
+Cell[159293, 3862, 153, 2, 121, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[152721, 3820, 767, 18, 1163, "Input"],
-Cell[153491, 3840, 37, 0, 782, "Output"]
+Cell[159471, 3868, 822, 18, 1163, "Input"],
+Cell[160296, 3888, 92, 0, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[153565, 3845, 71, 1, 808, "Input"],
-Cell[153639, 3848, 30, 0, 782, "Output"]
+Cell[160425, 3893, 126, 1, 808, "Input"],
+Cell[160554, 3896, 85, 0, 782, "Output"]
 }, Open  ]],
-Cell[153684, 3851, 382, 10, 1151, "Input"],
-Cell[154069, 3863, 137, 3, 808, "Input"],
+Cell[160654, 3899, 437, 10, 1151, "Input"],
+Cell[161094, 3911, 194, 4, 808, "Input"],
 Cell[CellGroupData[{
-Cell[154231, 3870, 766, 21, 1151, "Input"],
-Cell[155000, 3893, 862, 22, 1103, "Output"],
-Cell[155865, 3917, 28, 0, 782, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[155930, 3922, 340, 10, 808, "Input"],
-Cell[156273, 3934, 73, 1, 782, "Output"]
+Cell[161313, 3919, 823, 22, 1151, "Input"],
+Cell[162139, 3943, 919, 23, 1103, "Output"],
+Cell[163061, 3968, 83, 0, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[156383, 3940, 506, 14, 1151, "Input"],
-Cell[156892, 3956, 6624, 165, 4808, "Output"],
-Cell[163519, 4123, 29, 0, 782, "Output"]
+Cell[163181, 3973, 397, 11, 808, "Input"],
+Cell[163581, 3986, 128, 1, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[163585, 4128, 6259, 132, 13035, "Input"],
-Cell[169847, 4262, 9053, 212, 9768, "Output"]
+Cell[163746, 3992, 563, 15, 1151, "Input"],
+Cell[164312, 4009, 6679, 165, 4808, "Output"],
+Cell[170994, 4176, 84, 0, 782, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[171115, 4181, 6316, 133, 13035, "Input"],
+Cell[177434, 4316, 9110, 213, 9768, "Output"]
 }, Open  ]]
 }, Closed]],
-Cell[178927, 4478, 101, 2, 121, "Subsubsection"]
+Cell[186571, 4533, 156, 2, 121, "Subsubsection"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[179065, 4485, 70, 0, 34, "Subsection"],
+Cell[186764, 4540, 125, 0, 36, "Subsection"],
 Cell[CellGroupData[{
-Cell[179160, 4489, 41, 0, 383, "Subsubsection"],
-Cell[179204, 4491, 845, 22, 2056, "Input"],
+Cell[186914, 4544, 96, 0, 383, "Subsubsection"],
+Cell[187013, 4546, 902, 23, 2056, "Input"],
 Cell[CellGroupData[{
-Cell[180074, 4517, 573, 12, 1758, "Input"],
-Cell[180650, 4531, 137, 1, 782, "Output"],
-Cell[180790, 4534, 31, 0, 782, "Output"]
+Cell[187940, 4573, 630, 13, 1758, "Input"],
+Cell[188573, 4588, 194, 2, 782, "Output"],
+Cell[188770, 4592, 86, 0, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[180858, 4539, 190, 5, 808, "Input"],
-Cell[181051, 4546, 58424, 1467, 38515, "Output"]
-}, Open  ]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[239524, 6019, 67, 0, 366, "Subsubsection"],
-Cell[239594, 6021, 111, 3, 808, "Input"],
-Cell[CellGroupData[{
-Cell[239730, 6028, 180, 4, 808, "Input"],
-Cell[239913, 6034, 7403, 112, 8831, "Output"]
-}, Open  ]],
-Cell[247331, 6149, 297, 9, 808, "Input"],
-Cell[247631, 6160, 279, 6, 808, "Input"],
-Cell[247913, 6168, 896, 25, 2688, "Input"],
-Cell[248812, 6195, 463, 15, 808, "Input"],
-Cell[249278, 6212, 461, 14, 808, "Input"]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[249776, 6231, 98, 2, 366, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[249899, 6237, 790, 22, 1453, "Input"],
-Cell[250692, 6261, 108, 1, 453, "Print"],
-Cell[250803, 6264, 30, 0, 782, "Output"]
-}, Open  ]],
-Cell[250848, 6267, 378, 11, 808, "Input"],
-Cell[251229, 6280, 382, 12, 808, "Input"],
-Cell[CellGroupData[{
-Cell[251636, 6296, 597, 16, 1453, "Input"],
-Cell[252236, 6314, 29, 0, 782, "Output"],
-Cell[252268, 6316, 586, 16, 1035, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[252891, 6337, 4989, 111, 9325, "Input"],
-Cell[257883, 6450, 3053, 72, 3575, "Output"]
+Cell[188893, 4597, 247, 6, 808, "Input"],
+Cell[189143, 4605, 58479, 1467, 38515, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[260985, 6528, 98, 2, 366, "Subsubsection"],
+Cell[247671, 6078, 122, 0, 366, "Subsubsection"],
+Cell[247796, 6080, 166, 3, 808, "Input"],
 Cell[CellGroupData[{
-Cell[261108, 6534, 767, 18, 1163, "Input"],
-Cell[261878, 6554, 37, 0, 782, "Output"]
+Cell[247987, 6087, 237, 5, 808, "Input"],
+Cell[248227, 6094, 7460, 113, 8831, "Output"]
 }, Open  ]],
-Cell[CellGroupData[{
-Cell[261952, 6559, 71, 1, 808, "Input"],
-Cell[262026, 6562, 30, 0, 782, "Output"]
-}, Open  ]],
-Cell[262071, 6565, 382, 10, 1151, "Input"],
-Cell[262456, 6577, 137, 3, 808, "Input"],
-Cell[CellGroupData[{
-Cell[262618, 6584, 766, 21, 1151, "Input"],
-Cell[263387, 6607, 862, 22, 1103, "Output"],
-Cell[264252, 6631, 28, 0, 782, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[264317, 6636, 340, 10, 808, "Input"],
-Cell[264660, 6648, 73, 1, 782, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[264770, 6654, 506, 14, 1151, "Input"],
-Cell[265279, 6670, 6624, 165, 4808, "Output"],
-Cell[271906, 6837, 29, 0, 782, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[271972, 6842, 6259, 132, 13035, "Input"],
-Cell[278234, 6976, 9053, 212, 9768, "Output"]
-}, Open  ]]
-}, Closed]],
-Cell[287314, 7192, 101, 2, 366, "Subsubsection"]
+Cell[255702, 6210, 354, 10, 808, "Input"],
+Cell[256059, 6222, 336, 7, 808, "Input"],
+Cell[256398, 6231, 953, 26, 2688, "Input"],
+Cell[257354, 6259, 518, 15, 808, "Input"],
+Cell[257875, 6276, 518, 15, 808, "Input"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[287452, 7199, 65, 0, 34, "Subsection"],
-Cell[287520, 7201, 439, 11, 590, "Input"],
-Cell[287962, 7214, 234, 6, 415, "Input"],
-Cell[288199, 7222, 375, 9, 745, "Input"],
+Cell[258430, 6296, 153, 2, 366, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[288599, 7235, 2488, 66, 3878, "Input"],
-Cell[291090, 7303, 515, 9, 408, "Message"],
-Cell[291608, 7314, 515, 9, 408, "Message"],
-Cell[292126, 7325, 515, 9, 408, "Message"],
-Cell[292644, 7336, 518, 10, 408, "Message"]
+Cell[258608, 6302, 847, 23, 1453, "Input"],
+Cell[259458, 6327, 165, 2, 453, "Print"],
+Cell[259626, 6331, 85, 0, 782, "Output"]
+}, Open  ]],
+Cell[259726, 6334, 433, 11, 808, "Input"],
+Cell[260162, 6347, 437, 12, 808, "Input"],
+Cell[CellGroupData[{
+Cell[260624, 6363, 654, 17, 1453, "Input"],
+Cell[261281, 6382, 84, 0, 782, "Output"],
+Cell[261368, 6384, 641, 16, 1035, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[293199, 7351, 248, 5, 921, "Input"],
-Cell[293450, 7358, 161, 2, 626, "Output"]
+Cell[262046, 6405, 5044, 111, 9325, "Input"],
+Cell[267093, 6518, 3110, 73, 3575, "Output"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[293660, 7366, 61, 0, 34, "Subsection"],
+Cell[270252, 6597, 153, 2, 366, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[293746, 7370, 110, 1, 102, "Subsubsection"],
-Cell[293859, 7373, 84, 2, 93, "Input"],
-Cell[CellGroupData[{
-Cell[293968, 7379, 1397, 37, 666, "Input"],
-Cell[295368, 7418, 132, 1, 70, "Print"],
-Cell[295503, 7421, 3286, 82, 666, "Output"],
-Cell[298792, 7505, 29, 0, 106, "Output"]
+Cell[270430, 6603, 822, 18, 1163, "Input"],
+Cell[271255, 6623, 92, 0, 782, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[298858, 7510, 103, 2, 110, "Input"],
+Cell[271384, 6628, 126, 1, 808, "Input"],
+Cell[271513, 6631, 85, 0, 782, "Output"]
+}, Open  ]],
+Cell[271613, 6634, 437, 10, 1151, "Input"],
+Cell[272053, 6646, 194, 4, 808, "Input"],
 Cell[CellGroupData[{
-Cell[298986, 7516, 58, 0, 62, "Print"],
-Cell[299047, 7518, 746, 20, 66, "Print"]
+Cell[272272, 6654, 823, 22, 1151, "Input"],
+Cell[273098, 6678, 919, 23, 1103, "Output"],
+Cell[274020, 6703, 83, 0, 782, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[274140, 6708, 397, 11, 808, "Input"],
+Cell[274540, 6721, 128, 1, 782, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[274705, 6727, 563, 15, 1151, "Input"],
+Cell[275271, 6744, 6679, 165, 4808, "Output"],
+Cell[281953, 6911, 84, 0, 782, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[282074, 6916, 6316, 133, 13035, "Input"],
+Cell[288393, 7051, 9110, 213, 9768, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[297530, 7268, 156, 2, 366, "Subsubsection"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[297723, 7275, 120, 0, 36, "Subsection"],
+Cell[297846, 7277, 496, 12, 590, "Input"],
+Cell[298345, 7291, 291, 7, 415, "Input"],
+Cell[298639, 7300, 432, 10, 745, "Input"],
+Cell[CellGroupData[{
+Cell[299096, 7314, 2545, 67, 3878, "Input"],
+Cell[301644, 7383, 572, 10, 408, "Message"],
+Cell[302219, 7395, 572, 10, 408, "Message"],
+Cell[302794, 7407, 572, 10, 408, "Message"],
+Cell[303369, 7419, 575, 11, 408, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[303981, 7435, 305, 6, 921, "Input"],
+Cell[304289, 7443, 216, 2, 626, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[304554, 7451, 116, 0, 36, "Subsection"],
+Cell[CellGroupData[{
+Cell[304695, 7455, 167, 2, 102, "Subsubsection"],
+Cell[304865, 7459, 141, 3, 93, "Input"],
+Cell[CellGroupData[{
+Cell[305031, 7466, 1454, 38, 666, "Input"],
+Cell[306488, 7506, 189, 2, 70, "Print"],
+Cell[306680, 7510, 3343, 83, 666, "Output"],
+Cell[310026, 7595, 84, 0, 106, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[310147, 7600, 160, 3, 110, "Input"],
+Cell[CellGroupData[{
+Cell[310332, 7607, 113, 0, 62, "Print"],
+Cell[310448, 7609, 803, 21, 66, "Print"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[299842, 7544, 453, 13, 196, "Input"],
-Cell[300298, 7559, 738, 12, 190, "Output"]
+Cell[311300, 7636, 510, 14, 196, "Input"],
+Cell[311813, 7652, 793, 12, 190, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[301073, 7576, 4989, 111, 1252, "Input"],
-Cell[306065, 7689, 3053, 72, 481, "Output"]
+Cell[312643, 7669, 5044, 111, 1252, "Input"],
+Cell[317690, 7782, 3110, 73, 481, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[309179, 7768, 53, 0, 34, "Subsection"],
+Cell[320861, 7862, 108, 0, 36, "Subsection"],
 Cell[CellGroupData[{
-Cell[309257, 7772, 56, 0, 29, "Input"],
-Cell[309316, 7774, 69, 0, 29, "Output"]
+Cell[320994, 7866, 111, 0, 29, "Input"],
+Cell[321108, 7868, 124, 0, 29, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[309422, 7779, 304, 7, 29, "Input"],
-Cell[309729, 7788, 117, 1, 29, "Output"]
+Cell[321269, 7873, 361, 8, 29, "Input"],
+Cell[321633, 7883, 174, 2, 29, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[309883, 7794, 731, 18, 96, "Input"],
-Cell[310617, 7814, 29, 0, 28, "Output"],
-Cell[310649, 7816, 179, 2, 46, "Output"]
+Cell[321844, 7890, 788, 19, 96, "Input"],
+Cell[322635, 7911, 84, 0, 28, "Output"],
+Cell[322722, 7913, 236, 3, 46, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[310865, 7823, 4608, 107, 600, "Input"],
-Cell[315476, 7932, 120017, 2698, 6510, "Output"]
+Cell[322995, 7921, 4663, 107, 600, "Input"],
+Cell[327661, 8030, 120074, 2699, 6510, "Output"]
 }, Open  ]]
 }, Closed]]
-}, Open  ]]
+}, Closed]]
 }, Open  ]]
 }
 ]
