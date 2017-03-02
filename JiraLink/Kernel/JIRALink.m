@@ -219,6 +219,7 @@ If[
     ]
 ];
 
+
 $JiraLogin = Decrypt[
     InputString[
         "Enter the password for decrypting " <> $EncryptedLoginInfoFile,
@@ -291,7 +292,14 @@ JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern
     password = OptionValue["JiraWebsitePassword"];
     method = OptionValue["Method"];
 
-    apiUrl = URLBuild[{host, "jira", "rest", "api", "2", resourceName}];
+    apiUrl = URLBuild[
+        {host, "jira", "rest", "api", "2", resourceName},
+        If[
+            MatchQ[OptionValue["Parameters"], {__Rule}],
+            OptionValue["Parameters"],
+            Sequence@@{}
+        ]
+    ];
 
 
     loginInfo = If[
@@ -311,15 +319,13 @@ JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern
         Abort[]
     ];
 
-    params = URLQueryEncode[OptionValue["Parameters"]];
-
     result = Switch[
         OptionValue["HTTPRequestImplementation"],
 
         Import,
 
         Import["!curl "
-            <> apiUrl <> If[params==="", "", "?"<>params] <> " "
+            <> apiUrl <> " "
             <> If[loginInfo =!= "", "-u " <> loginInfo <> " ", ""]
             <> "-H "
             <> "\"" <> "Content-Type: " <> contentType <> "\"" <> " "
@@ -559,8 +565,8 @@ JiraDeleteIssue[issueKey_String, field_String: All, opts:OptionsPattern[]] := Mo
 
     deleteSubtasks = Switch[
         OptionValue["DeleteSubtasks"],
-        "true", "true",
-        "false", "false",
+        "true"|True|"True", "true",
+        "false"|False|"False", "false",
         _,
         Message[JiraDeleteIssue::badoptvalue, OptionValue["DeleteSubtasks"], "DeleteSubtasks"];
         "false"
@@ -570,18 +576,18 @@ JiraDeleteIssue[issueKey_String, field_String: All, opts:OptionsPattern[]] := Mo
 
     resourceName = URLBuild[{"issue", issueKey}];
 
-    (*jsonData = JiraApiExecute[*)
-        (*resourceName,*)
-        (*"Method" -> "DELETE",*)
-        (*"Parameters" -> params,*)
-        (*filterOptions[opts, JiraApiExecute]*)
-    (*]//debugPrint;*)
-
     jsonData = JiraApiExecute[
-        resourceName <> "?" <> URLQueryEncode[params],
+        resourceName,
         "Method" -> "DELETE",
+        "Parameters" -> params,
         filterOptions[opts, JiraApiExecute]
     ]//debugPrint;
+
+    (*jsonData = JiraApiExecute[*)
+        (*resourceName <> "?" <> URLQueryEncode[params],*)
+        (*"Method" -> "DELETE",*)
+        (*filterOptions[opts, JiraApiExecute]*)
+    (*]//debugPrint;*)
 
     If[jsonData === Null, Print["Deleted " <> issueKey]];
 
