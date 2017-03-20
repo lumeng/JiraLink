@@ -1,0 +1,10 @@
+## Ignore local copies of some template files
+**/*.local.*
+
+## Ignore Wolfram-related files
+**/*-Wolfram*
+
+## Ignore local temporary development-purpose files
+dev/**
+
+## END
