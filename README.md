@@ -2,7 +2,7 @@
 
 ## Example usage
 
-* Basic demos in [JiraLink_Wolfram.nb](https://stash.wolfram.com/users/meng/repos/jiralink/browse/Notebook/JiraLink_Wolfram.nb).
+* Basic demos in [JiraLink_Wolfram.nb](https://stash.wolfram.com/users/meng/repos/jiralink/browse/Notebook/JiraLink-Wolfram.template.nb).
 
 ## References
 
