@@ -392,14 +392,21 @@ Options[JiraIssueData] := FilterRules[
     {"JiraWebsiteURL", "JiraWebsiteUsername", "JiraWebsitePassword"}
 ];
 
-JiraIssueData[issueKey_String, field_String: All, opts:OptionsPattern[]] := Module[
-    {result, jsonData, resourceName},
+JiraIssueData[issueKey_String, field_: All, opts:OptionsPattern[]] := Module[
+    {result, jsonData, data, resourceName},
 
     resourceName = URLBuild[{"issue", issueKey}];
 
     jsonData = JiraApiExecute[resourceName, "Method" -> "GET", opts];
 
-    jsonData
+    data = Replace[jsonData, {{___, _["fields", data_], ___} :> data, _ -> Missing["NotAvailable"]}];
+
+    Switch[
+        field,
+        All, data,
+        _String, Cases[data, _[field, v_] :> v] /. {{v_} :> v, _ -> Missing["NotAvailable"]},
+        _, $Failed
+    ]
 ];
 
 
