@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc6b9b8e-5070-48c0-8d8d-b8f1437b63c4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/meng.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Kernel/JIRALink.m" afterPath="$PROJECT_DIR$/Kernel/JIRALink.m" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +17,8 @@
       <file leaf-file-name="JIRALink.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Kernel/JIRALink.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10634">
-              <caret line="409" column="1" lean-forward="true" selection-start-line="409" selection-start-column="1" selection-end-line="409" selection-end-column="1" />
+            <state relative-caret-position="347">
+              <caret line="400" column="0" lean-forward="true" selection-start-line="400" selection-start-column="0" selection-end-line="400" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -240,12 +239,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1507657588101</updated>
-      <workItem from="1507657589402" duration="574000" />
+      <workItem from="1507657589402" duration="1357000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="574000" />
+    <option name="totallyTimeSpent" value="1357000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="0" />
@@ -294,8 +293,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Kernel/JIRALink.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10634">
-          <caret line="409" column="1" lean-forward="true" selection-start-line="409" selection-start-column="1" selection-end-line="409" selection-end-column="1" />
+        <state relative-caret-position="347">
+          <caret line="400" column="0" lean-forward="true" selection-start-line="400" selection-start-column="0" selection-end-line="400" selection-end-column="0" />
           <folding />
         </state>
       </provider>
