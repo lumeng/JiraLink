@@ -439,10 +439,10 @@ Options[JiraCreateIssue] = FilterRules[
 * Example command call:
 
     JiraCreateIssue[
-        "MYPROJECT", "XXX", {"Subtask", "MYPROJECT-1234"},
+        "SOMEPROJECT-1234", "Some summary", "Subtask",
         <|
-            "description"-> "XXX",
-            "assignee"-> <|"name"-> OptionValue[JiraCreateIssue, "JiraWebsiteUsername"]|>
+            "description" -> "XXX",
+            "assignee" -> <|"name"-> OptionValue[JiraCreateIssue, "JiraWebsiteUsername"]|>
         |>,
         "OpenQ"-> True
     ]
