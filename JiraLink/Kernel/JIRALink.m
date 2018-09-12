@@ -30,11 +30,6 @@ as an Association expression.";
 
 JiraDeleteIssue::usage = "JiraDeleteIssue[issueKey] deletes an issue.";
 
-JiraCreateSubtaskIssue::usage = "JiraCreateSubtaskIssue[parentIssueKey, \
-summary, moreProperties] creates a new issue in the specified project with the \
-specified summary (title). Specify additional properties (moreProperties) \
-as an Association expression.";
-
 JiraJqlSearch::usage = "JiraJqlSearch[jqlQuery] performs a JQL query";
 
 JiraFindIssues::usage = "JiraFindIssues[jqlQuery], JiraFindIssues[jqlQuery,
