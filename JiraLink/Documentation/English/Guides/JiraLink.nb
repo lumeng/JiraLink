@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     27296,        693]
-NotebookOptionsPosition[     20829,        577]
-NotebookOutlinePosition[     21238,        595]
-CellTagsIndexPosition[     21195,        592]
+NotebookDataLength[     21555,        578]
+NotebookOptionsPosition[     15774,        470]
+NotebookOutlinePosition[     16165,        487]
+CellTagsIndexPosition[     16122,        484]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -29,11 +29,14 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"NotebookDirectory", "[", "]"}], ",", 
       RowBox[{"-", "4"}]}], "]"}]}], "]"}], ";"}]], "Input",
- InitializationCell->
-  True,ExpressionUUID->"9be1c0e5-e691-4594-98c6-d02b811a275a"],
+ InitializationCell->True,
+ CellLabel->
+  "In[205]:=",ExpressionUUID->"9be1c0e5-e691-4594-98c6-d02b811a275a"],
 
 Cell[BoxData[
- RowBox[{"<<", "JiraLink`"}]], "Input",ExpressionUUID->"818b4781-a4eb-4d14-85d1-9c2506d8bbf0"]
+ RowBox[{"<<", "JiraLink`"}]], "Input",
+ CellLabel->
+  "In[206]:=",ExpressionUUID->"818b4781-a4eb-4d14-85d1-9c2506d8bbf0"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -45,8 +48,9 @@ Cell[CellGroupData[{
 Cell["JiraIssueOpen: opening a JIRA issue in web browser", "Subsection",ExpressionUUID->"e97e20cf-795d-4c70-8b61-1c1c51482525"],
 
 Cell[BoxData[
- RowBox[{"JiraIssueOpen", "[", "\"\<WALOCURATE-25253\>\"", "]"}]], "Input",Exp\
-ressionUUID->"4222e163-6a99-4851-a256-65b56f35df59"]
+ RowBox[{"JiraIssueOpen", "[", "\"\<WALOCURATE-25253\>\"", "]"}]], "Input",
+ CellLabel->
+  "In[207]:=",ExpressionUUID->"4222e163-6a99-4851-a256-65b56f35df59"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -59,16 +63,10 @@ Cell["All properties", "Subsubsection",ExpressionUUID->"62ccd39d-cd97-4b1b-842e-
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{"SetOptions", "[", 
-     RowBox[{"JiraApiExecute", ",", 
-      RowBox[{"\"\<HTTPRequestImplementation\>\"", "->", " ", "URLFetch"}]}], 
-     "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"JiraIssueData", "[", "\"\<WALOCURATE-13153\>\"", "]"}], "//", 
-   "TableForm"}]}]], "Input",ExpressionUUID->"b60291c9-df22-461c-a415-\
-af5723c557c0"]
+  RowBox[{"JiraIssueData", "[", "\"\<WALOCURATE-25253\>\"", "]"}], "//", 
+  "TableForm"}]], "Input",
+ CellLabel->
+  "In[210]:=",ExpressionUUID->"b60291c9-df22-461c-a415-af5723c557c0"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -77,13 +75,24 @@ Cell["Specific properties", "Subsubsection",ExpressionUUID->"dd222402-1239-484f-
 
 Cell[BoxData[
  RowBox[{"JiraIssueData", "[", 
-  RowBox[{"\"\<WALOCURATE-13153\>\"", ",", "\"\<summary\>\""}], 
-  "]"}]], "Input",ExpressionUUID->"f0d8d620-7300-4084-82d8-78f26223c30a"],
+  RowBox[{"\"\<WALOCURATE-25253\>\"", ",", "\"\<summary\>\""}], 
+  "]"}]], "Input",
+ CellLabel->
+  "In[211]:=",ExpressionUUID->"f0d8d620-7300-4084-82d8-78f26223c30a"],
 
 Cell[BoxData[
  RowBox[{"JiraIssueData", "[", 
-  RowBox[{"\"\<WALOCURATE-13153\>\"", ",", "\"\<assignee\>\""}], 
-  "]"}]], "Input",ExpressionUUID->"105cd0af-5d70-4b40-87aa-a484811ba49d"]
+  RowBox[{"\"\<WALOCURATE-25253\>\"", ",", "\"\<assignee\>\""}], 
+  "]"}]], "Input",
+ CellLabel->
+  "In[212]:=",ExpressionUUID->"105cd0af-5d70-4b40-87aa-a484811ba49d"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueData", "[", 
+  RowBox[{"\"\<WALOCURATE-25253\>\"", ",", "\"\<description\>\""}], 
+  "]"}]], "Input",
+ CellLabel->
+  "In[213]:=",ExpressionUUID->"ff3ae907-b70c-4b94-8534-25729a8998e8"]
 }, Closed]]
 }, Closed]],
 
@@ -96,114 +105,24 @@ Cell[CellGroupData[{
 Cell["Create top-level issues", "Subsubsection",ExpressionUUID->"40fdcc48-ccd4-4147-9bc8-3fa9ec8cf9f6"],
 
 Cell["\<\
-SetOptions[JiraApiExecute, \"HTTPRequestImplementation\" -> {Automatic, \
-URLFetch, Import}[[1]]];
 JiraCreateIssue[
- \"WALOCURATE\",
- \"SummaryXXX\",
- \"Bug\",
- <|
-  \"description\" -> \"XXX\",
-  \"priority\" -> <|\"name\" -> \"Major\"|>,
-  \"assignee\" -> <|\"name\" -> OptionValue[JiraApiExecute, \
+    \"WALOCURATE\",
+    \"SummaryXXX\",
+    \"Bug\",
+    <|
+        \"description\" -> \"XXX\",
+        \"priority\" -> <|\"name\" -> \"Blocker\"|>,
+        \"assignee\" -> <|\"name\" -> OptionValue[JiraApiExecute, \
 \"JiraWebsiteUsername\"]|>,
-  \"reporter\" -> <|\"name\" -> \"walocalizationgroup\"|>,
-  \"components\" -> {<|\"name\" -> \"zh\"|>, <|\"name\" -> \"ja\"|>},
-  \"labels\" -> {\"mengJiraLinkTest\"}
-  |>,
- \"OpenQ\" -> True
+        \"reporter\" -> <|\"name\" -> OptionValue[JiraApiExecute, \
+\"JiraWebsiteUsername\"]|>,
+        \"components\" -> {<|\"name\" -> \"AllLanguages\"|>, <|\"name\" -> \
+\"ja\"|>},
+        \"labels\" -> {\"mengJiraLinkTest\"}
+    |>,
+    \"OpenQ\" -> True
  ]\
 \>", "Program",ExpressionUUID->"2b7f1858-5d49-49a9-af69-49c4010a04a5"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{"SetOptions", "[", 
-     RowBox[{"JiraApiExecute", ",", 
-      RowBox[{"\"\<HTTPRequestImplementation\>\"", "\[Rule]", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{"Automatic", ",", "URLFetch", ",", "Import"}], "}"}], "[", 
-        RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}], ";"}], "*)"}], "\n", 
-  RowBox[{"Table", "[", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"JiraCreateIssue", "[", "\[IndentingNewLine]", 
-     RowBox[{
-     "\"\<WALOCURATE\>\"", ",", "\[IndentingNewLine]", "title", ",", 
-      "\[IndentingNewLine]", "\"\<Bug\>\"", ",", "\[IndentingNewLine]", 
-      RowBox[{"<|", "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"\"\<description\>\"", "\[Rule]", "\"\<XXX\>\""}], ",", 
-        "\[IndentingNewLine]", 
-        RowBox[{"\"\<priority\>\"", "\[Rule]", 
-         RowBox[{"<|", 
-          RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<Blocker\>\""}], "|>"}]}], 
-        ",", "\[IndentingNewLine]", 
-        RowBox[{"\"\<assignee\>\"", "\[Rule]", 
-         RowBox[{"<|", 
-          RowBox[{"\"\<name\>\"", "\[Rule]", 
-           RowBox[{"OptionValue", "[", 
-            RowBox[{"JiraApiExecute", ",", "\"\<JiraWebsiteUsername\>\""}], 
-            "]"}]}], "|>"}]}], ",", "\[IndentingNewLine]", 
-        RowBox[{"\"\<reporter\>\"", "\[Rule]", 
-         RowBox[{"<|", 
-          RowBox[{"\"\<name\>\"", "\[Rule]", 
-           RowBox[{"OptionValue", "[", 
-            RowBox[{"JiraApiExecute", ",", "\"\<JiraWebsiteUsername\>\""}], 
-            "]"}]}], 
-          RowBox[{"(*", "\"\<walocalizationgroup\>\"", "*)"}], "|>"}]}], ",", 
-        "\[IndentingNewLine]", 
-        RowBox[{"\"\<components\>\"", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"<|", 
-            RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<DataPaclet\>\""}], "|>"}],
-            ",", 
-           RowBox[{"<|", 
-            RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<ja\>\""}], "|>"}]}], 
-          "}"}]}], ",", "\[IndentingNewLine]", 
-        RowBox[{"\"\<labels\>\"", "\[Rule]", 
-         RowBox[{"{", "\"\<mengJiraLinkTest\>\"", "}"}]}]}], 
-       "\[IndentingNewLine]", "|>"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"\"\<OpenQ\>\"", "\[Rule]", "False"}]}], "\[IndentingNewLine]", 
-     "]"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"{", 
-     RowBox[{"title", ",", "datapacletNames"}], "}"}]}], 
-   "\[IndentingNewLine]", "]"}]}]], "Input",ExpressionUUID->"ac5b9400-9fe6-\
-4691-876b-f96c381b3922"],
-
-Cell[BoxData[
- RowBox[{"datapacletNames", "=", 
-  RowBox[{
-   RowBox[{"Composition", "[", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"#", "[", 
-       RowBox[{"[", 
-        RowBox[{";;", "10"}], "]"}], "]"}], "&"}], ",", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"StringReplace", "[", 
-         RowBox[{"#", ",", 
-          RowBox[{
-           RowBox[{
-           "RegularExpression", "[", 
-            "\"\<(Entity|EntityClass|Property|PropertyClass)$\>\"", "]"}], 
-           "\[Rule]", "  ", "\"\<\>\""}]}], "]"}], "&"}], "/@", "#"}], "&"}], 
-     ",", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"FileBaseName", "/@", "#"}], "&"}], ",", "\[IndentingNewLine]", 
-     
-     RowBox[{
-      RowBox[{"FileNames", "[", 
-       RowBox[{"\"\<*.m\>\"", ",", 
-        RowBox[{"{", "#", "}"}]}], "]"}], "&"}]}], "\[IndentingNewLine]", 
-    "]"}], "[", 
-   "\"\</Users/meng/WorkSpace-meng2maclap/Wolfram/AlphaDev/AlphaSource/\
-CalculateData/DataPaclets\>\"", "]"}]}]], "Input",ExpressionUUID->"fb3d4c8e-\
-8a75-4103-b63d-596ac52bf931"],
 
 Cell[BoxData[
  RowBox[{"JiraCreateIssue", "[", "\[IndentingNewLine]", 
@@ -236,7 +155,8 @@ Cell[BoxData[
       RowBox[{"{", 
        RowBox[{
         RowBox[{"<|", 
-         RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<XXXXXXXX\>\""}], "|>"}], ",", 
+         RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<AllLanguages\>\""}], "|>"}], 
+        ",", 
         RowBox[{"<|", 
          RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<ja\>\""}], "|>"}]}], "}"}]}],
       ",", "\[IndentingNewLine]", 
@@ -244,7 +164,9 @@ Cell[BoxData[
       RowBox[{"{", "\"\<mengJiraLinkTest\>\"", "}"}]}]}], 
     "\[IndentingNewLine]", "|>"}], ",", "\[IndentingNewLine]", 
    RowBox[{"\"\<OpenQ\>\"", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
-  "]"}]], "Input",ExpressionUUID->"3cab3221-4bd6-4e53-8c0f-1bfdd3a4cff0"]
+  "]"}]], "Input",
+ CellLabel->
+  "In[218]:=",ExpressionUUID->"3cab3221-4bd6-4e53-8c0f-1bfdd3a4cff0"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -254,8 +176,9 @@ Cell["Create sub-task issues", "Subsubsection",ExpressionUUID->"a58f708b-e13f-46
 Cell[BoxData[
  RowBox[{
   RowBox[{"parentIssueKey", "=", 
-   RowBox[{"\"\<key\>\"", "/.", "%"}]}], ";"}]], "Input",ExpressionUUID->\
-"24736cc7-b06f-4150-911c-88e312906d57"],
+   RowBox[{"\"\<key\>\"", "/.", "%"}]}], ";"}]], "Input",
+ CellLabel->
+  "In[219]:=",ExpressionUUID->"24736cc7-b06f-4150-911c-88e312906d57"],
 
 Cell[BoxData[
  RowBox[{"JiraCreateIssue", "[", "\[IndentingNewLine]", 
@@ -285,37 +208,9 @@ WordsPhrases_*.nb\>\""}], ",", "\[IndentingNewLine]",
        "|>"}]}]}], "\[IndentingNewLine]", "|>"}], ",", "\[IndentingNewLine]", 
    
    RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "\[IndentingNewLine]",
-   "]"}]], "Input",ExpressionUUID->"319e4b78-a6ab-4edb-8e8c-9c7245f1b5bb"],
-
-Cell[BoxData[
- RowBox[{"JiraCreateIssue", "[", "\[IndentingNewLine]", 
-  RowBox[{
-  "\"\<WALOCURATE-13153\>\"", ",", "\[IndentingNewLine]", 
-   "\"\<SummaryXXX\>\"", ",", "\[IndentingNewLine]", "\"\<Subtask\>\"", ",", 
-   "\[IndentingNewLine]", 
-   RowBox[{"<|", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"\"\<description\>\"", "\[Rule]", " ", "\"\<XXX\>\""}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"\"\<priority\>\"", "\[Rule]", " ", 
-      RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<Major\>\""}], "|>"}]}], 
-     ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<assignee\>\"", "\[Rule]", " ", 
-      RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", " ", 
-        RowBox[{"OptionValue", "[", 
-         RowBox[{"JiraApiExecute", ",", "\"\<JiraWebsiteUsername\>\""}], 
-         "]"}]}], "|>"}]}], ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<reporter\>\"", "\[Rule]", 
-      RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<walocalizationgroup\>\""}], 
-       "|>"}]}]}], "\[IndentingNewLine]", "|>"}], ",", "\[IndentingNewLine]", 
-   
-   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "\[IndentingNewLine]",
-   "]"}]], "Input",ExpressionUUID->"94af26fd-ebce-47bd-becd-06f48f0f005f"],
-
-Cell[BoxData[""], "Input",ExpressionUUID->"b40c5710-3dd1-4db0-a3b8-423a708d062d"]
+   "]"}]], "Input",
+ CellLabel->
+  "In[220]:=",ExpressionUUID->"319e4b78-a6ab-4edb-8e8c-9c7245f1b5bb"]
 }, Closed]]
 }, Closed]],
 
@@ -325,31 +220,17 @@ Cell["JiraDeleteIssue", "Subsection",ExpressionUUID->"98b29914-a3f5-4807-be97-9f
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"$debugQ", "=", "True"}], ";"}]], "Input",ExpressionUUID->"a3eb1b8e-f75d-46bd-8da7-fb5840534673"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"parentIssueKey", "=", "\"\<WALOCURATE-17687\>\""}], ";"}]], "Input",\
-ExpressionUUID->"00904b6e-94b8-4867-9149-a143b98aef66"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"SetOptions", "[", 
-   RowBox[{"JiraDeleteIssue", ",", 
-    RowBox[{"\"\<DeleteSubtasks\>\"", "\[Rule]", "\"\<false\>\""}]}], "]"}], 
-  ";"}]], "Input",ExpressionUUID->"db4e676f-e87d-4aed-a18d-64a3af8fb74f"],
-
-Cell[BoxData[
- RowBox[{"JiraDeleteIssue", "[", 
-  RowBox[{"parentIssueKey", ",", 
-   RowBox[{"\"\<DeleteSubtasks\>\"", "\[Rule]", "\"\<false\>\""}]}], 
-  "]"}]], "Input",ExpressionUUID->"2b83e7e7-fe78-49b0-ab38-4792c7c10430"],
+  RowBox[{"parentIssueKey", "=", "parentIssueKey"}], ";"}]], "Input",
+ CellLabel->
+  "In[221]:=",ExpressionUUID->"00904b6e-94b8-4867-9149-a143b98aef66"],
 
 Cell[BoxData[
  RowBox[{"JiraDeleteIssue", "[", 
   RowBox[{"parentIssueKey", ",", 
    RowBox[{"\"\<DeleteSubtasks\>\"", "\[Rule]", "\"\<true\>\""}]}], 
-  "]"}]], "Input",ExpressionUUID->"b174c404-393b-40ca-8cd8-23ba3c1f49ac"]
+  "]"}]], "Input",
+ CellLabel->
+  "In[223]:=",ExpressionUUID->"b174c404-393b-40ca-8cd8-23ba3c1f49ac"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -360,8 +241,9 @@ Cell[BoxData[
  RowBox[{"Complement", "[", 
   RowBox[{
    RowBox[{"Options", "[", "JiraJqlSearch", "]"}], ",", 
-   RowBox[{"Options", "[", "JiraApiExecute", "]"}]}], "]"}]], "Input",Expressi\
-onUUID->"e3848673-2383-429b-87e3-799e34a00f3b"],
+   RowBox[{"Options", "[", "JiraApiExecute", "]"}]}], "]"}]], "Input",
+ CellLabel->
+  "In[224]:=",ExpressionUUID->"e3848673-2383-429b-87e3-799e34a00f3b"],
 
 Cell[BoxData[{
  RowBox[{
@@ -373,8 +255,9 @@ Cell[BoxData[{
      RowBox[{"\"\<MaxResults\>\"", "\[Rule]", "1000000"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"%", "//", "Length"}], "\[IndentingNewLine]", 
- RowBox[{"%%", "//", "Short"}]}], "Input",ExpressionUUID->"8996b7db-c173-442e-\
-9cb3-843d53144ff9"],
+ RowBox[{"%%", "//", "Short"}]}], "Input",
+ CellLabel->
+  "In[225]:=",ExpressionUUID->"8996b7db-c173-442e-9cb3-843d53144ff9"],
 
 Cell[BoxData[
  RowBox[{
@@ -384,7 +267,9 @@ Cell[BoxData[
     "\"\<project=WALOCURATE AND component in (ru) and component in \
 (WordsPhrases)\>\"", ",", 
      RowBox[{"\"\<MaxResults\>\"", "\[Rule]", "1000000"}]}], "]"}]}], 
-  ";"}]], "Input",ExpressionUUID->"4595a2a4-62f0-4df7-ac51-e0b11bff9618"],
+  ";"}]], "Input",
+ CellLabel->
+  "In[228]:=",ExpressionUUID->"4595a2a4-62f0-4df7-ac51-e0b11bff9618"],
 
 Cell[BoxData[
  RowBox[{"esWP", "=", 
@@ -405,8 +290,9 @@ Cell[BoxData[
       "&"}], ",", "\[IndentingNewLine]", 
      RowBox[{
       RowBox[{"\"\<issues\>\"", "/.", "#"}], "&"}]}], "\[IndentingNewLine]", 
-    "]"}], "[", "res", "]"}]}]], "Input",ExpressionUUID->"5a803921-3ff2-489d-\
-a43f-114238e631c8"],
+    "]"}], "[", "res", "]"}]}]], "Input",
+ CellLabel->
+  "In[229]:=",ExpressionUUID->"5a803921-3ff2-489d-a43f-114238e631c8"],
 
 Cell[BoxData[
  RowBox[{"ruWP", "=", 
@@ -427,15 +313,19 @@ Cell[BoxData[
       "&"}], ",", "\[IndentingNewLine]", 
      RowBox[{
       RowBox[{"\"\<issues\>\"", "/.", "#"}], "&"}]}], "\[IndentingNewLine]", 
-    "]"}], "[", "res", "]"}]}]], "Input",ExpressionUUID->"4764d160-40a4-4495-\
-b3da-8f86abe33f6e"],
+    "]"}], "[", "res", "]"}]}]], "Input",
+ CellLabel->
+  "In[230]:=",ExpressionUUID->"4764d160-40a4-4495-b3da-8f86abe33f6e"],
 
 Cell[BoxData[
  RowBox[{"Complement", "[", 
-  RowBox[{"esWP", ",", "ruWP"}], "]"}]], "Input",ExpressionUUID->"dcfd2251-\
-6fce-4059-b639-041422e73c2d"],
+  RowBox[{"esWP", ",", "ruWP"}], "]"}]], "Input",
+ CellLabel->
+  "In[231]:=",ExpressionUUID->"dcfd2251-6fce-4059-b639-041422e73c2d"],
 
-Cell[" issue.property[development].commits > 0", "Text",ExpressionUUID->"b432dcbe-d6fb-4183-98fa-93a90d757afd"],
+Cell["\<\
+Find JIRA issues with PRs by issue.property[development].prs > 0\
+\>", "Text",ExpressionUUID->"b432dcbe-d6fb-4183-98fa-93a90d757afd"],
 
 Cell[BoxData[
  RowBox[{
@@ -445,10 +335,13 @@ Cell[BoxData[
     "\"\<project=WALOCALIZATION AND issue.property[development].prs > 0 AND \
 issuetype !=sub-task\>\"", ",", 
      RowBox[{"\"\<MaxResults\>\"", "\[Rule]", "10"}], ",", 
-     RowBox[{"\"\<StartAt\>\"", "\[Rule]", "5"}]}], "]"}]}], ";"}]], "Input",E\
-xpressionUUID->"17e30097-0e26-45ae-88da-45186199e5bd"],
+     RowBox[{"\"\<StartAt\>\"", "\[Rule]", "5"}]}], "]"}]}], ";"}]], "Input",
+ CellLabel->
+  "In[232]:=",ExpressionUUID->"17e30097-0e26-45ae-88da-45186199e5bd"],
 
-Cell[BoxData["res"], "Input",ExpressionUUID->"9b2f1be0-b4a9-4012-a501-2900cd8d64d8"]
+Cell[BoxData["res"], "Input",
+ CellLabel->
+  "In[233]:=",ExpressionUUID->"9b2f1be0-b4a9-4012-a501-2900cd8d64d8"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -460,26 +353,22 @@ results\
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{
-   RowBox[{"$JQLQuery", "=", 
-    RowBox[{
-     RowBox[{"{", "\[IndentingNewLine]", 
-      RowBox[{
-      "\"\<project in (WALOCALIZATION) AND summary~\\\"Data\\\"\>\"", ",", 
-       "\[IndentingNewLine]", 
-       "\"\<project = WALOCURATE AND component in (ja) AND \\\"Ready to Begin\
-\\\" != No AND component = 'WordsPhrases' AND status = Closed ORDER BY \
+  RowBox[{"$JQLQuery", "=", 
+   RowBox[{
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+     "\"\<project in (WALOCALIZATION) AND summary~\\\"Data\\\"\>\"", ",", 
+      "\[IndentingNewLine]", 
+      "\"\<project = WALOCURATE AND component in (ja) AND \\\"Ready to \
+Begin\\\" != No AND component = 'WordsPhrases' AND status = Closed ORDER BY \
 summary ASC\>\""}], "\[IndentingNewLine]", "}"}], "[", 
-     RowBox[{"[", "1", "]"}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}]], "Input",ExpressionUUID->"276f8781-049d-4ca9-8212-\
-cce2b453d0af"],
+    RowBox[{"[", "1", "]"}], "]"}]}], ";"}]], "Input",
+ CellLabel->
+  "In[235]:=",ExpressionUUID->"276f8781-049d-4ca9-8212-cce2b453d0af"],
 
 Cell[CellGroupData[{
 
 Cell["Search issues", "Subsubsection",ExpressionUUID->"96b7d980-a6da-4eba-b171-e054e792c9f6"],
-
-Cell[BoxData[
- RowBox[{"Options", "[", "JiraFindIssues", "]"}]], "Input",ExpressionUUID->"c1e4ab3e-2340-4af6-8d37-4cf8dc36741a"],
 
 Cell[BoxData[{
  RowBox[{"res", "=", 
@@ -488,8 +377,9 @@ Cell[BoxData[{
     RowBox[{"\"\<MaxResults\>\"", "\[Rule]", "500"}], ",", 
     RowBox[{"\"\<StartAt\>\"", "\[Rule]", "10"}]}], 
    "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"res", "//", "Length"}]}], "Input",ExpressionUUID->"0eb39995-efe4-\
-48ff-81fc-272f2d1b8edf"]
+ RowBox[{"res", "//", "Length"}]}], "Input",
+ CellLabel->
+  "In[238]:=",ExpressionUUID->"0eb39995-efe4-48ff-81fc-272f2d1b8edf"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -497,13 +387,11 @@ Cell[CellGroupData[{
 Cell["Limit the number of issues found", "Subsubsection",ExpressionUUID->"ed67ab1f-1341-4a06-806b-9ade2852a27d"],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"data", "[", "1", "]"}], "=", 
-  RowBox[{"JiraFindIssues", "[", 
-   RowBox[{"$JQLQuery", ",", 
-    RowBox[{"\"\<MaxResults\>\"", "->", " ", 
-     RowBox[{"10", "^", "5"}]}]}], "]"}]}]], "Input",ExpressionUUID->\
-"c285f12b-8bf2-421e-97ea-63d992708c91"]
+ RowBox[{"JiraFindIssues", "[", 
+  RowBox[{"$JQLQuery", ",", 
+   RowBox[{"\"\<MaxResults\>\"", "\[Rule]", "500"}], ",", 
+   RowBox[{"\"\<StartAt\>\"", "\[Rule]", "10"}]}], "]"}]], "Input",ExpressionU\
+UID->"c285f12b-8bf2-421e-97ea-63d992708c91"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -512,21 +400,24 @@ Cell["List properties for found issues", "Subsubsection",ExpressionUUID->"9fe736
 
 Cell[BoxData[
  RowBox[{"JiraFindIssues", "[", 
+  RowBox[{"$JQLQuery", ",", "\"\<summary\>\"", ",", 
+   RowBox[{"\"\<MaxResults\>\"", "->", " ", "20"}]}], "]"}]], "Input",
+ CellLabel->
+  "In[243]:=",ExpressionUUID->"1cc8d47d-a8e5-4782-8847-9eab6ccc2cfc"],
+
+Cell[BoxData[
+ RowBox[{"JiraFindIssues", "[", 
   RowBox[{"$JQLQuery", ",", "\"\<Properties\>\"", ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",Expressio\
-nUUID->"8b29f945-84c4-495c-a8a6-a00c3569a4b8"],
+   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",
+ CellLabel->
+  "In[240]:=",ExpressionUUID->"8b29f945-84c4-495c-a8a6-a00c3569a4b8"],
 
 Cell[BoxData[
  RowBox[{"JiraFindIssues", "[", 
   RowBox[{"$JQLQuery", ",", "\"\<CoreProperties\>\"", ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",Expressio\
-nUUID->"4162278d-d4cf-4478-84f9-a255ae828654"],
-
-Cell[BoxData[
- RowBox[{"JiraFindIssues", "[", 
-  RowBox[{"$JQLQuery", ",", "\"\<summary\>\"", ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "1000"}]}], "]"}]], "Input",Expres\
-sionUUID->"1cc8d47d-a8e5-4782-8847-9eab6ccc2cfc"],
+   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",
+ CellLabel->
+  "In[241]:=",ExpressionUUID->"4162278d-d4cf-4478-84f9-a255ae828654"],
 
 Cell[BoxData[
  RowBox[{"JiraFindIssues", "[", 
@@ -535,16 +426,18 @@ Cell[BoxData[
     RowBox[{
     "\"\<summary\>\"", ",", "\"\<assignee\>\"", ",", "\"\<components\>\""}], 
     "}"}], ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",Expressio\
-nUUID->"451fceb8-abc5-47ab-ae98-f4436b87f074"],
+   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",
+ CellLabel->
+  "In[246]:=",ExpressionUUID->"451fceb8-abc5-47ab-ae98-f4436b87f074"],
 
 Cell[BoxData[
  RowBox[{"JiraFindIssues", "[", 
   RowBox[{"$JQLQuery", ",", 
    RowBox[{"{", 
     RowBox[{"\"\<summary\>\"", ",", "\"\<assignee\>\""}], "}"}], ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "1000"}]}], "]"}]], "Input",Expres\
-sionUUID->"da3811b8-95f5-4148-a7d2-1e146f8d55c8"]
+   RowBox[{"\"\<MaxResults\>\"", "->", " ", "10"}]}], "]"}]], "Input",
+ CellLabel->
+  "In[245]:=",ExpressionUUID->"da3811b8-95f5-4148-a7d2-1e146f8d55c8"]
 }, Closed]]
 }, Closed]]
 }, Closed]],
@@ -575,12 +468,11 @@ ssionUUID->"5368d1d5-4181-4d60-80e0-4c9a43ff9f17"]
 }, Closed]]
 }, Open  ]]
 },
-WindowSize->{1440, 851},
+WindowSize->{1440, 855},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 ShowSelection->True,
 Magnification:>1.25 Inherited,
-FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September 6, \
-2017)",
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (January 16, 2019)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -599,92 +491,85 @@ Cell[422, 15, 94, 0, 123, "Title",ExpressionUUID->"ce4ede5f-27a4-4002-b08f-e9b14
 Cell[CellGroupData[{
 Cell[541, 19, 88, 0, 84, "Section",ExpressionUUID->"1f809ab1-dee1-4fe3-86ba-12b3cc72beea"],
 Cell[632, 21, 85, 0, 37, "Input",ExpressionUUID->"28090362-57bb-4af1-be54-172e71d63d69"],
-Cell[720, 23, 325, 9, 57, "Input",ExpressionUUID->"9be1c0e5-e691-4594-98c6-d02b811a275a",
+Cell[720, 23, 350, 10, 57, "Input",ExpressionUUID->"9be1c0e5-e691-4594-98c6-d02b811a275a",
  InitializationCell->True],
-Cell[1048, 34, 108, 1, 37, "Input",ExpressionUUID->"818b4781-a4eb-4d14-85d1-9c2506d8bbf0"]
+Cell[1073, 35, 136, 3, 37, "Input",ExpressionUUID->"818b4781-a4eb-4d14-85d1-9c2506d8bbf0"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[1193, 40, 88, 0, 65, "Section",ExpressionUUID->"bbae2253-1da6-4950-8519-9e6f08630144"],
+Cell[1246, 43, 88, 0, 65, "Section",ExpressionUUID->"bbae2253-1da6-4950-8519-9e6f08630144"],
 Cell[CellGroupData[{
-Cell[1306, 44, 127, 0, 67, "Subsection",ExpressionUUID->"e97e20cf-795d-4c70-8b61-1c1c51482525"],
-Cell[1436, 46, 146, 2, 37, "Input",ExpressionUUID->"4222e163-6a99-4851-a256-65b56f35df59"]
+Cell[1359, 47, 127, 0, 67, "Subsection",ExpressionUUID->"e97e20cf-795d-4c70-8b61-1c1c51482525"],
+Cell[1489, 49, 172, 3, 37, "Input",ExpressionUUID->"4222e163-6a99-4851-a256-65b56f35df59"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[1619, 53, 126, 0, 46, "Subsection",ExpressionUUID->"c5ebc16c-bcdd-426e-aabd-4cef260d0e6c"],
+Cell[1698, 57, 126, 0, 67, "Subsection",ExpressionUUID->"c5ebc16c-bcdd-426e-aabd-4cef260d0e6c"],
 Cell[CellGroupData[{
-Cell[1770, 57, 94, 0, 56, "Subsubsection",ExpressionUUID->"62ccd39d-cd97-4b1b-842e-3c1af428a010"],
-Cell[1867, 59, 424, 11, 64, "Input",ExpressionUUID->"b60291c9-df22-461c-a415-af5723c557c0"]
+Cell[1849, 61, 94, 0, 56, "Subsubsection",ExpressionUUID->"62ccd39d-cd97-4b1b-842e-3c1af428a010"],
+Cell[1946, 63, 207, 5, 37, "Input",ExpressionUUID->"b60291c9-df22-461c-a415-af5723c557c0"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[2328, 75, 99, 0, 45, "Subsubsection",ExpressionUUID->"dd222402-1239-484f-9ed6-9731ff743b90"],
-Cell[2430, 77, 184, 3, 37, "Input",ExpressionUUID->"f0d8d620-7300-4084-82d8-78f26223c30a"],
-Cell[2617, 82, 185, 3, 37, "Input",ExpressionUUID->"105cd0af-5d70-4b40-87aa-a484811ba49d"]
+Cell[2190, 73, 99, 0, 56, "Subsubsection",ExpressionUUID->"dd222402-1239-484f-9ed6-9731ff743b90"],
+Cell[2292, 75, 212, 5, 37, "Input",ExpressionUUID->"f0d8d620-7300-4084-82d8-78f26223c30a"],
+Cell[2507, 82, 213, 5, 37, "Input",ExpressionUUID->"105cd0af-5d70-4b40-87aa-a484811ba49d"],
+Cell[2723, 89, 216, 5, 37, "Input",ExpressionUUID->"ff3ae907-b70c-4b94-8534-25729a8998e8"]
 }, Closed]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[2851, 91, 114, 0, 46, "Subsection",ExpressionUUID->"a46f38ca-3544-4434-87f1-d423acc283ab"],
+Cell[2988, 100, 114, 0, 67, "Subsection",ExpressionUUID->"a46f38ca-3544-4434-87f1-d423acc283ab"],
 Cell[CellGroupData[{
-Cell[2990, 95, 103, 0, 56, "Subsubsection",ExpressionUUID->"40fdcc48-ccd4-4147-9bc8-3fa9ec8cf9f6"],
-Cell[3096, 97, 606, 18, 360, "Program",ExpressionUUID->"2b7f1858-5d49-49a9-af69-49c4010a04a5"],
-Cell[3705, 117, 2499, 56, 480, "Input",ExpressionUUID->"ac5b9400-9fe6-4691-876b-f96c381b3922"],
-Cell[6207, 175, 1099, 30, 168, "Input",ExpressionUUID->"fb3d4c8e-8a75-4103-b63d-596ac52bf931"],
-Cell[7309, 207, 1817, 39, 376, "Input",ExpressionUUID->"3cab3221-4bd6-4e53-8c0f-1bfdd3a4cff0"]
+Cell[3127, 104, 103, 0, 56, "Subsubsection",ExpressionUUID->"40fdcc48-ccd4-4147-9bc8-3fa9ec8cf9f6"],
+Cell[3233, 106, 605, 18, 339, "Program",ExpressionUUID->"2b7f1858-5d49-49a9-af69-49c4010a04a5"],
+Cell[3841, 126, 1858, 42, 376, "Input",ExpressionUUID->"3cab3221-4bd6-4e53-8c0f-1bfdd3a4cff0"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[9163, 251, 102, 0, 45, "Subsubsection",ExpressionUUID->"a58f708b-e13f-4608-b8d1-7a3fc02bdea1"],
-Cell[9268, 253, 172, 4, 37, "Input",ExpressionUUID->"24736cc7-b06f-4150-911c-88e312906d57"],
-Cell[9443, 259, 1398, 28, 324, "Input",ExpressionUUID->"319e4b78-a6ab-4edb-8e8c-9c7245f1b5bb"],
-Cell[10844, 289, 1251, 26, 324, "Input",ExpressionUUID->"94af26fd-ebce-47bd-becd-06f48f0f005f"],
-Cell[12098, 317, 81, 0, 37, "Input",ExpressionUUID->"b40c5710-3dd1-4db0-a3b8-423a708d062d"]
+Cell[5736, 173, 102, 0, 56, "Subsubsection",ExpressionUUID->"a58f708b-e13f-4608-b8d1-7a3fc02bdea1"],
+Cell[5841, 175, 198, 5, 37, "Input",ExpressionUUID->"24736cc7-b06f-4150-911c-88e312906d57"],
+Cell[6042, 182, 1426, 30, 376, "Input",ExpressionUUID->"319e4b78-a6ab-4edb-8e8c-9c7245f1b5bb"]
 }, Closed]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[12228, 323, 92, 0, 46, "Subsection",ExpressionUUID->"98b29914-a3f5-4807-be97-9f0f91b0e563"],
-Cell[12323, 325, 131, 2, 37, "Input",ExpressionUUID->"a3eb1b8e-f75d-46bd-8da7-fb5840534673"],
-Cell[12457, 329, 160, 3, 37, "Input",ExpressionUUID->"00904b6e-94b8-4867-9149-a143b98aef66"],
-Cell[12620, 334, 241, 5, 37, "Input",ExpressionUUID->"db4e676f-e87d-4aed-a18d-64a3af8fb74f"],
-Cell[12864, 341, 225, 4, 37, "Input",ExpressionUUID->"2b83e7e7-fe78-49b0-ab38-4792c7c10430"],
-Cell[13092, 347, 224, 4, 37, "Input",ExpressionUUID->"b174c404-393b-40ca-8cd8-23ba3c1f49ac"]
+Cell[7517, 218, 92, 0, 67, "Subsection",ExpressionUUID->"98b29914-a3f5-4807-be97-9f0f91b0e563"],
+Cell[7612, 220, 176, 4, 37, "Input",ExpressionUUID->"00904b6e-94b8-4867-9149-a143b98aef66"],
+Cell[7791, 226, 252, 6, 37, "Input",ExpressionUUID->"b174c404-393b-40ca-8cd8-23ba3c1f49ac"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[13353, 356, 125, 0, 46, "Subsection",ExpressionUUID->"7a3b6e54-4fd5-49ed-bb13-bc7e7b8e3dd9"],
-Cell[13481, 358, 238, 5, 37, "Input",ExpressionUUID->"e3848673-2383-429b-87e3-799e34a00f3b"],
-Cell[13722, 365, 450, 11, 90, "Input",ExpressionUUID->"8996b7db-c173-442e-9cb3-843d53144ff9"],
-Cell[14175, 378, 334, 8, 37, "Input",ExpressionUUID->"4595a2a4-62f0-4df7-ac51-e0b11bff9618"],
-Cell[14512, 388, 677, 20, 142, "Input",ExpressionUUID->"5a803921-3ff2-489d-a43f-114238e631c8"],
-Cell[15192, 410, 677, 20, 142, "Input",ExpressionUUID->"4764d160-40a4-4495-b3da-8f86abe33f6e"],
-Cell[15872, 432, 149, 3, 37, "Input",ExpressionUUID->"dcfd2251-6fce-4059-b639-041422e73c2d"],
-Cell[16024, 437, 111, 0, 44, "Text",ExpressionUUID->"b432dcbe-d6fb-4183-98fa-93a90d757afd"],
-Cell[16138, 439, 399, 9, 37, "Input",ExpressionUUID->"17e30097-0e26-45ae-88da-45186199e5bd"],
-Cell[16540, 450, 84, 0, 37, "Input",ExpressionUUID->"9b2f1be0-b4a9-4012-a501-2900cd8d64d8"]
+Cell[8080, 237, 125, 0, 67, "Subsection",ExpressionUUID->"7a3b6e54-4fd5-49ed-bb13-bc7e7b8e3dd9"],
+Cell[8208, 239, 264, 6, 37, "Input",ExpressionUUID->"e3848673-2383-429b-87e3-799e34a00f3b"],
+Cell[8475, 247, 476, 12, 90, "Input",ExpressionUUID->"8996b7db-c173-442e-9cb3-843d53144ff9"],
+Cell[8954, 261, 362, 10, 37, "Input",ExpressionUUID->"4595a2a4-62f0-4df7-ac51-e0b11bff9618"],
+Cell[9319, 273, 703, 21, 142, "Input",ExpressionUUID->"5a803921-3ff2-489d-a43f-114238e631c8"],
+Cell[10025, 296, 703, 21, 142, "Input",ExpressionUUID->"4764d160-40a4-4495-b3da-8f86abe33f6e"],
+Cell[10731, 319, 175, 4, 37, "Input",ExpressionUUID->"dcfd2251-6fce-4059-b639-041422e73c2d"],
+Cell[10909, 325, 143, 2, 44, "Text",ExpressionUUID->"b432dcbe-d6fb-4183-98fa-93a90d757afd"],
+Cell[11055, 329, 425, 10, 64, "Input",ExpressionUUID->"17e30097-0e26-45ae-88da-45186199e5bd"],
+Cell[11483, 341, 112, 2, 37, "Input",ExpressionUUID->"9b2f1be0-b4a9-4012-a501-2900cd8d64d8"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[16661, 455, 168, 3, 46, "Subsection",ExpressionUUID->"d91736e6-870f-4e4f-97e7-6644585c08b3"],
-Cell[16832, 460, 590, 14, 142, "Input",ExpressionUUID->"276f8781-049d-4ca9-8212-cce2b453d0af"],
+Cell[11632, 348, 168, 3, 67, "Subsection",ExpressionUUID->"d91736e6-870f-4e4f-97e7-6644585c08b3"],
+Cell[11803, 353, 569, 13, 142, "Input",ExpressionUUID->"276f8781-049d-4ca9-8212-cce2b453d0af"],
 Cell[CellGroupData[{
-Cell[17447, 478, 93, 0, 56, "Subsubsection",ExpressionUUID->"96b7d980-a6da-4eba-b171-e054e792c9f6"],
-Cell[17543, 480, 128, 1, 37, "Input",ExpressionUUID->"c1e4ab3e-2340-4af6-8d37-4cf8dc36741a"],
-Cell[17674, 483, 351, 8, 64, "Input",ExpressionUUID->"0eb39995-efe4-48ff-81fc-272f2d1b8edf"]
+Cell[12397, 370, 93, 0, 56, "Subsubsection",ExpressionUUID->"96b7d980-a6da-4eba-b171-e054e792c9f6"],
+Cell[12493, 372, 377, 9, 64, "Input",ExpressionUUID->"0eb39995-efe4-48ff-81fc-272f2d1b8edf"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[18062, 496, 112, 0, 56, "Subsubsection",ExpressionUUID->"ed67ab1f-1341-4a06-806b-9ade2852a27d"],
-Cell[18177, 498, 285, 7, 37, "Input",ExpressionUUID->"c285f12b-8bf2-421e-97ea-63d992708c91"]
+Cell[12907, 386, 112, 0, 56, "Subsubsection",ExpressionUUID->"ed67ab1f-1341-4a06-806b-9ade2852a27d"],
+Cell[13022, 388, 259, 5, 37, "Input",ExpressionUUID->"c285f12b-8bf2-421e-97ea-63d992708c91"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[18499, 510, 112, 0, 56, "Subsubsection",ExpressionUUID->"9fe73642-68b3-462f-868c-0a2365562959"],
-Cell[18614, 512, 229, 4, 37, "Input",ExpressionUUID->"8b29f945-84c4-495c-a8a6-a00c3569a4b8"],
-Cell[18846, 518, 233, 4, 37, "Input",ExpressionUUID->"4162278d-d4cf-4478-84f9-a255ae828654"],
-Cell[19082, 524, 229, 4, 37, "Input",ExpressionUUID->"1cc8d47d-a8e5-4782-8847-9eab6ccc2cfc"],
-Cell[19314, 530, 327, 8, 37, "Input",ExpressionUUID->"451fceb8-abc5-47ab-ae98-f4436b87f074"],
-Cell[19644, 540, 293, 6, 37, "Input",ExpressionUUID->"da3811b8-95f5-4148-a7d2-1e146f8d55c8"]
+Cell[13318, 398, 112, 0, 56, "Subsubsection",ExpressionUUID->"9fe73642-68b3-462f-868c-0a2365562959"],
+Cell[13433, 400, 253, 5, 37, "Input",ExpressionUUID->"1cc8d47d-a8e5-4782-8847-9eab6ccc2cfc"],
+Cell[13689, 407, 255, 5, 37, "Input",ExpressionUUID->"8b29f945-84c4-495c-a8a6-a00c3569a4b8"],
+Cell[13947, 414, 259, 5, 37, "Input",ExpressionUUID->"4162278d-d4cf-4478-84f9-a255ae828654"],
+Cell[14209, 421, 353, 9, 37, "Input",ExpressionUUID->"451fceb8-abc5-47ab-ae98-f4436b87f074"],
+Cell[14565, 432, 317, 7, 37, "Input",ExpressionUUID->"da3811b8-95f5-4148-a7d2-1e146f8d55c8"]
 }, Closed]]
 }, Closed]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[19998, 553, 84, 0, 65, "Section",ExpressionUUID->"8afbed56-38fa-41a3-986c-581be394fb52"],
+Cell[14943, 446, 84, 0, 65, "Section",ExpressionUUID->"8afbed56-38fa-41a3-986c-581be394fb52"],
 Cell[CellGroupData[{
-Cell[20107, 557, 368, 8, 40, "Item",ExpressionUUID->"55c83669-058e-4a3e-8d7b-9179ca450822"],
-Cell[20478, 567, 311, 5, 40, "Item",ExpressionUUID->"5368d1d5-4181-4d60-80e0-4c9a43ff9f17"]
+Cell[15052, 450, 368, 8, 40, "Item",ExpressionUUID->"55c83669-058e-4a3e-8d7b-9179ca450822"],
+Cell[15423, 460, 311, 5, 40, "Item",ExpressionUUID->"5368d1d5-4181-4d60-80e0-4c9a43ff9f17"]
 }, Closed]]
 }, Closed]]
 }, Open  ]]
