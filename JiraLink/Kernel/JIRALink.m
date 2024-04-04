@@ -163,7 +163,7 @@ GenerateEncryptedLoginInfoFile[encryptPassword_] := Module[
 
     {host, username, password} = DialogInput[
         {
-            jiraHost = "http://jira.example.com:8080",
+            jiraHost = "https://jira.example.com",
             jiraUsername = $UserName,
             jiraPassword = ""
         },
@@ -238,7 +238,7 @@ $JiraLogin = Decrypt[
 * Use `URLFetch`
 
     URLFetch[
-        "http://jira.example.com:8080/jira/rest/api/2/issue/MYPROJECT-123",
+        "https://jira.example.com/jira/rest/api/2/issue/MYPROJECT-123",
         "Headers"->  {
             "u"-> "USER:PASSWORD",
             "Content-Type"-> "application/json; charset=UTF-8"
@@ -250,7 +250,7 @@ $JiraLogin = Decrypt[
     With[
         {auth = "Basic " <> Developer`EncodeBase64[StringTemplate["`JiraWebisteUsername`:`JiraWebistePassword`"][Association[Options[JiraApiExecute]]]]}
         URLFetch[
-            "http://jira.example.com:8080/jira/rest/api/2/issue/MYPROJECT-123",
+            "https://jira.example.com/jira/rest/api/2/issue/MYPROJECT-123",
             "Headers"->  {
                 "Authorization" -> auth,
                 "Content-Type" -> "application/json"
@@ -264,7 +264,7 @@ $JiraLogin = Decrypt[
 ClearAll[JiraApiExecute];
 
 Options[JiraApiExecute] = {
-    "JiraWebsiteURL" -> "http://jira.example.com:8080",
+    "JiraWebsiteURL" -> "https://jira.example.com",
     "JiraWebsiteUsername" -> None,
     "JiraWebsitePassword" -> None,
     "Method" -> "GET",
