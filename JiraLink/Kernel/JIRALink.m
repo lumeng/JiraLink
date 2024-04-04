@@ -38,6 +38,9 @@ JQL query to find issues and their properties.";
 
 Begin["`Private`"];
 
+Unprotect /@ Names["JiraLink`*"];
+ClearAll /@ Names["JiraLink`Private`*"];
+
 (* ::Section:: *)
 (*******************************************************************************
 ## Debug
