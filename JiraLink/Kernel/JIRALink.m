@@ -268,7 +268,7 @@ Options[JiraApiExecute] = {
     "JiraWebsiteUsername" -> None,
     "JiraWebsitePassword" -> None,
     "Method" -> "GET",
-    "HTTPRequestImplementation" -> {Automatic, Import, URLFetch}[[1]],
+    "HTTPRequestImplementation" -> {Automatic, "HTTPRequest", "URLRead", "Import", "URLFetch"}[[1]],
     "Parameters" -> {}
 };
 
@@ -283,8 +283,10 @@ Language expression using ImportString[in, \"JSON\"]. Use String expression
 instead of the more structured list of rules, numbers, and strings, etc. to \
 represent the JSON object.";
 
-JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern[]] := Module[
-    {host, apiUrl, params, username, password, loginInfo, method, contentType, jsonData, result, header, authorization},
+(** https://jira.wolfram.com/jira/rest/api/2/serverInfo **)
+
+JiraApiExecute[resourceName_String, params_Association: <||>, OptionsPattern[]] := Module[
+    {host, apiUrl, username, password, authentication, loginInfo, method, contentType, jsonData, result, header, authorization},
     host = OptionValue["JiraWebsiteURL"];
     username  = OptionValue["JiraWebsiteUsername"];
     password = OptionValue["JiraWebsitePassword"];
@@ -299,6 +301,7 @@ JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern
         ]
     ];
 
+    authentication = <|"Username" -> username, "Password" -> password|>;
 
     loginInfo = If[
         StringQ[username],
@@ -312,7 +315,7 @@ JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern
     contentType = $JiraApiHttpContentType;
 
     jsonData = Check[
-        ExportString[headerData, "JSON"],
+        ExportString[params, "JSON"],
         Message[JiraApiExecute::badprop, headerData];
         Abort[]
     ];
@@ -320,7 +323,7 @@ JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern
     result = Switch[
         OptionValue["HTTPRequestImplementation"],
 
-        Import,
+        "Import",
 
         Import["!curl "
             <> apiUrl <> " "
@@ -332,22 +335,39 @@ JiraApiExecute[resourceName_String, headerData_Association: <||>, OptionsPattern
             "Text"
         ]//debugPrint,
 
-        _,
 
+        "URLFetch",
         URLFetch[
             apiUrl,
             "Headers"->  {
-                (*"u"-> loginInfo,*)
                 "Authorization" -> authorization,
                 "Content-Type"-> contentType
             },
             "Body" -> jsonData,
             Method-> method,
             "Parameters" -> OptionValue["Parameters"]
+        ]//debugPrint,
+
+        "URLExecute",
+        URLExecute[
+                apiUrl,
+            {},
+            "RawJSON",
+            Authentication -> authentication
+        ]//debugPrint,
+
+        _ | Automatic | "URLExecuteAndHTTPRequest",
+        URLExecute[
+            HTTPRequest[
+            apiUrl,
+                <||>
+            ],
+            "RawJSON",
+            Authentication -> authentication
         ]//debugPrint
     ];
 
-    jsonStringToExpression[result]
+    result
 
 ];
 
@@ -395,14 +415,18 @@ JiraIssueData[issueKey_String, field_: All, opts:OptionsPattern[]] := Module[
 
     resourceName = URLBuild[{"issue", issueKey}];
 
-    jsonData = JiraApiExecute[resourceName, "Method" -> "GET", opts];
+    jsonData = JiraApiExecute[resourceName, <||>, opts];
 
-    data = Replace[jsonData, {{___, _["fields", data_], ___} :> data, _ -> Missing["NotAvailable"]}];
+    data = If[
+        KeyExistsQ[jsonData, "fields"],
+        jsonData["fields"],
+        Missing["NotAvailable"]
+    ];
 
     Switch[
         field,
         All, data,
-        _String, Cases[data, _[field, v_] :> v] /. {{v_} :> v, _ -> Missing["NotAvailable"]},
+        _String, Replace[data[field], {{v_} :> v, Null -> Missing["NotAvailable"]}],
         _, $Failed
     ]
 ];
