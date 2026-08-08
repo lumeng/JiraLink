@@ -1,577 +1,2786 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[         0,          0]
-NotebookDataLength[     21555,        578]
-NotebookOptionsPosition[     15774,        470]
-NotebookOutlinePosition[     16165,        487]
-CellTagsIndexPosition[     16122,        484]
+NotebookDataPosition[       154,          7]
+NotebookDataLength[    123650,       2780]
+NotebookOptionsPosition[     85296,       2193]
+NotebookOutlinePosition[     99008,       2459]
+CellTagsIndexPosition[     98838,       2452]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["JiraLink` introduction", "Title",ExpressionUUID->"ce4ede5f-27a4-4002-b08f-e9b149c3e645"],
-
-Cell[CellGroupData[{
-
-Cell["Initialization", "Section",ExpressionUUID->"1f809ab1-dee1-4fe3-86ba-12b3cc72beea"],
-
-Cell[BoxData["Quit"], "Input",ExpressionUUID->"28090362-57bb-4af1-be54-172e71d63d69"],
+Cell[BoxData[
+ RowBox[{"mengCreateToolbar", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.9952332936439466`*^9, 3.995233297718961*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"9346854f-700f-4cb2-9de4-c77fef24929e"],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"PrependTo", "[", 
-   RowBox[{"$Path", ",", 
-    RowBox[{"FileNameDrop", "[", 
-     RowBox[{
-      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
-      RowBox[{"-", "4"}]}], "]"}]}], "]"}], ";"}]], "Input",
- InitializationCell->True,
- CellLabel->
-  "In[205]:=",ExpressionUUID->"9be1c0e5-e691-4594-98c6-d02b811a275a"],
-
-Cell[BoxData[
- RowBox[{"<<", "JiraLink`"}]], "Input",
- CellLabel->
-  "In[206]:=",ExpressionUUID->"818b4781-a4eb-4d14-85d1-9c2506d8bbf0"]
-}, Closed]],
+ TemplateBox[<|
+  "obj" -> NotebookObject[
+    "6ea2af09-b0aa-4900-a523-bbee50020b81", 
+     "aa890bb0-82c2-4518-9b58-0b48510c6db9"], "label" -> "\"JiraLink.nb\"", 
+   "tooltip" -> 
+   "\"/Users/meng/Library/CloudStorage/Dropbox/WorkSpace-Dropbox/repositories/\
+JiraLink/JiraLink/Documentation/English/Guides/JiraLink.nb\""|>,
+  "NotebookObjectUUIDs"]], "Output",
+ CellChangeTimes->{3.995233298323429*^9},
+ CellLabel->"Out[19]=",ExpressionUUID->"8f9ad3c2-32ef-4428-863c-14fca44bb393"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["Usage examples", "Section",ExpressionUUID->"bbae2253-1da6-4950-8519-9e6f08630144"],
+Cell["JiraLink", "Title",ExpressionUUID->"1a520956-72d0-4395-a483-1fac88646165"],
 
-Cell[CellGroupData[{
+Cell["last timestamp: 2026-08-08T20:01:38-07:00", "Text",
+ CellTags->
+  "mengToolbarTimestamp",ExpressionUUID->"75ed3d66-e460-457a-b0d4-\
+eb41f3cd559f"],
 
-Cell["JiraIssueOpen: opening a JIRA issue in web browser", "Subsection",ExpressionUUID->"e97e20cf-795d-4c70-8b61-1c1c51482525"],
+Cell[TextData[{
+ "A Wolfram Language client for the Jira REST API, targeting ",
+ StyleBox["Jira Server / Data Center 9.x",
+  FontWeight->Bold],
+ ": platform API v2 (",
+ Cell[BoxData[Cell["/rest/api/2",
+   Background->None,ExpressionUUID->"3cbc72b0-0efa-48f1-a0b6-664f4f4d2fc3"]], 
+  "InlineCode",ExpressionUUID->"8dfaf457-0a6b-454a-b953-f428accb9136"],
+ "), the Agile API (",
+ Cell[BoxData[Cell["/rest/agile/1.0",
+   Background->None,ExpressionUUID->"933e2f0b-3790-4449-b6d0-af688264ce1b"]], 
+  "InlineCode",ExpressionUUID->"b4cd91c7-85ea-44f1-93c1-1db7029a59f0"],
+ "), Jira Service Management (",
+ Cell[BoxData[Cell["/rest/servicedeskapi",
+   Background->None,ExpressionUUID->"3f6c076f-ece3-4dd5-8ebd-a89009ecf4e8"]], 
+  "InlineCode",ExpressionUUID->"6c37a82e-8297-463b-b063-bf4d146764bb"],
+ "), and personal access tokens (",
+ Cell[BoxData[Cell["/rest/pat/latest",
+   Background->None,ExpressionUUID->"090e08dd-3723-4715-b734-07828467d38a"]], 
+  "InlineCode",ExpressionUUID->"822412d4-8feb-4a49-97cf-fd7e90a84eab"],
+ ")."
+}], "Text",ExpressionUUID->"a41f3bcc-3bba-48fb-9d76-f8939b7ce61f"],
 
-Cell[BoxData[
- RowBox[{"JiraIssueOpen", "[", "\"\<WALOCURATE-25253\>\"", "]"}]], "Input",
- CellLabel->
-  "In[207]:=",ExpressionUUID->"4222e163-6a99-4851-a256-65b56f35df59"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["JiraIssueData: finding properties of a JIRA issue", "Subsection",ExpressionUUID->"c5ebc16c-bcdd-426e-aabd-4cef260d0e6c"],
-
-Cell[CellGroupData[{
-
-Cell["All properties", "Subsubsection",ExpressionUUID->"62ccd39d-cd97-4b1b-842e-3c1af428a010"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"JiraIssueData", "[", "\"\<WALOCURATE-25253\>\"", "]"}], "//", 
-  "TableForm"}]], "Input",
- CellLabel->
-  "In[210]:=",ExpressionUUID->"b60291c9-df22-461c-a415-af5723c557c0"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["Specific properties", "Subsubsection",ExpressionUUID->"dd222402-1239-484f-9ed6-9731ff743b90"],
-
-Cell[BoxData[
- RowBox[{"JiraIssueData", "[", 
-  RowBox[{"\"\<WALOCURATE-25253\>\"", ",", "\"\<summary\>\""}], 
-  "]"}]], "Input",
- CellLabel->
-  "In[211]:=",ExpressionUUID->"f0d8d620-7300-4084-82d8-78f26223c30a"],
-
-Cell[BoxData[
- RowBox[{"JiraIssueData", "[", 
-  RowBox[{"\"\<WALOCURATE-25253\>\"", ",", "\"\<assignee\>\""}], 
-  "]"}]], "Input",
- CellLabel->
-  "In[212]:=",ExpressionUUID->"105cd0af-5d70-4b40-87aa-a484811ba49d"],
-
-Cell[BoxData[
- RowBox[{"JiraIssueData", "[", 
-  RowBox[{"\"\<WALOCURATE-25253\>\"", ",", "\"\<description\>\""}], 
-  "]"}]], "Input",
- CellLabel->
-  "In[213]:=",ExpressionUUID->"ff3ae907-b70c-4b94-8534-25729a8998e8"]
-}, Closed]]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["JiraCreateIssue: creating JIRA issues", "Subsection",ExpressionUUID->"a46f38ca-3544-4434-87f1-d423acc283ab"],
-
-Cell[CellGroupData[{
-
-Cell["Create top-level issues", "Subsubsection",ExpressionUUID->"40fdcc48-ccd4-4147-9bc8-3fa9ec8cf9f6"],
+Cell[TextData[{
+ "Jira Cloud's API v3 is not supported. Data Center does not serve it, and \
+the two disagree about how users are identified: Data Center uses ",
+ StyleBox["name", "TI"],
+ " and ",
+ StyleBox["key", "TI"],
+ ", Cloud uses ",
+ Cell[BoxData[Cell["accountId",
+   Background->None,ExpressionUUID->"cf02bbdc-91e8-41b7-92ec-827f0c92d8a6"]], 
+  "InlineCode",ExpressionUUID->"14a54350-73b8-4584-9c3c-f3545714da65"],
+ "."
+}], "Text",ExpressionUUID->"ced4fa20-4d04-46ba-bc4d-1a957884600c"],
 
 Cell["\<\
-JiraCreateIssue[
-    \"WALOCURATE\",
-    \"SummaryXXX\",
-    \"Bug\",
-    <|
-        \"description\" -> \"XXX\",
-        \"priority\" -> <|\"name\" -> \"Blocker\"|>,
-        \"assignee\" -> <|\"name\" -> OptionValue[JiraApiExecute, \
-\"JiraWebsiteUsername\"]|>,
-        \"reporter\" -> <|\"name\" -> OptionValue[JiraApiExecute, \
-\"JiraWebsiteUsername\"]|>,
-        \"components\" -> {<|\"name\" -> \"AllLanguages\"|>, <|\"name\" -> \
-\"ja\"|>},
-        \"labels\" -> {\"mengJiraLinkTest\"}
-    |>,
-    \"OpenQ\" -> True
- ]\
-\>", "Program",ExpressionUUID->"2b7f1858-5d49-49a9-af69-49c4010a04a5"],
+The cells below are not evaluated in this notebook, because every one of them \
+would talk to a live server. Evaluate them against your own instance. \
+\>", "Text",ExpressionUUID->"d7f2247c-2e43-439f-b180-4f1ccfda66b4"],
+
+Cell[CellGroupData[{
+
+Cell["Loading", "Section",ExpressionUUID->"0cdd96a1-de98-4ebc-8afd-976cce3570c9"],
+
+Cell[TextData[{
+ "Load as a paclet, pointing at the repository that contains the ",
+ Cell[BoxData[Cell["JiraLink",
+   Background->None,ExpressionUUID->"38e741c8-eda5-4e43-9f66-5d413077ee8b"]], 
+  "InlineCode",ExpressionUUID->"8f8e332c-742b-4e61-8b29-682849499073"],
+ " directory. "
+}], "Text",ExpressionUUID->"d20a48ec-248e-4c2c-b963-32319e4e5856"],
+
+Cell["\<\
+PacletDirectoryLoad[\"/path/to/repository-root\"];
+Needs[\"JiraLink`\"]\
+\>", "Program",
+ CellChangeTimes->{{3.9952272948156977`*^9, 3.995227321907309*^9}},
+ CellLabel->"",ExpressionUUID->"4f8b5eff-d2d0-4ed8-af80-9a7169f6f734"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"PacletDirectoryLoad", "[", 
+   RowBox[{"FileNameDrop", "[", 
+    RowBox[{
+     RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+     RowBox[{"-", "3"}]}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Needs", "[", "\"\<JiraLink`\>\"", "]"}]}], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"e975759f-1645-453f-9142-c83713a701f4"],
+
+Cell[TextData[{
+ "Loading has no side effects: it does not prompt, and it does not read any \
+credential. That is what allows the package to be used from ",
+ StyleBox["wolframscript", "TI"],
+ " and from the test suite."
+}], "Text",ExpressionUUID->"eb158b4b-4b87-4e18-ba05-52d069ecea11"],
+
+Cell["\<\
+The older route still works, and is convenient from inside this notebook. \
+\>", "Text",ExpressionUUID->"bd8e53c2-fd3f-4121-bd24-afd951f353f0"],
+
+Cell["\<\
+PrependTo[$Path, FileNameDrop[NotebookDirectory[], -4]];
+Needs[\"JiraLink`\"]\
+\>", "Program",
+ CellChangeTimes->{
+  3.995227329842237*^9},ExpressionUUID->"42dbef53-4093-4572-bafe-\
+3f9da4759780"],
+
+Cell[BoxData["$JiraLinkVersion"], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"6a5abd72-c752-408d-9d89-e8a4f8c14e77"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Connecting", "Section",ExpressionUUID->"23ac161d-0904-49b6-88a4-4c0f747c5d8e"],
+
+Cell[TextData[{
+ "Personal access tokens are the recommended credential on Data Center. \
+Create one from your Jira profile under ",
+ StyleBox["Personal Access Tokens",
+  FontSlant->Italic],
+ ", then store it once in the operating system's secure credential storage. "
+}], "Text",ExpressionUUID->"0626bae7-6d06-42b7-ba2c-c9fd54bb9b23"],
+
+Cell["\<\
+Call it with the URL alone and it prompts in a masked field, then stores what \
+you type. The token is never typed into the notebook, so it cannot end up in \
+the input history or in the saved file.\
+\>", "Text",ExpressionUUID->"d62d8c47-eff2-49c8-aa9c-a80d4d02fa83"],
+
+Cell["JiraStoreCredential[\"https://jira.example.com/jira\"]", "Input",
+ CellChangeTimes->{{3.995231089752163*^9, 
+  3.9952310917448673`*^9}},ExpressionUUID->"4bbb4bdb-fdb5-4847-8359-\
+cc484ef2497d"],
+
+Cell["To store a username and password instead of a token:", "Text",ExpressionUUID->"f53a1ede-8d56-44be-ac23-40c013958a53"],
+
+Cell["\<\
+JiraStoreCredential[\"https://jira.example.com/jira\", \"Basic\"]\
+\>", "Input",
+ CellChangeTimes->{
+  3.995231100607423*^9},ExpressionUUID->"86355e6f-5460-41e4-a438-\
+5afd4d886a63"],
+
+Cell["\<\
+Storing is a one-time step. Afterwards JiraConnect needs only the URL, and \
+nothing secret appears anywhere in this notebook.\
+\>", "Text",ExpressionUUID->"cabde485-3b71-4d02-ac90-27dd53a32285"],
+
+Cell["\<\
+Avoid the explicit form JiraStoreCredential[url, <|\"Token\" -> \"...\"|>] in \
+a notebook: the token would be saved in the .nb file as plain text and would \
+survive in version control. It exists for scripts that get the secret from \
+somewhere else.\
+\>", "Text",ExpressionUUID->"db21774a-8bd8-472a-99f4-97b986a2f2e5"],
+
+Cell["\<\
+Note that evaluating SystemCredential[\"JiraLink:jira.example.com\"] directly \
+would print the stored token, and that output would be saved with the \
+notebook. The connection object returned by JiraConnect masks it; raw \
+secure-storage lookups do not.\
+\>", "Text",ExpressionUUID->"39445be0-8379-4a46-a632-2548cab50ace"],
+
+Cell["Thereafter, connecting needs only the URL. ", "Text",ExpressionUUID->"fb7f6a53-9dab-4967-ae91-029ee7239af0"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"JiraCreateIssue", "[", "\[IndentingNewLine]", 
+ RowBox[{"JiraConnect", "[", "\"\<https://jira.example.com/jira\>\"", 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.995231105472355*^9},ExpressionUUID->"9bc9bc21-add0-4d9f-ab33-\
+c4e4a9b250bb"],
+
+Cell[BoxData[
+ InterpretationBox[
   RowBox[{
-  "\"\<WALOCURATE\>\"", ",", "\[IndentingNewLine]", "\"\<SummaryXXX\>\"", ",",
-    "\[IndentingNewLine]", "\"\<Bug\>\"", ",", "\[IndentingNewLine]", 
-   RowBox[{"<|", "\[IndentingNewLine]", 
+   TagBox["JiraConnectionObject",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"], 
+               ImageSizeCache -> {10.6984921875, {0., 10.6984921875}}], 
+              Appearance -> None, BaseStyle -> {}, 
+              ButtonFunction :> (Typeset`open$$ = True), Evaluator -> 
+              Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"URL: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"https://jira.example.com/jira\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"authentication: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Bearer\"", "SummaryItem"]}]}}, AutoDelete -> False,
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True -> 
+        GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"], 
+               ImageSizeCache -> {10.6984921875, {0., 10.6984921875}}], 
+              Appearance -> None, BaseStyle -> {}, 
+              ButtonFunction :> (Typeset`open$$ = False), Evaluator -> 
+              Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"URL: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"https://jira.example.com/jira\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"authentication: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Bearer\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"user: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"Missing", "[", "\"Unknown\"", "]"}], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"API version: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"2\"", "SummaryItem"]}]}}, AutoDelete -> False, 
+             BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  JiraLink`JiraConnectionObject[<|
+   "Scheme" -> "https", "Domain" -> "jira.example.com", "Port" -> None, 
+    "ContextPath" -> {"jira"}, "AuthType" -> "Bearer", "Token" -> 
+    "ExXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXEx", "APIVersion" -> "2"|>],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "mengReadOnlyOutput",
+ GeneratedCell->False,
+ CellTags->{
+  "mengReadOnlyOutput", 
+   "mengReadOnlyPrevStyle:Output"},ExpressionUUID->"ceea60e0-a123-4f7c-b9ea-\
+a8b5e3263dbe"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Include the context path if your server has one, as above. Use ",
+ StyleBox["https", "TI"],
+ ", and no explicit port number: an explicit port is known to break API calls \
+on this deployment."
+}], "Text",ExpressionUUID->"6bd96e7e-52bb-4fdb-a39f-57c91acdf0a4"],
+
+Cell["Verify the connection by asking Jira who you are. ", "Text",ExpressionUUID->"cd380305-634d-45fa-9e3f-53cc9eba253e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"JiraAuthenticationTest", "[", "]"}]], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"12be3070-215a-4973-b1b6-15ceee0093c3"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"self\"\>", 
+    "\[Rule]", \
+"\<\"https://jira.example.com/jira/rest/api/2/user?username=ExUserNameEx\"\>"}\
+], ",", 
+   RowBox[{"\<\"key\"\>", "\[Rule]", "\<\"ExUserNameEx\"\>"}], ",", 
+   RowBox[{"\<\"name\"\>", "\[Rule]", "\<\"ExUserNameEx\"\>"}], ",", 
+   RowBox[{"\<\"emailAddress\"\>", 
+    "\[Rule]", "\<\"ExUserNameEx@example.com\"\>"}], ",", 
+   RowBox[{"\<\"avatarUrls\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"48x48\"\>", 
+       "\[Rule]", \
+"\<\"https://jira.example.com/jira/secure/useravatar?ownerId=ExUserNameEx&\
+avatarId=13572\"\>"}], ",", 
+      RowBox[{"\<\"24x24\"\>", 
+       "\[Rule]", \
+"\<\"https://jira.example.com/jira/secure/useravatar?size=small&ownerId=\
+ExUserNameEx&avatarId=13572\"\>"}], ",", 
+      RowBox[{"\<\"16x16\"\>", 
+       "\[Rule]", \
+"\<\"https://jira.example.com/jira/secure/useravatar?size=xsmall&ownerId=\
+ExUserNameEx&avatarId=13572\"\>"}], ",", 
+      RowBox[{"\<\"32x32\"\>", 
+       "\[Rule]", \
+"\<\"https://jira.example.com/jira/secure/useravatar?size=medium&ownerId=\
+ExUserNameEx&avatarId=13572\"\>"}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"\<\"displayName\"\>", 
+    "\[Rule]", "\<\"ExFirstNameEx ExLastNameEx\"\>"}], ",", 
+   RowBox[{"\<\"active\"\>", "\[Rule]", "True"}], ",", 
+   RowBox[{"\<\"deleted\"\>", "\[Rule]", "False"}], ",", 
+   RowBox[{"\<\"timeZone\"\>", "\[Rule]", "\<\"America/Chicago\"\>"}], ",", 
+   RowBox[{"\<\"locale\"\>", "\[Rule]", "\<\"en_US\"\>"}], ",", 
+   RowBox[{"\<\"groups\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"size\"\>", "\[Rule]", "2"}], ",", 
+      RowBox[{"\<\"items\"\>", "\[Rule]", 
+       RowBox[{"{", "}"}]}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"\<\"applicationRoles\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"size\"\>", "\[Rule]", "1"}], ",", 
+      RowBox[{"\<\"items\"\>", "\[Rule]", 
+       RowBox[{"{", "}"}]}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"\<\"expand\"\>", "\[Rule]", "\<\"groups,applicationRoles\"\>"}]}],
+   "\[RightAssociation]"}]], "mengReadOnlyOutput",
+ GeneratedCell->False,
+ CellTags->{
+  "mengReadOnlyOutput", 
+   "mengReadOnlyPrevStyle:Output"},ExpressionUUID->"b96aeb03-e548-426f-b492-\
+da7704f1b85a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"JiraServerInfo", "[", "]"}]], "Input",
+ CellLabel->"In[8]:=",ExpressionUUID->"2e881e09-9239-4c8f-a8f6-a4d664cb8d0b"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"baseUrl\"\>", 
+    "\[Rule]", "\<\"https://jira.example.com/jira\"\>"}], ",", 
+   RowBox[{"\<\"version\"\>", "\[Rule]", "\<\"9.12.16\"\>"}], ",", 
+   RowBox[{"\<\"versionNumbers\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"9", ",", "12", ",", "16"}], "}"}]}], ",", 
+   RowBox[{"\<\"deploymentType\"\>", "\[Rule]", "\<\"Server\"\>"}], ",", 
+   RowBox[{"\<\"buildNumber\"\>", "\[Rule]", "9120016"}], ",", 
+   RowBox[{"\<\"buildDate\"\>", 
+    "\[Rule]", "\<\"2024-12-04T00:00:00.000-0600\"\>"}], ",", 
+   RowBox[{"\<\"databaseBuildNumber\"\>", "\[Rule]", "9120016"}], ",", 
+   RowBox[{"\<\"serverTime\"\>", 
+    "\[Rule]", "\<\"2026-08-08T20:45:45.032-0500\"\>"}], ",", 
+   RowBox[{"\<\"scmInfo\"\>", 
+    "\[Rule]", "\<\"6bee0863f3e6dbb91e4be2d992a3b6761c21c9e0\"\>"}], ",", 
+   RowBox[{"\<\"serverTitle\"\>", "\[Rule]", "\<\"Wolfram JIRA\"\>"}]}], 
+  "\[RightAssociation]"}]], "mengReadOnlyOutput",
+ GeneratedCell->False,
+ CellTags->{
+  "mengReadOnlyOutput", 
+   "mengReadOnlyPrevStyle:Output"},ExpressionUUID->"aba671f0-319d-4c6c-9df4-\
+9bf81f00c12c"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Credentials are resolved lazily, on the first request, in this order: \
+options given on the call, then ",
+ Cell[BoxData[Cell["$JiraConnection",
+   Background->None,ExpressionUUID->"69f81348-31d8-4e00-ad30-e34e1a85eb02"]], 
+  "InlineCode",ExpressionUUID->"cf5af24c-7287-4afd-8dbf-6eaa04ba44cf"],
+ ", then secure storage, then the environment variables ",
+ Cell[BoxData[Cell["JIRA_URL",
+   Background->None,ExpressionUUID->"3a0facc6-58eb-4a78-82d5-1570619c2c6b"]], 
+  "InlineCode",ExpressionUUID->"66f66aa0-94ea-4032-9251-e0784774eb3d"],
+ ", ",
+ Cell[BoxData[Cell["JIRA_TOKEN",
+   Background->None,ExpressionUUID->"72069366-ac25-4708-9f08-0d6d636453e6"]], 
+  "InlineCode",ExpressionUUID->"539b8110-0e42-4fb8-83b5-1dae4b1589f8"],
+ ", ",
+ Cell[BoxData[Cell["JIRA_USER",
+   Background->None,ExpressionUUID->"1fb04f78-fadf-462e-af9f-2d02b42445c2"]], 
+  "InlineCode",ExpressionUUID->"e1c0f1e5-328b-4bd4-972b-deade042b5d2"],
+ " and ",
+ Cell[BoxData[Cell["JIRA_PASSWORD",
+   Background->None,ExpressionUUID->"d4bad432-7104-48ed-ada6-8957c01c4437"]], 
+  "InlineCode",ExpressionUUID->"758f4f02-3f67-4f2b-91e3-bf51ecaeb41e"],
+ ". Basic authentication is used automatically when a username and password \
+are what is available. "
+}], "Text",ExpressionUUID->"7d947060-8d3f-416b-9a70-7002e52b4658"],
+
+Cell["\<\
+JiraConnect[\"https://jira.example.com\", Authentication -> <|\"Username\" -> \
+\"fred\", \"Password\" -> \"secret\"|>]\
+\>", "Program",
+ CellChangeTimes->{{3.99522894320923*^9, 
+  3.995228949889058*^9}},ExpressionUUID->"a4df6f2a-a4e6-4ed4-8dd2-\
+de3a92afe75b"],
+
+Cell["\<\
+The connection object masks its credential when displayed, so evaluating it \
+in a notebook will not reveal the token. \
+\>", "Text",ExpressionUUID->"d630ce65-a60d-40d4-9efd-f979ebbdc197"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$JiraConnection"], "Input",
+ CellLabel->"In[20]:=",ExpressionUUID->"a07f414a-4027-4fe8-8e70-15e9df895c41"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["JiraConnectionObject",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"], 
+               ImageSizeCache -> {10.6984921875, {0., 10.6984921875}}], 
+              Appearance -> None, BaseStyle -> {}, 
+              ButtonFunction :> (Typeset`open$$ = True), Evaluator -> 
+              Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"URL: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"https://jira.example.com/jira\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"authentication: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Bearer\"", "SummaryItem"]}]}}, AutoDelete -> False,
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True -> 
+        GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"], 
+               ImageSizeCache -> {10.6984921875, {0., 10.6984921875}}], 
+              Appearance -> None, BaseStyle -> {}, 
+              ButtonFunction :> (Typeset`open$$ = False), Evaluator -> 
+              Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"URL: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"https://jira.example.com/jira\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"authentication: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Bearer\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"user: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"Missing", "[", "\"Unknown\"", "]"}], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"API version: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"2\"", "SummaryItem"]}]}}, AutoDelete -> False, 
+             BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  JiraLink`JiraConnectionObject[<|
+   "Scheme" -> "https", "Domain" -> "jira.example.com", "Port" -> None, 
+    "ContextPath" -> {"jira"}, "AuthType" -> "Bearer", "Token" -> 
+    "ExXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXEx", "APIVersion" -> "2"|>],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "mengReadOnlyOutput",
+ GeneratedCell->False,
+ CellTags->{
+  "mengReadOnlyOutput", 
+   "mengReadOnlyPrevStyle:Output"},ExpressionUUID->"f9fce12f-2a38-46ce-a724-\
+95d93e04fde4"]
+}, Open  ]],
+
+Cell[TextData[{
+ "If you used a version of this package before 1.0, your credential is in the \
+encrypted file ",
+ Cell[BoxData[Cell["~/.jiralinkconfig.m",
+   Background->None,ExpressionUUID->"2aeefd53-98d8-4005-a122-ee27896abde9"]], 
+  "InlineCode",ExpressionUUID->"ca757ff1-93f6-4678-9d3c-855a4a7e5c0c"],
+ ". Import it once. "
+}], "Text",ExpressionUUID->"0357523a-de21-4c66-a9e2-40763fedc7fb"],
+
+Cell["JiraImportLegacyCredentials[\"the password you chose\"]", "Program",
+ CellChangeTimes->{
+  3.995228978068384*^9},ExpressionUUID->"2e2a04a7-d592-4177-af9c-\
+02e16b875068"],
+
+Cell["Tokens can also be managed from here. ", "Text",ExpressionUUID->"a4674354-1a93-486c-a964-57559bec5172"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"JiraTokens", "[", "]"}]], "Input",
+ CellLabel->"In[10]:=",ExpressionUUID->"7d0611ce-fdb4-4f9d-9827-a94fe363aa6c"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\[LeftAssociation]", 
+   RowBox[{
+    RowBox[{"\<\"id\"\>", "\[Rule]", "180"}], ",", 
+    RowBox[{"\<\"name\"\>", "\[Rule]", "\<\"JiraTools\"\>"}], ",", 
+    RowBox[{"\<\"createdAt\"\>", 
+     "\[Rule]", "\<\"2026-08-08T20:48:09.219+00:00\"\>"}], ",", 
+    RowBox[{"\<\"lastAccessedAt\"\>", 
+     "\[Rule]", "\<\"2026-08-09T01:45:45.027+00:00\"\>"}], ",", 
+    RowBox[{"\<\"expiringAt\"\>", 
+     "\[Rule]", "\<\"2026-11-16T20:48:09.219+00:00\"\>"}]}], 
+   "\[RightAssociation]"}], "}"}]], "mengReadOnlyOutput",
+ GeneratedCell->False,
+ CellTags->{
+  "mengReadOnlyOutput", 
+   "mengReadOnlyPrevStyle:Output"},ExpressionUUID->"f2c1bc63-9751-4243-b13a-\
+0eb54eaa05a3"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateToken", "[", 
+  RowBox[{"\"\<wolfram-language-client\>\"", ",", "90"}], "]"}]], "Input",Expr\
+essionUUID->"0a28c4c8-3ddb-495d-a495-102a076f1f29"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Issues", "Section",ExpressionUUID->"742fb0e5-b4a1-4680-857f-0f799f7cd8ac"],
+
+Cell[CellGroupData[{
+
+Cell["Reading", "Subsection",ExpressionUUID->"bd40b512-4b3b-472d-a108-c5bd105d3dba"],
+
+Cell[TextData[{
+ Cell[BoxData[Cell["JiraIssue",
+   Background->None,ExpressionUUID->"0b37f107-376d-459c-aa59-d6f95df469b4"]], 
+  "InlineCode",ExpressionUUID->"f00bd296-9a5c-462e-a2a8-778ab6635ded"],
+ " returns the whole record, including metadata. ",
+ Cell[BoxData[Cell["JiraIssueData",
+   Background->None,ExpressionUUID->"27174d76-9acb-4b84-a36f-6f710554d602"]], 
+  "InlineCode",ExpressionUUID->"bc7c883e-f1a0-4a27-940b-ae5faa672e49"],
+ " returns just the fields, and can narrow to one field or several. Narrowing \
+is not merely cosmetic: only the requested fields are asked of the server. "
+}], "Text",ExpressionUUID->"21213400-ee8c-477d-a417-33de6eb8c8ee"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssue", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",
+ CellLabel->"In[11]:=",ExpressionUUID->"431bf18f-7a5f-496b-a0aa-ea55852808ae"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueData", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",ExpressionU\
+UID->"034ae7df-99e3-4fea-a708-387ac35560a8"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueData", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<summary\>\""}], "]"}]], "Input",Expres\
+sionUUID->"a8b4fac2-f454-43c1-81d4-9e87c90b0626"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueData", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<summary\>\"", ",", "\"\<status\>\"", 
+     ",", "\"\<assignee\>\""}], "}"}]}], "]"}]], "Input",ExpressionUUID->\
+"a0e3be0b-9f91-4b88-9a4c-c28fd2d175ab"],
+
+Cell[TextData[{
+ "The ",
+ Cell[BoxData["\"\<Fields\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "8326b024-fe7c-48de-b09a-ebc26735d665"],
+ " option accepts Jira's selector syntax, including ",
+ Cell[BoxData[Cell["*all",
+   Background->None,ExpressionUUID->"f2b9957f-8c68-442a-b7ef-36c2b55ea87b"]], 
+  "InlineCode",ExpressionUUID->"b6d06e93-7655-4af2-8184-c642229e7e15"],
+ ", ",
+ Cell[BoxData[Cell["*navigable",
+   Background->None,ExpressionUUID->"50f3ab74-fe22-4fbd-8158-8bc7f73544b7"]], 
+  "InlineCode",ExpressionUUID->"fe42986a-a849-4244-9aed-97ad8089d324"],
+ " and negation. "
+}], "Text",ExpressionUUID->"5836f9ca-d1d7-418d-b180-ac93568c1104"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssue", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", 
+   RowBox[{"\"\<Fields\>\"", "->", "\"\<*all,-comment\>\""}]}], 
+  "]"}]], "Input",ExpressionUUID->"6c118d83-d72b-404f-9d70-891c34fec945"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssue", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", 
+   RowBox[{"\"\<Expand\>\"", "->", "\"\<renderedFields\>\""}]}], 
+  "]"}]], "Input",ExpressionUUID->"0530a820-2adc-4b48-a64e-2f0184db94f8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Creating", "Subsection",ExpressionUUID->"53a806cf-4de0-405e-9743-b95c673e59fd"],
+
+Cell[BoxData[
+ RowBox[{"issue", "=", 
+  RowBox[{"JiraCreateIssue", "[", 
+   RowBox[{"\"\<PROJ\>\"", ",", "\"\<Something is broken\>\"", 
+    ",", "\"\<Bug\>\""}], "]"}]}]], "Input",ExpressionUUID->"5cbce4db-8be5-\
+4028-b01e-002606d26d6a"],
+
+Cell[BoxData[
+ RowBox[{"issue", "[", "\"\<key\>\"", "]"}]], "Input",ExpressionUUID->"3b728d83-3d32-4414-ae57-5d27bab4c98a"],
+
+Cell["\<\
+Additional fields go in an association. Note that Data Center identifies \
+users by name. \
+\>", "Text",ExpressionUUID->"39724307-3fb9-4873-9d3f-a0b3892e5d93"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateIssue", "[", 
+  RowBox[{"\"\<PROJ\>\"", ",", "\"\<Localize the parser messages\>\"", 
+   ",", "\"\<Bug\>\"", ",", "\[IndentingNewLine]", "  ", 
+   RowBox[{"<|", "\[IndentingNewLine]", "    ", 
     RowBox[{
-     RowBox[{"\"\<description\>\"", "\[Rule]", "\"\<XXX\>\""}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"\"\<priority\>\"", "\[Rule]", 
+     RowBox[{"\"\<description\>\"", "->", "\"\<Steps to reproduce ...\>\""}], 
+     ",", "\[IndentingNewLine]", "    ", 
+     RowBox[{"\"\<assignee\>\"", "    ", "->", 
       RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<Blocker\>\""}], "|>"}]}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"\"\<assignee\>\"", "\[Rule]", 
-      RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", 
-        RowBox[{"OptionValue", "[", 
-         RowBox[{"JiraApiExecute", ",", "\"\<JiraWebsiteUsername\>\""}], 
-         "]"}]}], "|>"}]}], ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<reporter\>\"", "\[Rule]", 
-      RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", 
-        RowBox[{"OptionValue", "[", 
-         RowBox[{"JiraApiExecute", ",", "\"\<JiraWebsiteUsername\>\""}], 
-         "]"}]}], 
-       RowBox[{"(*", "\"\<walocalizationgroup\>\"", "*)"}], "|>"}]}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"\"\<components\>\"", "\[Rule]", 
+       RowBox[{"\"\<name\>\"", "->", "\"\<ExUserNameEx\>\""}], "|>"}]}], ",", 
+     "\[IndentingNewLine]", "    ", 
+     RowBox[{"\"\<components\>\"", "->", 
       RowBox[{"{", 
        RowBox[{
         RowBox[{"<|", 
-         RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<AllLanguages\>\""}], "|>"}], 
-        ",", 
+         RowBox[{"\"\<name\>\"", "->", "\"\<AllLanguages\>\""}], "|>"}], ",", 
+        
         RowBox[{"<|", 
-         RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<ja\>\""}], "|>"}]}], "}"}]}],
-      ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<labels\>\"", "\[Rule]", 
-      RowBox[{"{", "\"\<mengJiraLinkTest\>\"", "}"}]}]}], 
-    "\[IndentingNewLine]", "|>"}], ",", "\[IndentingNewLine]", 
-   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
-  "]"}]], "Input",
- CellLabel->
-  "In[218]:=",ExpressionUUID->"3cab3221-4bd6-4e53-8c0f-1bfdd3a4cff0"]
-}, Closed]],
+         RowBox[{"\"\<name\>\"", "->", "\"\<ja\>\""}], "|>"}]}], "}"}]}], ",",
+      "\[IndentingNewLine]", "    ", 
+     RowBox[{"\"\<labels\>\"", "      ", "->", 
+      RowBox[{"{", "\"\<jiralink-test\>\"", "}"}]}]}], "\[IndentingNewLine]", 
+    "  ", "|>"}], ",", "\[IndentingNewLine]", "  ", 
+   RowBox[{"\"\<Priority\>\"", "->", "\"\<Major\>\""}], ",", 
+   "\[IndentingNewLine]", "  ", 
+   RowBox[{"\"\<OpenQ\>\"", "    ", "->", "True"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",ExpressionUUID->"c07d45f4-0781-4147-be0d-9ea76b794044"],
 
-Cell[CellGroupData[{
+Cell[TextData[{
+ Cell[BoxData["\"\<Priority\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "19161f87-c5ba-44dd-ad36-c356bc333bf5"],
+ " is opt-in. Earlier versions always sent priority ",
+ Cell[BoxData[Cell["Major",
+   Background->None,ExpressionUUID->"18bebaa3-cac4-4c94-b8db-4fedddb7ed46"]], 
+  "InlineCode",ExpressionUUID->"5fa4cd4b-72c6-49f5-94dc-44ec88e27143"],
+ ", which fails outright on any instance whose priority scheme has no such \
+value."
+}], "Text",ExpressionUUID->"d3a73c92-57d9-4d9b-a1be-fa3e712fc2f2"],
 
-Cell["Create sub-task issues", "Subsubsection",ExpressionUUID->"a58f708b-e13f-4608-b8d1-7a3fc02bdea1"],
+Cell["\<\
+A subtask takes the parent issue key in place of the project; the project is \
+inferred from it. \
+\>", "Text",ExpressionUUID->"cb220a3c-c96e-4c12-827c-f71281fb1b5c"],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"parentIssueKey", "=", 
-   RowBox[{"\"\<key\>\"", "/.", "%"}]}], ";"}]], "Input",
- CellLabel->
-  "In[219]:=",ExpressionUUID->"24736cc7-b06f-4150-911c-88e312906d57"],
+ RowBox[{"JiraCreateIssue", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<Handle the Russian case\>\"", 
+   ",", "\"\<Subtask\>\"", ",", "\[IndentingNewLine]", "  ", 
+   RowBox[{"<|", 
+    RowBox[{"\"\<assignee\>\"", "->", 
+     RowBox[{"<|", 
+      RowBox[{"\"\<name\>\"", "->", "\"\<ExUserNameEx\>\""}], "|>"}]}], "|>"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",ExpressionUUID->"cc031fb2-bffa-4722-\
+a2f0-76274c578b1c"],
+
+Cell["Several issues can be created in one request. ", "Text",ExpressionUUID->"40d26501-1ee4-442c-aae1-377459d78f7e"],
 
 Cell[BoxData[
- RowBox[{"JiraCreateIssue", "[", "\[IndentingNewLine]", 
-  RowBox[{
-  "parentIssueKey", ",", "\[IndentingNewLine]", "\"\<SummaryXXX\>\"", ",", 
-   "\[IndentingNewLine]", "\"\<Subtask\>\"", ",", "\[IndentingNewLine]", 
-   RowBox[{"<|", "\[IndentingNewLine]", 
-    RowBox[{
+ RowBox[{"JiraCreateIssues", "[", 
+  RowBox[{"{", "\[IndentingNewLine]", "  ", 
+   RowBox[{
+    RowBox[{"<|", 
      RowBox[{
-     "\"\<description\>\"", "\[Rule]", " ", 
-      "\"\<https://cvs.wolfram.com/viewvc/AlphaExtras/Localization/Languages/\
-ru/RawCurationNotebooks/CalculateParse/Content/WordsPhrases/ASCDomain_\
-WordsPhrases_*.nb\>\""}], ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<priority\>\"", "\[Rule]", " ", 
-      RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", " ", "\"\<Major\>\""}], "|>"}]}], 
-     ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<assignee\>\"", "\[Rule]", " ", 
-      RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", " ", 
-        RowBox[{"OptionValue", "[", 
-         RowBox[{"JiraApiExecute", ",", "\"\<JiraWebsiteUsername\>\""}], 
-         "]"}]}], "|>"}]}], ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<reporter\>\"", "\[Rule]", 
-      RowBox[{"<|", 
-       RowBox[{"\"\<name\>\"", "\[Rule]", "\"\<walocalizationgroup\>\""}], 
-       "|>"}]}]}], "\[IndentingNewLine]", "|>"}], ",", "\[IndentingNewLine]", 
-   
-   RowBox[{"\"\<OpenQ\>\"", "\[Rule]", " ", "True"}]}], "\[IndentingNewLine]",
-   "]"}]], "Input",
- CellLabel->
-  "In[220]:=",ExpressionUUID->"319e4b78-a6ab-4edb-8e8c-9c7245f1b5bb"]
-}, Closed]]
-}, Closed]],
+      RowBox[{"\"\<project\>\"", "->", 
+       RowBox[{"<|", 
+        RowBox[{"\"\<key\>\"", "->", "\"\<PROJ\>\""}], "|>"}]}], ",", 
+      RowBox[{"\"\<summary\>\"", "->", "\"\<First\>\""}], ",", 
+      RowBox[{"\"\<issuetype\>\"", "->", 
+       RowBox[{"<|", 
+        RowBox[{"\"\<name\>\"", "->", "\"\<Task\>\""}], "|>"}]}]}], "|>"}], ",",
+     "\[IndentingNewLine]", "  ", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"\"\<project\>\"", "->", 
+       RowBox[{"<|", 
+        RowBox[{"\"\<key\>\"", "->", "\"\<PROJ\>\""}], "|>"}]}], ",", 
+      RowBox[{"\"\<summary\>\"", "->", "\"\<Second\>\""}], ",", 
+      RowBox[{"\"\<issuetype\>\"", "->", 
+       RowBox[{"<|", 
+        RowBox[{"\"\<name\>\"", "->", "\"\<Task\>\""}], "|>"}]}]}], "|>"}]}], 
+   "\[IndentingNewLine]", "}"}], "]"}]], "Input",ExpressionUUID->"13b0088f-\
+4e42-44bb-a6eb-cc3d82b1e0c1"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["JiraDeleteIssue", "Subsection",ExpressionUUID->"98b29914-a3f5-4807-be97-9f0f91b0e563"],
+Cell["Updating, assigning, deleting", "Subsection",ExpressionUUID->"3fc769c4-beff-4152-9847-72cf9f9ba9c8"],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"parentIssueKey", "=", "parentIssueKey"}], ";"}]], "Input",
- CellLabel->
-  "In[221]:=",ExpressionUUID->"00904b6e-94b8-4867-9149-a143b98aef66"],
+ RowBox[{"JiraUpdateIssue", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", 
+   RowBox[{"<|", 
+    RowBox[{"\"\<summary\>\"", "->", "\"\<A better summary\>\""}], "|>"}]}], 
+  "]"}]], "Input",ExpressionUUID->"363eaf56-beb9-4dd6-b17e-0c6d1f1a00ba"],
+
+Cell[BoxData[
+ RowBox[{"JiraAssignIssue", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<ExUserNameEx\>\""}], "]"}]], "Input",Expressio\
+nUUID->"7964c544-3994-4550-8600-418780dc5f3a"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+   "Automatic", "paclet:ref/Automatic", 
+    "https://reference.wolfram.com/language/ref/Automatic.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "f39d1208-e933-4fa1-b5ae-7f0c3eaabf2a"],
+ " requests the project's default assignee; ",
+ Cell[BoxData[
+  TemplateBox[{
+   "None", "paclet:ref/None", 
+    "https://reference.wolfram.com/language/ref/None.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "3c5d7fde-f2f6-4385-beb4-68cf75ebbb9e"],
+ " leaves the issue unassigned. "
+}], "Text",ExpressionUUID->"824ccd45-9775-47fa-af27-29e358b3b770"],
+
+Cell[BoxData[
+ RowBox[{"JiraAssignIssue", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "Automatic"}], "]"}]], "Input",ExpressionUU\
+ID->"c6325790-60f2-4af6-b4c7-4171dd351d10"],
 
 Cell[BoxData[
  RowBox[{"JiraDeleteIssue", "[", 
-  RowBox[{"parentIssueKey", ",", 
-   RowBox[{"\"\<DeleteSubtasks\>\"", "\[Rule]", "\"\<true\>\""}]}], 
-  "]"}]], "Input",
- CellLabel->
-  "In[223]:=",ExpressionUUID->"b174c404-393b-40ca-8cd8-23ba3c1f49ac"]
-}, Closed]],
+  RowBox[{"\"\<PROJ-123\>\"", ",", 
+   RowBox[{"\"\<DeleteSubtasks\>\"", "->", "True"}]}], "]"}]], "Input",Express\
+ionUUID->"b9be65ae-db20-4d5d-be43-8436f47c6210"],
+
+Cell[TextData[{
+ "A successful delete returns ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Null", "paclet:ref/Null", 
+    "https://reference.wolfram.com/language/ref/Null.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "5597084f-50a4-465e-b833-58b22faaf43e"],
+ "; a subsequent read of the same key gives a ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Failure", "paclet:ref/Failure", 
+    "https://reference.wolfram.com/language/ref/Failure.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "2022d11c-5cd4-4447-ae0c-2db1a033d6cc"],
+ " carrying status 404. "
+}], "Text",ExpressionUUID->"b39f777f-1616-44a3-8575-60846dfd8393"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["JiraJqlSearch: searching issues with JQL queries", "Subsection",ExpressionUUID->"7a3b6e54-4fd5-49ed-bb13-bc7e7b8e3dd9"],
+Cell["Transitions", "Subsection",ExpressionUUID->"cbf80be6-816f-4754-90ec-4fa17eaf4abd"],
 
 Cell[BoxData[
- RowBox[{"Complement", "[", 
-  RowBox[{
-   RowBox[{"Options", "[", "JiraJqlSearch", "]"}], ",", 
-   RowBox[{"Options", "[", "JiraApiExecute", "]"}]}], "]"}]], "Input",
- CellLabel->
-  "In[224]:=",ExpressionUUID->"e3848673-2383-429b-87e3-799e34a00f3b"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"res", "=", 
-   RowBox[{"JiraJqlSearch", "[", 
-    RowBox[{
-    "\"\<project=WALOCURATE AND component in (es) and component in \
-(WordsPhrases)\>\"", ",", 
-     RowBox[{"\"\<MaxResults\>\"", "\[Rule]", "1000000"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{"%", "//", "Length"}], "\[IndentingNewLine]", 
- RowBox[{"%%", "//", "Short"}]}], "Input",
- CellLabel->
-  "In[225]:=",ExpressionUUID->"8996b7db-c173-442e-9cb3-843d53144ff9"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"res", "=", 
-   RowBox[{"JiraJqlSearch", "[", 
-    RowBox[{
-    "\"\<project=WALOCURATE AND component in (ru) and component in \
-(WordsPhrases)\>\"", ",", 
-     RowBox[{"\"\<MaxResults\>\"", "\[Rule]", "1000000"}]}], "]"}]}], 
-  ";"}]], "Input",
- CellLabel->
-  "In[228]:=",ExpressionUUID->"4595a2a4-62f0-4df7-ac51-e0b11bff9618"],
-
-Cell[BoxData[
- RowBox[{"esWP", "=", 
-  RowBox[{
-   RowBox[{"Composition", "[", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"(", 
-         RowBox[{"\"\<summary\>\"", "/.", "#"}], ")"}], "&"}], "/@", "#"}], 
-      "&"}], ",", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"(", 
-         RowBox[{"\"\<fields\>\"", "/.", "#"}], ")"}], "&"}], "/@", "#"}], 
-      "&"}], ",", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"\"\<issues\>\"", "/.", "#"}], "&"}]}], "\[IndentingNewLine]", 
-    "]"}], "[", "res", "]"}]}]], "Input",
- CellLabel->
-  "In[229]:=",ExpressionUUID->"5a803921-3ff2-489d-a43f-114238e631c8"],
-
-Cell[BoxData[
- RowBox[{"ruWP", "=", 
-  RowBox[{
-   RowBox[{"Composition", "[", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"(", 
-         RowBox[{"\"\<summary\>\"", "/.", "#"}], ")"}], "&"}], "/@", "#"}], 
-      "&"}], ",", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"(", 
-         RowBox[{"\"\<fields\>\"", "/.", "#"}], ")"}], "&"}], "/@", "#"}], 
-      "&"}], ",", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"\"\<issues\>\"", "/.", "#"}], "&"}]}], "\[IndentingNewLine]", 
-    "]"}], "[", "res", "]"}]}]], "Input",
- CellLabel->
-  "In[230]:=",ExpressionUUID->"4764d160-40a4-4495-b3da-8f86abe33f6e"],
-
-Cell[BoxData[
- RowBox[{"Complement", "[", 
-  RowBox[{"esWP", ",", "ruWP"}], "]"}]], "Input",
- CellLabel->
-  "In[231]:=",ExpressionUUID->"dcfd2251-6fce-4059-b639-041422e73c2d"],
+ RowBox[{"JiraTransitions", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",Expressio\
+nUUID->"5d4d1e3f-3e0f-4778-9a44-94acd382e808"],
 
 Cell["\<\
-Find JIRA issues with PRs by issue.property[development].prs > 0\
-\>", "Text",ExpressionUUID->"b432dcbe-d6fb-4183-98fa-93a90d757afd"],
+Transitions may be given by name as well as by numeric id. The name is \
+resolved against the transitions currently available on the issue. \
+\>", "Text",ExpressionUUID->"c37b7a58-3a89-4fe0-83ce-c5b1cd3a74ae"],
+
+Cell[BoxData[
+ RowBox[{"JiraTransitionIssue", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<In Progress\>\""}], "]"}]], "Input",Ex\
+pressionUUID->"5b1c7f17-e79a-4096-abe5-951eb34212ad"],
+
+Cell[BoxData[
+ RowBox[{"JiraTransitionIssue", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<Resolve Issue\>\"", ",", 
+   RowBox[{"<|", 
+    RowBox[{"\"\<resolution\>\"", "->", 
+     RowBox[{"<|", 
+      RowBox[{"\"\<name\>\"", "->", "\"\<Fixed\>\""}], "|>"}]}], "|>"}]}], 
+  "]"}]], "Input",ExpressionUUID->"2c6dbe21-2c31-47a0-9543-2514224ef596"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Comments", "Subsection",ExpressionUUID->"75bd2d09-5d97-4915-bde9-da13bbf048e6"],
+
+Cell[BoxData[
+ RowBox[{"JiraComments", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",ExpressionUU\
+ID->"351313b7-e382-4c9b-b2a5-97b20de258ff"],
+
+Cell[BoxData[
+ RowBox[{"JiraAddComment", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<Looking into it.\>\""}], 
+  "]"}]], "Input",ExpressionUUID->"23f43299-f007-4a0e-b3f4-8c1f86fc54a7"],
+
+Cell["Comments can be restricted to a role or group. ", "Text",ExpressionUUID->"592d3a5b-2c31-484c-891a-e6842cb7af58"],
+
+Cell[BoxData[
+ RowBox[{"JiraAddComment", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<Internal note.\>\"", ",", 
+   RowBox[{"\"\<Visibility\>\"", "->", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"\"\<type\>\"", "->", "\"\<role\>\""}], ",", 
+      RowBox[{"\"\<value\>\"", "->", "\"\<Developers\>\""}]}], "|>"}]}]}], 
+  "]"}]], "Input",ExpressionUUID->"3df7f9b8-5b59-4327-86a7-4b0c6eca9ef4"],
+
+Cell[BoxData[
+ RowBox[{"JiraUpdateComment", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "45678", ",", "\"\<Edited text.\>\""}], 
+  "]"}]], "Input",ExpressionUUID->"f2067001-4c53-4fa9-a75e-97eae3336fe8"],
+
+Cell[BoxData[
+ RowBox[{"JiraDeleteComment", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "45678"}], "]"}]], "Input",ExpressionUUID->\
+"86fa3ae9-85b0-4325-8108-18fb980b9497"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Work logs", "Subsection",ExpressionUUID->"1b6d32c6-9859-402c-8219-631d6fd5912a"],
+
+Cell[TextData[{
+ "Durations may be Jira duration strings or, more naturally here, a ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Quantity", "paclet:ref/Quantity", 
+    "https://reference.wolfram.com/language/ref/Quantity.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "44e4d569-4921-428b-bf35-bc48500f4066"],
+ " of time. "
+}], "Text",ExpressionUUID->"da2e298d-eeb9-44d7-aeed-1ed314e49fc9"],
+
+Cell[BoxData[
+ RowBox[{"JiraWorklogs", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",ExpressionUU\
+ID->"1cd139a2-71af-4290-aebb-cb866cef6d80"],
+
+Cell[BoxData[
+ RowBox[{"JiraAddWorklog", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"90", ",", "\"\<Minutes\>\""}], "]"}], ",", 
+   RowBox[{"\"\<Comment\>\"", "->", "\"\<Investigating\>\""}]}], 
+  "]"}]], "Input",ExpressionUUID->"5a1177e5-7303-44c4-be8b-86b3c09e083b"],
+
+Cell[BoxData[
+ RowBox[{"JiraAddWorklog", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<3h 30m\>\""}], "]"}]], "Input",Express\
+ionUUID->"5c00c013-93a6-41f7-9b75-d8c75cb5be66"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Attachments", "Subsection",ExpressionUUID->"88f6982a-2bfe-4a73-8fd8-a9838ba70650"],
+
+Cell[BoxData[
+ RowBox[{"JiraAddAttachment", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\</path/to/log.txt\>\""}], 
+  "]"}]], "Input",ExpressionUUID->"b76a40b4-cac1-4b29-9b70-9399c31af656"],
+
+Cell[BoxData[
+ RowBox[{"JiraAddAttachment", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\</path/to/a.png\>\"", ",", "\"\</path/to/b.png\>\""}], 
+    "}"}]}], "]"}]], "Input",ExpressionUUID->"356d4cfa-83d7-4cdb-b12c-\
+57ef9a360435"],
+
+Cell[BoxData[
+ RowBox[{"JiraAttachmentSettings", "[", "]"}]], "Input",ExpressionUUID->"8c470b06-c3f8-4a07-b9bb-197c5f7166af"],
+
+Cell[TextData[{
+ "Attachment bytes are not served from the REST API path; ",
+ Cell[BoxData[Cell["JiraAttachmentDownload",
+   Background->None,ExpressionUUID->"af5052e9-7ebf-4ff1-b5e3-d9cdeb52c82e"]], 
+  "InlineCode",ExpressionUUID->"eb555205-20fb-4874-9b78-e47b381cc12c"],
+ " follows the content URL from the metadata, using the same credential. "
+}], "Text",ExpressionUUID->"f401a78a-d980-4627-ba08-b4802ed9d893"],
+
+Cell[BoxData[
+ RowBox[{"JiraAttachmentDownload", "[", 
+  RowBox[{"98765", ",", "\"\</tmp/downloaded.txt\>\""}], "]"}]], "Input",Expre\
+ssionUUID->"d0e946cc-1205-46cf-92a5-f564f7efe5b7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Links, watchers, votes", "Subsection",ExpressionUUID->"1f072f55-1e66-418a-a756-16974d3ed7b4"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateIssueLink", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<Blocks\>\"", 
+   ",", "\"\<PROJ-456\>\""}], "]"}]], "Input",ExpressionUUID->"8b0cac0a-3dec-\
+4f8f-91e0-789f62fc46ea"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueLinkTypes", "[", "]"}]], "Input",ExpressionUUID->"ad134bd2-dda5-4c05-ab48-2f0f76fd0b05"],
+
+Cell[BoxData[
+ RowBox[{"JiraAddRemoteLink", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<https://example.com/build/42\>\"", 
+   ",", "\"\<Build 42\>\""}], "]"}]], "Input",ExpressionUUID->"b44d6b3b-7b50-\
+43a4-8501-1dcd99d60746"],
+
+Cell[BoxData[
+ RowBox[{"JiraWatchers", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",ExpressionUU\
+ID->"8e83bf63-8c25-4fc0-8bb1-e8295ec88b9a"],
+
+Cell[BoxData[
+ RowBox[{"JiraAddWatcher", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", "\"\<ExUserNameEx\>\""}], "]"}]], "Input",Expressio\
+nUUID->"354d6eb5-8e77-4c75-a82e-a0f13c44ba1e"],
+
+Cell[BoxData[
+ RowBox[{"JiraVotes", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",ExpressionUUID->"5c584815-769b-4296-b805-7ae5e01e23a1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["History and metadata", "Subsection",ExpressionUUID->"a92121c7-f0f6-4eda-a121-4c59b4bcb168"],
+
+Cell[TextData[{
+ "Jira Data Center has no dedicated changelog resource; history comes back \
+inside the issue when ",
+ StyleBox["changelog", "TI"],
+ " is expanded, which ",
+ Cell[BoxData[Cell["JiraIssueChangelog",
+   Background->None,ExpressionUUID->"c6b405a2-13aa-431f-8430-4da6a204d216"]], 
+  "InlineCode",ExpressionUUID->"752367ea-4d42-4567-a9f8-511a30f82fe4"],
+ " does for you. "
+}], "Text",ExpressionUUID->"a7938ab9-33d2-43fd-ab8b-02edbbf97087"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueChangelog", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",Expres\
+sionUUID->"0e890233-dffb-4f66-bb94-fec9de797a8d"],
+
+Cell[BoxData[
+ RowBox[{"JiraEditMeta", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",ExpressionUU\
+ID->"6b24c5a3-2cfd-44f5-b142-8dcc5b623aed"],
+
+Cell[TextData[{
+ "Jira 9 removed the server-wide ",
+ StyleBox["createmeta", "TI"],
+ " endpoint, so a project is always required. "
+}], "Text",ExpressionUUID->"c9955f04-f12e-4eba-8b3b-cbe2515da380"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateMeta", "[", "\"\<PROJ\>\"", "]"}]], "Input",ExpressionUUID->"875e20ea-1663-4916-a964-3da263c69961"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateMeta", "[", 
+  RowBox[{"\"\<PROJ\>\"", ",", "10002"}], "]"}]], "Input",ExpressionUUID->\
+"c162d894-c51b-49f0-8183-34fad11e84f7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Opening in a browser", "Subsection",ExpressionUUID->"034b9a98-2fdf-43a5-a8b1-dc22e1b1c904"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueURL", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",ExpressionUU\
+ID->"fbfda208-6011-4c6a-80a2-e5cfe31ab3c1"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueOpen", "[", "\"\<PROJ-123\>\"", "]"}]], "Input",ExpressionU\
+UID->"47441369-0a4a-4a35-8f40-336de7955e46"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Searching", "Section",ExpressionUUID->"6dc12fdc-e407-4d28-a01e-c07b228adc01"],
+
+Cell[TextData[{
+ Cell[BoxData[Cell["JiraSearch",
+   Background->None,ExpressionUUID->"c83f9c9b-05b8-4260-84b0-28beff6ab7ab"]], 
+  "InlineCode",ExpressionUUID->"8e507e14-605f-4719-9b4c-982a89cbe57e"],
+ " runs a JQL query and follows pagination to the end, returning the matching \
+issues. "
+}], "Text",ExpressionUUID->"b57eb606-d146-4c6f-9126-0c781de78d57"],
+
+Cell[BoxData[
+ RowBox[{"JiraSearch", 
+  "[", "\"\<project = PROJ AND assignee = currentUser() ORDER BY created DESC\
+\>\"", "]"}]], "Input",ExpressionUUID->"dd0071f1-de35-4527-9aeb-0af69a15fa32"],
+
+Cell[TextData[{
+ "Use ",
+ Cell[BoxData[
+  TemplateBox[{
+   "MaxItems", "paclet:ref/MaxItems", 
+    "https://reference.wolfram.com/language/ref/MaxItems.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "c03beaae-7143-4a90-903c-d67dfd34f0c7"],
+ " to stop early, and ",
+ Cell[BoxData["\"\<Fields\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "1f3845af-6995-45f5-a903-c76203bee6f2"],
+ " to limit what comes back. "
+}], "Text",ExpressionUUID->"a0e83cf0-7a4a-4be6-9dbe-1d3756dcae4b"],
+
+Cell[BoxData[
+ RowBox[{"JiraSearch", "[", 
+  RowBox[{"\"\<project = PROJ\>\"", ",", 
+   RowBox[{"MaxItems", "->", "20"}]}], "]"}]], "Input",ExpressionUUID->\
+"8045375e-ed51-4cb3-94c9-21d55f3f90cf"],
+
+Cell[BoxData[
+ RowBox[{"JiraSearch", "[", 
+  RowBox[{"\"\<project = PROJ\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<summary\>\"", ",", "\"\<status\>\""}], "}"}], ",", 
+   RowBox[{"MaxItems", "->", "50"}]}], "]"}]], "Input",ExpressionUUID->\
+"ff42e2c6-d3aa-456e-a47c-1540258e2063"],
+
+Cell[TextData[{
+ Cell[BoxData[Cell["JiraIssueCount",
+   Background->None,ExpressionUUID->"78ef9737-3618-4db0-8ba4-d20b66e52796"]], 
+  "InlineCode",ExpressionUUID->"616c63bb-b06f-4768-9b41-6630b58d6fa8"],
+ " reports how many issues match without retrieving them. "
+}], "Text",ExpressionUUID->"925a8ab4-0107-4414-bc16-a63b7741a40b"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueCount", "[", "\"\<project = PROJ AND status = Open\>\"", 
+  "]"}]], "Input",ExpressionUUID->"b034930d-1d06-4971-af71-1e012fd4853f"],
+
+Cell[BoxData[
+ RowBox[{"JiraValidateJQL", "[", "\"\<project = PROJ AND status = Open\>\"", 
+  "]"}]], "Input",ExpressionUUID->"cbe35b9d-e31a-4d67-b5a8-6e930f3af673"],
+
+Cell[TextData[{
+ Cell[BoxData[Cell["JiraJqlSearch",
+   Background->None,ExpressionUUID->"3cc3a88d-d03c-462b-9014-5771bfdd208c"]], 
+  "InlineCode",ExpressionUUID->"4e19c8d3-209d-4a1e-ab14-2a641a8618f5"],
+ " returns a single page with Jira's pagination envelope intact, for when you \
+want ",
+ Cell[BoxData[Cell["startAt",
+   Background->None,ExpressionUUID->"2b585320-fe3e-49a1-8cdf-d17b3f8b16f3"]], 
+  "InlineCode",ExpressionUUID->"ff38f7e5-d297-45d5-b5d8-6a95c88087e3"],
+ ", ",
+ Cell[BoxData[Cell["maxResults",
+   Background->None,ExpressionUUID->"cd37fc24-4b7c-4631-a6da-0cc6ad26f951"]], 
+  "InlineCode",ExpressionUUID->"b8289daf-0db1-4d16-8944-239253b1eb66"],
+ " and ",
+ StyleBox["total", "TI"],
+ " rather than just the issues. "
+}], "Text",ExpressionUUID->"0166512f-064f-46b8-b51d-dd5b57d2df6b"],
+
+Cell[BoxData[
+ RowBox[{"JiraJqlSearch", "[", 
+  RowBox[{"\"\<project = PROJ\>\"", ",", 
+   RowBox[{"\"\<MaxResults\>\"", "->", "50"}], ",", 
+   RowBox[{"\"\<StartAt\>\"", "->", "0"}]}], "]"}]], "Input",ExpressionUUID->\
+"bf5c7c89-9cc0-4628-8d57-cffe747784ca"],
+
+Cell[CellGroupData[{
+
+Cell["Quoting values safely", "Subsection",ExpressionUUID->"8a09d568-7055-41f6-929c-b983b85f51bb"],
+
+Cell[TextData[{
+ "Values containing reserved characters or reserved words must be quoted in \
+JQL. ",
+ Cell[BoxData[Cell["JiraJQLEscape",
+   Background->None,ExpressionUUID->"3c903ec5-ec6c-400c-9f02-70a22feba22e"]], 
+  "InlineCode",ExpressionUUID->"b515f8ea-0d2a-49ad-9954-d5c7c0015d29"],
+ " handles the quoting and the escaping of embedded quotes and backslashes. "
+}], "Text",ExpressionUUID->"2256bfa4-e8f5-45c4-bf80-577bfb8c5ba1"],
+
+Cell[BoxData[
+ RowBox[{"JiraJQLEscape", "[", "\"\<Ready to Begin\>\"", "]"}]], "Input",Expre\
+ssionUUID->"36551dd9-f988-4df4-a5b6-fb807c69b90f"],
+
+Cell[BoxData[
+ RowBox[{"JiraJQLEscape", "[", 
+  RowBox[{"{", 
+   RowBox[{"\"\<ja\>\"", ",", "\"\<ru\>\"", ",", "\"\<es\>\""}], "}"}], 
+  "]"}]], "Input",ExpressionUUID->"0c89be48-6cb4-41f7-bea6-d2f334f8c118"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"res", "=", 
-   RowBox[{"JiraJqlSearch", "[", 
-    RowBox[{
-    "\"\<project=WALOCALIZATION AND issue.property[development].prs > 0 AND \
-issuetype !=sub-task\>\"", ",", 
-     RowBox[{"\"\<MaxResults\>\"", "\[Rule]", "10"}], ",", 
-     RowBox[{"\"\<StartAt\>\"", "\[Rule]", "5"}]}], "]"}]}], ";"}]], "Input",
- CellLabel->
-  "In[232]:=",ExpressionUUID->"17e30097-0e26-45ae-88da-45186199e5bd"],
-
-Cell[BoxData["res"], "Input",
- CellLabel->
-  "In[233]:=",ExpressionUUID->"9b2f1be0-b4a9-4012-a501-2900cd8d64d8"]
-}, Closed]],
+  RowBox[{
+  "StringTemplate", 
+   "[", "\"\<project = PROJ AND component in `` AND summary ~ ``\>\"", "]"}], 
+  "[", "\[IndentingNewLine]", "  ", 
+  RowBox[{
+   RowBox[{"JiraJQLEscape", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<ja\>\"", ",", "\"\<ru\>\""}], "}"}], "]"}], ",", 
+   "\[IndentingNewLine]", "  ", 
+   RowBox[{"JiraJQLEscape", "[", "\"\<word list\>\"", "]"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",ExpressionUUID->"5a21c8f7-da98-46ee-\
+a691-a0eeeba6bda0"]
+}, Open  ]],
 
 Cell[CellGroupData[{
+
+Cell["Structured results", "Subsection",ExpressionUUID->"0e1fedeb-d1e3-4464-aba7-949d5b4b62b7"],
+
+Cell[TextData[{
+ Cell[BoxData[Cell["JiraFindIssues",
+   Background->None,ExpressionUUID->"23062cfe-c7fc-4cd1-9181-c61e6d33655b"]], 
+  "InlineCode",ExpressionUUID->"ef8fa1ca-0873-4e36-9297-49be38fc73df"],
+ " shapes the result by issue key. Its five argument forms are unchanged from \
+earlier versions, but the return value is now an association rather than a \
+nested list of rules. "
+}], "Text",ExpressionUUID->"66fc9e0b-9992-472f-acdc-70fe5080bd0b"],
+
+Cell[BoxData[
+ RowBox[{"JiraFindIssues", "[", "\"\<project = PROJ\>\"", "]"}]], "Input",Expr\
+essionUUID->"e96bd6f6-146b-4245-8bdd-a7aec97e3e2c"],
+
+Cell[BoxData[
+ RowBox[{"JiraFindIssues", "[", 
+  RowBox[{"\"\<project = PROJ\>\"", ",", "\"\<Properties\>\"", ",", 
+   RowBox[{"MaxItems", "->", "2"}]}], "]"}]], "Input",ExpressionUUID->\
+"1346a8a3-4ec7-4aca-8830-f6db2c6717a6"],
+
+Cell[TextData[{
+ Cell[BoxData["\"\<CoreProperties\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "1e13ee31-d228-45e2-9ab0-59b2be1f2b4f"],
+ " drops the ",
+ Cell[BoxData[Cell["customfield_NNNNN",
+   Background->None,ExpressionUUID->"1d86298c-3fe7-48d2-98e3-8a25445218bf"]], 
+  "InlineCode",ExpressionUUID->"0eb58d84-0977-491e-b5c7-bbc38837b495"],
+ " entries, which are numerous and rarely what you want to read. "
+}], "Text",ExpressionUUID->"76903cac-2df4-41d5-ba20-ae3ccea670e1"],
+
+Cell[BoxData[
+ RowBox[{"JiraFindIssues", "[", 
+  RowBox[{"\"\<project = PROJ\>\"", ",", "\"\<CoreProperties\>\"", ",", 
+   RowBox[{"MaxItems", "->", "2"}]}], "]"}]], "Input",ExpressionUUID->\
+"e56e7239-5905-432f-b9b3-bed3f72386a6"],
+
+Cell[BoxData[
+ RowBox[{"JiraFindIssues", "[", 
+  RowBox[{"\"\<project = PROJ\>\"", ",", "\"\<summary\>\"", ",", 
+   RowBox[{"MaxItems", "->", "20"}]}], "]"}]], "Input",ExpressionUUID->\
+"02d585d1-f7eb-4ccc-ba7e-08b732118eff"],
+
+Cell[BoxData[
+ RowBox[{"JiraFindIssues", "[", 
+  RowBox[{"\"\<project = PROJ\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<summary\>\"", ",", "\"\<assignee\>\"", 
+     ",", "\"\<components\>\""}], "}"}], ",", 
+   RowBox[{"MaxItems", "->", "10"}]}], "]"}]], "Input",ExpressionUUID->\
+"0aabc23a-51fa-4b53-9e4c-4d900bfcb9d1"],
 
 Cell["\<\
-JiraFindIssues: searching issues with JQL queries and get more structured \
-results\
-\>", "Subsection",ExpressionUUID->"d91736e6-870f-4e4f-97e7-6644585c08b3"],
+Because the result is an association keyed by issue key, ordinary association \
+operations apply. \
+\>", "Text",ExpressionUUID->"06727330-bbf4-4e89-91c3-e58b9555b9a4"],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"$JQLQuery", "=", 
-   RowBox[{
-    RowBox[{"{", "\[IndentingNewLine]", 
-     RowBox[{
-     "\"\<project in (WALOCALIZATION) AND summary~\\\"Data\\\"\>\"", ",", 
-      "\[IndentingNewLine]", 
-      "\"\<project = WALOCURATE AND component in (ja) AND \\\"Ready to \
-Begin\\\" != No AND component = 'WordsPhrases' AND status = Closed ORDER BY \
-summary ASC\>\""}], "\[IndentingNewLine]", "}"}], "[", 
-    RowBox[{"[", "1", "]"}], "]"}]}], ";"}]], "Input",
- CellLabel->
-  "In[235]:=",ExpressionUUID->"276f8781-049d-4ca9-8212-cce2b453d0af"],
-
-Cell[CellGroupData[{
-
-Cell["Search issues", "Subsubsection",ExpressionUUID->"96b7d980-a6da-4eba-b171-e054e792c9f6"],
-
-Cell[BoxData[{
- RowBox[{"res", "=", 
+ RowBox[{"Dataset", "[", 
   RowBox[{"JiraFindIssues", "[", 
-   RowBox[{"$JQLQuery", ",", 
-    RowBox[{"\"\<MaxResults\>\"", "\[Rule]", "500"}], ",", 
-    RowBox[{"\"\<StartAt\>\"", "\[Rule]", "10"}]}], 
-   "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"res", "//", "Length"}]}], "Input",
- CellLabel->
-  "In[238]:=",ExpressionUUID->"0eb39995-efe4-48ff-81fc-272f2d1b8edf"]
-}, Closed]],
+   RowBox[{"\"\<project = PROJ\>\"", ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<summary\>\"", ",", "\"\<status\>\""}], "}"}], ",", 
+    RowBox[{"MaxItems", "->", "25"}]}], "]"}], "]"}]], "Input",ExpressionUUID->\
+"28de6d58-b58c-43a7-b514-8a27b8efb2ac"]
+}, Open  ]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["Limit the number of issues found", "Subsubsection",ExpressionUUID->"ed67ab1f-1341-4a06-806b-9ade2852a27d"],
+Cell["Pagination", "Section",ExpressionUUID->"2e9a4d8d-0a0e-454f-b934-3448e3ccc7b3"],
+
+Cell[TextData[{
+ "Functions that return lists follow pagination to the end by default; ",
+ Cell[BoxData[
+  RowBox[{"MaxItems", "->", "n"}]], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "7d72389f-99a1-4310-8015-0d281420873f"],
+ " stops early."
+}], "Text",ExpressionUUID->"07766fe8-6fd9-4a3e-87bf-d772dbe444f7"],
+
+Cell[TextData[{
+ "Jira caps page sizes per endpoint and silently clamps anything larger, so \
+the paginator believes the page size it is handed back rather than the one it \
+asked for. ",
+ Cell[BoxData[Cell["/search",
+   Background->None,ExpressionUUID->"edb9591d-35dc-49bf-b94b-89939a1981d1"]], 
+  "InlineCode",ExpressionUUID->"978f7d9d-e72e-4b56-a6ed-8a2562f2b5a6"],
+ " is governed by ",
+ Cell[BoxData[Cell["jira.search.views.default.max",
+   Background->None,ExpressionUUID->"7b959ffa-74a6-421c-a624-29ad47a99354"]], 
+  "InlineCode",ExpressionUUID->"d0a76e49-5973-4d74-a979-4d3da0f9d210"],
+ ", stock 1000; ",
+ Cell[BoxData[Cell["/user/assignable/search",
+   Background->None,ExpressionUUID->"37b8f131-d503-41da-9051-12210c0dd1e4"]], 
+  "InlineCode",ExpressionUUID->"705dc427-adac-45a0-b807-33cef3b5a73e"],
+ " caps at 100; ",
+ Cell[BoxData[Cell["/group/member",
+   Background->None,ExpressionUUID->"4ccf3fa8-6d33-42ee-a624-26cd3357f32d"]], 
+  "InlineCode",ExpressionUUID->"b22d96ca-14fc-487f-a168-ffed7f74b9f6"],
+ " at 50. "
+}], "Text",ExpressionUUID->"8927da92-78a5-4996-b764-fb09adbf6f65"],
 
 Cell[BoxData[
- RowBox[{"JiraFindIssues", "[", 
-  RowBox[{"$JQLQuery", ",", 
-   RowBox[{"\"\<MaxResults\>\"", "\[Rule]", "500"}], ",", 
-   RowBox[{"\"\<StartAt\>\"", "\[Rule]", "10"}]}], "]"}]], "Input",ExpressionU\
-UID->"c285f12b-8bf2-421e-97ea-63d992708c91"]
-}, Closed]],
+ RowBox[{"JiraSearch", "[", 
+  RowBox[{"\"\<project = PROJ\>\"", ",", 
+   RowBox[{"MaxItems", "->", "All"}]}], "]"}]], "Input",ExpressionUUID->\
+"879eefba-6a33-460f-9c19-6bbe2662cd22"],
+
+Cell[BoxData[
+ RowBox[{"JiraComments", "[", 
+  RowBox[{"\"\<PROJ-123\>\"", ",", 
+   RowBox[{"MaxItems", "->", "10"}]}], "]"}]], "Input",ExpressionUUID->\
+"23bb53f1-f113-409b-b869-e7a7813682a6"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["List properties for found issues", "Subsubsection",ExpressionUUID->"9fe73642-68b3-462f-868c-0a2365562959"],
+Cell["Projects, versions and components", "Section",ExpressionUUID->"75457227-d9c4-41ae-9d36-d3195ac0310f"],
 
 Cell[BoxData[
- RowBox[{"JiraFindIssues", "[", 
-  RowBox[{"$JQLQuery", ",", "\"\<summary\>\"", ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "20"}]}], "]"}]], "Input",
- CellLabel->
-  "In[243]:=",ExpressionUUID->"1cc8d47d-a8e5-4782-8847-9eab6ccc2cfc"],
+ RowBox[{"JiraProjects", "[", "]"}]], "Input",ExpressionUUID->"22a75a51-202a-49d4-9869-4f35b239c185"],
 
 Cell[BoxData[
- RowBox[{"JiraFindIssues", "[", 
-  RowBox[{"$JQLQuery", ",", "\"\<Properties\>\"", ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",
- CellLabel->
-  "In[240]:=",ExpressionUUID->"8b29f945-84c4-495c-a8a6-a00c3569a4b8"],
+ RowBox[{"JiraProject", "[", "\"\<PROJ\>\"", "]"}]], "Input",ExpressionUUID->"f8264c04-5b6f-4245-ae8f-a09590619218"],
 
 Cell[BoxData[
- RowBox[{"JiraFindIssues", "[", 
-  RowBox[{"$JQLQuery", ",", "\"\<CoreProperties\>\"", ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",
- CellLabel->
-  "In[241]:=",ExpressionUUID->"4162278d-d4cf-4478-84f9-a255ae828654"],
+ RowBox[{"JiraProjectComponents", "[", "\"\<PROJ\>\"", "]"}]], "Input",Express\
+ionUUID->"f66dae3d-5959-410f-8b30-2eb25ee3622c"],
 
 Cell[BoxData[
- RowBox[{"JiraFindIssues", "[", 
-  RowBox[{"$JQLQuery", ",", 
+ RowBox[{"JiraProjectVersions", "[", "\"\<PROJ\>\"", "]"}]], "Input",Expressio\
+nUUID->"58ca04df-6a53-4164-84a2-562f7d2fdfde"],
+
+Cell[BoxData[
+ RowBox[{"JiraProjectStatuses", "[", "\"\<PROJ\>\"", "]"}]], "Input",Expressio\
+nUUID->"8dce8b42-0e01-4f31-b461-b6b0d25a4f15"],
+
+Cell[BoxData[
+ RowBox[{"JiraProjectRoles", "[", "\"\<PROJ\>\"", "]"}]], "Input",ExpressionUU\
+ID->"f5c85750-0926-4fc4-9203-2ff6062373df"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateVersion", "[", 
+  RowBox[{"\"\<PROJ\>\"", ",", "\"\<13.4\>\"", ",", 
+   RowBox[{"\"\<ReleaseDate\>\"", "->", 
+    TemplateBox[{
+      RowBox[{"\"Tue 1 Dec 2026\""}], 
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            RowBox[{"2026", ",", "12", ",", "1"}], "}"}], ",", "\"Day\""}], 
+        "]"}]},
+     "DateObject",
+     Editable->False]}]}], "]"}]], "Input",ExpressionUUID->"56e0ebcd-7c45-\
+4096-a5be-420ca643d4db"],
+
+Cell[BoxData[
+ RowBox[{"JiraVersionIssueCounts", "[", "10500", "]"}]], "Input",ExpressionUUID->"75906225-95a1-413c-b07a-6885ffc69468"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateComponent", "[", 
+  RowBox[{"\"\<PROJ\>\"", ",", "\"\<Parser\>\"", ",", 
+   RowBox[{"\"\<Description\>\"", 
+    "->", "\"\<Everything under the parser\>\""}]}], "]"}]], "Input",Expressio\
+nUUID->"02450535-efc4-4335-bdba-dbf403b301fe"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Users and groups", "Section",ExpressionUUID->"3dc32bd0-bd1b-4150-aba0-8246fa1447ef"],
+
+Cell["\<\
+Data Center identifies users by name, never by the account id used in Jira \
+Cloud. \
+\>", "Text",ExpressionUUID->"a4f9fd1e-0e72-45d8-861f-e8368257260a"],
+
+Cell[BoxData[
+ RowBox[{"JiraMyself", "[", "]"}]], "Input",ExpressionUUID->"a859cb10-1fae-4ad7-a2d0-71b0059b3632"],
+
+Cell[BoxData[
+ RowBox[{"JiraUser", "[", "\"\<ExUserNameEx\>\"", "]"}]], "Input",ExpressionUUID->"486fe112-25f8-44fa-aa48-ea482a8042b3"],
+
+Cell[BoxData[
+ RowBox[{"JiraUserSearch", "[", "\"\<ExUserNameEx\>\"", "]"}]], "Input",ExpressionUUID->"3c32f00f-8e5b-43b7-be86-ece2f4004e88"],
+
+Cell[BoxData[
+ RowBox[{"JiraAssignableUsers", "[", "\"\<PROJ\>\"", "]"}]], "Input",Expressio\
+nUUID->"a6c97d9a-906b-4e3a-b311-f54584c591b9"],
+
+Cell[BoxData[
+ RowBox[{"JiraUserGroups", "[", "\"\<ExUserNameEx\>\"", "]"}]], "Input",ExpressionUUID->"6c704716-a620-4493-acdd-f92a3e77ea3e"],
+
+Cell[BoxData[
+ RowBox[{"JiraGroupMembers", "[", "\"\<jira-developers\>\"", "]"}]], "Input",E\
+xpressionUUID->"795c23b9-03f6-42e8-8629-bd42e9a0e8d0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fields and other metadata", "Section",ExpressionUUID->"392b2010-a129-4027-96b2-a4cc77737adf"],
+
+Cell[BoxData[
+ RowBox[{"JiraFields", "[", "]"}]], "Input",ExpressionUUID->"af930d21-7f87-42f5-a511-048e31b0081f"],
+
+Cell[TextData[{
+ "Custom fields are the ones with opaque ",
+ Cell[BoxData[Cell["customfield_NNNNN",
+   Background->None,ExpressionUUID->"28c8a99a-2471-4de8-8ad5-72d2c8244b35"]], 
+  "InlineCode",ExpressionUUID->"c87c6fe1-fce6-4e5c-84e6-9b8a76181015"],
+ " ids; this is how you find out what they are called. "
+}], "Text",ExpressionUUID->"5195383e-8a25-4943-8530-28ff659a2150"],
+
+Cell[BoxData[
+ RowBox[{"JiraCustomFields", "[", "]"}]], "Input",ExpressionUUID->"793597e1-5ce5-427b-a679-24a9fdcda841"],
+
+Cell[BoxData[
+ RowBox[{"Association", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "[", "\"\<id\>\"", "]"}], "->", 
+     RowBox[{"#", "[", "\"\<name\>\"", "]"}]}], " ", "&"}], " ", "/@", " ", 
+   RowBox[{"JiraCustomFields", "[", "]"}]}], "]"}]], "Input",ExpressionUUID->\
+"9c64a2bf-d9e9-4d4a-8d10-15c5eeed4fc7"],
+
+Cell[BoxData[
+ RowBox[{"JiraIssueTypes", "[", "]"}]], "Input",ExpressionUUID->"2c61d0d5-1444-4b50-be91-f06c4cd1286c"],
+
+Cell[BoxData[
+ RowBox[{"JiraPriorities", "[", "]"}]], "Input",ExpressionUUID->"4998b5a0-0510-4711-addb-fa2dd1195c00"],
+
+Cell[BoxData[
+ RowBox[{"JiraStatuses", "[", "]"}]], "Input",ExpressionUUID->"d9609166-a0db-45a1-ba14-153d212d5fbd"],
+
+Cell[BoxData[
+ RowBox[{"JiraResolutions", "[", "]"}]], "Input",ExpressionUUID->"888fba86-dd70-494d-ae7f-1fedbea703ac"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Filters and dashboards", "Section",ExpressionUUID->"aa857f04-2ef8-49f9-bc04-9f1e2b9d465a"],
+
+Cell[BoxData[
+ RowBox[{"JiraFilters", "[", "]"}]], "Input",ExpressionUUID->"14b5bac3-2a49-40bc-acc1-3df0f3e238c4"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateFilter", "[", 
+  RowBox[{"\"\<My open bugs\>\"", 
+   ",", "\"\<assignee = currentUser() AND status = Open AND type = Bug\>\""}],
+   "]"}]], "Input",ExpressionUUID->"3ec40fd4-c35e-4178-ab1a-b510fcee9bd7"],
+
+Cell[BoxData[
+ RowBox[{"JiraDashboards", "[", "]"}]], "Input",ExpressionUUID->"1ae3c879-023d-4d41-b867-78a17ffd21c3"],
+
+Cell[BoxData[
+ RowBox[{"JiraMyPermissions", "[", "\"\<PROJ\>\"", "]"}]], "Input",ExpressionU\
+UID->"d47b450f-c64d-4bfd-ba96-8a5d1a35485e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Agile: boards, sprints and epics", "Section",ExpressionUUID->"aec54ba2-0c04-42bc-be46-c02d42162056"],
+
+Cell[BoxData[
+ RowBox[{"JiraBoards", "[", "]"}]], "Input",ExpressionUUID->"bf45e7f1-1656-4c85-9ced-dedf975ffd27"],
+
+Cell[BoxData[
+ RowBox[{"JiraBoards", "[", "\"\<PROJ\>\"", "]"}]], "Input",ExpressionUUID->"49d3d384-e37a-4fa7-ac74-0e6b91e0d4f5"],
+
+Cell[BoxData[
+ RowBox[{"JiraBoardConfiguration", "[", "42", "]"}]], "Input",ExpressionUUID->"a334c475-cc40-42f7-97c6-95776a4f4ab1"],
+
+Cell[BoxData[
+ RowBox[{"JiraBoardIssues", "[", 
+  RowBox[{"42", ",", 
+   RowBox[{"\"\<JQL\>\"", "->", "\"\<status != Done\>\""}]}], "]"}]], "Input",\
+ExpressionUUID->"9d3ce345-2d34-4ba9-b8e7-2e59354cc257"],
+
+Cell[BoxData[
+ RowBox[{"JiraBoardBacklog", "[", "42", "]"}]], "Input",ExpressionUUID->"951ba8f6-b471-4b40-a739-459b20516cb6"],
+
+Cell[BoxData[
+ RowBox[{"JiraBoardSprints", "[", 
+  RowBox[{"42", ",", 
+   RowBox[{"\"\<State\>\"", "->", "\"\<active\>\""}]}], "]"}]], "Input",Expres\
+sionUUID->"0df9668c-e1f9-4e34-938b-b1563acde7b0"],
+
+Cell[BoxData[
+ RowBox[{"JiraSprintIssues", "[", "7", "]"}]], "Input",ExpressionUUID->"f33b5c37-1863-49d7-a525-0ec072be1772"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateSprint", "[", 
+  RowBox[{"42", ",", "\"\<Sprint 18\>\"", ",", 
+   RowBox[{"\"\<Goal\>\"", "->", "\"\<Finish the parser work\>\""}]}], 
+  "]"}]], "Input",ExpressionUUID->"faddb351-a3c0-4464-abf0-53658b1db3af"],
+
+Cell["Starting and completing a sprint are updates to its state. ", "Text",ExpressionUUID->"4663a299-20c9-47f6-8ed7-029874eaab55"],
+
+Cell[BoxData[
+ RowBox[{"JiraUpdateSprint", "[", 
+  RowBox[{"7", ",", 
+   RowBox[{"<|", 
+    RowBox[{"\"\<state\>\"", "->", "\"\<active\>\""}], "|>"}]}], 
+  "]"}]], "Input",ExpressionUUID->"c80af96c-12e8-416e-9318-20b1fa92dd6b"],
+
+Cell["\<\
+Moving issues into a sprint is batched automatically: the Agile API accepts \
+at most fifty issues per request. \
+\>", "Text",ExpressionUUID->"34352556-d247-46dd-8821-372c9672b835"],
+
+Cell[BoxData[
+ RowBox[{"JiraMoveIssuesToSprint", "[", 
+  RowBox[{"7", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<PROJ-1\>\"", ",", "\"\<PROJ-2\>\"", ",", "\"\<PROJ-3\>\""}], 
+    "}"}]}], "]"}]], "Input",ExpressionUUID->"3b4f1e09-9aa3-4e25-a3e0-\
+06c7535063ec"],
+
+Cell[BoxData[
+ RowBox[{"JiraMoveIssuesToBacklog", "[", 
+  RowBox[{"{", "\"\<PROJ-4\>\"", "}"}], "]"}]], "Input",ExpressionUUID->\
+"9578ba89-155b-4f86-8c8a-b8232e82c268"],
+
+Cell[BoxData[
+ RowBox[{"JiraEpicIssues", "[", "\"\<PROJ-100\>\"", "]"}]], "Input",Expression\
+UUID->"4f6c1963-a579-4751-a320-4be9186e2225"],
+
+Cell[BoxData[
+ RowBox[{"JiraMoveIssuesToEpic", "[", 
+  RowBox[{"\"\<PROJ-100\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<PROJ-5\>\"", ",", "\"\<PROJ-6\>\""}], "}"}]}], 
+  "]"}]], "Input",ExpressionUUID->"28c4014b-bf11-4989-9a81-f2c43d515e31"],
+
+Cell[BoxData[
+ RowBox[{"JiraRankIssues", "[", 
+  RowBox[{
+   RowBox[{"{", "\"\<PROJ-5\>\"", "}"}], ",", 
+   RowBox[{"\"\<Before\>\"", "->", "\"\<PROJ-6\>\""}]}], "]"}]], "Input",Expre\
+ssionUUID->"825dc60c-7338-4169-b06f-9d491f319507"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Jira Service Management", "Section",ExpressionUUID->"c4cec431-06c1-4985-9578-89e99382e4e4"],
+
+Cell[TextData[{
+ "These endpoints exist only where Jira Service Management is installed. ",
+ Cell[BoxData[Cell["JiraServiceDeskInfo",
+   Background->None,ExpressionUUID->"26f230e6-5eba-4765-b2f9-246b4589f8c7"]], 
+  "InlineCode",ExpressionUUID->"e852179d-ec8e-4cfd-8fd8-8d7722ddf069"],
+ " is the cheapest way to find out. "
+}], "Text",ExpressionUUID->"e5602380-1399-49c9-aff1-ae639ffaebb3"],
+
+Cell[BoxData[
+ RowBox[{"JiraServiceDeskInfo", "[", "]"}]], "Input",ExpressionUUID->"6d570a5e-ce39-4dc5-8913-d38a0d7f1f16"],
+
+Cell[BoxData[
+ RowBox[{"JiraServiceDesks", "[", "]"}]], "Input",ExpressionUUID->"13595902-72c8-46e3-974e-a6add3e64849"],
+
+Cell[BoxData[
+ RowBox[{"JiraRequestTypes", "[", "1", "]"}]], "Input",ExpressionUUID->"179b91f9-6db8-4fd5-a414-fece4170fd05"],
+
+Cell[BoxData[
+ RowBox[{"JiraCustomerRequests", "[", 
+  RowBox[{"\"\<ServiceDeskId\>\"", "->", "1"}], "]"}]], "Input",ExpressionUUID\
+->"4d15b8c8-089a-4092-a2ae-c53df06ae372"],
+
+Cell[BoxData[
+ RowBox[{"JiraCreateCustomerRequest", "[", 
+  RowBox[{"1", ",", "25", ",", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<summary\>\"", "->", "\"\<Cannot log in\>\""}], ",", 
+     RowBox[{"\"\<description\>\"", "->", "\"\<Since this morning.\>\""}]}], 
+    "|>"}]}], "]"}]], "Input",ExpressionUUID->"2a0543ee-d664-4ec3-a5b3-\
+e0ad75f4dc81"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Administration", "Section",ExpressionUUID->"2c4f7799-81c0-430d-9f07-c99a2c8e7b1e"],
+
+Cell[TextData[{
+ "These require Jira administrator rights, and some require Data Center \
+rather than Server. Without the necessary permission they give a ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Failure", "paclet:ref/Failure", 
+    "https://reference.wolfram.com/language/ref/Failure.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "f2ce2c48-35b2-4ee7-b959-ad4a742b510a"],
+ " carrying status 403, which is the intended behaviour. "
+}], "Text",ExpressionUUID->"757da44a-4306-4dba-b2e5-9cd59170812b"],
+
+Cell[BoxData[
+ RowBox[{"JiraWorkflows", "[", "]"}]], "Input",ExpressionUUID->"8211cd34-2742-46a4-a12e-2159d7255ba8"],
+
+Cell[BoxData[
+ RowBox[{"JiraPermissionScheme", "[", "]"}]], "Input",ExpressionUUID->"3e2e8998-0d65-445e-920c-511f255307f3"],
+
+Cell[BoxData[
+ RowBox[{"JiraScreens", "[", "]"}]], "Input",ExpressionUUID->"7431f398-2eff-4619-b0b7-d3f66dc20801"],
+
+Cell[BoxData[
+ RowBox[{"JiraApplicationProperties", "[", "]"}]], "Input",ExpressionUUID->"7445a93a-a854-402a-b16a-e74348a45b9e"],
+
+Cell[BoxData[
+ RowBox[{"JiraReindexStatus", "[", "]"}]], "Input",ExpressionUUID->"4f37d66b-014f-454b-9731-9bf26dcd1797"],
+
+Cell[BoxData[
+ RowBox[{"JiraClusterNodes", "[", "]"}]], "Input",ExpressionUUID->"42b70391-8b7a-4b5d-b7cb-5570e535f2fb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Errors", "Section",ExpressionUUID->"8fab2793-49cd-40bc-8521-e13305eae83c"],
+
+Cell[TextData[{
+ "Failed requests give ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Failure", "paclet:ref/Failure", 
+    "https://reference.wolfram.com/language/ref/Failure.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "5dcff787-03a4-4d07-9581-012b19a82db8"],
+ " objects rather than raw data, so a failure cannot be mistaken for a \
+result. "
+}], "Text",ExpressionUUID->"32df890b-52b0-42a0-8f6b-0a29c8209ff6"],
+
+Cell[BoxData[
+ RowBox[{"f", "=", 
+  RowBox[{"JiraIssue", "[", "\"\<NOSUCH-99999\>\"", "]"}]}]], "Input",Expressi\
+onUUID->"6e9fb028-20a1-4169-a347-1b2fe83fb0e1"],
+
+Cell[BoxData[
+ RowBox[{"FailureQ", "[", "f", "]"}]], "Input",ExpressionUUID->"06da3880-19b2-4897-bc9b-0d7892740b32"],
+
+Cell[BoxData[
+ RowBox[{"f", "[", "\"\<StatusCode\>\"", "]"}]], "Input",ExpressionUUID->"e82b6255-c893-465e-a296-c3036863a02c"],
+
+Cell[BoxData[
+ RowBox[{"f", "[", "\"\<ErrorMessages\>\"", "]"}]], "Input",ExpressionUUID->"2c8a77c6-07d4-4b64-b431-016e5daedc1a"],
+
+Cell["\<\
+Field-level problems from Jira are preserved separately, keyed by field id. \
+\>", "Text",ExpressionUUID->"f18c6b6f-66a2-499e-86b4-a6c62f0c48e6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"JiraCreateIssue", "[", 
+   RowBox[{"\"\<PROJ\>\"", ",", "\"\<\>\"", ",", "\"\<Bug\>\""}], "]"}], 
+  "[", "\"\<Errors\>\"", "]"}]], "Input",ExpressionUUID->"5ba2a95d-8bfc-468b-\
+8e1b-a636d9a50c9f"],
+
+Cell[TextData[{
+ "The tags are ",
+ Cell[BoxData[Cell["JiraHTTPError",
+   Background->None,ExpressionUUID->"1c861d74-f7cb-47e0-abda-9ffc27be15a3"]], 
+  "InlineCode",ExpressionUUID->"ed40db91-add6-4f02-8363-6e9aabed6d2b"],
+ ", ",
+ Cell[BoxData[Cell["JiraAuthenticationError",
+   Background->None,ExpressionUUID->"42ce1c98-4034-4289-8424-7f2e561adb35"]], 
+  "InlineCode",ExpressionUUID->"41ae4a3c-b36a-4ce1-a9ef-e00b3e08c59d"],
+ " (401 and 403), ",
+ Cell[BoxData[Cell["JiraNotFoundError",
+   Background->None,ExpressionUUID->"6135d651-e372-4736-8805-83f7db97bfa9"]], 
+  "InlineCode",ExpressionUUID->"3833e6d3-578c-44a0-acf2-559c1126d844"],
+ " (404), ",
+ Cell[BoxData[Cell["JiraRateLimitError",
+   Background->None,ExpressionUUID->"5f770469-179d-4418-9cc2-e2209b64aa1c"]], 
+  "InlineCode",ExpressionUUID->"fb7aa153-7bbd-424d-a643-329eb90ee144"],
+ " (429), ",
+ Cell[BoxData[Cell["JiraConnectionError",
+   Background->None,ExpressionUUID->"a337acd1-c7a5-4ffc-bad6-cd2aa5304068"]], 
+  "InlineCode",ExpressionUUID->"a968be58-e93c-4763-9af1-bf6b57646d4d"],
+ " for network-level problems, and ",
+ Cell[BoxData[Cell["JiraParseError",
+   Background->None,ExpressionUUID->"ed156a6f-dd74-4097-9d21-9bc5b2e1848b"]], 
+  "InlineCode",ExpressionUUID->"8aa3e09d-be2b-4944-a215-70817eed35c4"],
+ ". Rate-limited requests are retried automatically, honouring Jira's ",
+ Cell[BoxData[Cell["Retry-After",
+   Background->None,ExpressionUUID->"ef3c82b6-6e39-4cf5-bb3b-e3308e2cb476"]], 
+  "InlineCode",ExpressionUUID->"4562b3aa-f0a1-40b2-9234-50a65f18913d"],
+ " header. "
+}], "Text",ExpressionUUID->"ac3cfed2-5b5d-4be9-a83b-46c868ee8d98"],
+
+Cell[BoxData[
+ RowBox[{"Replace", "[", 
+  RowBox[{
+   RowBox[{"JiraIssue", "[", "\"\<PROJ-1\>\"", "]"}], ",", 
+   RowBox[{"{", "\[IndentingNewLine]", "  ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"f_", "?", "FailureQ"}], " ", "/;", " ", 
+       RowBox[{
+        RowBox[{"f", "[", "\"\<StatusCode\>\"", "]"}], "===", "404"}]}], 
+      ":>", "\"\<no such issue\>\""}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{
+      RowBox[{"f_", "?", "FailureQ"}], ":>", 
+      RowBox[{"\"\<request failed: \>\"", " ", "<>", " ", 
+       RowBox[{"ToString", "[", 
+        RowBox[{"f", "[", "\"\<StatusCode\>\"", "]"}], "]"}]}]}], ",", 
+     "\[IndentingNewLine]", "  ", 
+     RowBox[{"issue_", ":>", 
+      RowBox[{"issue", "[", "\"\<key\>\"", "]"}]}]}], "\[IndentingNewLine]", 
+    "}"}]}], "]"}]], "Input",ExpressionUUID->"5444f90f-5767-476a-8cbd-\
+34bef80ab208"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Anything not wrapped", "Section",ExpressionUUID->"5e81ed64-cfff-4f1d-aa65-5fbd6584ff03"],
+
+Cell[TextData[{
+ Cell[BoxData[Cell["JiraApiExecute",
+   Background->None,ExpressionUUID->"fc8ddec8-d173-4e34-b927-7518e12f552f"]], 
+  "InlineCode",ExpressionUUID->"6c75f9ab-2d19-4834-8c2d-32e3917ed4f9"],
+ " reaches any endpoint directly, including those of plugins this package \
+knows nothing about. "
+}], "Text",ExpressionUUID->"663380b8-1a45-448f-bbae-efe6a8b7437b"],
+
+Cell[BoxData[
+ RowBox[{"JiraApiExecute", "[", 
+  RowBox[{"\"\<GET\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<issue\>\"", ",", "\"\<PROJ-123\>\"", 
+     ",", "\"\<comment\>\""}], "}"}], ",", 
+   RowBox[{"\"\<Parameters\>\"", "->", 
+    RowBox[{"{", 
+     RowBox[{"\"\<expand\>\"", "->", "\"\<renderedBody\>\""}], "}"}]}]}], 
+  "]"}]], "Input",ExpressionUUID->"16d30507-5e7b-45ea-aadb-0666fa3e093c"],
+
+Cell[BoxData[
+ RowBox[{"JiraApiExecute", "[", 
+  RowBox[{"\"\<POST\>\"", ",", 
+   RowBox[{"{", "\"\<issue\>\"", "}"}], ",", 
+   RowBox[{"\"\<Body\>\"", "->", 
+    RowBox[{"<|", 
+     RowBox[{"\"\<fields\>\"", "->", 
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<project\>\"", "->", 
+         RowBox[{"<|", 
+          RowBox[{"\"\<key\>\"", "->", "\"\<PROJ\>\""}], "|>"}]}], ",", 
+        RowBox[{"\"\<summary\>\"", "->", "\"\<Direct\>\""}], ",", 
+        RowBox[{"\"\<issuetype\>\"", "->", 
+         RowBox[{"<|", 
+          RowBox[{"\"\<name\>\"", "->", "\"\<Task\>\""}], "|>"}]}]}], 
+       "|>"}]}], "|>"}]}]}], "]"}]], "Input",ExpressionUUID->"c1cad1f9-df1e-\
+4e45-89a4-aaaef6514b10"],
+
+Cell[TextData[{
+ Cell[BoxData["\"\<API\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "c6881e9c-7b54-4a06-8c9f-54be5808caaa"],
+ " selects the API family: ",
+ Cell[BoxData["\"\<platform\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "0f706ebc-c68e-4541-b1ae-12d061dcdc3d"],
+ " (the default), ",
+ Cell[BoxData["\"\<agile\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "82a221be-537a-4119-bb7f-1f97ce526bd8"],
+ ", ",
+ Cell[BoxData["\"\<servicedesk\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "cb3a7b99-eae1-4388-b9c9-ef7aefdd659a"],
+ ", ",
+ Cell[BoxData["\"\<pat\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "52019048-7d3d-426c-82a5-63821a38b328"],
+ " or ",
+ Cell[BoxData["\"\<auth\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "574ea24a-791c-4039-bca2-ade7ccf5cadc"],
+ ". "
+}], "Text",ExpressionUUID->"6d1eb4a2-b399-4523-99c1-fef3a6cd83df"],
+
+Cell[BoxData[
+ RowBox[{"JiraApiExecute", "[", 
+  RowBox[{"\"\<GET\>\"", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<board\>\"", ",", "\"\<42\>\"", ",", "\"\<sprint\>\""}], 
+    "}"}], ",", 
+   RowBox[{"\"\<API\>\"", "->", "\"\<agile\>\""}]}], "]"}]], "Input",Expressio\
+nUUID->"ddd34d6c-db18-4253-ac0a-d14bdf2a1923"],
+
+Cell["A path may also be given as a string. ", "Text",ExpressionUUID->"88c96652-2aea-4e99-80ab-93981020183f"],
+
+Cell[BoxData[
+ RowBox[{"JiraApiExecute", "[", 
+  RowBox[{"\"\<GET\>\"", ",", "\"\<myself\>\""}], "]"}]], "Input",ExpressionUU\
+ID->"dab71078-bbd4-4155-98da-39a299a7c613"],
+
+Cell[TextData[{
+ "To see what would be sent without sending it, use ",
+ Cell[BoxData[Cell["JiraRequestObject",
+   Background->None,ExpressionUUID->"cef11607-0dfd-4577-9139-09ed7c514f7e"]], 
+  "InlineCode",ExpressionUUID->"a45cf057-e52d-444b-af8f-ebdaaa70a5a8"],
+ ". "
+}], "Text",ExpressionUUID->"66d73dba-c99c-419a-a605-780f4fa5dba6"],
+
+Cell[BoxData[
+ RowBox[{"JiraRequestObject", "[", 
+  RowBox[{"\"\<POST\>\"", ",", 
+   RowBox[{"{", "\"\<issue\>\"", "}"}], ",", 
+   RowBox[{"\"\<Body\>\"", "->", 
+    RowBox[{"<|", 
+     RowBox[{"\"\<fields\>\"", "->", 
+      RowBox[{"<|", 
+       RowBox[{"\"\<summary\>\"", "->", "\"\<x\>\""}], "|>"}]}], "|>"}]}]}], 
+  "]"}]], "Input",ExpressionUUID->"77cd9d06-2257-4050-a959-abdaf4b619ff"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Debugging", "Section",ExpressionUUID->"8681b2ca-a227-47f6-bc85-6e3898dd9035"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$JiraLogRequests", "=", "True"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"JiraServerInfo", "[", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"$JiraRequestLog", "[", 
+  RowBox[{"[", 
+   RowBox[{"-", "1"}], "]"}], "]"}]}], "Input",ExpressionUUID->"914d1b83-0442-\
+4bde-80bb-75f1e8a0628e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"$JiraLogRequests", "=", "False"}], ";"}]], "Input",ExpressionUUID->\
+"f7cb8309-1deb-44fb-92ec-f092e94258c3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Migrating from versions before 1.0", "Section",ExpressionUUID->"4dd3b8bf-ca57-4eb4-8aca-6b7f85aedc78"],
+
+Cell[TextData[{
+ "The seven original functions keep their names and argument patterns. Three \
+changes are visible in existing notebooks. ",
+ Cell[BoxData[Cell["JiraFindIssues",
+   Background->None,ExpressionUUID->"ea1a1c10-45ea-47d5-bd56-bec18ad2ab2e"]], 
+  "InlineCode",ExpressionUUID->"fbe93746-853f-4567-a554-629ae727e5a6"],
+ " and ",
+ Cell[BoxData[Cell["JiraJqlSearch",
+   Background->None,ExpressionUUID->"59a519bf-bf8a-4244-96c1-9fbad4956bee"]], 
+  "InlineCode",ExpressionUUID->"cd2ef4c0-3784-4d7e-b077-28a9b4a6ab70"],
+ " return associations rather than nested lists of rules. Code written \
+against the old shape used ",
+ Cell[BoxData[
+  TemplateBox[{
+   "ReplaceAll", "paclet:ref/ReplaceAll", 
+    "https://reference.wolfram.com/language/ref/ReplaceAll.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "57c39278-8c26-454d-a732-95bdf6c21408"],
+ ", and should now index directly. "
+}], "Text",ExpressionUUID->"36652495-2de3-477b-a930-5f2c27075089"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", "before", " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"\"\<summary\>\"", " ", "/.", " ", "#"}], ")"}], " ", "&"}], 
+      " ", "/@", " ", 
+      RowBox[{"(", 
+       RowBox[{"\"\<fields\>\"", " ", "/.", " ", "#"}], ")"}]}], " ", "&"}], 
+    " ", "/@", " ", 
+    RowBox[{"(", 
+     RowBox[{"\"\<issues\>\"", " ", "/.", " ", "res"}], ")"}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", "now", " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Lookup", "[", 
+      RowBox[{
+       RowBox[{"#", "[", "\"\<fields\>\"", "]"}], ",", "\"\<summary\>\""}], 
+      "]"}], " ", "&"}], " ", "/@", " ", 
+    RowBox[{"res", "[", "\"\<issues\>\"", "]"}]}]}]}]], "Input",ExpressionUUID\
+->"3915d247-c5b9-4903-a417-15100390d946"],
+
+Cell[TextData[{
+ Cell[BoxData[Cell["JiraCreateIssue",
+   Background->None,ExpressionUUID->"c56c8784-6ef3-42d7-9bff-a3e78e781a23"]], 
+  "InlineCode",ExpressionUUID->"633c967d-8536-4694-9f60-e7f9af223f52"],
+ " no longer forces priority to ",
+ Cell[BoxData[Cell["Major",
+   Background->None,ExpressionUUID->"7aad2be7-990e-49cb-9811-56c4ad21844f"]], 
+  "InlineCode",ExpressionUUID->"dcd2e116-46eb-470e-a7e7-81ecd96bccf5"],
+ "; pass ",
+ Cell[BoxData[
+  RowBox[{"\"\<Priority\>\"", "->", "\"\<Major\>\""}]], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "1bd81b3b-d3e4-42b2-8507-446a9f1ad0fa"],
+ " to keep the old behaviour. Errors arrive as ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Failure", "paclet:ref/Failure", 
+    "https://reference.wolfram.com/language/ref/Failure.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "344c13e6-803c-4712-894b-66136ccf6de1"],
+ " objects instead of ",
+ Cell[BoxData[
+  TemplateBox[{
+   "$Failed", "paclet:ref/$Failed", 
+    "https://reference.wolfram.com/language/ref/$Failed.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "73ee401f-6641-45b4-9384-032670a9270a"],
+ ", ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Null", "paclet:ref/Null", 
+    "https://reference.wolfram.com/language/ref/Null.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "55838e72-25cc-473c-96de-f30442519f9d"],
+ " or ",
+ Cell[BoxData[
+  RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]], "InlineWL", "Input",
+  
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "7a6e3c6e-9dca-42c4-b04e-0781be0806c4"],
+ "."
+}], "Text",ExpressionUUID->"bcf2f672-c3e9-4586-83eb-c784a3ca1099"],
+
+Cell["\<\
+Writes and JQL search did not previously work at all: the default request \
+path discarded the HTTP method and body, so every create and delete was \
+silently a no-op, and the search path sent a curl flag where an HTTP header \
+belonged, so it authenticated nothing. Any code depending on those was \
+already failing.\
+\>", "Text",ExpressionUUID->"063ffbfd-52af-4e43-bab6-9e5c5606d36c"],
+
+Cell[TextData[{
+ "The pre-1.0 connection options ",
+ Cell[BoxData["\"\<JiraWebsiteURL\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "682e0c5e-3509-437f-97fa-43c01a25267c"],
+ ", ",
+ Cell[BoxData["\"\<JiraWebsiteUsername\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "4f70e158-4d4d-4656-b11b-e93d0ad50aad"],
+ " and ",
+ Cell[BoxData["\"\<JiraWebsitePassword\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "5c915301-8e50-4e7b-ad8a-6ccdacb91359"],
+ " are still accepted, so older notebooks continue to run without a ",
+ Cell[BoxData[Cell["JiraConnect",
+   Background->None,ExpressionUUID->"d4527591-5fce-4192-ba24-deb89a5fd599"]], 
+  "InlineCode",ExpressionUUID->"503ca13b-eb6d-4c6c-ac12-dbd52acaada3"],
+ ". "
+}], "Text",ExpressionUUID->"95cd4e78-a274-4e57-9986-86bab8f9c667"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Testing", "Section",ExpressionUUID->"84305408-ee42-46e9-9006-e4585445f3bd"],
+
+Cell["The offline suite needs no server and no credentials. ", "Text",ExpressionUUID->"72577409-0b63-4d58-9351-76692e66224d"],
+
+Cell[BoxData[
+ RowBox[{"TestReport", "[", 
+  RowBox[{"FileNameJoin", "[", 
    RowBox[{"{", 
     RowBox[{
-    "\"\<summary\>\"", ",", "\"\<assignee\>\"", ",", "\"\<components\>\""}], 
-    "}"}], ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "2"}]}], "]"}]], "Input",
- CellLabel->
-  "In[246]:=",ExpressionUUID->"451fceb8-abc5-47ab-ae98-f4436b87f074"],
+     RowBox[{"FileNameDrop", "[", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+       RowBox[{"-", "4"}]}], "]"}], ",", "\"\<JiraLink\>\"", 
+     ",", "\"\<Tests\>\"", ",", "\"\<Unit.wlt\>\""}], "}"}], "]"}], 
+  "]"}]], "Input",ExpressionUUID->"54b87691-fec6-4883-aae4-9d865aaaddae"],
 
-Cell[BoxData[
- RowBox[{"JiraFindIssues", "[", 
-  RowBox[{"$JQLQuery", ",", 
-   RowBox[{"{", 
-    RowBox[{"\"\<summary\>\"", ",", "\"\<assignee\>\""}], "}"}], ",", 
-   RowBox[{"\"\<MaxResults\>\"", "->", " ", "10"}]}], "]"}]], "Input",
- CellLabel->
-  "In[245]:=",ExpressionUUID->"da3811b8-95f5-4148-a7d2-1e146f8d55c8"]
-}, Closed]]
-}, Closed]]
-}, Closed]],
+Cell[TextData[{
+ Cell[BoxData[Cell["Tests/Integration.wlt",
+   Background->None,ExpressionUUID->"1c1746a9-23e4-4d79-8230-4f1473439a5e"]], 
+  "InlineCode",ExpressionUUID->"38054020-34df-4652-96d7-70c9e92a1d5d"],
+ " talks to a real server and is skipped unless ",
+ Cell[BoxData[Cell["JIRA_URL",
+   Background->None,ExpressionUUID->"d5b6638f-34c2-4fd0-bf9c-5e498b5ebd52"]], 
+  "InlineCode",ExpressionUUID->"81db1f55-d764-4313-95b6-057728f3751f"],
+ " is set; its write tests additionally need ",
+ Cell[BoxData[Cell["JIRA_TEST_PROJECT",
+   Background->None,ExpressionUUID->"670dffaa-3057-4a1b-8f3b-a18efa67dcda"]], 
+  "InlineCode",ExpressionUUID->"92ab36e7-4800-4ac1-a8fa-e3908b33fc5b"],
+ ", and delete everything they create. "
+}], "Text",ExpressionUUID->"30aa832a-4a4f-42d5-8d7c-b0fb7cdae32f"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["References", "Section",ExpressionUUID->"8afbed56-38fa-41a3-986c-581be394fb52"],
+Cell["References", "Section",ExpressionUUID->"ec919116-ff54-40ff-a3d3-dc1188fe80b1"],
 
-Cell[CellGroupData[{
-
-Cell[TextData[ButtonBox["https://developer.atlassian.com/server/jira/platform/\
-rest-apis/",
+Cell[TextData[ButtonBox["Jira 9.12 platform REST API reference",
  BaseStyle->"Hyperlink",
  ButtonData->{
-   URL["https://developer.atlassian.com/server/jira/platform/rest-apis/"], 
+   URL["https://docs.atlassian.com/software/jira/docs/api/REST/9.12.0/"], 
    None},
  ButtonNote->
-  "https://developer.atlassian.com/server/jira/platform/rest-apis/"]], "Item",\
-ExpressionUUID->"55c83669-058e-4a3e-8d7b-9179ca450822"],
+  "https://docs.atlassian.com/software/jira/docs/api/REST/9.12.0/"]], "Item",E\
+xpressionUUID->"4b15fae3-4e3b-4771-b109-912c3746e5db"],
 
-Cell[TextData[ButtonBox["https://confluence.atlassian.com/agile/glossary",
+Cell[TextData[ButtonBox["Jira Software (Agile) 9.12 REST API reference",
  BaseStyle->"Hyperlink",
  ButtonData->{
-   URL["https://confluence.atlassian.com/agile/glossary"], None},
- ButtonNote->"https://confluence.atlassian.com/agile/glossary"]], "Item",Expre\
-ssionUUID->"5368d1d5-4181-4d60-80e0-4c9a43ff9f17"]
-}, Closed]]
-}, Closed]]
+   URL["https://docs.atlassian.com/jira-software/REST/9.12.0/"], None},
+ ButtonNote->"https://docs.atlassian.com/jira-software/REST/9.12.0/"]], "Item",\
+ExpressionUUID->"fc15c03a-e5b8-42ec-9914-f36bc1b1d9b0"],
+
+Cell[TextData[ButtonBox["Using personal access tokens",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://confluence.atlassian.com/enterprise/using-personal-access-\
+tokens-1026032365.html"], None},
+ ButtonNote->
+  "https://confluence.atlassian.com/enterprise/using-personal-access-tokens-\
+1026032365.html"]], "Item",ExpressionUUID->"e83fedc3-cab0-45ae-a2c5-\
+fc5fda66ed0c"],
+
+Cell[TextData[ButtonBox["Advanced searching: JQL syntax",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://confluence.atlassian.com/jiracoreserver/advanced-searching-\
+939937709.html"], None},
+ ButtonNote->
+  "https://confluence.atlassian.com/jiracoreserver/advanced-searching-\
+939937709.html"]], "Item",ExpressionUUID->"8b6b9035-4021-428e-b2f1-\
+8ac3da3571c5"]
+}, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1440, 855},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
-ShowSelection->True,
-Magnification:>1.25 Inherited,
-FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (January 16, 2019)",
-StyleDefinitions->"Default.nb"
+WindowSize->{1296, 1488},
+WindowMargins->{{Automatic, -1296}, {Automatic, 759}},
+DockedCells->{
+  Cell[
+   BoxData[
+    StyleBox[
+     TagBox[
+      GridBox[{{
+         TemplateBox[{"\[ThinSpace]", "\" \"", 
+           DynamicBox[
+            ToBoxes[
+             ResourceFunction["NotebookOutlineMenu"][
+              EvaluationNotebook[], "ToC"], StandardForm], 
+            TrackedSymbols :> {}, UpdateInterval -> 180, SynchronousUpdating -> 
+            False], 
+           TemplateBox[{"", "\"15.0.1.0\"", 
+             StyleBox[
+             "\"  |  \"", FontColor -> RGBColor[0.762, 0.594, 0.594], 
+              StripOnInput -> False], "", "13810975", 
+             StyleBox[
+             "\"  |  \"", FontColor -> RGBColor[0.762, 0.594, 0.594], 
+              StripOnInput -> False], "", "\"2026-07-02T23:12:56\""}, 
+            "RowDefault"]}, "RowWithSeparators"], 
+         TemplateBox[{
+           ActionMenuBox[
+            
+            TemplateBox[{"\"\[UpArrowBar]\"", "\" publish\""}, 
+             "RowDefault"], {
+            StyleBox[
+              "\"\[HorizontalLine]\[HorizontalLine] Selection \
+\[HorizontalLine]\[HorizontalLine]\"", Italic, FontColor -> GrayLevel[0.5], 
+               StripOnInput -> False] :> Null, Delimiter, DynamicBox[
+               ToBoxes[
+                If[
+                 TrueQ[
+                  meng`Toolbar`Private`mengToolbarSelectionState[
+                   ButtonNotebook[]]["HasNonExample"]], 
+                 "Preserve selected output as example", 
+                 Style["Preserve selected output as example", Gray]], 
+                StandardForm], TrackedSymbols :> {}, UpdateInterval -> 0.5, 
+               SynchronousUpdating -> False] :> 
+             meng`Toolbar`Private`mengToolbarPreserveAsExample[
+               ButtonNotebook[]], DynamicBox[
+               ToBoxes[
+                If[
+                 TrueQ[
+                  meng`Toolbar`Private`mengToolbarSelectionState[
+                   ButtonNotebook[]]["HasExample"]], 
+                 "Revert selected example-output cells", 
+                 Style["Revert selected example-output cells", Gray]], 
+                StandardForm], TrackedSymbols :> {}, UpdateInterval -> 0.5, 
+               SynchronousUpdating -> False] :> 
+             meng`Toolbar`Private`mengToolbarRevertExample[
+               ButtonNotebook[]], Delimiter, 
+             StyleBox[
+              "\"\[HorizontalLine]\[HorizontalLine] Options \[HorizontalLine]\
+\[HorizontalLine]\"", Italic, FontColor -> GrayLevel[0.5], StripOnInput -> 
+               False] :> Null, Delimiter, DynamicBox[
+               ToBoxes[(meng`Toolbar`Private`mengToolbarInitPrepState[]; If[
+                   TrueQ[
+                    meng`Toolbar`Private`$mengToolbarPrepState[
+                    "DeleteOutputCells"]], "\[Checkmark]  ", "     "]) <> 
+                "Delete output cells", StandardForm], 
+               TrackedSymbols :> {meng`Toolbar`Private`$mengToolbarPrepState},
+                SynchronousUpdating -> False] :> (
+              meng`Toolbar`Private`$mengToolbarPrepState["DeleteOutputCells"] = 
+              Not[
+                TrueQ[
+                 meng`Toolbar`Private`$mengToolbarPrepState[
+                 "DeleteOutputCells"]]]), DynamicBox[
+               ToBoxes[(meng`Toolbar`Private`mengToolbarInitPrepState[]; If[
+                   TrueQ[
+                    meng`Toolbar`Private`$mengToolbarPrepState[
+                    "AddAuthorInfo"]], "\[Checkmark]  ", "     "]) <> 
+                "Add author line", StandardForm], 
+               TrackedSymbols :> {meng`Toolbar`Private`$mengToolbarPrepState},
+                SynchronousUpdating -> False] :> (
+              meng`Toolbar`Private`$mengToolbarPrepState["AddAuthorInfo"] = 
+              Not[
+                TrueQ[
+                 meng`Toolbar`Private`$mengToolbarPrepState[
+                 "AddAuthorInfo"]]]), DynamicBox[
+               ToBoxes[(meng`Toolbar`Private`mengToolbarInitPrepState[]; If[
+                   TrueQ[
+                    meng`Toolbar`Private`$mengToolbarPrepState[
+                    "AddEndMarker"]], "\[Checkmark]  ", "     "]) <> 
+                "Add (END) marker", StandardForm], 
+               TrackedSymbols :> {meng`Toolbar`Private`$mengToolbarPrepState},
+                SynchronousUpdating -> False] :> (
+              meng`Toolbar`Private`$mengToolbarPrepState["AddEndMarker"] = Not[
+                TrueQ[
+                 meng`Toolbar`Private`$mengToolbarPrepState[
+                 "AddEndMarker"]]]), DynamicBox[
+               ToBoxes[(meng`Toolbar`Private`mengToolbarInitPrepState[]; If[
+                   TrueQ[
+                    meng`Toolbar`Private`$mengToolbarPrepState[
+                    "CollapseSubsections"]], "\[Checkmark]  ", "     "]) <> 
+                "Collapse subsections", StandardForm], 
+               TrackedSymbols :> {meng`Toolbar`Private`$mengToolbarPrepState},
+                SynchronousUpdating -> False] :> (
+              meng`Toolbar`Private`$mengToolbarPrepState[
+               "CollapseSubsections"] = Not[
+                TrueQ[
+                 meng`Toolbar`Private`$mengToolbarPrepState[
+                 "CollapseSubsections"]]]), Delimiter, DynamicBox[
+               
+               ToBoxes[(meng`Toolbar`Private`mengToolbarInitPrepState[]; 
+                 If[meng`Toolbar`Private`$mengToolbarPrepState[
+                    "PublicationDomain"] === "PublicDomain", 
+                   "\[FilledCircle]  ", "\[EmptyCircle]  "]) <> 
+                "Domain: PublicDomain", StandardForm], 
+               TrackedSymbols :> {meng`Toolbar`Private`$mengToolbarPrepState},
+                SynchronousUpdating -> False] :> (
+              meng`Toolbar`Private`$mengToolbarPrepState["PublicationDomain"] = 
+              "PublicDomain"), DynamicBox[
+               
+               ToBoxes[(meng`Toolbar`Private`mengToolbarInitPrepState[]; 
+                 If[meng`Toolbar`Private`$mengToolbarPrepState[
+                    "PublicationDomain"] === "WolframInternal", 
+                   "\[FilledCircle]  ", "\[EmptyCircle]  "]) <> 
+                "Domain: WolframInternal", StandardForm], 
+               TrackedSymbols :> {meng`Toolbar`Private`$mengToolbarPrepState},
+                SynchronousUpdating -> False] :> (
+              meng`Toolbar`Private`$mengToolbarPrepState["PublicationDomain"] = 
+              "WolframInternal"), Delimiter, 
+             StyleBox[
+              "\"\[HorizontalLine]\[HorizontalLine] Deploy \[HorizontalLine]\
+\[HorizontalLine]\"", Italic, FontColor -> GrayLevel[0.5], StripOnInput -> 
+               False] :> Null, Delimiter, "\"Prepare notebook now\"" :> 
+             meng`Toolbar`Private`mengToolbarPrepareNow[
+               ButtonNotebook[]], "\"Publish to cloud\[Ellipsis]\"" :> 
+             meng`Toolbar`Private`mengToolbarPublishToCloud[
+               ButtonNotebook[]]}, Method -> "Queued", Appearance -> 
+            "PopupMenu"], 
+           TemplateBox[{16}, "Spacer1"], 
+           StyleBox[
+           "\"kernel started \"", FontColor -> RGBColor[0.762, 0.594, 0.594], 
+            StripOnInput -> False], 
+           DynamicBox[
+            ToBoxes[
+             meng`Toolbar`Private`mengKernelAge[], StandardForm], 
+            UpdateInterval -> 60, TrackedSymbols :> {}], 
+           StyleBox[
+           "\" ago\"", FontColor -> RGBColor[0.762, 0.594, 0.594], 
+            StripOnInput -> False], 
+           TemplateBox[{12}, "Spacer1"], 
+           ButtonBox[
+            TagBox[
+             TooltipBox[
+             "\"Refresh\"", 
+              "\"Re-stamp \\\"last timestamp:\\\" with Now, evaluated in this \
+notebook.\"", TooltipStyle -> "TextStyling"], 
+             Annotation[#, 
+              "Re-stamp \"last timestamp:\" with Now, evaluated in this \
+notebook.", "Tooltip"]& ], ButtonFunction :> FrontEndExecute[{
+               FrontEnd`SelectionMove[
+                FrontEnd`ButtonNotebook[], After, Notebook], 
+               FrontEnd`NotebookWrite[
+                FrontEnd`ButtonNotebook[], 
+                Cell[
+                 BoxData[
+                  RowBox[{
+                    RowBox[{"meng`Toolbar`mengToolbarUpdateTimestamp", "[", 
+                    RowBox[{"EvaluationNotebook", "[", "]"}], "]"}], ";", 
+                    RowBox[{"NotebookDelete", "[", 
+                    RowBox[{"EvaluationCell", "[", "]"}], "]"}]}]], "Input", 
+                 ShowCellBracket -> False, CellOpen -> False], All], 
+               FrontEndToken[
+                FrontEnd`ButtonNotebook[], "EvaluateCells"]}], Evaluator -> 
+            None, Appearance -> "Palette", ImageSize -> Automatic, Method -> 
+            "Preemptive"], 
+           TemplateBox[{6}, "Spacer1"], 
+           ButtonBox[
+           "\"Quit\"", ButtonFunction :> Quit[], Appearance -> "Palette", 
+            ImageSize -> Automatic, Method -> "Queued", Evaluator -> 
+            Automatic]}, "RowDefault"]}}, 
+       GridBoxAlignment -> {"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        AutoDelete -> False, 
+       GridBoxItemSize -> {
+        "Columns" -> {Fit, Automatic}, "Rows" -> {{Automatic}}}, 
+       GridBoxSpacings -> {"Columns" -> {{1}}, "Rows" -> {{0}}}], "Grid"], 
+     FontColor -> GrayLevel[0.95], StripOnInput -> False]], "DockedCell", 
+   CellFrameMargins -> {{8, 8}, {0, 0}}, 
+   TaggingRules -> {
+    "ID" -> "meng`Toolbar", "UUID" -> "bb086221-9892-42a7-bbf4-a4fbb8e72f71"},
+    FontSize -> 11, FontFamily -> "Sans", Background -> 
+   RGBColor[0.48, 0.06, 0.06]]},
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (July 2, 2026)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell[
+    StyleData["mengReadOnlyOutput", StyleDefinitions -> StyleData["Output"]], 
+    Editable -> False, Deletable -> False, CellFrame -> {{1, 1}, {1, 1}}, 
+    CellMargins -> {{66, 10}, {12, 5}}, GeneratedCell -> False, 
+    CellFrameMargins -> {{8, 8}, {4, 4}}, CellFrameColor -> 
+    LightDarkSwitched[
+      RGBColor[0.6, 0.63, 0.68], 
+      RGBColor[0.42, 0.45, 0.52]], CellFrameLabels -> {{None, None}, {None, 
+       Cell[
+        BoxData[
+         TagBox[
+          GridBox[{{"\"\"", 
+             FrameBox[
+              StyleBox[
+              "\"example output\"", 8, Bold, FontColor -> LightDarkSwitched[
+                 GrayLevel[1], 
+                 GrayLevel[0.95]], FontFamily -> "Helvetica", StripOnInput -> 
+               False], Background -> LightDarkSwitched[
+                RGBColor[0.6, 0.63, 0.68], 
+                RGBColor[0.42, 0.45, 0.52]], FrameStyle -> None, 
+              RoundingRadius -> {0, Top -> 4}, 
+              FrameMargins -> {{6, 6}, {1, 1}}, StripOnInput -> False], 
+             "\"\""}}, 
+           GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Center}}}, 
+           AutoDelete -> False, 
+           GridBoxItemSize -> {"Columns" -> {5.5, Automatic, Fit}}, 
+           GridBoxSpacings -> {"Columns" -> {{0}}, "Rows" -> {{0}}}], 
+          "Grid"]], Background -> None, CellMargins -> 0]}}, 
+    CellFrameLabelMargins -> {{0, 0}, {0, 0}}, Background -> LightDarkSwitched[
+      RGBColor[0.96, 0.965, 0.975], 
+      RGBColor[0.17, 0.18, 0.2]]]}, Visible -> False, FrontEndVersion -> 
+  "15.0 for Mac OS X ARM (64-bit) (July 2, 2026)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"6ea2af09-b0aa-4900-a523-bbee50020b81"
 ]
 (* End of Notebook Content *)
 
 (* Internal cache information *)
 (*CellTagsOutline
-CellTagsIndex->{}
+CellTagsIndex->{
+ "mengToolbarTimestamp"->{
+  Cell[1409, 44, 152, 3, 33, "Text",ExpressionUUID->"75ed3d66-e460-457a-b0d4-eb41f3cd559f",
+   CellTags->"mengToolbarTimestamp"]},
+ "mengReadOnlyOutput"->{
+  Cell[7721, 204, 4890, 106, 84, "mengReadOnlyOutput",ExpressionUUID->"ceea60e0-a123-4f7c-b9ea-a8b5e3263dbe",
+   CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}],
+  Cell[13203, 328, 2358, 54, 182, "mengReadOnlyOutput",ExpressionUUID->"b96aeb03-e548-426f-b492-da7704f1b85a",
+   CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}],
+  Cell[15741, 391, 1130, 24, 100, "mengReadOnlyOutput",ExpressionUUID->"aba671f0-319d-4c6c-9df4-9bf81f00c12c",
+   CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}],
+  Cell[18811, 462, 4890, 106, 84, "mengReadOnlyOutput",ExpressionUUID->"f9fce12f-2a38-46ce-a724-95d93e04fde4",
+   CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}],
+  Cell[24567, 593, 705, 17, 80, "mengReadOnlyOutput",ExpressionUUID->"f2c1bc63-9751-4243-b13a-0eb54eaa05a3",
+   CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}]},
+ "mengReadOnlyPrevStyle:Output"->{
+  Cell[7721, 204, 4890, 106, 84, "mengReadOnlyOutput",ExpressionUUID->"ceea60e0-a123-4f7c-b9ea-a8b5e3263dbe",
+   CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}],
+  Cell[13203, 328, 2358, 54, 182, "mengReadOnlyOutput",ExpressionUUID->"b96aeb03-e548-426f-b492-da7704f1b85a",
+   CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}],
+  Cell[15741, 391, 1130, 24, 100, "mengReadOnlyOutput",ExpressionUUID->"aba671f0-319d-4c6c-9df4-9bf81f00c12c",
+   CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}],
+  Cell[18811, 462, 4890, 106, 84, "mengReadOnlyOutput",ExpressionUUID->"f9fce12f-2a38-46ce-a724-95d93e04fde4",
+   CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}],
+  Cell[24567, 593, 705, 17, 80, "mengReadOnlyOutput",ExpressionUUID->"f2c1bc63-9751-4243-b13a-0eb54eaa05a3",
+   CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}]}
+ }
 *)
 (*CellTagsIndex
-CellTagsIndex->{}
+CellTagsIndex->{
+ {"mengToolbarTimestamp", 96818, 2424},
+ {"mengReadOnlyOutput", 96974, 2427},
+ {"mengReadOnlyPrevStyle:Output", 97912, 2438}
+ }
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 94, 0, 123, "Title",ExpressionUUID->"ce4ede5f-27a4-4002-b08f-e9b149c3e645"],
+Cell[576, 22, 212, 3, 29, "Input",ExpressionUUID->"9346854f-700f-4cb2-9de4-c77fef24929e"],
+Cell[791, 27, 498, 10, 46, "Output",ExpressionUUID->"8f9ad3c2-32ef-4428-863c-14fca44bb393"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[541, 19, 88, 0, 84, "Section",ExpressionUUID->"1f809ab1-dee1-4fe3-86ba-12b3cc72beea"],
-Cell[632, 21, 85, 0, 37, "Input",ExpressionUUID->"28090362-57bb-4af1-be54-172e71d63d69"],
-Cell[720, 23, 350, 10, 57, "Input",ExpressionUUID->"9be1c0e5-e691-4594-98c6-d02b811a275a",
- InitializationCell->True],
-Cell[1073, 35, 136, 3, 37, "Input",ExpressionUUID->"818b4781-a4eb-4d14-85d1-9c2506d8bbf0"]
-}, Closed]],
+Cell[1326, 42, 80, 0, 96, "Title",ExpressionUUID->"1a520956-72d0-4395-a483-1fac88646165"],
+Cell[1409, 44, 152, 3, 33, "Text",ExpressionUUID->"75ed3d66-e460-457a-b0d4-eb41f3cd559f",
+ CellTags->"mengToolbarTimestamp"],
+Cell[1564, 49, 1090, 21, 55, "Text",ExpressionUUID->"a41f3bcc-3bba-48fb-9d76-f8939b7ce61f"],
+Cell[2657, 72, 493, 11, 33, "Text",ExpressionUUID->"ced4fa20-4d04-46ba-bc4d-1a957884600c"],
+Cell[3153, 85, 229, 3, 33, "Text",ExpressionUUID->"d7f2247c-2e43-439f-b180-4f1ccfda66b4"],
 Cell[CellGroupData[{
-Cell[1246, 43, 88, 0, 65, "Section",ExpressionUUID->"bbae2253-1da6-4950-8519-9e6f08630144"],
+Cell[3407, 92, 81, 0, 66, "Section",ExpressionUUID->"0cdd96a1-de98-4ebc-8afd-976cce3570c9"],
+Cell[3491, 94, 348, 6, 33, "Text",ExpressionUUID->"d20a48ec-248e-4c2c-b963-32319e4e5856"],
+Cell[3842, 102, 237, 5, 64, "Program",ExpressionUUID->"4f8b5eff-d2d0-4ed8-af80-9a7169f6f734"],
+Cell[4082, 109, 373, 8, 49, "Input",ExpressionUUID->"e975759f-1645-453f-9142-c83713a701f4"],
+Cell[4458, 119, 286, 5, 33, "Text",ExpressionUUID->"eb158b4b-4b87-4e18-ba05-52d069ecea11"],
+Cell[4747, 126, 153, 2, 33, "Text",ExpressionUUID->"bd8e53c2-fd3f-4121-bd24-afd951f353f0"],
+Cell[4903, 130, 206, 6, 64, "Program",ExpressionUUID->"42dbef53-4093-4572-bafe-3f9da4759780"],
+Cell[5112, 138, 120, 1, 29, "Input",ExpressionUUID->"6a5abd72-c752-408d-9d89-e8a4f8c14e77"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[1359, 47, 127, 0, 67, "Subsection",ExpressionUUID->"e97e20cf-795d-4c70-8b61-1c1c51482525"],
-Cell[1489, 49, 172, 3, 37, "Input",ExpressionUUID->"4222e163-6a99-4851-a256-65b56f35df59"]
-}, Closed]],
+Cell[5269, 144, 84, 0, 66, "Section",ExpressionUUID->"23ac161d-0904-49b6-88a4-4c0f747c5d8e"],
+Cell[5356, 146, 335, 6, 55, "Text",ExpressionUUID->"0626bae7-6d06-42b7-ba2c-c9fd54bb9b23"],
+Cell[5694, 154, 277, 4, 33, "Text",ExpressionUUID->"d62d8c47-eff2-49c8-aa9c-a80d4d02fa83"],
+Cell[5974, 160, 199, 3, 29, "Input",ExpressionUUID->"4bbb4bdb-fdb5-4847-8359-cc484ef2497d"],
+Cell[6176, 165, 123, 0, 33, "Text",ExpressionUUID->"f53a1ede-8d56-44be-ac23-40c013958a53"],
+Cell[6302, 167, 192, 5, 29, "Input",ExpressionUUID->"86355e6f-5460-41e4-a438-5afd4d886a63"],
+Cell[6497, 174, 205, 3, 33, "Text",ExpressionUUID->"cabde485-3b71-4d02-ac90-27dd53a32285"],
+Cell[6705, 179, 330, 5, 55, "Text",ExpressionUUID->"db21774a-8bd8-472a-99f4-97b986a2f2e5"],
+Cell[7038, 186, 333, 5, 55, "Text",ExpressionUUID->"39445be0-8379-4a46-a632-2548cab50ace"],
+Cell[7374, 193, 114, 0, 33, "Text",ExpressionUUID->"fb7f6a53-9dab-4967-ae91-029ee7239af0"],
 Cell[CellGroupData[{
-Cell[1698, 57, 126, 0, 67, "Subsection",ExpressionUUID->"c5ebc16c-bcdd-426e-aabd-4cef260d0e6c"],
+Cell[7513, 197, 205, 5, 29, "Input",ExpressionUUID->"9bc9bc21-add0-4d9f-ab33-c4e4a9b250bb"],
+Cell[7721, 204, 4890, 106, 84, "mengReadOnlyOutput",ExpressionUUID->"ceea60e0-a123-4f7c-b9ea-a8b5e3263dbe",
+ CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}]
+}, Open  ]],
+Cell[12626, 313, 277, 5, 33, "Text",ExpressionUUID->"6bd96e7e-52bb-4fdb-a39f-57c91acdf0a4"],
+Cell[12906, 320, 121, 0, 33, "Text",ExpressionUUID->"cd380305-634d-45fa-9e3f-53cc9eba253e"],
 Cell[CellGroupData[{
-Cell[1849, 61, 94, 0, 56, "Subsubsection",ExpressionUUID->"62ccd39d-cd97-4b1b-842e-3c1af428a010"],
-Cell[1946, 63, 207, 5, 37, "Input",ExpressionUUID->"b60291c9-df22-461c-a415-af5723c557c0"]
-}, Closed]],
+Cell[13052, 324, 148, 2, 29, "Input",ExpressionUUID->"12be3070-215a-4973-b1b6-15ceee0093c3"],
+Cell[13203, 328, 2358, 54, 182, "mengReadOnlyOutput",ExpressionUUID->"b96aeb03-e548-426f-b492-da7704f1b85a",
+ CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[2190, 73, 99, 0, 56, "Subsubsection",ExpressionUUID->"dd222402-1239-484f-9ed6-9731ff743b90"],
-Cell[2292, 75, 212, 5, 37, "Input",ExpressionUUID->"f0d8d620-7300-4084-82d8-78f26223c30a"],
-Cell[2507, 82, 213, 5, 37, "Input",ExpressionUUID->"105cd0af-5d70-4b40-87aa-a484811ba49d"],
-Cell[2723, 89, 216, 5, 37, "Input",ExpressionUUID->"ff3ae907-b70c-4b94-8534-25729a8998e8"]
-}, Closed]]
-}, Closed]],
+Cell[15598, 387, 140, 2, 29, "Input",ExpressionUUID->"2e881e09-9239-4c8f-a8f6-a4d664cb8d0b"],
+Cell[15741, 391, 1130, 24, 100, "mengReadOnlyOutput",ExpressionUUID->"aba671f0-319d-4c6c-9df4-9bf81f00c12c",
+ CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}]
+}, Open  ]],
+Cell[16886, 418, 1302, 24, 55, "Text",ExpressionUUID->"7d947060-8d3f-416b-9a70-7002e52b4658"],
+Cell[18191, 444, 271, 6, 48, "Program",ExpressionUUID->"a4df6f2a-a4e6-4ed4-8dd2-de3a92afe75b"],
+Cell[18465, 452, 198, 3, 33, "Text",ExpressionUUID->"d630ce65-a60d-40d4-9efd-f979ebbdc197"],
 Cell[CellGroupData[{
-Cell[2988, 100, 114, 0, 67, "Subsection",ExpressionUUID->"a46f38ca-3544-4434-87f1-d423acc283ab"],
+Cell[18688, 459, 120, 1, 29, "Input",ExpressionUUID->"a07f414a-4027-4fe8-8e70-15e9df895c41"],
+Cell[18811, 462, 4890, 106, 84, "mengReadOnlyOutput",ExpressionUUID->"f9fce12f-2a38-46ce-a724-95d93e04fde4",
+ CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}]
+}, Open  ]],
+Cell[23716, 571, 395, 7, 33, "Text",ExpressionUUID->"0357523a-de21-4c66-a9e2-40763fedc7fb"],
+Cell[24114, 580, 176, 3, 48, "Program",ExpressionUUID->"2e2a04a7-d592-4177-af9c-02e16b875068"],
+Cell[24293, 585, 109, 0, 33, "Text",ExpressionUUID->"a4674354-1a93-486c-a964-57559bec5172"],
 Cell[CellGroupData[{
-Cell[3127, 104, 103, 0, 56, "Subsubsection",ExpressionUUID->"40fdcc48-ccd4-4147-9bc8-3fa9ec8cf9f6"],
-Cell[3233, 106, 605, 18, 339, "Program",ExpressionUUID->"2b7f1858-5d49-49a9-af69-49c4010a04a5"],
-Cell[3841, 126, 1858, 42, 376, "Input",ExpressionUUID->"3cab3221-4bd6-4e53-8c0f-1bfdd3a4cff0"]
-}, Closed]],
+Cell[24427, 589, 137, 2, 29, "Input",ExpressionUUID->"7d0611ce-fdb4-4f9d-9827-a94fe363aa6c"],
+Cell[24567, 593, 705, 17, 80, "mengReadOnlyOutput",ExpressionUUID->"f2c1bc63-9751-4243-b13a-0eb54eaa05a3",
+ CellTags->{"mengReadOnlyOutput", "mengReadOnlyPrevStyle:Output"}]
+}, Open  ]],
+Cell[25287, 613, 179, 3, 29, "Input",ExpressionUUID->"0a28c4c8-3ddb-495d-a495-102a076f1f29"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[5736, 173, 102, 0, 56, "Subsubsection",ExpressionUUID->"a58f708b-e13f-4608-b8d1-7a3fc02bdea1"],
-Cell[5841, 175, 198, 5, 37, "Input",ExpressionUUID->"24736cc7-b06f-4150-911c-88e312906d57"],
-Cell[6042, 182, 1426, 30, 376, "Input",ExpressionUUID->"319e4b78-a6ab-4edb-8e8c-9c7245f1b5bb"]
-}, Closed]]
-}, Closed]],
+Cell[25503, 621, 80, 0, 66, "Section",ExpressionUUID->"742fb0e5-b4a1-4680-857f-0f799f7cd8ac"],
 Cell[CellGroupData[{
-Cell[7517, 218, 92, 0, 67, "Subsection",ExpressionUUID->"98b29914-a3f5-4807-be97-9f0f91b0e563"],
-Cell[7612, 220, 176, 4, 37, "Input",ExpressionUUID->"00904b6e-94b8-4867-9149-a143b98aef66"],
-Cell[7791, 226, 252, 6, 37, "Input",ExpressionUUID->"b174c404-393b-40ca-8cd8-23ba3c1f49ac"]
-}, Closed]],
+Cell[25608, 625, 84, 0, 53, "Subsection",ExpressionUUID->"bd40b512-4b3b-472d-a108-c5bd105d3dba"],
+Cell[25695, 627, 661, 10, 55, "Text",ExpressionUUID->"21213400-ee8c-477d-a417-33de6eb8c8ee"],
+Cell[26359, 639, 156, 2, 29, "Input",ExpressionUUID->"431bf18f-7a5f-496b-a0aa-ea55852808ae"],
+Cell[26518, 643, 138, 2, 29, "Input",ExpressionUUID->"034ae7df-99e3-4fea-a708-387ac35560a8"],
+Cell[26659, 647, 175, 3, 29, "Input",ExpressionUUID->"a8b4fac2-f454-43c1-81d4-9e87c90b0626"],
+Cell[26837, 652, 268, 6, 29, "Input",ExpressionUUID->"a0e3be0b-9f91-4b88-9a4c-c28fd2d175ab"],
+Cell[27108, 660, 756, 17, 33, "Text",ExpressionUUID->"5836f9ca-d1d7-418d-b180-ac93568c1104"],
+Cell[27867, 679, 216, 4, 29, "Input",ExpressionUUID->"6c118d83-d72b-404f-9d70-891c34fec945"],
+Cell[28086, 685, 217, 4, 29, "Input",ExpressionUUID->"0530a820-2adc-4b48-a64e-2f0184db94f8"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[8080, 237, 125, 0, 67, "Subsection",ExpressionUUID->"7a3b6e54-4fd5-49ed-bb13-bc7e7b8e3dd9"],
-Cell[8208, 239, 264, 6, 37, "Input",ExpressionUUID->"e3848673-2383-429b-87e3-799e34a00f3b"],
-Cell[8475, 247, 476, 12, 90, "Input",ExpressionUUID->"8996b7db-c173-442e-9cb3-843d53144ff9"],
-Cell[8954, 261, 362, 10, 37, "Input",ExpressionUUID->"4595a2a4-62f0-4df7-ac51-e0b11bff9618"],
-Cell[9319, 273, 703, 21, 142, "Input",ExpressionUUID->"5a803921-3ff2-489d-a43f-114238e631c8"],
-Cell[10025, 296, 703, 21, 142, "Input",ExpressionUUID->"4764d160-40a4-4495-b3da-8f86abe33f6e"],
-Cell[10731, 319, 175, 4, 37, "Input",ExpressionUUID->"dcfd2251-6fce-4059-b639-041422e73c2d"],
-Cell[10909, 325, 143, 2, 44, "Text",ExpressionUUID->"b432dcbe-d6fb-4183-98fa-93a90d757afd"],
-Cell[11055, 329, 425, 10, 64, "Input",ExpressionUUID->"17e30097-0e26-45ae-88da-45186199e5bd"],
-Cell[11483, 341, 112, 2, 37, "Input",ExpressionUUID->"9b2f1be0-b4a9-4012-a501-2900cd8d64d8"]
-}, Closed]],
+Cell[28340, 694, 85, 0, 53, "Subsection",ExpressionUUID->"53a806cf-4de0-405e-9743-b95c673e59fd"],
+Cell[28428, 696, 238, 5, 29, "Input",ExpressionUUID->"5cbce4db-8be5-4028-b01e-002606d26d6a"],
+Cell[28669, 703, 123, 1, 29, "Input",ExpressionUUID->"3b728d83-3d32-4414-ae57-5d27bab4c98a"],
+Cell[28795, 706, 169, 3, 33, "Text",ExpressionUUID->"39724307-3fb9-4873-9d3f-a0b3892e5d93"],
+Cell[28967, 711, 1301, 27, 213, "Input",ExpressionUUID->"c07d45f4-0781-4147-be0d-9ea76b794044"],
+Cell[30271, 740, 625, 13, 33, "Text",ExpressionUUID->"d3a73c92-57d9-4d9b-a1be-fa3e712fc2f2"],
+Cell[30899, 755, 176, 3, 33, "Text",ExpressionUUID->"cb220a3c-c96e-4c12-827c-f71281fb1b5c"],
+Cell[31078, 760, 439, 9, 70, "Input",ExpressionUUID->"cc031fb2-bffa-4722-a2f0-76274c578b1c"],
+Cell[31520, 771, 117, 0, 33, "Text",ExpressionUUID->"40d26501-1ee4-442c-aae1-377459d78f7e"],
+Cell[31640, 773, 996, 24, 90, "Input",ExpressionUUID->"13b0088f-4e42-44bb-a6eb-cc3d82b1e0c1"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[11632, 348, 168, 3, 67, "Subsection",ExpressionUUID->"d91736e6-870f-4e4f-97e7-6644585c08b3"],
-Cell[11803, 353, 569, 13, 142, "Input",ExpressionUUID->"276f8781-049d-4ca9-8212-cce2b453d0af"],
+Cell[32673, 802, 106, 0, 53, "Subsection",ExpressionUUID->"3fc769c4-beff-4152-9847-72cf9f9ba9c8"],
+Cell[32782, 804, 253, 5, 29, "Input",ExpressionUUID->"363eaf56-beb9-4dd6-b17e-0c6d1f1a00ba"],
+Cell[33038, 811, 182, 3, 29, "Input",ExpressionUUID->"7964c544-3994-4550-8600-418780dc5f3a"],
+Cell[33223, 816, 1332, 33, 33, "Text",ExpressionUUID->"824ccd45-9775-47fa-af27-29e358b3b770"],
+Cell[34558, 851, 171, 3, 29, "Input",ExpressionUUID->"c6325790-60f2-4af6-b4c7-4171dd351d10"],
+Cell[34732, 856, 212, 4, 29, "Input",ExpressionUUID->"b9be65ae-db20-4d5d-be43-8436f47c6210"],
+Cell[34947, 862, 1353, 34, 33, "Text",ExpressionUUID->"b39f777f-1616-44a3-8575-60846dfd8393"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[12397, 370, 93, 0, 56, "Subsubsection",ExpressionUUID->"96b7d980-a6da-4eba-b171-e054e792c9f6"],
-Cell[12493, 372, 377, 9, 64, "Input",ExpressionUUID->"0eb39995-efe4-48ff-81fc-272f2d1b8edf"]
-}, Closed]],
+Cell[36337, 901, 88, 0, 53, "Subsection",ExpressionUUID->"cbf80be6-816f-4754-90ec-4fa17eaf4abd"],
+Cell[36428, 903, 140, 2, 29, "Input",ExpressionUUID->"5d4d1e3f-3e0f-4778-9a44-94acd382e808"],
+Cell[36571, 907, 219, 3, 33, "Text",ExpressionUUID->"c37b7a58-3a89-4fe0-83ce-c5b1cd3a74ae"],
+Cell[36793, 912, 185, 3, 29, "Input",ExpressionUUID->"5b1c7f17-e79a-4096-abe5-951eb34212ad"],
+Cell[36981, 917, 346, 7, 29, "Input",ExpressionUUID->"2c6dbe21-2c31-47a0-9543-2514224ef596"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[12907, 386, 112, 0, 56, "Subsubsection",ExpressionUUID->"ed67ab1f-1341-4a06-806b-9ade2852a27d"],
-Cell[13022, 388, 259, 5, 37, "Input",ExpressionUUID->"c285f12b-8bf2-421e-97ea-63d992708c91"]
-}, Closed]],
+Cell[37364, 929, 85, 0, 53, "Subsection",ExpressionUUID->"75bd2d09-5d97-4915-bde9-da13bbf048e6"],
+Cell[37452, 931, 137, 2, 29, "Input",ExpressionUUID->"351313b7-e382-4c9b-b2a5-97b20de258ff"],
+Cell[37592, 935, 186, 3, 29, "Input",ExpressionUUID->"23f43299-f007-4a0e-b3f4-8c1f86fc54a7"],
+Cell[37781, 940, 118, 0, 33, "Text",ExpressionUUID->"592d3a5b-2c31-484c-891a-e6842cb7af58"],
+Cell[37902, 942, 396, 8, 29, "Input",ExpressionUUID->"3df7f9b8-5b59-4327-86a7-4b0c6eca9ef4"],
+Cell[38301, 952, 199, 3, 29, "Input",ExpressionUUID->"f2067001-4c53-4fa9-a75e-97eae3336fe8"],
+Cell[38503, 957, 169, 3, 29, "Input",ExpressionUUID->"86fa3ae9-85b0-4325-8108-18fb980b9497"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[13318, 398, 112, 0, 56, "Subsubsection",ExpressionUUID->"9fe73642-68b3-462f-868c-0a2365562959"],
-Cell[13433, 400, 253, 5, 37, "Input",ExpressionUUID->"1cc8d47d-a8e5-4782-8847-9eab6ccc2cfc"],
-Cell[13689, 407, 255, 5, 37, "Input",ExpressionUUID->"8b29f945-84c4-495c-a8a6-a00c3569a4b8"],
-Cell[13947, 414, 259, 5, 37, "Input",ExpressionUUID->"4162278d-d4cf-4478-84f9-a255ae828654"],
-Cell[14209, 421, 353, 9, 37, "Input",ExpressionUUID->"451fceb8-abc5-47ab-ae98-f4436b87f074"],
-Cell[14565, 432, 317, 7, 37, "Input",ExpressionUUID->"da3811b8-95f5-4148-a7d2-1e146f8d55c8"]
-}, Closed]]
-}, Closed]]
-}, Closed]],
+Cell[38709, 965, 86, 0, 53, "Subsection",ExpressionUUID->"1b6d32c6-9859-402c-8219-631d6fd5912a"],
+Cell[38798, 967, 756, 18, 33, "Text",ExpressionUUID->"da2e298d-eeb9-44d7-aeed-1ed314e49fc9"],
+Cell[39557, 987, 137, 2, 29, "Input",ExpressionUUID->"1cd139a2-71af-4290-aebb-cb866cef6d80"],
+Cell[39697, 991, 308, 6, 29, "Input",ExpressionUUID->"5a1177e5-7303-44c4-be8b-86b3c09e083b"],
+Cell[40008, 999, 175, 3, 29, "Input",ExpressionUUID->"5c00c013-93a6-41f7-9b75-d8c75cb5be66"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[14943, 446, 84, 0, 65, "Section",ExpressionUUID->"8afbed56-38fa-41a3-986c-581be394fb52"],
+Cell[40220, 1007, 88, 0, 53, "Subsection",ExpressionUUID->"88f6982a-2bfe-4a73-8fd8-a9838ba70650"],
+Cell[40311, 1009, 189, 3, 29, "Input",ExpressionUUID->"b76a40b4-cac1-4b29-9b70-9399c31af656"],
+Cell[40503, 1014, 261, 6, 29, "Input",ExpressionUUID->"356d4cfa-83d7-4cdb-b12c-57ef9a360435"],
+Cell[40767, 1022, 125, 1, 29, "Input",ExpressionUUID->"8c470b06-c3f8-4a07-b9bb-197c5f7166af"],
+Cell[40895, 1025, 414, 6, 33, "Text",ExpressionUUID->"f401a78a-d980-4627-ba08-b4802ed9d893"],
+Cell[41312, 1033, 185, 3, 29, "Input",ExpressionUUID->"d0e946cc-1205-46cf-92a5-f564f7efe5b7"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[15052, 450, 368, 8, 40, "Item",ExpressionUUID->"55c83669-058e-4a3e-8d7b-9179ca450822"],
-Cell[15423, 460, 311, 5, 40, "Item",ExpressionUUID->"5368d1d5-4181-4d60-80e0-4c9a43ff9f17"]
-}, Closed]]
-}, Closed]]
+Cell[41534, 1041, 99, 0, 53, "Subsection",ExpressionUUID->"1f072f55-1e66-418a-a756-16974d3ed7b4"],
+Cell[41636, 1043, 209, 4, 29, "Input",ExpressionUUID->"8b0cac0a-3dec-4f8f-91e0-789f62fc46ea"],
+Cell[41848, 1049, 121, 1, 29, "Input",ExpressionUUID->"ad134bd2-dda5-4c05-ab48-2f0f76fd0b05"],
+Cell[41972, 1052, 229, 4, 29, "Input",ExpressionUUID->"b44d6b3b-7b50-43a4-8501-1dcd99d60746"],
+Cell[42204, 1058, 137, 2, 29, "Input",ExpressionUUID->"8e83bf63-8c25-4fc0-8bb1-e8295ec88b9a"],
+Cell[42344, 1062, 181, 3, 29, "Input",ExpressionUUID->"354d6eb5-8e77-4c75-a82e-a0f13c44ba1e"],
+Cell[42528, 1067, 132, 1, 29, "Input",ExpressionUUID->"5c584815-769b-4296-b805-7ae5e01e23a1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[42697, 1073, 97, 0, 53, "Subsection",ExpressionUUID->"a92121c7-f0f6-4eda-a121-4c59b4bcb168"],
+Cell[42797, 1075, 450, 9, 33, "Text",ExpressionUUID->"a7938ab9-33d2-43fd-ab8b-02edbbf97087"],
+Cell[43250, 1086, 143, 2, 29, "Input",ExpressionUUID->"0e890233-dffb-4f66-bb94-fec9de797a8d"],
+Cell[43396, 1090, 137, 2, 29, "Input",ExpressionUUID->"6b24c5a3-2cfd-44f5-b142-8dcc5b623aed"],
+Cell[43536, 1094, 197, 4, 33, "Text",ExpressionUUID->"c9955f04-f12e-4eba-8b3b-cbe2515da380"],
+Cell[43736, 1100, 133, 1, 29, "Input",ExpressionUUID->"875e20ea-1663-4916-a964-3da263c69961"],
+Cell[43872, 1103, 162, 3, 29, "Input",ExpressionUUID->"c162d894-c51b-49f0-8183-34fad11e84f7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44071, 1111, 97, 0, 53, "Subsection",ExpressionUUID->"034b9a98-2fdf-43a5-a8b1-dc22e1b1c904"],
+Cell[44171, 1113, 137, 2, 29, "Input",ExpressionUUID->"fbfda208-6011-4c6a-80a2-e5cfe31ab3c1"],
+Cell[44311, 1117, 138, 2, 29, "Input",ExpressionUUID->"47441369-0a4a-4a35-8f40-336de7955e46"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44498, 1125, 83, 0, 66, "Section",ExpressionUUID->"6dc12fdc-e407-4d28-a01e-c07b228adc01"],
+Cell[44584, 1127, 356, 6, 33, "Text",ExpressionUUID->"b57eb606-d146-4c6f-9126-0c781de78d57"],
+Cell[44943, 1135, 195, 3, 29, "Input",ExpressionUUID->"dd0071f1-de35-4527-9aeb-0af69a15fa32"],
+Cell[45141, 1140, 958, 25, 33, "Text",ExpressionUUID->"a0e83cf0-7a4a-4be6-9dbe-1d3756dcae4b"],
+Cell[46102, 1167, 197, 4, 29, "Input",ExpressionUUID->"8045375e-ed51-4cb3-94c9-21d55f3f90cf"],
+Cell[46302, 1173, 283, 6, 29, "Input",ExpressionUUID->"ff42e2c6-d3aa-456e-a47c-1540258e2063"],
+Cell[46588, 1181, 330, 5, 33, "Text",ExpressionUUID->"925a8ab4-0107-4414-bc16-a63b7741a40b"],
+Cell[46921, 1188, 164, 2, 29, "Input",ExpressionUUID->"b034930d-1d06-4971-af71-1e012fd4853f"],
+Cell[47088, 1192, 165, 2, 29, "Input",ExpressionUUID->"cbe35b9d-e31a-4d67-b5a8-6e930f3af673"],
+Cell[47256, 1196, 799, 16, 33, "Text",ExpressionUUID->"0166512f-064f-46b8-b51d-dd5b57d2df6b"],
+Cell[48058, 1214, 259, 5, 29, "Input",ExpressionUUID->"bf5c7c89-9cc0-4628-8d57-cffe747784ca"],
+Cell[CellGroupData[{
+Cell[48342, 1223, 98, 0, 53, "Subsection",ExpressionUUID->"8a09d568-7055-41f6-929c-b983b85f51bb"],
+Cell[48443, 1225, 433, 7, 33, "Text",ExpressionUUID->"2256bfa4-e8f5-45c4-bf80-577bfb8c5ba1"],
+Cell[48879, 1234, 144, 2, 29, "Input",ExpressionUUID->"36551dd9-f988-4df4-a5b6-fb807c69b90f"],
+Cell[49026, 1238, 208, 4, 29, "Input",ExpressionUUID->"0c89be48-6cb4-41f7-bea6-d2f334f8c118"],
+Cell[49237, 1244, 498, 13, 90, "Input",ExpressionUUID->"5a21c8f7-da98-46ee-a691-a0eeeba6bda0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[49772, 1262, 95, 0, 53, "Subsection",ExpressionUUID->"0e1fedeb-d1e3-4464-aba7-949d5b4b62b7"],
+Cell[49870, 1264, 451, 7, 33, "Text",ExpressionUUID->"66fc9e0b-9992-472f-acdc-70fe5080bd0b"],
+Cell[50324, 1273, 145, 2, 29, "Input",ExpressionUUID->"e96bd6f6-146b-4245-8bdd-a7aec97e3e2c"],
+Cell[50472, 1277, 227, 4, 29, "Input",ExpressionUUID->"1346a8a3-4ec7-4aca-8830-f6db2c6717a6"],
+Cell[50702, 1283, 586, 12, 33, "Text",ExpressionUUID->"76903cac-2df4-41d5-ba20-ae3ccea670e1"],
+Cell[51291, 1297, 231, 4, 29, "Input",ExpressionUUID->"e56e7239-5905-432f-b9b3-bed3f72386a6"],
+Cell[51525, 1303, 225, 4, 29, "Input",ExpressionUUID->"02d585d1-f7eb-4ccc-ba7e-08b732118eff"],
+Cell[51753, 1309, 322, 7, 29, "Input",ExpressionUUID->"0aabc23a-51fa-4b53-9e4c-4d900bfcb9d1"],
+Cell[52078, 1318, 177, 3, 33, "Text",ExpressionUUID->"06727330-bbf4-4e89-91c3-e58b9555b9a4"],
+Cell[52258, 1323, 325, 7, 29, "Input",ExpressionUUID->"28de6d58-b58c-43a7-b514-8a27b8efb2ac"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52632, 1336, 84, 0, 66, "Section",ExpressionUUID->"2e9a4d8d-0a0e-454f-b934-3448e3ccc7b3"],
+Cell[52719, 1338, 413, 10, 33, "Text",ExpressionUUID->"07766fe8-6fd9-4a3e-87bf-d772dbe444f7"],
+Cell[53135, 1350, 1093, 20, 55, "Text",ExpressionUUID->"8927da92-78a5-4996-b764-fb09adbf6f65"],
+Cell[54231, 1372, 198, 4, 29, "Input",ExpressionUUID->"879eefba-6a33-460f-9c19-6bbe2662cd22"],
+Cell[54432, 1378, 193, 4, 29, "Input",ExpressionUUID->"23bb53f1-f113-409b-b869-e7a7813682a6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[54662, 1387, 107, 0, 66, "Section",ExpressionUUID->"75457227-d9c4-41ae-9d36-d3195ac0310f"],
+Cell[54772, 1389, 115, 1, 29, "Input",ExpressionUUID->"22a75a51-202a-49d4-9869-4f35b239c185"],
+Cell[54890, 1392, 130, 1, 29, "Input",ExpressionUUID->"f8264c04-5b6f-4245-ae8f-a09590619218"],
+Cell[55023, 1395, 142, 2, 29, "Input",ExpressionUUID->"f66dae3d-5959-410f-8b30-2eb25ee3622c"],
+Cell[55168, 1399, 140, 2, 29, "Input",ExpressionUUID->"58ca04df-6a53-4164-84a2-562f7d2fdfde"],
+Cell[55311, 1403, 140, 2, 29, "Input",ExpressionUUID->"8dce8b42-0e01-4f31-b461-b6b0d25a4f15"],
+Cell[55454, 1407, 137, 2, 29, "Input",ExpressionUUID->"f5c85750-0926-4fc4-9203-2ff6062373df"],
+Cell[55594, 1411, 488, 13, 31, "Input",ExpressionUUID->"56e0ebcd-7c45-4096-a5be-420ca643d4db"],
+Cell[56085, 1426, 134, 1, 29, "Input",ExpressionUUID->"75906225-95a1-413c-b07a-6885ffc69468"],
+Cell[56222, 1429, 268, 5, 29, "Input",ExpressionUUID->"02450535-efc4-4335-bdba-dbf403b301fe"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[56527, 1439, 90, 0, 66, "Section",ExpressionUUID->"3dc32bd0-bd1b-4150-aba0-8246fa1447ef"],
+Cell[56620, 1441, 163, 3, 33, "Text",ExpressionUUID->"a4f9fd1e-0e72-45d8-861f-e8368257260a"],
+Cell[56786, 1446, 113, 1, 29, "Input",ExpressionUUID->"a859cb10-1fae-4ad7-a2d0-71b0059b3632"],
+Cell[56902, 1449, 135, 1, 29, "Input",ExpressionUUID->"486fe112-25f8-44fa-aa48-ea482a8042b3"],
+Cell[57040, 1452, 141, 1, 29, "Input",ExpressionUUID->"3c32f00f-8e5b-43b7-be86-ece2f4004e88"],
+Cell[57184, 1455, 140, 2, 29, "Input",ExpressionUUID->"a6c97d9a-906b-4e3a-b311-f54584c591b9"],
+Cell[57327, 1459, 141, 1, 29, "Input",ExpressionUUID->"6c704716-a620-4493-acdd-f92a3e77ea3e"],
+Cell[57471, 1462, 148, 2, 29, "Input",ExpressionUUID->"795c23b9-03f6-42e8-8629-bd42e9a0e8d0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[57656, 1469, 99, 0, 66, "Section",ExpressionUUID->"392b2010-a129-4027-96b2-a4cc77737adf"],
+Cell[57758, 1471, 113, 1, 29, "Input",ExpressionUUID->"af930d21-7f87-42f5-a511-048e31b0081f"],
+Cell[57874, 1474, 374, 6, 33, "Text",ExpressionUUID->"5195383e-8a25-4943-8530-28ff659a2150"],
+Cell[58251, 1482, 119, 1, 29, "Input",ExpressionUUID->"793597e1-5ce5-427b-a679-24a9fdcda841"],
+Cell[58373, 1485, 326, 8, 29, "Input",ExpressionUUID->"9c64a2bf-d9e9-4d4a-8d10-15c5eeed4fc7"],
+Cell[58702, 1495, 117, 1, 29, "Input",ExpressionUUID->"2c61d0d5-1444-4b50-be91-f06c4cd1286c"],
+Cell[58822, 1498, 117, 1, 29, "Input",ExpressionUUID->"4998b5a0-0510-4711-addb-fa2dd1195c00"],
+Cell[58942, 1501, 115, 1, 29, "Input",ExpressionUUID->"d9609166-a0db-45a1-ba14-153d212d5fbd"],
+Cell[59060, 1504, 118, 1, 29, "Input",ExpressionUUID->"888fba86-dd70-494d-ae7f-1fedbea703ac"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59215, 1510, 96, 0, 66, "Section",ExpressionUUID->"aa857f04-2ef8-49f9-bc04-9f1e2b9d465a"],
+Cell[59314, 1512, 114, 1, 29, "Input",ExpressionUUID->"14b5bac3-2a49-40bc-acc1-3df0f3e238c4"],
+Cell[59431, 1515, 237, 4, 29, "Input",ExpressionUUID->"3ec40fd4-c35e-4178-ab1a-b510fcee9bd7"],
+Cell[59671, 1521, 117, 1, 29, "Input",ExpressionUUID->"1ae3c879-023d-4d41-b867-78a17ffd21c3"],
+Cell[59791, 1524, 138, 2, 29, "Input",ExpressionUUID->"d47b450f-c64d-4bfd-ba96-8a5d1a35485e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59966, 1531, 106, 0, 66, "Section",ExpressionUUID->"aec54ba2-0c04-42bc-be46-c02d42162056"],
+Cell[60075, 1533, 113, 1, 29, "Input",ExpressionUUID->"bf45e7f1-1656-4c85-9ced-dedf975ffd27"],
+Cell[60191, 1536, 129, 1, 29, "Input",ExpressionUUID->"49d3d384-e37a-4fa7-ac74-0e6b91e0d4f5"],
+Cell[60323, 1539, 131, 1, 29, "Input",ExpressionUUID->"a334c475-cc40-42f7-97c6-95776a4f4ab1"],
+Cell[60457, 1542, 205, 4, 29, "Input",ExpressionUUID->"9d3ce345-2d34-4ba9-b8e7-2e59354cc257"],
+Cell[60665, 1548, 125, 1, 29, "Input",ExpressionUUID->"951ba8f6-b471-4b40-a739-459b20516cb6"],
+Cell[60793, 1551, 200, 4, 29, "Input",ExpressionUUID->"0df9668c-e1f9-4e34-938b-b1563acde7b0"],
+Cell[60996, 1557, 124, 1, 29, "Input",ExpressionUUID->"f33b5c37-1863-49d7-a525-0ec072be1772"],
+Cell[61123, 1560, 242, 4, 29, "Input",ExpressionUUID->"faddb351-a3c0-4464-abf0-53658b1db3af"],
+Cell[61368, 1566, 130, 0, 33, "Text",ExpressionUUID->"4663a299-20c9-47f6-8ed7-029874eaab55"],
+Cell[61501, 1568, 227, 5, 29, "Input",ExpressionUUID->"c80af96c-12e8-416e-9318-20b1fa92dd6b"],
+Cell[61731, 1575, 191, 3, 33, "Text",ExpressionUUID->"34352556-d247-46dd-8821-372c9672b835"],
+Cell[61925, 1580, 258, 6, 29, "Input",ExpressionUUID->"3b4f1e09-9aa3-4e25-a3e0-06c7535063ec"],
+Cell[62186, 1588, 169, 3, 29, "Input",ExpressionUUID->"9578ba89-155b-4f86-8c8a-b8232e82c268"],
+Cell[62358, 1593, 139, 2, 29, "Input",ExpressionUUID->"4f6c1963-a579-4751-a320-4be9186e2225"],
+Cell[62500, 1597, 244, 5, 29, "Input",ExpressionUUID->"28c4014b-bf11-4989-9a81-f2c43d515e31"],
+Cell[62747, 1604, 235, 5, 29, "Input",ExpressionUUID->"825dc60c-7338-4169-b06f-9d491f319507"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63019, 1614, 97, 0, 66, "Section",ExpressionUUID->"c4cec431-06c1-4985-9578-89e99382e4e4"],
+Cell[63119, 1616, 389, 6, 33, "Text",ExpressionUUID->"e5602380-1399-49c9-aff1-ae639ffaebb3"],
+Cell[63511, 1624, 122, 1, 29, "Input",ExpressionUUID->"6d570a5e-ce39-4dc5-8913-d38a0d7f1f16"],
+Cell[63636, 1627, 119, 1, 29, "Input",ExpressionUUID->"13595902-72c8-46e3-974e-a6add3e64849"],
+Cell[63758, 1630, 124, 1, 29, "Input",ExpressionUUID->"179b91f9-6db8-4fd5-a414-fece4170fd05"],
+Cell[63885, 1633, 174, 3, 29, "Input",ExpressionUUID->"4d15b8c8-089a-4092-a2ae-c53df06ae372"],
+Cell[64062, 1638, 357, 8, 29, "Input",ExpressionUUID->"2a0543ee-d664-4ec3-a5b3-e0ad75f4dc81"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64456, 1651, 88, 0, 66, "Section",ExpressionUUID->"2c4f7799-81c0-430d-9f07-c99a2c8e7b1e"],
+Cell[64547, 1653, 869, 19, 55, "Text",ExpressionUUID->"757da44a-4306-4dba-b2e5-9cd59170812b"],
+Cell[65419, 1674, 116, 1, 29, "Input",ExpressionUUID->"8211cd34-2742-46a4-a12e-2159d7255ba8"],
+Cell[65538, 1677, 123, 1, 29, "Input",ExpressionUUID->"3e2e8998-0d65-445e-920c-511f255307f3"],
+Cell[65664, 1680, 114, 1, 29, "Input",ExpressionUUID->"7431f398-2eff-4619-b0b7-d3f66dc20801"],
+Cell[65781, 1683, 128, 1, 29, "Input",ExpressionUUID->"7445a93a-a854-402a-b16a-e74348a45b9e"],
+Cell[65912, 1686, 120, 1, 29, "Input",ExpressionUUID->"4f37d66b-014f-454b-9731-9bf26dcd1797"],
+Cell[66035, 1689, 119, 1, 29, "Input",ExpressionUUID->"42b70391-8b7a-4b5d-b7cb-5570e535f2fb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[66191, 1695, 80, 0, 66, "Section",ExpressionUUID->"8fab2793-49cd-40bc-8521-e13305eae83c"],
+Cell[66274, 1697, 777, 19, 33, "Text",ExpressionUUID->"32df890b-52b0-42a0-8f6b-0a29c8209ff6"],
+Cell[67054, 1718, 161, 3, 29, "Input",ExpressionUUID->"6e9fb028-20a1-4169-a347-1b2fe83fb0e1"],
+Cell[67218, 1723, 116, 1, 29, "Input",ExpressionUUID->"06da3880-19b2-4897-bc9b-0d7892740b32"],
+Cell[67337, 1726, 126, 1, 29, "Input",ExpressionUUID->"e82b6255-c893-465e-a296-c3036863a02c"],
+Cell[67466, 1729, 129, 1, 29, "Input",ExpressionUUID->"2c8a77c6-07d4-4b64-b431-016e5daedc1a"],
+Cell[67598, 1732, 155, 2, 33, "Text",ExpressionUUID->"f18c6b6f-66a2-499e-86b4-a6c62f0c48e6"],
+Cell[67756, 1736, 231, 5, 29, "Input",ExpressionUUID->"5ba2a95d-8bfc-468b-8e1b-a636d9a50c9f"],
+Cell[67990, 1743, 1611, 30, 55, "Text",ExpressionUUID->"ac3cfed2-5b5d-4be9-a83b-46c868ee8d98"],
+Cell[69604, 1775, 873, 21, 111, "Input",ExpressionUUID->"5444f90f-5767-476a-8cbd-34bef80ab208"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[70514, 1801, 94, 0, 66, "Section",ExpressionUUID->"5e81ed64-cfff-4f1d-aa65-5fbd6584ff03"],
+Cell[70611, 1803, 369, 6, 33, "Text",ExpressionUUID->"663380b8-1a45-448f-bbae-efe6a8b7437b"],
+Cell[70983, 1811, 400, 9, 29, "Input",ExpressionUUID->"16d30507-5e7b-45ea-aadb-0666fa3e093c"],
+Cell[71386, 1822, 700, 17, 29, "Input",ExpressionUUID->"c1cad1f9-df1e-4e45-89a4-aaaef6514b10"],
+Cell[72089, 1841, 1492, 43, 33, "Text",ExpressionUUID->"6d1eb4a2-b399-4523-99c1-fef3a6cd83df"],
+Cell[73584, 1886, 312, 7, 29, "Input",ExpressionUUID->"ddd34d6c-db18-4253-ac0a-d14bdf2a1923"],
+Cell[73899, 1895, 109, 0, 33, "Text",ExpressionUUID->"88c96652-2aea-4e99-80ab-93981020183f"],
+Cell[74011, 1897, 170, 3, 29, "Input",ExpressionUUID->"dab71078-bbd4-4155-98da-39a299a7c613"],
+Cell[74184, 1902, 334, 6, 33, "Text",ExpressionUUID->"66d73dba-c99c-419a-a605-780f4fa5dba6"],
+Cell[74521, 1910, 391, 9, 29, "Input",ExpressionUUID->"77cd9d06-2257-4050-a959-abdaf4b619ff"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[74949, 1924, 83, 0, 66, "Section",ExpressionUUID->"8681b2ca-a227-47f6-bc85-6e3898dd9035"],
+Cell[75035, 1926, 336, 8, 70, "Input",ExpressionUUID->"914d1b83-0442-4bde-80bb-75f1e8a0628e"],
+Cell[75374, 1936, 143, 3, 29, "Input",ExpressionUUID->"f7cb8309-1deb-44fb-92ec-f092e94258c3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[75554, 1944, 108, 0, 66, "Section",ExpressionUUID->"4dd3b8bf-ca57-4eb4-8aca-6b7f85aedc78"],
+Cell[75665, 1946, 1327, 28, 55, "Text",ExpressionUUID->"36652495-2de3-477b-a930-5f2c27075089"],
+Cell[76995, 1976, 907, 25, 111, "Input",ExpressionUUID->"3915d247-c5b9-4903-a417-15100390d946"],
+Cell[77905, 2003, 2867, 74, 55, "Text",ExpressionUUID->"bcf2f672-c3e9-4586-83eb-c784a3ca1099"],
+Cell[80775, 2079, 396, 6, 55, "Text",ExpressionUUID->"063ffbfd-52af-4e43-bab6-9e5c5606d36c"],
+Cell[81174, 2087, 1097, 27, 55, "Text",ExpressionUUID->"95cd4e78-a274-4e57-9986-86bab8f9c667"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[82308, 2119, 81, 0, 66, "Section",ExpressionUUID->"84305408-ee42-46e9-9006-e4585445f3bd"],
+Cell[82392, 2121, 125, 0, 33, "Text",ExpressionUUID->"72577409-0b63-4d58-9351-76692e66224d"],
+Cell[82520, 2123, 413, 10, 29, "Input",ExpressionUUID->"54b87691-fec6-4883-aae4-9d865aaaddae"],
+Cell[82936, 2135, 790, 13, 33, "Text",ExpressionUUID->"30aa832a-4a4f-42d5-8d7c-b0fb7cdae32f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[83763, 2153, 84, 0, 66, "Section",ExpressionUUID->"ec919116-ff54-40ff-a3d3-dc1188fe80b1"],
+Cell[83850, 2155, 338, 7, 30, "Item",ExpressionUUID->"4b15fae3-4e3b-4771-b109-912c3746e5db"],
+Cell[84191, 2164, 321, 5, 30, "Item",ExpressionUUID->"fc15c03a-e5b8-42ec-9914-f36bc1b1d9b0"],
+Cell[84515, 2171, 381, 8, 30, "Item",ExpressionUUID->"e83fedc3-cab0-45ae-a2c5-fc5fda66ed0c"],
+Cell[84899, 2181, 369, 8, 30, "Item",ExpressionUUID->"8b6b9035-4021-428e-b2f1-8ac3da3571c5"]
+}, Open  ]]
 }, Open  ]]
 }
 ]
