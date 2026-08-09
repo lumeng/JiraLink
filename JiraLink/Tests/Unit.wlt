@@ -370,6 +370,44 @@ VerificationTest[
   TestID -> "connection-display-masks-secret"
 ];
 
+VerificationTest[
+  (* Neither may any other printed form. *)
+  AllTrue[
+    {OutputForm, InputForm, TextForm},
+    StringFreeQ[ToString[conn, #], "SECRET-TOKEN"] &],
+  True,
+  TestID -> "connection-masks-secret-in-every-form"
+];
+
+
+(* ::Section:: *)
+(* Secure credential entry
+
+   JiraStoreCredential[url] prompts rather than taking the secret as an
+   argument, so a token need never be typed into a notebook. The property that
+   matters here is that prompting cannot hang a non-interactive kernel:
+   InputString returns EndOfFile when there is no tty, which must surface as
+   $Canceled and store nothing. *)
+
+VerificationTest[
+  Quiet @ JiraStoreCredential["https://jira.example.invalid"],
+  $Canceled,
+  TestID -> "credential-prompt-cannot-hang-headless"
+];
+
+VerificationTest[
+  Quiet @ JiraStoreCredential["https://jira.example.invalid", "Basic"],
+  $Canceled,
+  TestID -> "basic-credential-prompt-cannot-hang-headless"
+];
+
+VerificationTest[
+  (* A cancelled prompt must not have written anything to secure storage. *)
+  JiraCredentialQ["https://jira.example.invalid"],
+  False,
+  TestID -> "cancelled-prompt-stores-nothing"
+];
+
 
 (* ::Section:: *)
 (* Pre-1.0 compatibility *)

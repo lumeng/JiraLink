@@ -73,8 +73,13 @@ underlying association.";
 
 JiraConnectionQ::usage = "JiraConnectionQ[expr] gives True if expr is a valid Jira connection object.";
 
-JiraStoreCredential::usage = "JiraStoreCredential[url, <|\"Token\" -> token|>] saves a credential \
-for url in the operating system's secure credential storage, under the key \"JiraLink:<domain>\".\n\
+JiraStoreCredential::usage = "JiraStoreCredential[url] prompts for a personal access token in a \
+masked field and saves it in the operating system's secure credential storage, under the key \
+\"JiraLink:<domain>\". The token is never echoed, so it does not end up in the notebook, in the \
+input history, or in the saved file.\n\
+JiraStoreCredential[url, \"Basic\"] prompts for a username and password instead.\n\
+JiraStoreCredential[url, <|\"Token\" -> token|>] stores a credential given explicitly; prefer the \
+prompting form in a notebook.\n\
 JiraStoreCredential[url, <|\"Username\" -> u, \"Password\" -> p|>] stores a basic-auth credential.";
 
 JiraDeleteCredential::usage = "JiraDeleteCredential[url] removes the stored credential for url from \

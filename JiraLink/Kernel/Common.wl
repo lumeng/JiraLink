@@ -39,6 +39,11 @@ Data Center, or a plugin that is not installed.";
 JiraLink::truncated = "Jira limited the page size of `1` to `2`; retrieving the requested results \
 takes more than one request.";
 
+JiraLink::nointeract = "No credential could be read: this session cannot prompt. Pass the \
+credential explicitly, or set the JIRA_TOKEN environment variable.";
+
+JiraLink::cancelled = "Credential entry was cancelled; nothing was stored.";
+
 
 (* ::Section:: *)
 (* API families

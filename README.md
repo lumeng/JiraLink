@@ -27,13 +27,36 @@ Personal access tokens are the recommended credential on Data Center. Create one
 from your Jira profile under *Personal Access Tokens*, then:
 
 ```wolfram
-(* store it once, in the operating system's secure credential storage *)
-JiraStoreCredential["https://jira.example.com", <|"Token" -> "your-token"|>];
+(* store it once; this prompts in a masked field and echoes nothing *)
+JiraStoreCredential["https://jira.example.com"];
 
 (* thereafter *)
 JiraConnect["https://jira.example.com"];
 JiraAuthenticationTest[]
 ```
+
+Given only a URL, `JiraStoreCredential` prompts rather than taking the secret as
+an argument, so the token is never typed into a notebook or a script and cannot
+end up in the input history, in a saved `.nb`, or in version control. Use
+`JiraStoreCredential[url, "Basic"]` to store a username and password instead.
+
+The explicit form `JiraStoreCredential[url, <|"Token" -> "..."|>]` still exists,
+for scripts that obtain the secret from somewhere else — an environment
+variable, a password manager, a file outside the repository. Avoid it in a
+notebook.
+
+For unattended use, set `JIRA_TOKEN` in the environment and store nothing at
+all:
+
+```bash
+export JIRA_URL=https://jira.example.com
+export JIRA_TOKEN=...
+wolframscript -code 'Needs["JiraLink`"]; JiraConnect[]; JiraAuthenticationTest[]'
+```
+
+Note that `JiraConnect`'s result masks the credential when displayed, but a raw
+`SystemCredential["JiraLink:<host>"]` lookup does not — evaluating that in a
+notebook would print the token and save it with the file.
 
 Credentials are resolved on the first request, in this order: options given on
 the call, then secure storage, then the environment variables `JIRA_URL`,

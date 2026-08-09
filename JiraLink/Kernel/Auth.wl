@@ -77,6 +77,52 @@ JiraStoreCredential[url_String, cred_Association] := Module[{norm, key},
   key
 ];
 
+(* Prompt for a secret without it ever appearing in the notebook, in the input
+   history, or in a saved .nb file.
+
+   InputString with FieldMasked shows a masked field in the front end and reads
+   from the terminal otherwise. In a non-interactive kernel -- a wolframscript
+   run with no tty -- it returns EndOfFile immediately rather than blocking, so
+   this cannot hang a script. That matters: load-time prompting is exactly what
+   1.0 removed, and nothing here may reintroduce a way to hang. *)
+jiraPromptSecret[prompt_String] := Module[{v},
+  v = Quiet @ InputString[prompt, FieldMasked -> True];
+  If[StringQ[v] && v =!= "", v, $Canceled]
+];
+
+jiraPromptPlain[prompt_String, default_String] := Module[{v},
+  v = Quiet @ InputString[prompt];
+  If[StringQ[v] && v =!= "", v, default]
+];
+
+(* JiraStoreCredential[url] prompts for a personal access token and stores it.
+   Deliberately a distinct one-argument form: an Association second argument
+   would otherwise be ambiguous with OptionsPattern. *)
+JiraStoreCredential[url_String] := JiraStoreCredential[url, "Token"];
+
+JiraStoreCredential[url_String, "Token"] := Module[{token},
+  token = jiraPromptSecret["Jira personal access token for " <> url <> ": "];
+  If[token === $Canceled,
+    Message[JiraLink::cancelled];
+    Return[$Canceled]
+  ];
+  JiraStoreCredential[url, <|"Token" -> token|>]
+];
+
+JiraStoreCredential[url_String, "Basic"] := Module[{user, pass},
+  user = jiraPromptPlain["Jira username for " <> url <> ": ", ""];
+  If[user === "",
+    Message[JiraLink::cancelled];
+    Return[$Canceled]
+  ];
+  pass = jiraPromptSecret["Jira password for " <> user <> ": "];
+  If[pass === $Canceled,
+    Message[JiraLink::cancelled];
+    Return[$Canceled]
+  ];
+  JiraStoreCredential[url, <|"Username" -> user, "Password" -> pass|>]
+];
+
 JiraDeleteCredential[url_String] := Module[{norm, key},
   norm = jiraNormalizeURL[url];
   If[norm === $Failed, Return[$Failed]];
